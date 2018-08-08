@@ -68,10 +68,10 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
         self.savecontentbutton.connect(self.savecontentbutton, QtCore.SIGNAL('clicked()'), self.SaveRecButtonProcess)
         self.x1save_button.connect(self.x1save_button, QtCore.SIGNAL('clicked()'), self.X1SaveButtonProcess)
         self.x1clr_button.connect(self.x1clr_button,  QtCore.SIGNAL('clicked()'), self.X1ClrButtonProcess)
-        self.x2save_button.connect(self.x2save_button, QtCore.SIGNAL('clicked()'), self.X2SaveButtonProcess)
-        self.x2clr_button.connect(self.x2clr_button,  QtCore.SIGNAL('clicked()'), self.X2ClrButtonProcess)
-        self.x3save_button.connect(self.x3save_button, QtCore.SIGNAL('clicked()'), self.X3SaveButtonProcess)
-        self.x3clr_button.connect(self.x3clr_button,  QtCore.SIGNAL('clicked()'), self.X3ClrButtonProcess)
+        #self.x2save_button.connect(self.x2save_button, QtCore.SIGNAL('clicked()'), self.X2SaveButtonProcess)
+        #self.x2clr_button.connect(self.x2clr_button,  QtCore.SIGNAL('clicked()'), self.X2ClrButtonProcess)
+        #self.x3save_button.connect(self.x3save_button, QtCore.SIGNAL('clicked()'), self.X3SaveButtonProcess)
+        #self.x3clr_button.connect(self.x3clr_button,  QtCore.SIGNAL('clicked()'), self.X3ClrButtonProcess)
         self.plotnum_Slider.valueChanged.connect(self.PlotNumValueChange)
 
         #用来实现波形的显示，画图
@@ -182,12 +182,12 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
         self.x1_checkBox.setEnabled(True)
         self.x1_low_line.setEnabled(True)
         self.x1_high_line.setEnabled(True)
-        self.x2_checkBox.setEnabled(True)
-        self.x2_low_line.setEnabled(True)
-        self.x2_high_line.setEnabled(True)
-        self.x3_checkBox.setEnabled(True)
-        self.x3_low_line.setEnabled(True)
-        self.x3_high_line.setEnabled(True)
+        #self.x2_checkBox.setEnabled(True)
+        #self.x2_low_line.setEnabled(True)
+        #self.x2_high_line.setEnabled(True)
+        #self.x3_checkBox.setEnabled(True)
+        #self.x3_low_line.setEnabled(True)
+        #self.x3_high_line.setEnabled(True)
 
     def ClrButtonProcess(self):#接收窗口清数据
         if self.distext.currentIndex() == 0:
@@ -310,27 +310,6 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
                     if self.x1selec_radio.isChecked() == True:
                         self.matplot.matplot_updatabuf(readdigital)
 
-            if self.x2_checkBox.isChecked() == True:
-                if readdigital >= self.x2_low and readdigital < self.x2_high:
-                    self.x2_plainTextEdit.appendPlainText(str(round(readdigital, 7)))
-
-                    if self.x2_plainTextEdit.toPlainText().__len__() > 10000:
-                        self.x2_plainTextEdit.clear()
-
-                    if self.x2selec_radio.isChecked() == True:
-                      self.matplot.matplot_updatabuf(readdigital)
-
-
-            if self.x3_checkBox.isChecked() == True:
-                if readdigital >= self.x3_low and readdigital < self.x3_high:
-                    self.x3_plainTextEdit.appendPlainText(str(round(readdigital, 7)))
-
-                    if self.x3_plainTextEdit.toPlainText().__len__() > 10000:
-                        self.x3_plainTextEdit.clear()
-
-                    if self.x3selec_radio.isChecked() == True:
-                        self.matplot.matplot_updatabuf(readdigital)
-
         #判断是否刷新画图区域
         if self.x1selec_radio.isChecked() == True or self.x2selec_radio.isChecked() == True or self.x3selec_radio.isChecked() == True:
             self.Multiplot_Refresh()
@@ -408,7 +387,7 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
                 self.dishex.clear()
         elif self.debugtab.currentIndex() == 0:
             self.distring.appendPlainText(self.RecStr.decode("utf-8")) #String display.
-            if self.x1_checkBox.isChecked() or self.x2_checkBox.isChecked() or self.x3_checkBox.isChecked():
+            if self.x1_checkBox.isChecked():
                 self.DebugDataSelecDeal(self.RecStr.decode("utf-8"))
             if self.distring.toPlainText().__len__() > 200000:
                 self.distring.clear()

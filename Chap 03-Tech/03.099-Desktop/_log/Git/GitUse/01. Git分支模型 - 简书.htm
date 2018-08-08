@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width"/>
+  <meta name="HandheldFriendly" content="true"/>
+  <meta name="mobile-agent" content="format=html5;url=https://www.jianshu.com/p/b357df6794e3">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description"  content="下午看到一篇介绍Git工作模型的文章，觉得很不错。为了方便大家快速掌握文章的内容，这里对这篇文章的要点进行简单的介绍 原文地址：http://nvie.com/posts/a-successful-git-branching-model/ 为何使用Git 关于Subversion和Git的优劣比较有很多的文章已经进行了比较详细的介绍，这并不是这篇文章的重点。但是Git的一些优势却是这种模型的...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8" />
+  <meta property="wb:webmaster" content="294ec9de89e7fadb" />
+  <meta property="qc:admins" content="104102651453316562112116375" />
+  <meta property="qc:admins" content="11635613706305617" />
+  <meta property="qc:admins" content="1163561616621163056375" />
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4" />
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI" />
+  <meta http-equiv="mobile-agent" content="format=html5; url=https://www.jianshu.com/p/b357df6794e3">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/2498073">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="一个成功的Git分支模型" property="twitter:title">
+  <meta content="下午看到一篇介绍Git工作模型的文章，觉得很不错。为了方便大家快速掌握文章的内容，这里对这篇文章的要点进行简单的介绍 原文地址：http://nvie.com/posts/a..." property="twitter:description">
+  <meta content="https://www.jianshu.com/p/b357df6794e3" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="一个成功的Git分支模型">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.jianshu.com/p/b357df6794e3">
+  <meta property="og:description" content="下午看到一篇介绍Git工作模型的文章，觉得很不错。为了方便大家快速掌握文章的内容，这里对这篇文章的要点进行简单的介绍 原文地址：http://nvie.com/posts/a-successfu...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/2498073" />
+  <meta property="al:ios:app_store_id" content="888237539" />
+  <meta property="al:ios:app_name" content="简书" />
+
+  <meta property="al:android:url" content="jianshu://notes/2498073" />
+  <meta property="al:android:package" content="com.jianshu.haruki" />
+  <meta property="al:android:app_name" content="简书" />
+  <!-- End -->
+
+
+    <title>一个成功的Git分支模型 - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="Vtu20r3SBwVmxpR/VHnkPnrqGuUFkOkTE/sis/maALz67MhfhWzGTL4bXsFxllYMOZ1Bjy0pVAJ/Ha8b/eMOtg==" />
+
+  <link rel="stylesheet" media="all" href="//cdn2.jianshu.io/assets/web-454c23dafcf6c3369b7c.css" />
+  
+  <link rel="stylesheet" media="all" href="//cdn2.jianshu.io/assets/web/pages/notes/show/entry-0559afc34ccff7d75594.css" />
+
+  <link href="//cdn2.jianshu.io/assets/favicons/favicon-e743bfb1821442341c3ab15bdbe804f7ad97676bd07a770ccc9483473aa76f06.ico" rel="shortcut icon" type="image/x-icon">
+      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/57-a6f1f1ee62ace44f6dc2f6a08575abd3c3b163288881c78dd8d75247682a4b27.png" sizes="57x57" />
+      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/72-fb9834bcfce738fd7b9c5e31363e79443e09a81a8e931170b58bc815387c1562.png" sizes="72x72" />
+      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/76-49d88e539ff2489475d603994988d871219141ecaa0b1a7a9a1914f4fe3182d6.png" sizes="76x76" />
+      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/114-24252fe693524ed3a9d0905e49bff3cbd0228f25a320aa09053c2ebb4955de97.png" sizes="114x114" />
+      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/120-1bb7371f5e87f93ce780a5f1a05ff1b176828ee0d1d130e768575918a2e05834.png" sizes="120x120" />
+      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/152-bf209460fc1c17bfd3e2b84c8e758bc11ca3e570fd411c3bbd84149b97453b99.png" sizes="152x152" />
+
+  <!-- Start of 访问统计 -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+  <!-- End of 访问统计 -->
+</head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="/"><img src="//cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="Nav logo" /></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="/sign_up">注册</a>
+      <a class="btn log-in" href="/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div id="view-mode-ctrl">
+    </div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="tab ">
+              <a href="/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="tab ">
+              <a id="web-nav-app-download-btn" class="app-download-btn" href="/apps?utm_medium=desktop&amp;utm_source=navbar-apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+              <input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input" />
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+    <a target="_blank" href="/apps/redirect?utm_source=side-banner-click" id="web-note-ad-fixed"><span class="close">&times;</span></a>
+  <div class="post">
+    <div class="article">
+        <h1 class="title">一个成功的Git分支模型</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="/u/191a96d00530">
+            <img src="//upload.jianshu.io/users/upload_avatars/1226129/099661edd8e0?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96" alt="96" />
+</a>          <div class="info">
+            <span class="name"><a href="/u/191a96d00530">Chuckiefan</a></span>
+            <!-- 关注用户按钮 -->
+            <div props-data-classes="user-follow-button-header" data-author-follow-button></div>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="最后编辑于 2017.11.27 05:04">2015.12.06 20:05*</span>
+              <span class="wordage">字数 2441</span>
+            </div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+
+        <!-- 文章内容 -->
+        <div data-note-content class="show-content">
+          <div class="show-content-free">
+            <hr>
+<p>下午看到一篇介绍Git工作模型的文章，觉得很不错。为了方便大家快速掌握文章的内容，这里对这篇文章的要点进行简单的介绍</p>
+<p>原文地址：<a href="https://link.jianshu.com?t=http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="nofollow">http://nvie.com/posts/a-successful-git-branching-model/</a></p>
+<h2>为何使用Git</h2>
+<p>关于Subversion和Git的优劣比较有很多的文章已经进行了比较详细的介绍，这并不是这篇文章的重点。但是Git的一些优势却是这种模型的基础，因此对于这一部分应当进行必要的介绍。</p>
+<h3>分支</h3>
+<blockquote>
+<p>But with Git, these actions are extremely cheap and simple, and they are considered one of the core parts of your daily workflow, really. For example, in CVS/Subversion books, branching and merging is first discussed in the later chapters (for advanced users), while in every Git book, it’s already covered in chapter 3 (basics).</p>
+</blockquote>
+<p>Git相比较Subversion而言，有一个显著的优势就是对分支的使用非常的方便。在Git中，分支的使用是非常鼓励和推荐的，因此在《Pro Git》中把分支的使用是作为基础章节来介绍的，也就是说分支是Git中经常会用到的操作。而本文所介绍的这种模型，就是建立在对分支频繁操作（创建，切换，合并等）的基础上的。</p>
+<h3>非集中式</h3>
+<p>非集中式的版本控制系统是Git的另一大优势。这就表示，在使用Git的时候，每一次代码的提交都不必同步到远程服务器中，开发人员可以在外部网络环境（无法连接内网），甚至离线的情况下进行代码的版本控制。作为非集中式的版本控制系统，开发人员可以在本地创建分支而不必同步到服务器上，这一点是构成文中Git分支模型的另一大基础。</p>
+<h2>主分支(Main Branch)</h2>
+<p>在Git分支模型中存在两个主分支，这两个分支是不可或缺的：</p>
+<ul>
+<li><p>master分支</p></li>
+<li><p>develop分支</p></li>
+</ul>
+<h3>master分支</h3>
+<p>master作为Git中默认的主分支，是使用Git的开发者们非常熟悉的默认主分支名称。在Git分支开发模型中，master分支的HEAD节点始终处于“准备好进行生产的状态”，即master分支的HEAD节点所指向的版本始终是可以用于生产环境的正式版本。当其他分支的代码版本合并到master分支时（随后打上版本标签），通常意味着一个新的正式版本已经发布。该过程的具体介绍详见后文。</p>
+<h3>develop分支</h3>
+<p>develop分支作为另一个主分支，其HEAD节点总是指向下一个待发布版本的最新变化。develop分支的版本变更通常来源于辅助分支的合并（稍后介绍），因为develop分支也常被称为“整合分支”。当develop分支达到某一稳定点，可进行新版本的发布时，develop分支上的所有变更应该被合并到master分支并打上tag标签，该过程详见后文。</p>
+<h2>辅助分支(Supporting Branch)</h2>
+<p>除了master分支和develop分支这两个主分支以外，Git分支模型中拥有一些“辅助分支”，在团队开发中对develop分支和master分支进行帮助，例如对新需求的研发，新版本发布前的准备工作以及新版本bug的紧急修复等。和主分支不同的是，这些分支的生命周期都是很有限的，最终都将会被删除。辅助分支中有以下三类分支：</p>
+<ul>
+<li>需求分支(Feature Branch)</li>
+<li>发布分支(Release Branch)</li>
+<li>修复分支(Hotfix Branch)</li>
+</ul>
+<p>上述三种辅助分支，每一种都有其特定的功能，并遵守各自严格的规则,例如分支的输入分支、分支的输出（合并）分支等等。下文将逐一描述。</p>
+<h3>需求分支(Feature Branch)</h3>
+<p>分支来源：develop分支</p>
+<p>分支去向：develop分支</p>
+<p>分支命名：任意名称，除master，develop，以“release-”开头，以“hotfix-”开头的分支以外。</p>
+<p>需求分支用于为未来的软件版本开发新的功能需求。当进行一个需求的研发时，该需求将被整合进正式版本是未知，所以需要单独创建分支对该需求进行研发，只要该需求尚在开发中，该需求分支就会一直存在。需求分支最终会被合并到develop分支中作为下一个待发布版本的功能之一，或者由于该需求无法实现从而被抛弃。</p>
+<p><strong>注：需求分支通常仅仅存在于开发者的代码仓库中（本地仓库），并不上传到远程分支。</strong></p>
+<h4>如何创建需求分支</h4>
+<p>创建需求分支时，该分支必须从develop分支得到：</p>
+<pre><code>$ git checkout -b feature_branch develop
+
+</code></pre>
+<p>该命令从develop分支创建一个新的分支“feature_branch”，并从当前分支切换到“feature_branch”分支，相当于：</p>
+<pre><code>$ git branch feature_branch develop
+$ git checkout feature_branch
+</code></pre>
+<h4>将已完成的需求分支合并到develop分支</h4>
+<p>已完成的需求分支需要被合并到develop分支，作为待发布版本的需求之一：</p>
+<pre><code>$ git checkout develop #切换到develop分支
+$ git merge --no-ff feature_branch #合并分支
+$ git branch -d feature_branch #删除需求分支
+$ git push origin develop #推送 
+</code></pre>
+<p>--no-ff表示No Fast Forward，在合并使，即使可能是fast forward方式，也会创建一个新的commit节点。</p>
+<hr>
+<p><strong>关于fast forward</strong></p>
+<p>当前分支合并到另一分支时，如果没有分歧解决，就会直接移动文件指针。这个过程叫做fast forward。</p>
+<p>例如，开发一直在master分支进行，但忽然有一个新的想法，于是新建了一个develop的分支，并在其上进行一系列提交，完成时，回到 master分支，此时，master分支在创建develop分支之后并未产生任何新的commit。此时的合并就叫fast forward，如下图：</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 324px; max-height: 112px;">
+<div class="image-container-fill" style="padding-bottom: 34.57%;"></div>
+<div class="image-view" data-width="324" data-height="112"><img data-original-src="//upload-images.jianshu.io/upload_images/1226129-4d2c4e261540d9c1.png" data-original-width="324" data-original-height="112" data-original-format="image/png" data-original-filesize="11450"></div>
+</div>
+<div class="image-caption">git merge develop</div>
+</div>
+<p>可以看到master在合并develop分支的时候并没有产生新的节点</p>
+<p>回到develop分支，对代码进行修改，提交。切换到master分支，使用git merge develop --no-ff 进行合并，此时会产生一个commit节点,如下图：</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 269px; max-height: 120px;">
+<div class="image-container-fill" style="padding-bottom: 44.61%;"></div>
+<div class="image-view" data-width="269" data-height="120"><img data-original-src="//upload-images.jianshu.io/upload_images/1226129-d9fafdd84c77867a.png" data-original-width="269" data-original-height="120" data-original-format="image/png" data-original-filesize="12186"></div>
+</div>
+<div class="image-caption">git merge develop --no-ff</div>
+</div>
+<p>删除分支develop后，如下图：</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 327px; max-height: 113px;">
+<div class="image-container-fill" style="padding-bottom: 34.56%;"></div>
+<div class="image-view" data-width="327" data-height="113"><img data-original-src="//upload-images.jianshu.io/upload_images/1226129-69dc91a663841f8f.png" data-original-width="327" data-original-height="113" data-original-format="image/png" data-original-filesize="13804"></div>
+</div>
+<div class="image-caption">删除develop分支后</div>
+</div>
+<p>很明显使用--no-ff合并时，在删除develop分之后，该分支的合并信息仍然被保留，在以后的代码分析中可以便捷的查看到历史信息，而fast forward方式则无法辨识代码的合并信息。正如原文所说：</p>
+<blockquote>
+<p>The --no-ff flag causes the merge to always create a new commit object, even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature.</p>
+</blockquote>
+<hr>
+<h3>发布分支(Release Branch)</h3>
+<p>分支来源：develop分支</p>
+<p>分支去向：develop分支和master分支</p>
+<p>分支命名：以"release-"开头</p>
+<p>发布分支用于辅助新版本（生产环境）发布的准备工作，例如小bug的修复，或者版本号的修改等等。使用发布分支的好处是，当从develop分支中创建发布分支以后，develop分支便可以进行新版本之后需求的研发工作，从而既不会影响到最新的研发进度，也不会影响到新版本的发布。</p>
+<h4>创建发布分支</h4>
+<p>发布分支以develop分支作为源分支。例如，目前develop分支上的所有需求将作为版本1.2发布，这时可以创建一个分支"release-1.2"。此时可以继续在develop分支上进行新需求的研发，而1.2版本的发布工作将由“release-1.2”分支来完成：</p>
+<pre><code>$ git checkout -b release-1.2 develop #创建并切换到"release-1.2"分支
+$ vim file #表示对版本号的修改，或者小bug的修复等
+$ git commit -a -m "更新版本至1.2" #提交代码
+
+</code></pre>
+<p><strong>注： 如果在发布分支进行小型bug的修改，则需要将提交后的代码合并到develop分支中</strong></p>
+<h4>完成发布分支</h4>
+<p>当发布分支完成代码的提交（如果修复过bug，则要合并到develop分支）后，需要将发布分支合并到master分支上，并进行tag操作，如：</p>
+<pre><code>$ git checkout master
+$ git merge --no-ff release-1.2
+$ git tag -a "v1.2"
+
+</code></pre>
+<p>PS：合并到develop的操作：</p>
+<pre><code>$ git checkout develop
+$ git merge --no-ff release-1.2
+</code></pre>
+<p>完成合并操作以后，删除该发布分支：</p>
+<pre><code>$ git branch -d release-1.2
+
+</code></pre>
+<h3>修复分支(Hotfix Branch)</h3>
+<p>分支来源：master分支</p>
+<p>分支去向：develop分支和master分支</p>
+<p>分支命名：以"hotfix-"开头</p>
+<p>修复分支用于正式版本的紧急修复，在紧急修复完成以后<strong>必须同时被合并到master分支和develop分支</strong>，这是修复分支和发布分支不同之处(二者的来源也不同)，和发布分支类似，修复分支在修复bug，提交，被合并以后，也要进行tag操作。</p>
+<h4>创建修复分支</h4>
+<pre><code>$ git checkout -b hotfix-1.2.1 master
+$ vim file #表示修复bug
+$ git commit -a -m "修复bug"
+$ vim file #表示更新版本号
+$ git commit -a -m "版本更新为1.2.1"
+</code></pre>
+<h4>完成修复分支</h4>
+<pre><code>$ git checkout master
+$ git merge --no-ff hotfix-1.2.1
+$ git tag -a 1.2.1 #tag操作
+</code></pre>
+<p>不要忘记合并修复分支到develop分支</p>
+<pre><code>$ git checkout develop
+$ git merge --no-ff hotfix-1.2.1
+</code></pre>
+<p>删除修复分支：</p>
+<pre><code>$ git branch -d hotfix-1.2.1
+</code></pre>
+<h2>总结</h2>
+<p>以上就是这篇文章的主要内容，原文作者充分利用了git的诸多优势，为我们提供了一种优雅的版本管理模型，希望能够对大家有所帮助。整篇文章如果有任何翻译解释不到位的地方，还请各位指出，谢谢。最后，附上整个分支模型的示意图，感谢阅读。 :)</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 927px;">
+<div class="image-container-fill" style="padding-bottom: 132.51999999999998%;"></div>
+<div class="image-view" data-width="1150" data-height="1524"><img data-original-src="//upload-images.jianshu.io/upload_images/1226129-b2018af358d865d5.png" data-original-width="1150" data-original-height="1524" data-original-format="image/png" data-original-filesize="124925"></div>
+</div>
+<div class="image-caption">image</div>
+</div>
+
+          </div>
+        </div>
+    </div>
+
+    <!-- 如果是付费文章，未购买，则显示购买按钮 -->
+
+    <!-- 连载目录项 -->
+
+    <!-- 如果是付费文章 -->
+      <!-- 如果是付费连载，已购买，且作者允许赞赏，则显示付费信息和赞赏 -->
+        <div data-vcomp="free-reward-panel"></div>
+
+      <div class="show-foot">
+        <a class="notebook" href="/nb/2656439">
+          <i class="iconfont ic-search-notebook"></i>
+          <span>技术类</span>
+</a>        <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+          © 著作权归作者所有
+        </div>
+        <div class="modal-wrap" data-report-note>
+          <a id="report-modal">举报文章</a>
+        </div>
+      </div>
+
+      <!-- 文章底部作者信息 -->
+        <div class="follow-detail">
+          <div class="info">
+            <a class="avatar" href="/u/191a96d00530">
+              <img src="//upload.jianshu.io/users/upload_avatars/1226129/099661edd8e0?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96" alt="96" />
+</a>            <div props-data-classes="user-follow-button-footer" data-author-follow-button></div>
+            <a class="title" href="/u/191a96d00530">Chuckiefan</a>
+          </div>
+        </div>
+
+    <div class="meta-bottom">
+      <div class="btn like-group"></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-action="weibo-share" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/2498073/weibo/image_a9d2d6b33132.jpg&#39;, &#39;推荐 @Chuckiefan 的文章《一个成功的Git分支模型》（ 分享自 @简书 ）&#39;,&#39;https://www.jianshu.com/p/b357df6794e3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/2498073/weibo/image_a9d2d6b33132.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content='
+          <ul class="share-list">
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;https://www.jianshu.com/p/b357df6794e3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 Chuckiefan 的文章《一个成功的Git分支模型》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"><i class="social-icon-sprite social-icon-zone"></i><span>分享到QQ空间</span></a></li>
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/b357df6794e3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 Chuckiefan 的文章《一个成功的Git分支模型》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"><i class="social-icon-sprite social-icon-twitter"></i><span>分享到Twitter</span></a></li>
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=https://www.jianshu.com/p/b357df6794e3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"><i class="social-icon-sprite social-icon-facebook"></i><span>分享到Facebook</span></a></li>
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/b357df6794e3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"><i class="social-icon-sprite social-icon-google"></i><span>分享到Google+</span></a></li>
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;https://www.jianshu.com/p/b357df6794e3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;一个成功的Git分支模型&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()"><i class="social-icon-sprite social-icon-douban"></i><span>分享到豆瓣</span></a></li>
+          </ul>
+        '>更多分享</a>
+      </div>
+    </div>
+      <a id="web-note-ad-1" target="_blank" href="/apps/redirect?utm_source=note-bottom-click"><img src="//cdn2.jianshu.io/assets/web/web-note-ad-1-c2e1746859dbf03abe49248893c9bea4.png" alt="Web note ad 1" /></a>
+    <div id="vue_comment"></div>
+  </div>
+
+  <div class="vue-side-tool" props-data-props-show-qr-code="0"></div>
+</div>
+<div class="note-bottom">
+  <div class="js-included-collections"></div>
+  <div data-vcomp="recommended-notes" data-lazy="1.5" data-note-id="2498073"></div>
+  <!-- 相关文章 -->
+  <div class="seo-recommended-notes">
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="/p/414417b4e77a?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="//upload-images.jianshu.io/upload_images/2779976-20f9c0461c7a8977.png?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240" alt="240" />
+</a>          <a class="title" target="_blank" href="/p/414417b4e77a?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">一个成功的Git分支模型</a>
+          <p class="description">翻译：一个成功的Git分支模型 原文链接：http://nvie.com/posts/a-successful-git-branching-model/ 在这篇博客里，我将展示一个开发模型。这个模型在我之前的几个项目里引入，这个模型被证明是非常成功的。我早就想写一篇文章介绍...</p>
+          <a class="author" target="_blank" href="/u/492123c5a36d?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/2779976/252092bdb76b.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48" alt="48" />
+            </div>
+            <span class="name">孙阔</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="/p/fe76f2890a14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="//upload-images.jianshu.io/upload_images/2585384-8249e5c04c4c35d1.png?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240" alt="240" />
+</a>          <a class="title" target="_blank" href="/p/fe76f2890a14?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">Git全面教程</a>
+          <p class="description">Git全面教程 简介 Git分布式版本管理系统。 Linus在1991年创建了开源的Linux，但是一直没有一个合适的版本管理工具，在2002年以前，世界各地的志愿者都是通过把源代码文件通过diff的方式给Linus，然后他本人通过手工的方式进行合并代码。后来在2002年B...</p>
+          <a class="author" target="_blank" href="/u/b51475b6a136?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/2585384/25e7b36ea84c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48" alt="48" />
+            </div>
+            <span class="name">关玮琳linSir</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="/p/748e4892871a?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="//upload-images.jianshu.io/upload_images/2779976-ef133a928f64f8ea.png?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240" alt="240" />
+</a>          <a class="title" target="_blank" href="/p/748e4892871a?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">翻译：《一个成功的Git分支模型》为什么是有害的</a>
+          <p class="description">翻译：《一个成功的Git分支模型》为什么是有害的 原文链接：https://barro.github.io/2016/02/a-succesful-git-branching-model-considered-harmful/当大家开始使用Git并且开始了解到分支概念及分支...</p>
+          <a class="author" target="_blank" href="/u/492123c5a36d?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/2779976/252092bdb76b.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48" alt="48" />
+            </div>
+            <span class="name">孙阔</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="/p/9eaf603b4796?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="//upload-images.jianshu.io/upload_images/2354823-d06b7fdd9935cc25.png?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240" alt="240" />
+</a>          <a class="title" target="_blank" href="/p/9eaf603b4796?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">git学习笔记</a>
+          <p class="description">学习资料pro gitgit - 简明指南Github官方帮助文档Git Community Book 中文版参考廖雪峰GIT教程Learn Git BranchingGit笔记(一)——[commit, checkout]Git笔记(二)——[diff, reset]Gi...</p>
+          <a class="author" target="_blank" href="/u/50e1d98d51ac?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/2354823/03a63471-68f5-4720-ab50-14bd4ced4069.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48" alt="48" />
+            </div>
+            <span class="name">懒皮</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="/p/14f8e93297be?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">Git分支的前世今生竟是这样？</a>
+          <p class="description">纯手工打造每一篇开源资讯与技术干货，数十万程序员和Linuxer已经关注 1 Git 分支 - 分支简介 有人把 Git 的分支模型称为它的“必杀技特性”，也正因为这一特性，使得 Git 从众多版本控制系统中脱颖而出。 为何 Git 的分支模型如此出众呢？ Git 处理分支...</p>
+          <a class="author" target="_blank" href="/u/bffa5987bbcd?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/3275724/77b00eb8-6382-4eb6-bbf1-cfacf64f301e.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48" alt="48" />
+            </div>
+            <span class="name">岳永</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="/p/29defe21eb63?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="//upload-images.jianshu.io/upload_images/730943-5e4b005b3404cce2.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240" alt="240" />
+</a>          <a class="title" target="_blank" href="/p/29defe21eb63?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">资产配置多元化是投资的唯一免费午餐</a>
+          <p class="description">尊重原创 请勿侵权</p>
+          <a class="author" target="_blank" href="/u/29e9d87d4c0d?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/730943/ebb9b54730eb.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48" alt="48" />
+            </div>
+            <span class="name">谁谁谁漫画</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="/p/cb3257ccb409?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">忆古</a>
+          <p class="description">忆往矣，往日成风；心易醉，闲来惜事念古人。伊人河畔寻偶聚；残阳西下，未见影！</p>
+          <a class="author" target="_blank" href="/u/529ae8eaf810?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/1626281/c778d6c4fb26?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48" alt="48" />
+            </div>
+            <span class="name">泡沫美人鱼</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="/p/94c2b37605b6?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">《内在的天空》领读摘录Day6 | 水瓶座、双鱼座</a>
+          <p class="description">水瓶座: 自由——就是水瓶座的终点。 水瓶座和循规蹈矩无法融合，就像和平与核弹头无法融合一样。 对于水瓶座来说，那些攻城木可以有很多种形式，不过本质上是顺应文化所建立的行为模式造成的压力。 有一个词可用来形容这种思想极端的独立，也是一个可以描述水瓶的最重要资源的词:天才。 ...</p>
+          <a class="author" target="_blank" href="/u/fa8d2ce27904?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/2986529/5c12d7b24f34.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48" alt="48" />
+            </div>
+            <span class="name">mm348304498</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="/p/ab18970462cf?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">德鲁克谈自我管理第四章分享</a>
+          <p class="description">第四章 从卓越的个人到出色的团队     有系统的抛弃昨天的成功，这才是创新。不管有多大的成功，都要抛弃掉，重新来思考问题。      一.创新的精神       1.承担正当的风险      德鲁克说了一段非常经典的话，他说：“如果有一项值得我们投资的事业，有40%成功的...</p>
+          <a class="author" target="_blank" href="/u/a41056674413?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/6834798/31d92731-67fa-4da7-854a-5a38fe84c346?imageMogr2/auto-orient/strip|imageView2/1/w/48/h/48" alt="48" />
+            </div>
+            <span class="name">喜_42ca</span>
+</a>        </div>
+  </div>
+</div>
+
+    <script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"follow_state":0,"uuid":"3b76c9ec-0348-481d-b564-0e4ae417e9b4"},"note":{"id":2498073,"slug":"b357df6794e3","user_id":1226129,"notebook_id":2656439,"commentable":true,"likes_count":34,"views_count":4896,"public_wordage":2441,"comments_count":12,"featured_comments_count":0,"total_rewards_count":1,"is_author":false,"paid_type":"free","paid":false,"paid_content_accessible":false,"author":{"nickname":"Chuckiefan","total_wordage":56046,"followers_count":243,"total_likes_count":390}}}</script>
+    
+    <script src="//cdn2.jianshu.io/assets/babel-polyfill-e9c9b9785eb2c39c58e4.js" crossorigin="anonymous"></script>
+    <script src="//cdn2.jianshu.io/assets/web-base-a2ccfad0696bbad061fd.js" crossorigin="anonymous"></script>
+<script src="//cdn2.jianshu.io/assets/web-3102178f76b6c1777f48.js" crossorigin="anonymous"></script>
+    
+    <script src="//cdn2.jianshu.io/assets/web/pages/notes/show/entry-2fa1fafbddebf593cd9b.js" crossorigin="anonymous"></script>
+    <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  </body>
+</html>

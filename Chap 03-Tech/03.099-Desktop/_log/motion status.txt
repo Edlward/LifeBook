@@ -1,0 +1,32 @@
+    enum
+    {   NOT_USED = 0,
+        HEART_BEAT,
+        INNER_IMPULSE,
+        OUTER_IMPULSE,
+        KEY_IMPULSE,
+        OPEN_CLOSE_IMPULSE,
+        PRESENCE_IMPULSE,
+        PRESENCE_DETECT_IMPULSE,
+        LEARN_BUTTON,
+        ENCODER_INFO,
+        MOTION_CONTROL_COMMAND,
+        MOTION_CONTROL_EVENT_TIMER_TIME_OUT,
+	    MOTION_CONTROL_STATUS,
+        NUMBER_OF_MESSAGE_IDS };
+
+    extern const uint8_t cui8MotionControlStatusClosing;
+    extern const uint8_t cui8MotionControlStatusClosed;
+    extern const uint8_t cui8MotionControlStatusObstructed;
+    extern const uint8_t cui8MotionControlStatusOpening;
+    extern const uint8_t cui8MotionControlStatusOpen;
+    extern const uint8_t cui8MotionControlStatusStalled;
+
+    enum
+    {
+        MOTION_CONTROL_STATUS_CLOSING = 0,
+        MOTION_CONTROL_STATUS_CLOSED,
+        MOTION_CONTROL_STATUS_OBSTRUCTED,
+        MOTION_CONTROL_STATUS_OPENING,
+        MOTION_CONTROL_STATUS_OPEN,
+        MOTION_CONTROL_STATUS_STALLED
+    };

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+
+    <title>Cpputest</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Cpputest</h1>
+        <h2>CppUTest unit testing and mocking framework for C/C++</h2>
+
+        <nav>
+	        <div class="navbar navbar-inverse">
+		        <div class="navbar-inner">
+			        <a class="brand" href="index.html">CppUTest</a>
+			        <a class="brand" href='https://coveralls.io/github/cpputest/cpputest?branch=master'><img src='https://coveralls.io/repos/github/cpputest/cpputest/badge.svg?branch=master' alt='Coverage Status' /></a>
+
+			        <ul class="nav">
+			        	<li class="divider-vertical"></li>
+				        <li><a href="manual.html">Core Manual</a></li>
+			        	<li class="divider-vertical"></li>
+				        <li><a href="mocking_manual.html">CppUMock Manual</a></li>
+				        <li class="divider-vertical"></li>
+				        <li><a href="plugin_manual.html">Plugin Manual</a></li>
+				        <li class="divider-vertical"></li>
+				        <li><a href="stories.html">Platforms stories</a></li>
+				        <li class="divider-vertical"></li>
+				        <li><a href="https://github.com/cpputest/cpputest"><span class="github_icon"></span><span>View on
+				        GitHub</span></a></li>
+				    </ul>
+				</div>
+			</div>
+        </nav>
+
+        <section id="downloads">
+          <a href="https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.zip" class="btn btn-inverse">Download Release 3.8 as .zip</a>
+          <a href="https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.tar.gz" class="btn btn-inverse">Download Release 3.8 as .tar.gz</a>
+        </section>
+	  </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+
+
+<p>CppUTest is a C /C++ based unit xUnit test framework for unit testing and for test-driving your code. It is written in C++ but is used in C and C++ projects and frequently used in embedded systems.</p>
+
+<p>CppUTest’s core design principles</p>
+
+<ul>
+  <li>Simple to use and small</li>
+  <li>Portable to old and new platforms</li>
+  <li>Build with Test-driven Development in mind</li>
+</ul>
+
+<h2 id="table-of-content">Table of Content</h2>
+
+<ul>
+  <li><a href="#getting_started">Getting started</a></li>
+  <li><a href="#test_macros">Test Macros</a></li>
+  <li><a href="#assertions">Assertions</a></li>
+  <li><a href="#setup_teardown">Setup and Teardown</a></li>
+  <li><a href="#command_line">Command Line Switches</a></li>
+  <li><a href="#memory_leak_detection">Memory Leak Detection</a></li>
+  <li><a href="#test_plugins">Test Plugins</a></li>
+  <li><a href="#scripts">Scripts</a></li>
+  <li><a href="#advanced">Advanced Stuff</a></li>
+  <li><a href="#c_interface">C Interface</a></li>
+  <li><a href="#gmock">Using Google Mock</a></li>
+  <li><a href="#gtest">Running Google Tests in CppUTest</a></li>
+</ul>
+
+<p><a id="getting_started"> </a></p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<h3 id="your-first-test">Your first test</h3>
+
+<p>To write your first test, all you need is a new cpp file with a TEST_GROUP and a TEST, like:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include "CppUTest/TestHarness.h"
+</span>
+<span class="n">TEST_GROUP</span><span class="p">(</span><span class="n">FirstTestGroup</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">};</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">FirstTestGroup</span><span class="p">,</span> <span class="n">FirstTest</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">FAIL</span><span class="p">(</span><span class="s">"Fail me!"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This test will fail. For adding new test_groups, this will be all you need to do (and make sure its compiled). If you want to add another test, all you need to do it:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">TEST</span><span class="p">(</span><span class="n">FirstTestGroup</span><span class="p">,</span> <span class="n">SecondTest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">STRCMP_EQUAL</span><span class="p">(</span><span class="s">"hello"</span><span class="p">,</span> <span class="s">"world"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>One of the key design goals in CppUTest is to make it <em>very easy</em> to add and remove tests as this is something you’ll be doing a lot when test-driving your code.</p>
+
+<h3 id="writing-your-main">Writing your main</h3>
+
+<p>Of course, in order to get it to run, you’ll need to create a main. Most of the mains in CppUTest are very similar. They typically are in an AllTests.cpp file and look like this:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include "CppUTest/CommandLineTestRunner.h"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">ac</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">av</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">CommandLineTestRunner</span><span class="o">::</span><span class="n">RunAllTests</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="n">av</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>CppUTest will automatically find your tests (as long as you don’t like them in a library).</p>
+
+<h3 id="makefile-changes">Makefile changes</h3>
+
+<p>To get the above to work, you’ll need a Makefile or change your existing one. The needed changed are:</p>
+
+<h4 id="cpputest-path">CppUTest path</h4>
+
+<p>If you have a system installed version (e.g. via apt-get) then you probably don’t need to change the path. Otherwise you’ll need to add CppUTest include directories to your Makefile. Usually this is done by definining a CppUTest path either as system variable or in the Makefile, such as:</p>
+
+<figure class="highlight"><pre><code class="language-make" data-lang="make">    <span class="nv">CPPUTEST_HOME</span> <span class="o">=</span><span class="err"> /Users/vodde/workspace/cpputest</span></code></pre></figure>
+
+<h4 id="compiler-options">Compiler options</h4>
+
+<p>For the compiler you have to add the include path and optional (but recommended) the CppUTest pre-include header which enables debug information for the memory leak detector <em>and</em> offers memory leak detection in C. Lets start with the include path, you’ll need to add:</p>
+
+<figure class="highlight"><pre><code class="language-make" data-lang="make">    <span class="nv">CPPFLAGS</span> <span class="o">+=</span> -I<span class="nv">$(CPPUTEST_HOME)</span><span class="err">/include</span></code></pre></figure>
+
+<p>(CPPFLAGS works for both .c and .cpp files!)</p>
+
+<p>Then for the memory leak detection, you’ll need to add:</p>
+
+<figure class="highlight"><pre><code class="language-make" data-lang="make">    <span class="nv">CXXFLAGS</span> <span class="o">+=</span> -include <span class="nv">$(CPPUTEST_HOME)</span>/include/CppUTest/MemoryLeakDetectorNewMacros.h
+    <span class="nv">CFLAGS</span> <span class="o">+=</span> -include <span class="nv">$(CPPUTEST_HOME)</span><span class="err">/include/CppUTest/MemoryLeakDetectorMallocMacros.h</span></code></pre></figure>
+
+<p>These flags need to be added to <em>both</em> test code <em>and</em> production code. They will replace the malloc and new with a debug variant.</p>
+
+<h4 id="linker-options">Linker options</h4>
+
+<p>You need to add CppUTest library to the linker flags, for example, like:</p>
+
+<figure class="highlight"><pre><code class="language-make" data-lang="make">     <span class="nv">LD_LIBRARIES</span> <span class="o">=</span> -L<span class="nv">$(CPPUTEST_HOME)</span><span class="err">/lib -lCppUTest -lCppUTestExt</span></code></pre></figure>
+
+<p>(The last flag is only needed when you want to use extensions such as mocking)</p>
+
+<p><a id="test_macros"> </a></p>
+
+<h2 id="most-commonly-used-test-macros">Most commonly used Test Macros</h2>
+
+<ul>
+  <li>TEST(group, name) - define a test</li>
+  <li>IGNORE_TEST(group, name) - turn off the execution of a test</li>
+  <li>TEST_GROUP(group) - Declare a test group to which certain tests belong.
+This will also create the link needed from another library.</li>
+  <li>TEST_GROUP_BASE(group, base) - Same as TEST_GROUP, just use a different base class than Utest</li>
+  <li>IMPORT_TEST_GROUP(group) - Export the name of a test group so it can be linked in from a library (also see Advanced Stuff)</li>
+</ul>
+
+<h3 id="set-up-and-tear-down-support">Set up and tear down support</h3>
+
+<ul>
+  <li>Each TEST_GROUP may contain setup or teardown methods</li>
+  <li>Setup is called prior to each TEST body and Teardown is called after the test body</li>
+</ul>
+
+<p><a id="assertions"> </a></p>
+
+<h2 id="assertions">Assertions</h2>
+
+<p>The failure of one of these macros causes the current test to immediately exit:</p>
+
+<ul>
+  <li>CHECK(boolean condition) - checks any boolean result.</li>
+  <li>CHECK_TEXT(boolean condition, text) - checks any boolean result and prints text on failure.</li>
+  <li>CHECK_FALSE(condition) - checks any boolean result</li>
+  <li>CHECK_EQUAL(expected, actual) - checks for equality between entities using ==. So if you have a class that supports operator==() you can use this macro to compare two instances.  You will also need to add a StringFrom() function like those found in SimpleString. This is for printing the objects when the check failed.</li>
+  <li>CHECK_COMPARE(first, relop, second) - checks thats a relational operator holds between two entities. On failure, prints what both operands evaluate to.</li>
+  <li>CHECK_THROWS(expected_exception, expression) - checks if expression throws expected_exception (e.g. std::exception). CHECK_THROWS is only available if CppUTest is built with the Standard C++ Library (default).</li>
+  <li>STRCMP_EQUAL(expected, actual) - checks const char* strings for equality using strcmp().</li>
+  <li>STRNCMP_EQUAL(expected, actual, length) - checks const char* strings for equality using strncmp().</li>
+  <li>STRCMP_NOCASE_EQUAL(expected, actual) - checks const char* strings for equality, not considering case.</li>
+  <li>STRCMP_CONTAINS(expected, actual) - checks whether const char* actual contains const char* expected.</li>
+  <li>LONGS_EQUAL(expected, actual) - compares two numbers.</li>
+  <li>UNSIGNED_LONGS_EQUAL(expected, actual) - compares two positive numbers.</li>
+  <li>BYTES_EQUAL(expected, actual) - compares two numbers, eight bits wide.</li>
+  <li>POINTERS_EQUAL(expected, actual) - compares two pointers.</li>
+  <li>DOUBLES_EQUAL(expected, actual, tolerance) - compares two floating point numbers within some tolerance</li>
+  <li>FUNCTIONPOINTERS_EQUAL(expected, actual) - compares two void (*)() function pointers</li>
+  <li>MEMCMP_EQUAL(expected, actual, size) - compares two areas of memory</li>
+  <li>BITS_EQUAL(expected, actual, mask) - compares expected to actual bit by bit, applying mask</li>
+  <li>FAIL(text) - always fails</li>
+</ul>
+
+<p><em>NOTE</em> Most macros have _TEXT() equivalents like CHECK_TEXT(), which are not explicitly listed here.</p>
+
+<p><a id="setup_teardown"> </a></p>
+
+<p><em>CHECK_EQUAL Warning:</em></p>
+
+<p>CHECK_EQUAL(expected, actual) can produce misleading error reports as it will evaluate expected and actual more than once. This especially leads to confusions when used with mocks. This happens if the mock function expects to be called exactly once, since the macro needs to evaluate the actual expression more than once. The problem does not occur with type specific checks (e.g. LONGS_EQUAL()), so it is recommended to use them if possible. Instead of:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">CHECK_EQUAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">mock_returning_11</span><span class="p">())</span></code></pre></figure>
+
+<p>which reports: Mock Failure: Unexpected additional call, rather use</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">LONGS_EQUAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">mock_returning_11</span><span class="p">())</span> <span class="o">//</span> <span class="n">reports</span> <span class="n">actual</span> <span class="n">different</span> <span class="n">from</span> <span class="n">expected</span></code></pre></figure>
+
+<p>This issue could only be avoided with advanced language features like C++ templates, which would violate the CppUTest design goal portability to old environments.</p>
+
+<h2 id="setup-and-teardown">Setup and Teardown</h2>
+
+<p>Every test group can have a setup and a teardown method. The setup method is called <em>before</em> each test and the teardown method is called <em>after</em> each test.</p>
+
+<p>You can define setup and teardown like this:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">TEST_GROUP</span><span class="p">(</span><span class="n">FooTestGroup</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">void</span> <span class="n">setup</span><span class="p">()</span>
+   <span class="p">{</span>
+      <span class="c1">// Init stuff
+</span>   <span class="p">}</span>
+
+   <span class="kt">void</span> <span class="n">teardown</span><span class="p">()</span>
+   <span class="p">{</span>
+      <span class="c1">// Uninit stuff
+</span>   <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">FooTestGroup</span><span class="p">,</span> <span class="n">Foo</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="c1">// Test FOO
+</span><span class="p">}</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">FooTestGroup</span><span class="p">,</span> <span class="n">MoreFoo</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="c1">// Test more FOO
+</span><span class="p">}</span>
+
+<span class="n">TEST_GROUP</span><span class="p">(</span><span class="n">BarTestGroup</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">void</span> <span class="n">setup</span><span class="p">()</span>
+   <span class="p">{</span>
+      <span class="c1">// Init Bar
+</span>   <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">BarTestGroup</span><span class="p">,</span> <span class="n">Bar</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="c1">// Test Bar
+</span><span class="p">}</span></code></pre></figure>
+
+<p>The test execution of this will <em>likely</em> (no guarantee of order in CppUTest) be:</p>
+
+<ul>
+  <li>setup BarTestGroup</li>
+  <li>Bar</li>
+  <li>setup FooTestGroup</li>
+  <li>MoreFoo</li>
+  <li>teardown FooTestGroup</li>
+  <li>setup FooTestGroup</li>
+  <li>Foo</li>
+  <li>teardown FooTestGroup</li>
+</ul>
+
+<p><a id="command_line"> </a></p>
+
+<h2 id="command-line-switches">Command line Switches</h2>
+
+<ul>
+  <li><em>-c</em> colorize output, print green if OK, or red if failed</li>
+  <li><em>-g group</em> only run test whose group contains the substring <em>group</em></li>
+  <li><em>-k</em> package name, Add a package name in JUnit output (for classification in CI systems)</li>
+  <li><em>-lg</em> print a list of group names, separated by spaces</li>
+  <li><em>-ln</em> print a list of test names in the form of <em>group.name</em>, separated by spaces</li>
+  <li><em>-n name</em> only run test whose name contains the substring <em>name</em></li>
+  <li><em>-ojunit</em> output to JUnit ant plugin style xml files (for CI systems)</li>
+  <li><em>-oteamcity</em> output to xml files (as the name suggests, for TeamCity)</li>
+  <li><em>-p</em> run tests in a separate process.</li>
+  <li><em>-r#</em> repeat the tests some number (#) of times, or twice if # is not specified. This is handy if you are experiencing memory leaks. A second run that has no leaks indicates that someone is allocating statics and not releasing them.</li>
+  <li><em>-sg group</em> only run test whose group exactly matches the string <em>group</em></li>
+  <li><em>-sn name</em> only run test whose name exactly matches the string <em>name</em></li>
+  <li><em>-v</em> verbose, print each test name as it runs</li>
+  <li><em>-xg group</em> exclude tests whose group contains the substring <em>group</em> (v3.8)</li>
+  <li><em>-xn name</em> exclude tests whose name contains the substring <em>name</em> (v3.8)</li>
+  <li><em>“TEST(group, name)”</em> only run test whose group and name matches the strings group and name. This can be used to copy-paste output from the -v option on the command line.</li>
+</ul>
+
+<p>You can specify multiple -s|sg, -s|sn and “TEST(group, name)” parameters:</p>
+
+<p>Specifying only test groups with multiple -s|sg parameters will run all tests in those groups, since no test name matches all test names.</p>
+
+<p>Specifying only test names with multiple -s|sn parameters will run all tests whose names match, since no test group matches all test groups.</p>
+
+<p>Mixing multiple -s|sg and -s|sn parameters (or using “TEST(group, name)” will only run tests whose groups match as well as their names.</p>
+
+<p>Combining one -xg parameter with one -xn parameter will run only those tests that satisfy both criteria.</p>
+
+<p>Combining -s|sg with -xn, or -s|sn with -xg will run only those tests that satisfy both criteria.</p>
+
+<p>Specifying several -xg or -xn with each other or in other combinations has no effect.</p>
+
+<p><em>NOTE</em> Be careful with <em>-p</em>:</p>
+
+<ul>
+  <li>Some systems do not support this feature, in which case tests will fail
+with a suitable message.</li>
+  <li>Using <em>-p</em> to run tests in a separate process can have unexpected side
+effects.</li>
+  <li>While running tests in a separate process can help to get more information
+about an unexpected crash, when an expected crash is part of the test scenario,
+the <em>-p</em> command line option should not be used, but running in a separate
+process should be enabled on a per-test basis like this:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++">  <span class="n">TestRegistry</span><span class="o">::</span><span class="n">getCurrentRegistry</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setRunTestsInSeperateProcess</span><span class="p">();</span>
+  </code></pre></figure>
+
+<p>Examples for this can be found in CppUTests’s own tests.</p>
+
+<p><a id="memory_leak_detection"> </a></p>
+
+<h2 id="memory-leak-detection">Memory Leak Detection</h2>
+
+<p>CppUTest has memory leak detection support on a per-test level. This means that it automatically checks whether the memory at the end of a test is the same as at the beginning of the test.</p>
+
+<p>Explained another way:</p>
+<ol>
+  <li>Pre-setup -&gt; Record the amount of memory used</li>
+  <li>Do setup</li>
+  <li>Run test</li>
+  <li>Do teardown</li>
+  <li>Post-teardown -&gt; Check whether the amount of memory is the same</li>
+</ol>
+
+<p>The memory leak detector consists of three parts:</p>
+<ul>
+  <li>Memory leak detector base (including linker symbols for operator new)</li>
+  <li>Macros overloading operator new for additional file and line info</li>
+  <li>Macros overloading malloc/free for memory leak detection in C</li>
+</ul>
+
+<p>All of these are on by default. For the macro support, you’ll need to add to your Makefile:</p>
+
+<figure class="highlight"><pre><code class="language-make" data-lang="make"><span class="nv">CXXFLAGS</span> <span class="o">+=</span> -include <span class="nv">$(CPPUTEST_HOME)</span>/include/CppUTest/MemoryLeakDetectorNewMacros.h
+<span class="nv">CFLAGS</span> <span class="o">+=</span> -include <span class="nv">$(CPPUTEST_HOME)</span><span class="err">/include/CppUTest/MemoryLeakDetectorMallocMacros.h</span></code></pre></figure>
+
+<p>These are added by default when you use the CppUTest Makefile helpers.</p>
+
+<h3 id="turning-memory-leak-detection-off-and-on">Turning memory leak detection off and on</h3>
+
+<p>If you want to disable the memory leak detection (because you have too many memory leaks?) then you can do so in several ways. However, it is strongly recommended to keep the memory leak detector on and fix your memory leaks (and your static initialization issues) as this tends to lead to higher quality code.</p>
+
+<p>You can turn the memory leak detection completely off by adding this to your main:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">MemoryLeakWarningPlugin</span><span class="o">::</span><span class="n">turnOffNewDeleteOverloads</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">CommandLineTestRunner</span><span class="o">::</span><span class="n">RunAllTests</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>You can do the same by turning it off on a test by test basis, by adding this to the test group:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">MemoryLeakWarningPlugin</span><span class="o">::</span><span class="n">turnOffNewDeleteOverloads</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">teardown</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">MemoryLeakWarningPlugin</span><span class="o">::</span><span class="n">turnOnNewDeleteOverloads</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>(Do not forget to turn it on in the teardown again!)</p>
+
+<p>If you want to completely disable memory leak detection then you can do so by building CppUTest with “configure –disable-memory-leak-detection” or passing -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED to the compiler when compiling CppUTest.</p>
+
+<h3 id="conflicts-with-operator-new-macros-stl">Conflicts with operator new macros (STL!)</h3>
+
+<p>It is common for the memory leak detection macros to conflict with an overloaded operator new or with STL. This is because the macro replaces the call to operator new to a call to operator new with <strong>FILE</strong>, and <strong>LINE</strong>. If you overload operator new, it will replace your overloaded definition resulting in a compiler error. This is common when using the Standard C++ library (STL).</p>
+
+<h4 id="resolving-conflicts-with-stl">Resolving conflicts with STL</h4>
+<p>The easiest way is to not pass the –include MemoryLeakDetectionNewMacros.h to the compiler, but this would lose all your file and line information. So this is not recommended. An alternative is to create your own NewMacros.h file which will include the STL file <em>before</em> the new macro is defined. For example, the following NewMacros file can be used for a program that uses std::list:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include "list"
+#include "CppUTest/MemoryLeakDetectorNewMacros.h"</span></code></pre></figure>
+
+<p>Now the call to the compiler needs to be -include MyOwnNewMacros.h and this will ensure that the operator new overload is <em>before</em> the define and thus all compiler errors are resolved.</p>
+
+<h3 id="conflicts-with-my-own-overload">Conflicts with my own overload!</h3>
+
+<p>This one is harder (and luckily less common). You can solve this the same way as the conflict with the STL, but it’s probably better to use a finer grained control. So, instead you can temporary disable the new macros, overload operator new, enable the new macro again. This can be done with the following code:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">class</span> <span class="nc">NewDummyClass</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="cp">#if CPPUTEST_USE_NEW_MACROS
+</span>   <span class="cp">#undef new
+#endif
+</span>   <span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="k">new</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">additional</span><span class="p">)</span>
+<span class="cp">#if CPPUTEST_USE_NEW_MACROS
+</span>   <span class="cp">#include "CppUTest/MemoryLeakDetectorNewMacros.h"
+#endif
+</span>   <span class="p">{</span>
+      <span class="c1">// Do your thing!
+</span>   <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>Yes, its ugly. But usually people don’t overload operator new everywhere. If you do, consider turning off the new macro completely.</p>
+
+<h3 id="conflicts-with-mfc">Conflicts with MFC</h3>
+
+<p>Tbd</p>
+
+<p><a id="test_plugins"> </a></p>
+
+<h2 id="test-plugins">Test Plugins</h2>
+
+<p>Test plugins let you add a pre-action and a post-action to each test case.  Plugin examples:</p>
+
+<ul>
+  <li>Memory leak detector (provided)</li>
+  <li>Pointer restore mechanism (provided) - helpful when tests overwrite a pointer that must be restored to its original value after the test.  This is especially helpful when a pointer to a function is modified for test purposes.</li>
+  <li>IEEE754 Floating point exceptions (provided; v3.8) - automatically checks whether any floating point exception flags are set at the end of every test and if so, fails the test.</li>
+  <li>All Mutex’s released - you could write a plugin that checks that any Mutexs or other shared resource is released before the test exits.</li>
+</ul>
+
+<p>Complete Documentation for provided plugins can be found on the <a href="plugin_manual.html">Plugin Manual</a> page.</p>
+
+<p><a id="scripts"> </a></p>
+
+<h2 id="scripts">Scripts</h2>
+
+<p>There are some scripts that are helpful in creating your initial header, source, and
+Test files.  These scripts save a lot of typing.  See scripts/README.TXT from the CppUTest distribution.</p>
+
+<p><a id="advanced"> </a></p>
+
+<h2 id="advanced">Advanced</h2>
+
+<h3 id="customize-check_equal-to-work-with-your-types-that-support-operator">Customize CHECK_EQUAL to work with your types that support operator==()</h3>
+<p>Create the function</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++">        <span class="n">SimpleString</span> <span class="n">StringFrom</span> <span class="p">(</span><span class="k">const</span> <span class="n">yourType</span><span class="o">&amp;</span><span class="p">)</span></code></pre></figure>
+
+<p>The Extensions directory has a few of these.</p>
+
+<h3 id="building-default-checks-with-testplugin">Building default checks with TestPlugin</h3>
+
+<ul>
+  <li>CppUTest can support extra checking functionality by inserting TestPlugins</li>
+  <li>TestPlugin is derived from the TestPlugin class and can be inserted in the TestRegistry via the installPlugin method.</li>
+  <li>All TestPlugins are called before and after running all tests and before and after running a single test (like Setup and Teardown). TestPlugins are typically inserted in the main.</li>
+  <li>TestPlugins can be used for, for example, system stability and resource handling like files, memory or network connection clean-up.</li>
+  <li>In CppUTest, the memory leak detection is done via a default enabled TestPlugin</li>
+</ul>
+
+<h3 id="how-to-run-tests-when-they-are-linked-in-a-library">How to run tests when they are linked in a library</h3>
+
+<p>In larger projects, it is often useful if you can link the tests in “libraries of tests” and then link them to the library of a component or link them all together to be able to run all the unit tests. Putting the tests in a library however causes an interesting problem because the lack of reference to the tests (due to the auto-registration of tests) causes the linker to discard the tests and it won’t run any of them. There are two different work-arounds for this:</p>
+
+<ul>
+  <li>You can use the IMPORT_TEST_GROUP macro to create a reference. This is typically done in the main.cpp or the main.h. You’ll need to do this for every single TEST_GROUP (and the tests groups shouldn’t be distributed over multiple files)</li>
+  <li>When you use gnu linker (on linux, but not MacOSX) then you can use an additional linker option that will make sure the whole library is linked. You do this by adding the library to be linked between the “-Wl,-whole-archive” and the -Wl,-no-whole-archive” options. For example:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-make" data-lang="make">   <span class="err">gcc</span> <span class="err">-o</span> <span class="err">test_executable</span> <span class="err">production_library.a</span> <span class="err">-Wl,-whole-archive</span> <span class="err">test_library.a</span> <span class="err">-Wl,-no-whole-archive</span> <span class="err">$(OTHER_LIBRARIES)</span></code></pre></figure>
+
+<p><a id="c_interface"> </a></p>
+
+<h2 id="c-interface">C Interface</h2>
+
+<p>Sometimes, a C header will not compile under C++. For such cases, there are macros that allow you to specify test cases in a .c source, without involving C++ at all. There are also macro wrappers that pull these test cases into a .cpp source for CppUTest to work with. You will find all C macro definitions in TestHarness_c.h.</p>
+
+<p>Here is a small example of how this is done.</p>
+
+<p>First, the header of the function we want to test, PureCTests.h:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/** Legal C code that would not compile under C++ */</span>
+<span class="kt">int</span> <span class="n">private</span> <span class="p">(</span><span class="kt">int</span> <span class="n">new</span><span class="p">);</span></code></pre></figure>
+
+<p>Next, the C file that defines our tests, PureCTests.c:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include "PureCTests_c.h" </span><span class="cm">/** the offending C header */</span><span class="cp">
+#include "CppUTest/TestHarness_c.h"
+#include "CppUtestExt/MockSupport_c.h"
+</span>
+<span class="cm">/** Mock for function internal() */</span>
+<span class="kt">int</span> <span class="nf">internal</span><span class="p">(</span><span class="kt">int</span> <span class="n">new</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="n">mock_c</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">actualCall</span><span class="p">(</span><span class="s">"internal"</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="n">withIntParameters</span><span class="p">(</span><span class="s">"new"</span><span class="p">,</span> <span class="n">new</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">mock_c</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">returnValue</span><span class="p">().</span><span class="n">value</span><span class="p">.</span><span class="n">intValue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/** Implementation of function to test */</span>
+<span class="kt">int</span> <span class="nf">private</span> <span class="p">(</span><span class="kt">int</span> <span class="n">new</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">internal</span><span class="p">(</span><span class="n">new</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/** Setup and Teardown per test group (optional) */</span>
+<span class="n">TEST_GROUP_C_SETUP</span><span class="p">(</span><span class="n">mygroup</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+<span class="n">TEST_GROUP_C_TEARDOWN</span><span class="p">(</span><span class="n">mygroup</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mock_c</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">checkExpectations</span><span class="p">();</span>
+    <span class="n">mock_c</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/** The actual tests for this test group */</span>
+<span class="n">TEST_C</span><span class="p">(</span><span class="n">mygroup</span><span class="p">,</span> <span class="n">test_success</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mock_c</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">expectOneCall</span><span class="p">(</span><span class="s">"internal"</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">withIntParameters</span><span class="p">(</span><span class="s">"new"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">andReturnIntValue</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">private</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">CHECK_EQUAL_C_INT</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">actual</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">TEST_C</span><span class="p">(</span><span class="n">mygroup</span><span class="p">,</span> <span class="n">test_mockfailure</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mock_c</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">expectOneCall</span><span class="p">(</span><span class="s">"internal"</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">withIntParameters</span><span class="p">(</span><span class="s">"new"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">andReturnIntValue</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">private</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">CHECK_EQUAL_C_INT</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">actual</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">TEST_C</span><span class="p">(</span><span class="n">mygroup</span><span class="p">,</span> <span class="n">test_equalfailure</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">mock_c</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">expectOneCall</span><span class="p">(</span><span class="s">"internal"</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">withIntParameters</span><span class="p">(</span><span class="s">"new"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">andReturnIntValue</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">private</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">CHECK_EQUAL_C_INT</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">actual</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Finally, the .cpp file that wraps it all up for CppUTest, PureCTests.cpp:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include "CppUTest/CommandLineTestRunner.h"
+#include "CppUTest/TestHarness_c.h"
+</span>
+<span class="cm">/** For each C test group */</span>
+<span class="n">TEST_GROUP_C_WRAPPER</span><span class="p">(</span><span class="n">mygroup</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">TEST_GROUP_C_SETUP_WRAPPER</span><span class="p">(</span><span class="n">mygroup</span><span class="p">);</span> <span class="cm">/** optional */</span>
+    <span class="n">TEST_GROUP_C_TEARDOWN_WRAPPER</span><span class="p">(</span><span class="n">mygroup</span><span class="p">);</span> <span class="cm">/** optional */</span>
+<span class="p">};</span>
+
+<span class="cm">/** For each C test */</span>
+<span class="n">TEST_C_WRAPPER</span><span class="p">(</span><span class="n">mygroup</span><span class="p">,</span> <span class="n">test_success</span><span class="p">);</span>
+<span class="n">TEST_C_WRAPPER</span><span class="p">(</span><span class="n">mygroup</span><span class="p">,</span> <span class="n">test_mockfailure</span><span class="p">);</span>
+<span class="n">TEST_C_WRAPPER</span><span class="p">(</span><span class="n">mygroup</span><span class="p">,</span> <span class="n">test_equalfailure</span><span class="p">);</span>
+
+<span class="cm">/** Test main as usual */</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">ac</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">av</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">RUN_ALL_TESTS</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="n">av</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>You can leave out TEST_GROUP_C_SETUP() / TEST_GROUP_C_TEARDOWN() and TEST_GROUP_C_SETUP_WRAPPER() / TEST_GROUP_C_TEARDOWN_WRAPPER(), if you don’t need them.</p>
+
+<p>The following assertion macros are supported in the pure C interface:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">CHECK_EQUAL_C_INT</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="n">actual</span><span class="p">);</span>
+<span class="n">CHECK_EQUAL_C_REAL</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="n">actual</span><span class="p">,</span><span class="n">threshold</span><span class="p">);</span>
+<span class="n">CHECK_EQUAL_C_CHAR</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="n">actual</span><span class="p">);</span>
+<span class="n">CHECK_EQUAL_C_STRING</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="n">actual</span><span class="p">);</span>
+<span class="n">CHECK_EQUAL_C_POINTER</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="n">actual</span><span class="p">);</span> <span class="cm">/* v3.8 */</span>
+<span class="n">CHECK_EQUAL_C_BITS</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="p">,</span> <span class="n">mask</span><span class="p">);</span> <span class="cm">/* v3.8, pending */</span>
+<span class="n">FAIL_TEXT_C</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="n">FAIL_C</span><span class="p">();</span>
+<span class="n">CHECK_C</span><span class="p">(</span><span class="n">condition</span><span class="p">);</span></code></pre></figure>
+
+<p>These macros ensure tests get terminated in a way appropriate for pure C code.</p>
+
+<p><a id="gmock"> </a></p>
+
+<h2 id="using-google-mock">Using Google Mock</h2>
+
+<p>You can use Google Mock directly in CppUTest. In order to do this, you’ll need to build with the real google mock. You do that like this:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>GMOCK_HOME <span class="o">=</span> /location/of/gmock
+<span class="gp">$ </span>configure --enable-gmock
+<span class="gp">$ </span>make
+<span class="gp">$ </span>make install</code></pre></figure>
+
+<p>Then in your tests, you can #include “CppUTestExt/GMock.h”. Do remember to set the CPPUTEST_USE_REAL_GMOCK define (pass -DCPPUTEST_USE_REAL_GMOCK to the compiler). Also, do not forget to link the CppUTestExt library.</p>
+
+<p>This way you can use GMock directly in your code. For example:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">class</span> <span class="nc">MyMock</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ProductionInterface</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">MOCK_METHOD0</span><span class="p">(</span><span class="n">methodName</span><span class="p">,</span> <span class="kt">int</span><span class="p">());</span>
+<span class="p">};</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">TestUsingGMock</span><span class="p">,</span> <span class="n">UsingMyMock</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">NiceMock</span><span class="o">&lt;</span><span class="n">MyMock</span><span class="o">&gt;</span> <span class="n">mock</span><span class="p">;</span>
+	<span class="n">EXPECT_CALL</span><span class="p">(</span><span class="n">mock</span><span class="p">,</span> <span class="n">methodName</span><span class="p">()).</span><span class="n">Times</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">WillRepeatedly</span><span class="p">(</span><span class="n">Return</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+
+	<span class="n">productionCodeUsing</span><span class="p">(</span><span class="n">mock</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The above will probably leak to the memory leak detector complaining about memory leaks (in google mock). These aren’t really memory leaks, but they are static data that gtest (unfortunately) allocates on the first run. There are a couple of ways to get around that. First, you turn of the memory leak detector (see <a href="#memory_leak_detection">Memory Leak Detection</a>). A better solutions is to use the GTestConvertor.</p>
+
+<p>You can do that by adding the following code to your main:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include "CppUTestExt/GTestConvertor.h"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">GTestConvertor</span> <span class="n">convertor</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">CommandLineTestRunner</span><span class="o">::</span><span class="n">RunAllTests</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The most important line to add is the GTestConvertor. Make sure you define the CPPUTEST_USE_REAL_GTEST to signal the gtest dependency. (by adding -DCPPUTEST_USE_REAL_GTEST to the compiler)</p>
+
+<p><a id="gtest"> </a></p>
+
+<h2 id="running-google-tests-in-cpputest">Running Google Tests in CppUTest</h2>
+
+<p>People feel wonderfully religious about unit testing tools. Of course, we feel strongly that CppUTest beats other tools when you actually test-drive your software. But unfortunately, people still use tools like GoogleTest (which is actually not as bad as e.g. CppUnit). It is unlikely that we’re going to convince people to use CppUTest instead, so therefore we’ve written some integration code where you can actually link google test and CppUTest tests together in one binary (with the CppUTest test runner). This also gives you some additional benefits:</p>
+
+<ul>
+  <li>You get memory leak detection over your google tests…</li>
+  <li>You don’t get the verbose gtest output</li>
+  <li>You can use both CppUMock and GMock in one project</li>
+</ul>
+
+<p>The way to do this is really quite simple. First, you’ll need to compile CppUtest with the GTest support enabled (by default this is off to prevent the dependency with GTest). You do that this way (assuming you want to use GMock too):</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>GMOCK_HOME <span class="o">=</span> /location/of/gmock
+<span class="gp">$ </span>configure --enable-gmock
+<span class="gp">$ </span>make
+<span class="gp">$ </span>make install</code></pre></figure>
+
+<p>Or, if you don’t want to use GMock and only GTest then:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>GMOCK_HOME <span class="o">=</span> /location/of/gtest
+<span class="gp">$ </span>configure --enable-real-gtest
+<span class="gp">$ </span>make
+<span class="gp">$ </span>make install</code></pre></figure>
+
+<p>To let CppUTest know there are gtest being linked, you’ll need to add the following to the main:</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include "./include/CppUTestExt/GTestConvertor.h"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">GTestConvertor</span> <span class="n">convertor</span><span class="p">;</span>
+    <span class="n">convertor</span><span class="p">.</span><span class="n">addAllGTestToTestRegistry</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">CommandLineTestRunner</span><span class="o">::</span><span class="n">RunAllTests</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>(of course, you’ll need make sure you link also gtest and also add it to the include path.)</p>
+
+
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
+

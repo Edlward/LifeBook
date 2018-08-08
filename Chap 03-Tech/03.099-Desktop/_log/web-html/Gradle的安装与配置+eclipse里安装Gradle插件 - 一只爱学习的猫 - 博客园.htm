@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gradle的安装与配置+eclipse里安装Gradle插件 - 一只爱学习的猫 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=-hy83QNg62d4qYibixJzxMJkbf1P9fTBlqv7SK5zVL01"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/LessIsMore/bundle-LessIsMore.css?v=K-SPbyFTmacJSNw1O1LzZFcIaS56dT8uEKlXYOxLR9k1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/LessIsMore/bundle-LessIsMore-mobile.css?v=d9LctKHRIQp9rreugMcQ1-UJuq_j1fo0GZXTXj8Bqrk1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/cat-study/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/cat-study/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/cat-study/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'cat-study', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="/bundles/blog-common.js?v=d16NGD79qD3qnJt25hXDZ2sGoojamz2W5Rl4vT0CGVg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/cat-study/">一只爱学习的猫</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/cat-study/">首页</a></li>
+<li id="nav_newpost"><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E4%B8%80%E5%8F%AA%E7%88%B1%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%8C%AB">联系</a></li>
+<li id="nav_rss"><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/cat-study/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/cat-study/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔-3&nbsp;
+文章-1&nbsp;
+评论-0&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/cat-study/p/8570966.html">Gradle的安装与配置+eclipse里安装Gradle插件</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;</p>
+<p><span style="font-size: 18pt; font-family: 黑体; color: #0000ff"><strong>一、安装Gradle：</strong></span></p>
+<p><span style="font-size: 14pt">1.下载gradle二进制安装包</span><br><span style="font-size: 14pt">地址：<span style="color: #0000ff">https://gradle.org/install/</span> 如下图，下载二进制包。</span></p>
+<p><img src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314234227308-384449348.png" alt="" width="800" height="430"></p>
+<p><span style="font-size: 14pt">2.解压安装包到本地，如：<span style="color: #0000ff">C:\software\gradle4.6</span>路径下</span></p>
+<p><span style="font-size: 14pt">3.配置环境变量(配置方法参照java)：</span><br><span style="font-size: 14pt">GRADLE_HOME：<span style="color: #0000ff">C:\software\gradle4.6</span></span><br><span style="font-size: 14pt">Path：;<span style="color: #0000ff">%GRADLE_HOME%\bin</span></span><br><span style="font-size: 14pt">4.查看是否安装成功：</span><br><span style="font-size: 14pt">cmd终端输入：gradle –v回车</span><br><span style="font-size: 14pt">显示如下图则安装成功。</span></p>
+<p><span style="font-size: 14pt"><img style="font-size: 14px" src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314234446177-1883110949.png" alt="" width="800" height="417"></span></p>
+<p><span style="font-size: 14pt">5.在eclipse里配置gradle路径</span><br><span style="font-size: 14pt">然后，需要把 gradle 的路径配置到 eclipse 中，如下图：</span><br>      <img src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314234708234-712677916.png" alt="" width="460" height="296"></p>
+<p><span style="font-size: 18pt; color: #0000ff">&nbsp;</span></p>
+<p><span style="font-size: 18pt; color: #0000ff"><strong>二、安装Gradle插件：</strong></span></p>
+<p><span style="font-size: 14pt">在eclipse里安装gradle插件有三种方式：</span><br><span style="font-size: 14pt">第一种：help/install new software在线安装</span><br><span style="font-size: 14pt">(1)在线安装地址指南：</span><br><span style="font-size: 14pt; color: #0000ff">https://github.com/eclipse/buildship/blob/master/docs/user/Installation.md</span></p>
+<p><span style="font-size: 14pt">通过上面地址找到不同的eclipse版本对应的插件版本链接，如下图所示。</span></p>
+<p><br><span style="font-size: 14pt"> <img src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314234755920-1058219133.png" alt="" width="800" height="474"></span></p>
+<p><span style="font-size: 14pt">找到对应的eclipse版本拷贝链接。</span><br><span style="font-size: 14pt">(2)打开eclipse，依次按以下步骤操作</span><br> </p>
+<p> <img src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314234824610-1196999523.png" alt="" width="457" height="315"></p>
+<p><br> <img src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314235011134-1062003633.png" alt="" width="450" height="241"></p>
+<p>&nbsp;</p>
+<p><img src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314235116702-1610045401.png" alt="" width="431" height="505"></p>
+<p><img src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314235137421-352759191.png" alt="" width="468" height="439"></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14pt">第二种：help/eclipse MarketPlace在线安装</span></p>
+<p><span style="font-size: 14pt">(1)打开eclipse，依次按以下步骤操作</span></p>
+<p>&nbsp;</p>
+<p><img src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314235329715-2066057887.png" alt="" width="434" height="207"></p>
+<p><span style="font-size: 14pt">(2)搜索gradle，选择Buildship进行安装。</span></p>
+<p> <img src="https://images2018.cnblogs.com/blog/1343524/201803/1343524-20180314235427080-504676853.png" alt="" width="375" height="451"></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 14pt">第三种：离线安装，下载gradle插件包</span></p>
+<p><span style="font-size: 14pt">步骤如下：</span><br><span style="font-size: 14pt">1、打开网址：<span style="color: #0000ff">https://spring.io/tools/sts/all，</span>找到与自己eclipse版本匹配的压缩包，下载下来。</span><br><span style="font-size: 14pt">2、解压缩后可以看见这是一个eclipse插件形式的包，将需要安装的插件挑出来或将整个文件</span></p>
+<p><span style="font-size: 14pt">里的包放到eclipse里对应的文件夹下即可（主要是features和plugins文件夹）。</span><br><span style="font-size: 14pt">3、然后关闭eclipse，删除eclipse安装目录里configuration\org.eclipse.update这个文件夹，</span></p>
+<p><span style="font-size: 14pt">再打开eclipse，即可看见已经安装成功的插件。</span></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-03-14 23:58</span> <a href='http://www.cnblogs.com/cat-study/'>一只爱学习的猫</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=8570966" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(8570966);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=415457,cb_entryId=8570966,cb_blogApp=currentBlogApp,cb_blogUserGuid='e4237007-5ecd-46c0-a16a-08d5782f1af4',cb_entryCreatedDate='2018/3/14 23:58:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'></div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2018 一只爱学习的猫
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>

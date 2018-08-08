@@ -1,0 +1,5 @@
+shell sh mbsSdk/tools/debug/openocd/bin/killOpenocdWin.sh
+target extended | mbsSdk/tools/debug/openocd/bin/openocd_Cygwin -c 'gdb_port pipe' -l _openocd.log -s mbsSdk/tools/debug/openocd/scripts_mbs -s mbsSdk/tools/debug/openocd/share/openocd/scripts -f interface/mbs_stlink-v2.cfg -f mcu/stm32f1.cfg -f debug/gdb.cfg -d3
+monitor reset init
+monitor poll on
+source mbsSdk/tools/debug/gdb/gdbInit

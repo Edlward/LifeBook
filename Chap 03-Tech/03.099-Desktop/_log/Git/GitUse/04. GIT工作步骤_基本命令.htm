@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://blog.csdn.net/chaunceyw/article/details/52209407"/> 
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <meta name="description" content="原文地址：http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html一般来说，日常使用只要记住下图6个命令，就可以了 
+ 
+下面是我整理的常用 Git 命令清单。几个专用名词的译名如下。Workspace：工作区
+Index / Stage：暂存区
+Repository：仓库区（或本地仓库）
+Remo" />
+    <meta name="keywords" content="git,workflow" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <script src="https://csdnimg.cn/release/phoenix/vendor/tingyun/tingyun-rum-blog.js"></script>
+
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <title>【前端知识点】GIT工作流程/步骤/基本命令 - CSDN博客</title>
+    
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/detail-801161715c.min.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-02ffddfbf5.min.css">
+
+    <script type="text/javascript">
+        var username = "chaunceyw";
+        var blog_address = "https://blog.csdn.net/chaunceyw";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = ""; 
+        var isShowAds = true;
+        var isOwner = false;
+        var loginUrl = "https://passport.csdn.net/account/login?from=https://blog.csdn.net/chaunceyw/article/details/52209407"
+        var blogUrl = "https://blog.csdn.net/";
+        var curSkin = "skin3-template";
+    </script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="https://csdnimg.cn/rabbit/exposure-click/main-1.0.6.js"></script>
+        <script type="text/javascript" src="https://csdnimg.cn/pubfooter/js/tracking-1.0.2.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="https://csdnimg.cn/public/sandalstrap/1.3/css/sandalstrap.min.css"> 
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<body>    
+    <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+    <script src="https://csdnimg.cn/public/sandalstrap/1.3/fonts/csdnc/csdnc.js"></script><link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/blog_code-c3a0c33d5c.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.css">
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+
+<header>
+	<div class="container d-flex clearfix">
+		<div class="title-box">
+			<h2 class="title-blog">
+				<a href="https://blog.csdn.net/chaunceyw">chaunceyw的博客</a>
+			</h2>
+			<p class="description"></p>
+		</div>
+		<div class="opt-box d-flex justify-content-end">
+			<a class="btn btn-sm" href="https://blog.csdn.net/chaunceyw/rss/list">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#csdnc-rss"></use>
+					</svg>RSS订阅</a>
+					</div>
+	</div>
+</header><script src="https://dup.baidustatic.com/js/ds.js"></script>
+<div class="container clearfix pt0" id="mainBox">
+    <main>
+        <div class="blog-content-box">
+	<div class="article-title-box">
+			<span class="article-type type-1 float-left">原</span>		<h1 class="title-article">【前端知识点】GIT工作流程/步骤/基本命令</h1>
+	</div>
+	<div class="article-info-box">
+		<div class="article-bar-top d-flex">
+												<span class="time">2016年08月15日 11:09:30</span>
+			<div class="float-right">
+				<span class="read-count">阅读数：996</span>
+											</div>
+		</div>
+	</div>
+	<article>
+		<div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog"  data-mod=popu_307  data-dsm = "post" >
+                    <div class="markdown_views">
+                <p><strong>目录</strong> <br>
+ - 阮老师基本教程 <br>
+ - 转载git步骤总结 <br>
+ - 推荐廖雪峰老师文章</p>
+
+<p>【转阮一峰老师： 常用git命令单】 <br>
+<strong>原文地址：</strong><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank">http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html</a></p>
+
+<hr>
+
+<p>一般来说，日常使用只要记住下图6个命令，就可以了 <br>
+<img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015120901.png" alt="这里写图片描述" title=""> <br>
+下面是我整理的常用 Git 命令清单。几个专用名词的译名如下。</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs delphi">Workspace：工作区
+<span class="hljs-keyword">Index</span> / Stage：暂存区
+Repository：仓库区（或本地仓库）
+Remote：远程仓库</code></pre>
+
+
+
+<h2 id="一新建代码库">一、新建代码库</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby"><span class="hljs-comment"># 在当前目录新建一个Git代码库</span>
+<span class="hljs-variable">$ </span>git init
+
+<span class="hljs-comment"># 新建一个目录，将其初始化为Git代码库</span>
+<span class="hljs-variable">$ </span>git init [project-name]
+
+<span class="hljs-comment"># 下载一个项目和它的整个代码历史</span>
+<span class="hljs-variable">$ </span>git clone [url]</code></pre>
+
+
+
+<h2 id="二配置">二、配置</h2>
+
+<p>Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby"><span class="hljs-comment"># 显示当前的Git配置</span>
+<span class="hljs-variable">$ </span>git config --list
+
+<span class="hljs-comment"># 编辑Git配置文件</span>
+<span class="hljs-variable">$ </span>git config -e [--global]
+
+<span class="hljs-comment"># 设置提交代码时的用户信息</span>
+<span class="hljs-variable">$ </span>git config [--global] user.name <span class="hljs-string">"[name]"</span>
+<span class="hljs-variable">$ </span>git config [--global] user.email <span class="hljs-string">"[email address]"</span></code></pre>
+
+
+
+<h2 id="三增加删除文件">三、增加/删除文件</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs r"><span class="hljs-comment"># 添加指定文件到暂存区</span>
+$ git add [file1] [file2] <span class="hljs-keyword">...</span>
+
+<span class="hljs-comment"># 添加指定目录到暂存区，包括子目录</span>
+$ git add [dir]
+
+<span class="hljs-comment"># 添加当前目录的所有文件到暂存区</span>
+$ git add .
+
+<span class="hljs-comment"># 添加每个变化前，都会要求确认</span>
+<span class="hljs-comment"># 对于同一个文件的多处变化，可以实现分次提交</span>
+$ git add -p
+
+<span class="hljs-comment"># 删除工作区文件，并且将这次删除放入暂存区</span>
+$ git rm [file1] [file2] <span class="hljs-keyword">...</span>
+
+<span class="hljs-comment"># 停止追踪指定文件，但该文件会保留在工作区</span>
+$ git rm --cached [file]
+
+<span class="hljs-comment"># 改名文件，并且将这个改名放入暂存区</span>
+$ git mv [file-original] [file-renamed]</code></pre>
+
+
+
+<h2 id="四代码提交">四、代码提交</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs r"><span class="hljs-comment"># 提交暂存区到仓库区</span>
+$ git commit -m [message]
+
+<span class="hljs-comment"># 提交暂存区的指定文件到仓库区</span>
+$ git commit [file1] [file2] <span class="hljs-keyword">...</span> -m [message]
+
+<span class="hljs-comment"># 提交工作区自上次commit之后的变化，直接到仓库区</span>
+$ git commit -a
+
+<span class="hljs-comment"># 提交时显示所有diff信息</span>
+$ git commit -v
+
+<span class="hljs-comment"># 使用一次新的commit，替代上一次提交</span>
+<span class="hljs-comment"># 如果代码没有任何新变化，则用来改写上一次commit的提交信息</span>
+$ git commit --amend -m [message]
+
+<span class="hljs-comment"># 重做上一次commit，并包括指定文件的新变化</span>
+$ git commit --amend [file1] [file2] <span class="hljs-keyword">...</span></code></pre>
+
+
+
+<h2 id="五分支">五、分支</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby"><span class="hljs-comment"># 列出所有本地分支</span>
+<span class="hljs-variable">$ </span>git branch
+
+<span class="hljs-comment"># 列出所有远程分支</span>
+<span class="hljs-variable">$ </span>git branch -r
+
+<span class="hljs-comment"># 列出所有本地分支和远程分支</span>
+<span class="hljs-variable">$ </span>git branch -a
+
+<span class="hljs-comment"># 新建一个分支，但依然停留在当前分支</span>
+<span class="hljs-variable">$ </span>git branch [branch-name]
+
+<span class="hljs-comment"># 新建一个分支，并切换到该分支</span>
+<span class="hljs-variable">$ </span>git checkout -b [branch]
+
+<span class="hljs-comment"># 新建一个分支，指向指定commit</span>
+<span class="hljs-variable">$ </span>git branch [branch] [commit]
+
+<span class="hljs-comment"># 新建一个分支，与指定的远程分支建立追踪关系</span>
+<span class="hljs-variable">$ </span>git branch --track [branch] [remote-branch]
+
+<span class="hljs-comment"># 切换到指定分支，并更新工作区</span>
+<span class="hljs-variable">$ </span>git checkout [branch-name]
+
+<span class="hljs-comment"># 切换到上一个分支</span>
+<span class="hljs-variable">$ </span>git checkout -
+
+<span class="hljs-comment"># 建立追踪关系，在现有分支与指定的远程分支之间</span>
+<span class="hljs-variable">$ </span>git branch --set-upstream [branch] [remote-branch]
+
+<span class="hljs-comment"># 合并指定分支到当前分支</span>
+<span class="hljs-variable">$ </span>git merge [branch]
+
+<span class="hljs-comment"># 选择一个commit，合并进当前分支</span>
+<span class="hljs-variable">$ </span>git cherry-pick [commit]
+
+<span class="hljs-comment"># 删除分支</span>
+<span class="hljs-variable">$ </span>git branch -d [branch-name]
+
+<span class="hljs-comment"># 删除远程分支</span>
+<span class="hljs-variable">$ </span>git push origin --delete [branch-name]
+<span class="hljs-variable">$ </span>git branch -dr [remote/branch]</code></pre>
+
+
+
+<h2 id="六标签">六、标签</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby"><span class="hljs-comment"># 列出所有tag</span>
+<span class="hljs-variable">$ </span>git tag
+
+<span class="hljs-comment"># 新建一个tag在当前commit</span>
+<span class="hljs-variable">$ </span>git tag [tag]
+
+<span class="hljs-comment"># 新建一个tag在指定commit</span>
+<span class="hljs-variable">$ </span>git tag [tag] [commit]
+
+<span class="hljs-comment"># 删除本地tag</span>
+<span class="hljs-variable">$ </span>git tag -d [tag]
+
+<span class="hljs-comment"># 删除远程tag</span>
+<span class="hljs-variable">$ </span>git push origin <span class="hljs-symbol">:refs/tags/</span>[tagName]
+
+<span class="hljs-comment"># 查看tag信息</span>
+<span class="hljs-variable">$ </span>git show [tag]
+
+<span class="hljs-comment"># 提交指定tag</span>
+<span class="hljs-variable">$ </span>git push [remote] [tag]
+
+<span class="hljs-comment"># 提交所有tag</span>
+<span class="hljs-variable">$ </span>git push [remote] --tags
+
+<span class="hljs-comment"># 新建一个分支，指向某个tag</span>
+<span class="hljs-variable">$ </span>git checkout -b [branch] [tag]</code></pre>
+
+
+
+<h2 id="七查看信息">七、查看信息</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby"><span class="hljs-comment"># 显示有变更的文件</span>
+<span class="hljs-variable">$ </span>git status
+
+<span class="hljs-comment"># 显示当前分支的版本历史</span>
+<span class="hljs-variable">$ </span>git log
+
+<span class="hljs-comment"># 显示commit历史，以及每次commit发生变更的文件</span>
+<span class="hljs-variable">$ </span>git log --stat
+
+<span class="hljs-comment"># 搜索提交历史，根据关键词</span>
+<span class="hljs-variable">$ </span>git log -<span class="hljs-constant">S</span> [keyword]
+
+<span class="hljs-comment"># 显示某个commit之后的所有变动，每个commit占据一行</span>
+<span class="hljs-variable">$ </span>git log [tag] <span class="hljs-constant">HEAD</span> --pretty=<span class="hljs-symbol">format:</span>%s
+
+<span class="hljs-comment"># 显示某个commit之后的所有变动，其"提交说明"必须符合搜索条件</span>
+<span class="hljs-variable">$ </span>git log [tag] <span class="hljs-constant">HEAD</span> --grep feature
+
+<span class="hljs-comment"># 显示某个文件的版本历史，包括文件改名</span>
+<span class="hljs-variable">$ </span>git log --follow [file]
+<span class="hljs-variable">$ </span>git whatchanged [file]
+
+<span class="hljs-comment"># 显示指定文件相关的每一次diff</span>
+<span class="hljs-variable">$ </span>git log -p [file]
+
+<span class="hljs-comment"># 显示过去5次提交</span>
+<span class="hljs-variable">$ </span>git log -<span class="hljs-number">5</span> --pretty --oneline
+
+<span class="hljs-comment"># 显示所有提交过的用户，按提交次数排序</span>
+<span class="hljs-variable">$ </span>git shortlog -sn
+
+<span class="hljs-comment"># 显示指定文件是什么人在什么时间修改过</span>
+<span class="hljs-variable">$ </span>git blame [file]
+
+<span class="hljs-comment"># 显示暂存区和工作区的差异</span>
+<span class="hljs-variable">$ </span>git diff
+
+<span class="hljs-comment"># 显示暂存区和上一个commit的差异</span>
+<span class="hljs-variable">$ </span>git diff --cached [file]
+
+<span class="hljs-comment"># 显示工作区与当前分支最新commit之间的差异</span>
+<span class="hljs-variable">$ </span>git diff <span class="hljs-constant">HEAD</span>
+
+<span class="hljs-comment"># 显示两次提交之间的差异</span>
+<span class="hljs-variable">$ </span>git diff [first-branch]...[second-branch]
+
+<span class="hljs-comment"># 显示今天你写了多少行代码</span>
+<span class="hljs-variable">$ </span>git diff --shortstat <span class="hljs-string">"@{0 day ago}"</span>
+
+<span class="hljs-comment"># 显示某次提交的元数据和内容变化</span>
+<span class="hljs-variable">$ </span>git show [commit]
+
+<span class="hljs-comment"># 显示某次提交发生变化的文件</span>
+<span class="hljs-variable">$ </span>git show --name-only [commit]
+
+<span class="hljs-comment"># 显示某次提交时，某个文件的内容</span>
+<span class="hljs-variable">$ </span>git show [commit]<span class="hljs-symbol">:</span>[filename]
+
+<span class="hljs-comment"># 显示当前分支的最近几次提交</span>
+<span class="hljs-variable">$ </span>git reflog</code></pre>
+
+
+
+<h2 id="八远程同步">八、远程同步</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby"><span class="hljs-comment"># 下载远程仓库的所有变动</span>
+<span class="hljs-variable">$ </span>git fetch [remote]
+
+<span class="hljs-comment"># 显示所有远程仓库</span>
+<span class="hljs-variable">$ </span>git remote -v
+
+<span class="hljs-comment"># 显示某个远程仓库的信息</span>
+<span class="hljs-variable">$ </span>git remote show [remote]
+
+<span class="hljs-comment"># 增加一个新的远程仓库，并命名</span>
+<span class="hljs-variable">$ </span>git remote add [shortname] [url]
+
+<span class="hljs-comment"># 取回远程仓库的变化，并与本地分支合并</span>
+<span class="hljs-variable">$ </span>git pull [remote] [branch]
+
+<span class="hljs-comment"># 上传本地指定分支到远程仓库</span>
+<span class="hljs-variable">$ </span>git push [remote] [branch]
+
+<span class="hljs-comment"># 强行推送当前分支到远程仓库，即使有冲突</span>
+<span class="hljs-variable">$ </span>git push [remote] --force
+
+<span class="hljs-comment"># 推送所有分支到远程仓库</span>
+<span class="hljs-variable">$ </span>git push [remote] --all</code></pre>
+
+
+
+<h2 id="九撤销">九、撤销</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby"><span class="hljs-comment"># 恢复暂存区的指定文件到工作区</span>
+<span class="hljs-variable">$ </span>git checkout [file]
+
+<span class="hljs-comment"># 恢复某个commit的指定文件到暂存区和工作区</span>
+<span class="hljs-variable">$ </span>git checkout [commit] [file]
+
+<span class="hljs-comment"># 恢复暂存区的所有文件到工作区</span>
+<span class="hljs-variable">$ </span>git checkout .
+
+<span class="hljs-comment"># 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</span>
+<span class="hljs-variable">$ </span>git reset [file]
+
+<span class="hljs-comment"># 重置暂存区与工作区，与上一次commit保持一致</span>
+<span class="hljs-variable">$ </span>git reset --hard
+
+<span class="hljs-comment"># 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</span>
+<span class="hljs-variable">$ </span>git reset [commit]
+
+<span class="hljs-comment"># 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</span>
+<span class="hljs-variable">$ </span>git reset --hard [commit]
+
+<span class="hljs-comment"># 重置当前HEAD为指定commit，但保持暂存区和工作区不变</span>
+<span class="hljs-variable">$ </span>git reset --keep [commit]
+
+<span class="hljs-comment"># 新建一个commit，用来撤销指定commit</span>
+<span class="hljs-comment"># 后者的所有变化都将被前者抵消，并且应用到当前分支</span>
+<span class="hljs-variable">$ </span>git revert [commit]
+
+<span class="hljs-comment"># 暂时将未提交的变化移除，稍后再移入</span>
+<span class="hljs-variable">$ </span>git stash
+<span class="hljs-variable">$ </span>git stash pop</code></pre>
+
+
+
+<h2 id="十其他">十、其他</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruby"><span class="hljs-comment"># 生成一个可供发布的压缩包</span>
+<span class="hljs-variable">$ </span>git archive</code></pre>
+
+<hr>
+
+<p>【git基本步骤】</p>
+
+<p>（1） 下载Git，安装。略</p>
+
+<p>（2）在GitHub创建账户，然后创建一个 Repository（仓库、储存室），创建过程有提示，这里就不再赘述。</p>
+
+<p>（3）Git安装完成应该有Git Bash和Git Gui（可视化操作），我使用的是Git Bash；打开Git bash进行命令操作（Linux下的命令在Git Bash下大都能用）</p>
+
+<p>（4）输入命令：git config –global user.name “usernme” （username：GitHub的用户名）</p>
+
+<p>（5）git config –global user.email emailName （emailName：我写的是GitHub的注册邮箱）</p>
+
+<p>（6）在本地创建一个Git的工作空间，在里面创建一个工程（如Hello），在工程 目录下随意创建一个文件（如readme.txt，在文件中写点内容，最好是英文）；git bash里面 进入工程目录（如我的”cd ./F:\GitOpenSource“到Git工作空间，需要一”. /“开始， 然后cd到工程目录下），输入命令：git init（初始化工程）</p>
+
+<p>（7）使用git add filename 将文件添加到库（如”git add readme.txt”）</p>
+
+<p>（8）使用git commit -m “first commit” 进行提交（”first commit” 相当于一个描述）</p>
+
+<p>（9）使用ssh-keygen -C ‘email’ -t rsa （我的emali：EmailName@163.com）</p>
+
+<p>（10）在pub文件中copy key，添加当GitHub中的SSH keys</p>
+
+<p>（11）ssh -T git@github.com进行验证</p>
+
+<p>（12）使用远程连接：git remote add origin git@github.com:username/Hello.git （username：GitHub上的用户名，Hello：我在GitHub上创建的仓库repository名）</p>
+
+<p>（13）输入命令“git push origin master”将源码推送到GitHub</p>
+
+<p>（14）在GitHub上仓库页面刷新即可看到你在本地创建并提交的文件</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs avrasm">git pull origin master
+
+流程
+git status
+git <span class="hljs-keyword">add</span> *
+git commit -m <span class="hljs-string">"chao:update web page"</span>
+git <span class="hljs-keyword">push</span></code></pre>
+
+<p>在ubuntu系统中，如何避免git每次提交都输入用户名和密码？</p>
+
+<p>操作步聚如下： <br>
+1: cd 回车；进入当前用户目录下；</p>
+
+<p>2: vim .git-credentials （如果没有安装vim 用其它编辑器也可以或 sudo apt-get install vim 安装一个）</p>
+
+<p>3：按照以下格式输入内容: <br>
+https://{username}:{password}@github.com <br>
+其中username,password,github.com 都换成你自己的内容</p>
+
+<p>4：保存退出后执行下面命令 <br>
+git config –global credential.helper store <br>
+执行完后 <br>
+/home/用户名/.gitconfig 会新增一项 <br>
+helper = store <br>
+这是再执行git push/pull的时候就不会在要求你输入密码了。</p>
+
+<p>当然，还有一种方式就是在git clone 的时候，不用https://的形式，而用git@git (ssh)的形式。这种方式也可以避免每次都要输密码。</p>
+
+<p>最后，如果是在mac os x或windows平台下，还可以用sourcetree 这样的ide工具，不过现在好要FQ才能下载了。</p>
+
+<hr>
+
+<p><strong>【其他推荐】廖雪峰git教程</strong></p>
+
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank">http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/</a></p>
+
+<p><strong>查看、添加、提交、删除、找回，重置修改文件</strong></p>
+
+<p>git help  # 显示command的help</p>
+
+<p>git show # 显示某次提交的内容 git show $id</p>
+
+<p>git co –  # 抛弃工作区修改</p>
+
+<p>git co . # 抛弃工作区修改</p>
+
+<p>git add  # 将工作文件修改提交到本地暂存区</p>
+
+<p>git add . # 将所有修改过的工作文件提交暂存区</p>
+
+<p>git rm  # 从版本库中删除文件</p>
+
+<p>git rm  –cached # 从版本库中删除文件，但不删除文件</p>
+
+<p>git reset  # 从暂存区恢复到工作文件</p>
+
+<p>git reset – . # 从暂存区恢复到工作文件</p>
+
+<p>git reset –hard # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改</p>
+
+<p>git ci  git ci . git ci -a # 将git add, git rm和git ci等操作都合并在一起做git ci -am “some comments”</p>
+
+<p>git ci –amend # 修改最后一次提交记录</p>
+
+<p>git revert </p>            </div>
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/markdown_views-ea0013b516.css" />
+                </div>
+				<div class="hide-article-box text-center csdn-tracking-statistics tracking-click" data-mod="popu_376">
+			<a class="btn btn-red-hollow" id="btn-readmore">阅读更多</a>
+		</div>
+        	</article>
+	
+		<div class="article-bar-bottom">
+						<div class="tags-box artic-tag-box">
+			<span class="label">文章标签：</span>
+						<a class="tag-link" href="http://so.csdn.net/so/search/s.do?q=git&t=blog" target="_blank">git						<a class="tag-link" href="http://so.csdn.net/so/search/s.do?q=workflow&t=blog" target="_blank">workflow						<a class="tag-link" href="http://so.csdn.net/so/search/s.do?q=工作&t=blog" target="_blank">工作						<a class="tag-link" href="http://so.csdn.net/so/search/s.do?q=前端&t=blog" target="_blank">前端						<a class="tag-link" href="http://so.csdn.net/so/search/s.do?q=版本管理&t=blog" target="_blank">版本管理						</a>
+		</div>
+						<div class="tags-box">
+			<span class="label">个人分类：</span>
+						<a class="tag-link" href="https://blog.csdn.net/chaunceyw/article/category/6366260"  target="_blank">项目管理						<a class="tag-link" href="https://blog.csdn.net/chaunceyw/article/category/5905363"  target="_blank">前端						</a>
+		</div>
+					</div>
+	
+	<!-- !empty($pre_next_article[0]) -->
+		</div>
+<script>
+    $(".MathJax").remove();
+</script>
+
+<script type="text/javascript" src="https://static-blog.csdn.net/mdeditor/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+			"HTML-CSS": {
+					linebreaks: { automatic: true, width: "94%container" },
+					imageFont: null
+			},
+			tex2jax: {
+				preview: "none"
+			},
+			mml2jax: {
+				preview: 'none'
+			}
+	});
+</script>
+<script>
+	(function(){
+		var btnReadmore = $("#btn-readmore");
+		if(btnReadmore.length>0){
+			var winH = $(window).height();
+			var articleBox = $("div.article_content");
+			var artH = articleBox.height();
+			if(artH > winH*2){
+				articleBox.css({
+					'height':winH*2+'px',
+					'overflow':'hidden'
+				})
+				btnReadmore.click(function(){
+					articleBox.removeAttr("style");
+					$(this).parent().remove();
+				})
+			}else{
+				btnReadmore.parent().remove();
+			}
+		}
+	})()
+</script>        <div class="edu-promotion"></div>
+<script type="text/javascript">
+	var edu_ad_is_big_data = 0;
+	var edu_ad_id_mapping = {"0":["https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1","https:\/\/edu.csdn.net\/sp\/blog.php?type=web1"],"1":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=web1"],"8":[],"2":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=python1"],"3":["https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1","https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1"],"6":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1"],"12":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1"],"14":["https:\/\/edu.csdn.net\/sp\/blog.php?type=web1","https:\/\/edu.csdn.net\/sp\/blog.php?type=python1"],"15":["https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1","https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1"],"16":["https:\/\/edu.csdn.net\/sp\/blog.php?type=web1","https:\/\/edu.csdn.net\/sp\/blog.php?type=python1"],"28":["https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1","https:\/\/edu.csdn.net\/sp\/blog.php?type=python1"],"29":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1"],"30":["https:\/\/edu.csdn.net\/sp\/blog.php?type=python1","https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1"],"32":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=python1"],"33":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1"],"35":["https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1","https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1"],"37":["https:\/\/edu.csdn.net\/sp\/blog.php?type=web1","https:\/\/edu.csdn.net\/sp\/blog.php?type=python1"],"7":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1"],"17":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1"],"34":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=python1"],"36":["https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1","https:\/\/edu.csdn.net\/sp\/blog.php?type=ai1"],"31":["https:\/\/edu.csdn.net\/sp\/blog.php?type=python1","https:\/\/edu.csdn.net\/sp\/blog.php?type=bigdata1"]};
+</script>        <a id="commentBox"></a>
+<div class="comment-box">
+	  	<div class="unlogin-box text-center">
+		想对作者说点什么？
+		<!-- $curl 当前地址 -->
+		<a href="https://passport.csdn.net/account/login?from=https://blog.csdn.net/chaunceyw/article/details/52209407#commentBox" class="btn btn-sm btn-red">我来说一句</a>
+	</div>
+			<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<button class="btn btn-sm btn-link-blue" id="btnMoreComment"></button>
+		</div>
+	</div>
+</div>        <div class="recommend-box">
+            		<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/zhongwcool/article/details/44172025" target="_blank" strategy="BlogCommendFromBaidu_1">
+				轻松使用<em>git</em>命令提交代码			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/zhongwcool/article/details/44172025" target="_blank" >
+				<em>git</em>提交代码的五个<em>步骤</em>：
+1、查看代码的修改状态
+2、查看代码的修改内容
+3、暂存需要提交的代码
+4、提交已暂存的文件
+5、同步到服务器...			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/zhongwcool" title="zhongwcool" target="_blank">
+					<img src="https://avatar.csdn.net/A/A/B/3_zhongwcool.jpg" alt="zhongwcool" class="avatar-pic">
+					<span class="name">zhongwcool</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2015-03-10 13:02:42</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：10010</span>
+			</p>
+		</div>
+	</div>
+					<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/u010275850/article/details/50748364" target="_blank" strategy="BlogCommendFromBaidu_0">
+				<em>git</em> 命令行代码控制流程			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/u010275850/article/details/50748364" target="_blank" >
+				拉取远程分支，创建本地分支流程如下：
+1、首先在系统上新建一个master文件夹：
+如：D:\master
+2、打开<em>git</em> Bash，cd到master文件夹：
+如下图所示：
+
+
+3、使用<em>git</em> cl...			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/u010275850" title="u010275850" target="_blank">
+					<img src="https://avatar.csdn.net/B/0/4/3_u010275850.jpg" alt="u010275850" class="avatar-pic">
+					<span class="name">u010275850</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2016-02-26 13:46:43</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：1546</span>
+			</p>
+		</div>
+	</div>
+								<div class="recommend-item-box recommend-ad-box" id="ad1"></div>
+				<script>
+				  var width = $("div.recommend-box").outerWidth() - 48;
+					NEWS_FEED({
+						w: width,
+						h : 90,
+						showid : 'GNKXx7',
+						placeholderId: "ad1",
+						inject : 'define',
+						define : {
+							imagePosition : 'right',
+							imageBorderRadius : 0,
+							imageWidth: 120,
+							imageHeight: 90,
+							imageFill : 'clip',
+							displayImage : true,
+							displayTitle : true,
+							titleFontSize: 20,
+							titleFontColor: '#333',
+							titleFontFamily : 'Microsoft Yahei',
+							titleFontWeight: 'bold',
+							titlePaddingTop : 0,
+							titlePaddingRight : 0,
+							titlePaddingBottom : 10,
+							titlePaddingLeft : 0,
+							displayDesc : true,
+							descFontSize: 14,
+							descFontColor: '#6b6b6b',
+							descFontFamily : 'Microsoft Yahei',
+							paddingTop : 0,
+							paddingRight : 0,
+							paddingBottom : 0,
+							paddingLeft : 0,
+							backgroundColor: '#fff',
+							hoverColor: '#ca0c16'
+						}
+					})
+				</script>
+
+			
+				<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/kingandwede136/article/details/54241177" target="_blank" strategy="BlogCommendFromBaidu_2">
+				<em>git</em>的<em>工作流程</em>加常用命令总结			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/kingandwede136/article/details/54241177" target="_blank" >
+				1. clone仓库：
+<em>git</em> clone <em>git</em>的地址 （例如：<em>git</em>@<em>git</em>hub.com:yjy007/myproject.<em>git</em>）
+2. 检出远程的develop分支
+<em>git</em> check...			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/kingandwede136" title="kingandwede136" target="_blank">
+					<img src="https://avatar.csdn.net/B/2/A/3_kingandwede136.jpg" alt="kingandwede136" class="avatar-pic">
+					<span class="name">kingandwede136</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2017-01-08 23:24:41</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：146</span>
+			</p>
+		</div>
+	</div>
+					<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/cs958903980/article/details/53896411" target="_blank" strategy="BlogCommendFromBaidu_3">
+				<em>Git</em> 开发部署流程			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/cs958903980/article/details/53896411" target="_blank" >
+				# <em>Git</em> 开发部署流程采用业界成熟方案 <em>Git</em> Flow 分支方式进行开发；一个经典的 <em>Git</em> 开发/部署流程包括几个环境：本地开发环境、线上测试环境、线上生产环境，分别对应<em>git</em>的本地工作环境、d...			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/cs958903980" title="cs958903980" target="_blank">
+					<img src="https://avatar.csdn.net/1/8/7/3_cs958903980.jpg" alt="cs958903980" class="avatar-pic">
+					<span class="name">cs958903980</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2016-12-27 16:09:57</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：3823</span>
+			</p>
+		</div>
+	</div>
+					<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/MLQ8087/article/details/52174752" target="_blank" strategy="BlogCommendFromBaidu_4">
+				<em>Git</em> 进阶：10大技巧让你迅速提升			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/MLQ8087/article/details/52174752" target="_blank" >
+				最近我们推出了两个教程：熟悉<em>Git</em>的基本功能和让你在开发团队中熟练的使用<em>Git</em> .
+ 我们所讨论的命令足够一个开发者在<em>Git</em>使用方面游刃有余。在这篇文章中，我们试图探索怎样有效的管理你的时间和充分的...			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/MLQ8087" title="MLQ8087" target="_blank">
+					<img src="https://avatar.csdn.net/3/A/8/3_mlq8087.jpg" alt="MLQ8087" class="avatar-pic">
+					<span class="name">MLQ8087</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2016-08-10 17:51:55</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：2032</span>
+			</p>
+		</div>
+	</div>
+					<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/ustc_summer/article/details/50311175" target="_blank" strategy="BlogCommendFromBaidu_5">
+				使用<em>Git</em>工作的一般流程			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/ustc_summer/article/details/50311175" target="_blank" >
+				使用<em>Git</em>工作的一般流程使用<em>Git</em>工作的一般流程
+获得一个<em>Git</em>管理的工作区
+自己初始化一个仓库
+从远程仓库获得工作目录
+添加修改推送
+分支
+拉取别人的提交
+处理冲突获得一个<em>Git</em>管理的工作区使用Gi...			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/ustc_summer" title="ustc_summer" target="_blank">
+					<img src="https://avatar.csdn.net/6/4/3/3_ustc_summer.jpg" alt="ustc_summer" class="avatar-pic">
+					<span class="name">ustc_summer</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2015-12-15 13:16:15</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：7201</span>
+			</p>
+		</div>
+	</div>
+					<div class="recommend-item-box recommend-ad-box" id="a_d_feed_0"></div>
+			<script>
+				var width = $("div.recommend-box").outerWidth() - 48;
+				NEWS_FEED({
+					w: width,
+					h: 90,
+					showid: 'Afihld',
+					placeholderId: 'a_d_feed_0',
+					inject: 'define',
+					define: {
+						imagePosition: 'right',
+						imageBorderRadius: 0,
+						imageWidth: 120,
+						imageHeight: 90,
+						imageFill: 'clip',
+						displayImage: true,
+						displayTitle: true,
+						titleFontSize: 20,
+						titleFontColor: '#333',
+						titleFontFamily: 'Microsoft Yahei',
+						titleFontWeight: 'bold',
+						titlePaddingTop: 0,
+						titlePaddingRight: 0,
+						titlePaddingBottom: 10,
+						titlePaddingLeft: 0,
+						displayDesc: true,
+						descFontSize: 14,
+						descFontColor: '#6b6b6b',
+						descFontFamily: 'Microsoft Yahei',
+						paddingTop: 0,
+						paddingRight: 0,
+						paddingBottom: 0,
+						paddingLeft: 0,
+						backgroundColor: '#fff',
+						hoverColor: '#ca0c16'
+					}
+				})
+			</script>
+			<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/Eacter/article/details/78552607" target="_blank" strategy="BlogCommendFromBaidu_6">
+				<em>Git</em><em>工作流程</em>最佳实践--<em>git</em> flow			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/Eacter/article/details/78552607" target="_blank" >
+				<em>Git</em> Flow中的分支
+主分支
+辅助分支
+feature 分支
+创建feature
+完成feature
+release分支
+创建一个release分支
+完成release分支
+hotfix分支
+创建...			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/Eacter" title="Eacter" target="_blank">
+					<img src="https://avatar.csdn.net/0/C/2/3_eacter.jpg" alt="Eacter" class="avatar-pic">
+					<span class="name">Eacter</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2017-11-16 16:20:44</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：299</span>
+			</p>
+		</div>
+	</div>
+					<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/dfb198998/article/details/52334463" target="_blank" strategy="BlogCommendFromBaidu_7">
+				<em>git</em>使用与<em>工作流程</em>			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/dfb198998/article/details/52334463" target="_blank" >
+				1.将本地代码更新为远端的最新代码
+这分两种情况，本地代码不存在，用<em>git</em> clone将代码拉过来；本地已存在，使用<em>git</em> pull更新本地代码
+a.本地不存在项目代码，首先将代码由仓库clone到本...			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/dfb198998" title="dfb198998" target="_blank">
+					<img src="https://avatar.csdn.net/E/3/F/3_dfb198998.jpg" alt="dfb198998" class="avatar-pic">
+					<span class="name">dfb198998</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2016-08-27 14:04:30</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：828</span>
+			</p>
+		</div>
+	</div>
+					<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/shanyongxu/article/details/52346977" target="_blank" strategy="BlogCommendFromBaidu_8">
+				<em>Git</em><em>工作流程</em>			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/shanyongxu/article/details/52346977" target="_blank" >
+				<em>Git</em><em>工作流程</em>
+
+
+
+
+
+
+
+
+ 
+前面说了<em>Git</em>的安装和简单的用户个人配置,在介绍它是如何工作之前先来说一下他的<em>工作流程</em>,忘的原话是这样的:
+1.克隆<em>Git</em>资源作为工作目录....			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/shanyongxu" title="shanyongxu" target="_blank">
+					<img src="https://avatar.csdn.net/9/C/2/3_shanyongxu.jpg" alt="shanyongxu" class="avatar-pic">
+					<span class="name">shanyongxu</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2016-08-28 18:22:45</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：574</span>
+			</p>
+		</div>
+	</div>
+					<div class="recommend-item-box csdn-tracking-statistics" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+		<h4 class="text-truncate">
+			<a href="https://blog.csdn.net/q269399361/article/details/70014383" target="_blank" strategy="BlogCommendFromBaidu_9">
+				<em>Git</em>基本<em>工作流程</em>			</a>
+		</h4>
+		<p class="content">
+			<a href="https://blog.csdn.net/q269399361/article/details/70014383" target="_blank" >
+				首先在了解<em>Git</em>基本<em>工作流程</em>之前我们需要对<em>Git</em>如何存储文件和历史记录有个浅显的了解。
+
+
+<em>Git</em>如何存储文件
+<em>Git</em>使用的是40个16进制的SHA-l Hash来标识对象，<em>Git</em>有四种对象
+
+
+1....			</a>
+		</p>
+		<div class="info-box d-flex align-content-center">
+			<p>
+				<a class="avatar" src="https://blog.csdn.net/q269399361" title="q269399361" target="_blank">
+					<img src="https://avatar.csdn.net/9/C/6/3_q269399361.jpg" alt="q269399361" class="avatar-pic">
+					<span class="name">q269399361</span>
+				</a>
+			</p>
+			<p>
+				<span class="date">2017-04-10 22:04:44</span>
+			</p>
+			<p>
+				<span class="read-num">阅读数：215</span>
+			</p>
+		</div>
+	</div>
+			            <div class="recommend-loading-box">
+                <img src='https://csdnimg.cn/release/phoenix/images/feedLoading.gif'>
+            </div>
+            <div class="recommend-end-box">
+                <p class="text-center">没有更多推荐了，<a href="https://blog.csdn.net/" class="c-blue c-blue-hover c-blue-focus">返回首页</a></p>
+            </div>
+        </div>
+    </main>
+    <aside>
+		    <div id="asideProfile" class="aside-box">
+    <h3 class="aside-title">个人资料</h3>
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/chaunceyw">
+                <img src="https://avatar.csdn.net/2/3/D/3_chaunceyw.jpg" class="avatar_pic">
+            </a>
+        </div>
+        <div class="user-info d-flex justify-content-center flex-column">
+            <p class="name csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a href="https://blog.csdn.net/chaunceyw" target="_blank" class="text-truncate" id="uid">chaunceyw</a>
+            </p>
+                    </div>
+                <div class="opt-box d-flex justify-content-center flex-column">
+            <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                                <a class="btn btn-sm btn-red-hollow" href="https://passport.csdn.net/account/login?from=https://blog.csdn.net/chaunceyw/article/details/52209407" target="_self">关注</a>
+                            </span>
+                    </div>
+            </div>
+    <div class="data-info d-flex item-tiling">
+                <dl class="text-center" title="15">
+                        <dt><a href="https://blog.csdn.net/chaunceyw?t=1">原创</a></dt>
+            <dd><a href="https://blog.csdn.net/chaunceyw?t=1"><span class="count">15</span></a></dd>
+                    </dl>
+        <dl class="text-center" title="6">
+            <dt>粉丝</dt>
+            <dd><span class="count" id="fan">6</span></dd>
+        </dl>
+        <dl class="text-center" title="7">
+            <dt>喜欢</dt>
+            <dd><span class="count">7</span></dd>
+        </dl>
+        <dl class="text-center" title="0">
+            <dt>评论</dt>
+            <dd><span class="count">0</span></dd>
+        </dl>
+    </div>
+    <div class="grade-box clearfix">
+        <dl>
+            <dt>等级：</dt>
+            <dd>
+                <a href="https://blog.csdn.net/home/help.html#level" title="3级,点击查看等级说明" target="_blank">
+                    <svg class="icon icon-level" aria-hidden="true">
+                        <use xlink:href="#csdnc-bloglevel-3"></use>
+                    </svg>
+                </a>
+            </dd>
+        </dl>
+        <dl>
+            <dt>访问：</dt>
+            <dd title="36164">
+                3万+            </dd>
+        </dl>
+        <dl>
+            <dt>积分：</dt>
+            <dd title="565">
+                565            </dd>
+        </dl>
+        <dl title="94872">
+            <dt>排名：</dt>
+            <dd>9万+</dd>
+        </dl>
+    </div>
+    </div>		    <div class="csdn-tracking-statistics mb8 box-shadow" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div class="aside-content text-center" id="cpro_u2734133">
+        <!-- 投放代码 -->
+        <script type="text/javascript" src="//cee1.iteye.com/lgyyovfyh.js"></script>
+    </div>
+</div>
+		    <div id="asideNewArticle" class="aside-box">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/chaunceyw/article/details/80162897" target="_blank">微信小程序发展（未完待续）</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/chaunceyw/article/details/80161082" target="_blank">关于会员体系（参考文章）</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/chaunceyw/article/details/80161030" target="_blank">小程序以及百度小程序大统一的踩坑记录草稿（未完待续）</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/chaunceyw/article/details/79344898" target="_blank">【区块链】加密货币的本质</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/chaunceyw/article/details/79344893" target="_blank">【区块链】比特币入门</a>
+            </li>
+                    </ul>
+    </div>
+</div>
+		    		    <div id="asideCategory" class="aside-box flexible-box">
+    <h3 class="aside-title">个人分类</h3>
+    <div class="aside-content">
+        <ul>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/5905363">
+                    前端                    <span class="count float-right">30篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6342184">
+                    nodejs                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6366260">
+                    项目管理                    <span class="count float-right">5篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/3149197">
+                    开发思想                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6567166">
+                    全栈                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6342183">
+                    react                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6565565">
+                    数据库                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6653983">
+                    互联网思想                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6653984">
+                    创业                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6669721">
+                    管理                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6672225">
+                    营销                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/6672226">
+                    市场                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7158051">
+                    产品思想                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7166803">
+                    前端思考                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7172697">
+                    设计模式                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7189403">
+                    服务端                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7195954">
+                    css                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7219892">
+                    项目工程化                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7227769">
+                    mongodb                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7228179">
+                    项目实战                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7228180">
+                    数据结构                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7228181">
+                    电商                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7461244">
+                    区块链                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7461245">
+                    前沿技术                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7461247">
+                    比特币                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/category/7461248">
+                    加密数字货币                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+		    <div id="asideArchive" class="aside-box flexible-box">
+    <h3 class="aside-title">归档</h3>
+    <div class="aside-content">
+        <ul class="archive-list">
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2018/05">
+                    2018年5月                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2018/02">
+                    2018年2月                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2017/12">
+                    2017年12月                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2017/10">
+                    2017年10月                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2017/09">
+                    2017年9月                    <span class="count float-right">22篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2017/08">
+                    2017年8月                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2017/01">
+                    2017年1月                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2016/12">
+                    2016年12月                    <span class="count float-right">5篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2016/11">
+                    2016年11月                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2016/08">
+                    2016年8月                    <span class="count float-right">6篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2016/07">
+                    2016年7月                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2015/10">
+                    2015年10月                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/chaunceyw/article/month/2015/04">
+                    2015年4月                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+		    <div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+							<li>
+					<a href="https://blog.csdn.net/chaunceyw/article/details/77895964">【前端前沿看点】React和Vue深度对比</a>
+					<p class="read">阅读量：<span>3879</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/chaunceyw/article/details/51984453">【前端知识点】HTML5 浅谈 媒体标签&lt;video&gt;&lt;audio&gt;</a>
+					<p class="read">阅读量：<span>3121</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/chaunceyw/article/details/78151222">【前端前沿看点】深度本质分析对比weex和react native</a>
+					<p class="read">阅读量：<span>2767</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/chaunceyw/article/details/52083802">【前端知识点】webpack 打包 + es6 + react入门（一）webpack打包</a>
+					<p class="read">阅读量：<span>2573</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/chaunceyw/article/details/53783102">【服务端知识点】（十五天）文件上传实现——30天node+mongo+react+redux+express搭建完美资源后台管理系统+前端（全栈工程师 结合antd）</a>
+					<p class="read">阅读量：<span>2313</span></p>
+				</li>
+					</ul>
+	</div>
+</div>
+		    		<div id="asideFooter">
+			
+		<div class="aside-box">
+						<script type="text/javascript" src="//cee1.iteye.com/avneunkwb.js"></script>
+					</div>
+				<div class="aside-box">
+			<div class="persion_article">
+			</div>
+		</div>
+	</div>
+</aside>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js?20180309" data-isfootertrack="false" type="text/javascript"></script>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).remove();
+	})
+</script>
+</div>
+<div class="mask-dark"></div>
+<div class="report-box">
+    <div class="pos-box">
+        <h2 class="title">不良信息举报</h2>
+        <a class="btn-close">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#csdnc-times"></use>
+            </svg>
+        </a>
+        <form id="frmReport">
+            <div class="form-box">
+                <div class="txt-row-box">
+                    <label class="title" id="reptTit">举报内容：</label>
+                    <p class="rpt-title text-truncate">【前端知识点】GIT工作流程/步骤/基本命令</p>
+                </div>
+                <div class="txt-row-box">
+                    <label class="title">举报原因：</label>
+                    <div class="rdo-box">
+                        <label><input type="radio" class="rdo-chk report-type" id="report_sex" name="report_type" value="1">色情</label>
+                        <label><input type="radio" class="rdo-chk report-type" id="report_Politics" name="report_type" value="2">政治</label>
+                        <label><input type="radio" class="rdo-chk report-type" id="report_copy" name="report_type" value="3">抄袭</label>
+                        <label><input type="radio" class="rdo-chk report-type" id="report_ad" name="report_type" value="4">广告</label>
+                        <label><input type="radio" class="rdo-chk report-type" id="report_want" name="report_type" value="5">招聘</label>
+                        <label><input type="radio" class="rdo-chk report-type" id="report_call" name="report_type" value="6">骂人</label>
+                        <label><input type="radio" class="rdo-chk report-type" id="report_other" name="report_type" value="7">其他</label>
+                    </div>
+                </div>
+                <div class="txt-row-box" id="rptOriginalurl">
+                    <label class="title">原文地址：</label>
+                    <div class="txt-box">
+                        <input class="ipt" type="text" id="originalurl" name="originalurl">
+                    </div>
+                </div>
+                <div class="txt-row-box">
+                    <label class="title">原因补充：</label>
+                    <div class="txt-box">
+                        <textarea class="ipt ipt-textarea" name="description" maxlength="30"></textarea>
+                        <p class="remark">最多只允许输入30个字</p>
+                    </div>
+                </div>
+            </div>
+            <div class="opt-box text-right">
+                <input type="reset" class="btn btn-link-gray btn-close" value="取消">
+                <input type="submit" class="btn btn-red btn-submit" value="提交">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="pulllog-box" style="display: block;">
+	<div class="pulllog clearfix">
+		<span class="text float-left">加入CSDN，享受更精准的内容推荐，与500万程序员共同成长！</span>
+		<div class="pulllog-btn float-right clearfix">
+            <button class="pulllog-login float-left csdn-tracking-statistics tracking-click" data-mod="popu_557">
+                登录
+            </button>
+            <div class="pulllog-sigin float-left csdn-tracking-statistics tracking-click" data-mod="popu_558">
+                <a href="https://passport.csdn.net/account/mobileregister" target="_blank">注册</a>
+            </div>
+            <button class="btn-close">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#csdnc-times"></use>
+                </svg>
+            </button>
+		</div>
+	</div>
+</div>
+<div id="loginWrap" style="display:none"></div>
+<div class="tool-box">
+	<ul class="meau-list">
+		<li>
+			<button class="btn-like " title="点赞">
+				<svg class="icon active" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup-ok"></use>
+				</svg><svg class="icon no-active" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup"></use>
+				</svg>
+				<p>0</p>
+			</button>
+		</li>
+		<li class="toc-container-box" id="liTocBox">
+			<button class="btn-toc" title="目录">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#csdnc-contents"></use>
+				</svg><br>目录
+			</button>
+			<div class="toc-container">
+				<div class="pos-box">
+					<div class="icon-arrow"></div>
+					<div class="scroll-box">
+						<div class="toc-box"></div>
+					</div>
+				</div>
+				<div class="opt-box">
+					<button class="btn-opt prev nomore" title="向上">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronup"></use>
+						</svg>
+					</button>
+					<button class="btn-opt next">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevrondown"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li>
+			<button class="btn-bookmark" title="收藏">
+				<svg class="icon active" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark-ok"></use>
+				</svg><svg class="icon no-active" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark"></use>
+				</svg><br>收藏
+			</button>
+		</li>
+		<li>
+			<a class="btn-comments" title="评论" href="#commentBox">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#csdnc-comments"></use>
+				</svg><br>评论
+			</a>
+		</li>
+				<li class="bdsharebuttonbox">
+			<a class="btn-comments bds_weixin" data-cmd="weixin" title="微信分享">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#csdnc-wechat"></use>
+				</svg><br>微信
+			</a>
+		</li>
+		<li class="bdsharebuttonbox">
+			<a class="btn-comments bds_tsina" data-cmd="tsina" title="微博分享">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#csdnc-weibo"></use>
+				</svg><br>微博
+			</a>
+		</li>
+		<li class="bdsharebuttonbox">
+			<a class="btn-comments bds_qzone" data-cmd="qzone" title="QQ分享">
+				<svg class="icon" aria-hidden="true">
+					<use xlink:href="#csdnc-qq"></use>
+				</svg><br>QQ
+			</a>
+		</li>
+	</ul>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script>
+    var recommendCount = 10;
+    recommendCount = recommendCount > 1 ? (recommendCount + (recommendCount>6 ? 2 : 1)) : recommendCount;
+    var articleTit = '【前端知识点】GIT工作流程/步骤/基本命令';
+    var ChannelId = 14;
+    var articleId = '52209407';
+    var commentscount = 0;
+    var islock = false;
+    var curentUrl = "https://blog.csdn.net/chaunceyw/article/details/52209407";
+    var myUrl = "https://my.csdn.net/";
+    //1禁止评论，2正常
+    var commentAuth = 2;
+    //百度搜索
+    var baiduKey = "git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B";
+    var needInsertBaidu = false;
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.3/js/sandalstrap.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.js"></script>
+<script src='https://csdnimg.cn/public/common/gotop/js/goTop-v1.0.min.js?v201803151422'></script>
+<script>
+    GoTop({
+        right: 8,
+        hasReport: true,
+        reportFun: function() {
+            showReport(false,'【前端知识点】GIT工作流程/步骤/基本命令');
+        }
+    })
+</script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/common-bd54b21308.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/detail-0d6febc986.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-46c7bd3d86.min.js"></script>
+<script src="https://csdnimg.cn/search/baidu_search-1.1.2.js?v=201802071056&autorun=true&install=true&keyword=git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"  type="text/javascript"></script>
+</body>
+<div class="box-box-default">
+    <a class="btn-remove">
+        关闭
+    </a>
+    <script type="text/javascript" src="//cee1.iteye.com/mhzzjepzz.js"></script>
+</div>
+<div class="box-box-large">
+    <a class="btn-remove">
+        关闭
+    </a>
+    <script type="text/javascript" src="//cee1.iteye.com/idvveasfs.js"></script>
+</div>
+</html>
