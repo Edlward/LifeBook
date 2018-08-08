@@ -146,37 +146,15 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
                  QtGui.QMessageBox.warning(None, '错误', "X1填写数据出错", QtGui.QMessageBox.Ok)
                  self.x1_checkBox.setChecked(False)
 
-        if self.x2_checkBox.isChecked() == True:
-            try:
-                self.x2_low = float(self.x2_low_line.text())
-                self.x2_high = float(self.x2_high_line.text())
-                if self.x2_low > self.x2_high:
-                     QtGui.QMessageBox.warning(None, '错误', "X2填写数据出错", QtGui.QMessageBox.Ok)
-                     self.x2_checkBox.setChecked(False)
-            except :
-                 QtGui.QMessageBox.warning(None, '错误', "X2填写数据出错", QtGui.QMessageBox.Ok)
-                 self.x2_checkBox.setChecked(False)
-
-        if self.x3_checkBox.isChecked() == True:
-            try:
-                self.x3_low = float(self.x3_low_line.text())
-                self.x3_high = float(self.x3_high_line.text())
-                if self.x3_low > self.x3_high:
-                     QtGui.QMessageBox.warning(None, '错误', "X3填写数据出错", QtGui.QMessageBox.Ok)
-                     self.x3_checkBox.setChecked(False)
-            except :
-                 QtGui.QMessageBox.warning(None, '错误', "X3填写数据出错", QtGui.QMessageBox.Ok)
-                 self.x3_checkBox.setChecked(False)
-
         self.x1_checkBox.setEnabled(False)
         self.x1_low_line.setEnabled(False)
         self.x1_high_line.setEnabled(False)
-        self.x2_checkBox.setEnabled(False)
-        self.x2_low_line.setEnabled(False)
-        self.x2_high_line.setEnabled(False)
-        self.x3_checkBox.setEnabled(False)
-        self.x3_low_line.setEnabled(False)
-        self.x3_high_line.setEnabled(False)
+        #self.x2_checkBox.setEnabled(False)
+        #self.x2_low_line.setEnabled(False)
+        #self.x2_high_line.setEnabled(False)
+        #self.x3_checkBox.setEnabled(False)
+        #self.x3_low_line.setEnabled(False)
+        #self.x3_high_line.setEnabled(False)
 
     def SciCloseDebugDataMenuDeal(self):
         self.x1_checkBox.setEnabled(True)
@@ -311,7 +289,7 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
                         self.matplot.matplot_updatabuf(readdigital)
 
         #判断是否刷新画图区域
-        if self.x1selec_radio.isChecked() == True or self.x2selec_radio.isChecked() == True or self.x3selec_radio.isChecked() == True:
+        if self.x1selec_radio.isChecked() == True:
             self.Multiplot_Refresh()
 
     def X1ClrButtonProcess(self):
