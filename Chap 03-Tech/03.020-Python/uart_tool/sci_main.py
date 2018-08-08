@@ -24,11 +24,13 @@ class MplCanvas(FigureCanvas):
     def __init__(self):
         self.fig = Figure()
         self.ax = self.fig.add_subplot(111)
-        self.fig.subplots_adjust(left=0.06, right=0.99, top=0.9, bottom=0.1)
+        #self.fig.subplots_adjust(left=0.06, right=0.99, top=0.9, bottom=0.1)
+        #self.fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01) #0.01 = 1%
+        self.fig.subplots_adjust(left=0.002, right=0.998, top=0.998, bottom=0.002) #0.01 = 1%
         FigureCanvas.__init__(self, self.fig)
         FigureCanvas.setSizePolicy(self, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
-        self.databuflimit = 500
+        self.databuflimit = 50000
         self.line1, = self.ax.plot([], [], color='blue')
         self.plotdatabuf = []
         self.ax.grid()
@@ -79,7 +81,6 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
         self.debug_matplot_layout.addWidget(self.matplot)
         self.matplot.databuflimit = self.plotnum_Slider.value()#得到plot的初始化最大值
 
-
         self.RecStr = str#串口接收字符串
         self.RecDataCnt = 0#数据接收计数
         self.SendDataCnt = 0#数据发送计数
@@ -110,7 +111,7 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
                 QtGui.QMessageBox.warning(None, 'warning', "port not exist", QtGui.QMessageBox.Ok)
 
             if self._serial.isOpen():#打开串口后失效一些可以设置的窗口
-                self.timer.start(30)#30ms刷新一次界面
+                self.timer.start(50)#30ms刷新一次界面
                 self.sciopenButton.setText("Close")
                 self.baudratecombo.setEnabled(False)
                 self.checkbitcombo.setEnabled(False)
@@ -180,8 +181,6 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
         self.cmd1_Edit.clear()
         self.cmd2_Edit.clear()
         self.cmd3_Edit.clear()
-        #//self.cmd4_Edit.clear()
-        #//self.cmd5_Edit.clear()
 
     def ClrCntButtonProcess(self):#清计算窗口
         self.SendDataCnt = 0
@@ -241,22 +240,6 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
             except:
                 QtGui.QMessageBox.warning(None, 'Error', "数据格式错误", QtGui.QMessageBox.Ok)
 
-    def Cmd4SendButtonProcess(self):
-        if self.portstatus_flag == True:
-            sendstr = self.cmd4_Edit.text()
-            try:
-                self.SerialSend(bytearray.fromhex( sendstr.replace('0x', '')))
-            except:
-                QtGui.QMessageBox.warning(None, 'Error', "数据格式错误", QtGui.QMessageBox.Ok)
-
-    def Cmd5SendButtonProcess(self):
-        if self.portstatus_flag == True:
-            sendstr = self.cmd5_Edit.text()
-            try:
-                self.SerialSend(bytearray.fromhex( sendstr.replace('0x', '')))
-            except:
-                QtGui.QMessageBox.warning(None, 'Error', "数据格式错误", QtGui.QMessageBox.Ok)
-
     def SaveRecButtonProcess(self):
         filename = QtGui.QFileDialog.getSaveFileName(self.savecontentbutton, 'Save File', '.', "Text file(*.txt);;All file(*.*)")
         fname = open(filename, 'w')
@@ -271,7 +254,7 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
 
     #数据的区分
     def DebugDataSelecDeal(self, p_str):
-        rec_array = re.split('\n|,| |\r', p_str)#将数据按各种符号去分隔，得到需要的数据
+        rec_array = re.split('\n|,| |\r|\t', p_str)#将数据按各种符号去分隔，得到需要的数据
         for num in rec_array:
             try:
                 readdigital = float(num)
@@ -282,7 +265,7 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
                 if readdigital >= self.x1_low and readdigital < self.x1_high:
                     self.x1_plainTextEdit.appendPlainText(str(round(readdigital, 7)))
 
-                    if self.x1_plainTextEdit.toPlainText().__len__() > 10000:
+                    if self.x1_plainTextEdit.toPlainText().__len__() > 50000:
                         self.x1_plainTextEdit.clear()
 
                     if self.x1selec_radio.isChecked() == True:
@@ -361,13 +344,13 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
             self.dishex.appendPlainText(self.HexShow(self.RecStr)) #把数据按十六进制显示
             if self.hexselec_radio.isChecked() == True:
                 self.HexMatplotDisplay(self.RecStr)
-            if self.dishex.toPlainText().__len__() > 100000:
+            if self.dishex.toPlainText().__len__() > 50000:
                 self.dishex.clear()
         elif self.debugtab.currentIndex() == 0:
             self.distring.appendPlainText(self.RecStr.decode("utf-8")) #String display.
             if self.x1_checkBox.isChecked():
                 self.DebugDataSelecDeal(self.RecStr.decode("utf-8"))
-            if self.distring.toPlainText().__len__() > 200000:
+            if self.distring.toPlainText().__len__() > 50000:
                 self.distring.clear()
         else:
             pass
