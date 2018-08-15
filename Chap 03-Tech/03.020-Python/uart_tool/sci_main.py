@@ -24,9 +24,9 @@ class MplCanvas(FigureCanvas):
     def __init__(self):
         self.fig = Figure()
         self.ax = self.fig.add_subplot(111)
-        #self.fig.subplots_adjust(left=0.06, right=0.99, top=0.9, bottom=0.1)
+        self.fig.subplots_adjust(left=0.06, right=0.99, top=0.9, bottom=0.1)
         #self.fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01) #0.01 = 1%
-        self.fig.subplots_adjust(left=0.002, right=0.998, top=0.998, bottom=0.002) #0.01 = 1%
+        #self.fig.subplots_adjust(left=0.002, right=0.998, top=0.998, bottom=0.002) #0.01 = 1%
         FigureCanvas.__init__(self, self.fig)
         FigureCanvas.setSizePolicy(self, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
@@ -254,22 +254,42 @@ class Sci_UiCtl(sci_tool.Ui_MainWindow):
 
     #数据的区分
     def DebugDataSelecDeal(self, p_str):
-        rec_array = re.split('\n|,| |\r|\t', p_str)#将数据按各种符号去分隔，得到需要的数据
+        rec_array = re.split('\n|,| |\r|\r\n', p_str)#将数据按各种符号去分隔，得到需要的数据
+        datacount = 0
+        lastdigital = 0
         for num in rec_array:
             try:
-                readdigital = float(num)
+                #readdigital = float(num)
+                readdigital = int(num)
             except:
                 continue
 
             if self.x1_checkBox.isChecked() == True:
                 if readdigital >= self.x1_low and readdigital < self.x1_high:
-                    self.x1_plainTextEdit.appendPlainText(str(round(readdigital, 7)))
+                    ## data.
+                    if datacount == 0: #first data set to 0.
+                        readdigital = 0
+                    else: # count >= 1
+                        if readdigital == 0:
+                            #readdigital = lastdigital #update with last data.
+                            readdigital = readdigital #not change data.
+                        else: # data != 0
+                            lastdigital = readdigital #update last data.
+
+                    ## display.
+                    if datacount == 0:
+                        self.x1_plainTextEdit.appendPlainText(str(round(readdigital, 70)))
+                        if self.x1selec_radio.isChecked() == True:
+                            self.matplot.matplot_updatabuf(readdigital)
+                    else:
+                        if readdigital != 0:
+                            self.x1_plainTextEdit.appendPlainText(str(round(readdigital, 70)))
+                            if self.x1selec_radio.isChecked() == True:
+                                self.matplot.matplot_updatabuf(readdigital)
 
                     if self.x1_plainTextEdit.toPlainText().__len__() > 50000:
                         self.x1_plainTextEdit.clear()
-
-                    if self.x1selec_radio.isChecked() == True:
-                        self.matplot.matplot_updatabuf(readdigital)
+                    datacount = datacount + 1
 
         #判断是否刷新画图区域
         if self.x1selec_radio.isChecked() == True:

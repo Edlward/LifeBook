@@ -209,6 +209,55 @@ C:\mbs\SwingDoorPlatform
 
 
 
+
+
+
+
+
+
+
+//================================ 
+2018.08.13 Monday.
+01. ECLPILSE graph tool: NOT FOUND.
+	//open cmd,
+	//Git repo: 1for work, 2for ref.
+	
+torqueLimit-powerassist ?
+	
+02. 调试串口助手：数据接收显示；程序打包；
+	//display not 0.
+03. 英语；
+04. 直线电机控制：矢量算法普及；
+	//MISRA,
+05. 交流锻炼, Email, Skype。
+
+
+//================================ 
+2018.08.10 Friday.
+01. BLE 通讯调试；//
+	//open cmd,
+	//Git repo: 1for work, 2for ref.
+	
+02. 调试串口助手：数据接收显示；程序打包；
+	//display not 0.
+03. 英语；
+04. 直线电机控制：矢量算法普及；
+	//MISRA,
+05. 交流锻炼, Email, Skype。
+
+//================================ 
+2018.08.09 Thursday.
+01. BLE 通讯调试；//
+	//open cmd,
+	//Git repo: 1for work, 2for ref.
+	
+02. 调试串口助手：数据接收显示；程序打包；
+	//display not 0.
+03. 英语；
+04. 直线电机控制：矢量算法普及；
+	//MISRA,
+05. 交流锻炼, Email, Skype。
+
 //================================ 
 2018.08.08 Wed.
 01. BLE 通讯调试；//64:CF:D9:17:2B:D9
@@ -219,7 +268,6 @@ C:\mbs\SwingDoorPlatform
 03. 英语；
 04. 直线电机控制：矢量算法普及；
 05. 交流锻炼, Email, Skype。
-
 
 //================================ 
 2018.08.07 Tuesday.

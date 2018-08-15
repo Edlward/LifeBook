@@ -1,0 +1,44 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectName="volume"
+ProjectDir="E:\_design\_prgm\0101-SIMU\volume1_v0.1.5.3 r1.5 crv\"
+ProjectType=Executable
+CPUFamily=TMS320C28XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="LIB\rts2800_ml.lib"
+Source="SOURCE\appl_main.c"
+Source="SOURCE\appl_volume.c"
+Source="SOURCE\calc_bisearch.c"
+Source="SOURCE\calc_cpid.c"
+Source="SOURCE\calc_spid.c"
+Source="SOURCE\cpu_vectors.asm"
+Source="SOURCE\drv_load.asm"
+Source="SOURCE\simu_crv.c"
+Source="SOURCE\test_sytax.c"
+Source="CMD\volume.cmd"
+
+["Compiler" Settings: "Debug"]
+Options=-g -q -fr"E:\_design\_prgm\0101-SIMU\volume1_v0.1.5.3 r1.5 crv\Debug" -i"../INCLUDE" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28
+
+["Compiler" Settings: "Release"]
+Options=-q -o3 -fr"E:\_design\_prgm\0101-SIMU\volume1_v0.1.5.3 r1.5 crv\Release" -d"LARGE_MODEL" -ml -v28
+
+["Linker" Settings: "Debug"]
+Options=-q -c -heap0x200 -o".\Debug\volume1.out" -stack0x200 -x
+
+["Linker" Settings: "Release"]
+Options=-q -c -heap0x200 -o".\Release\volume1.out" -stack0x200 -x
+
+["CMD\volume.cmd" Settings: "Debug"]
+LinkOrder=1
+
+["CMD\volume.cmd" Settings: "Release"]
+LinkOrder=1
+

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>997</width>
+    <width>1122</width>
     <height>835</height>
    </rect>
   </property>
@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>link.jpg</normaloff>link.jpg</iconset>
+    <normaloff>link.ico</normaloff>link.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -1044,6 +1044,9 @@
                       <property name="text">
                        <string>Range</string>
                       </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
                      </widget>
                     </item>
                     <item>
@@ -1145,8 +1148,14 @@
                     </item>
                     <item>
                      <widget class="QRadioButton" name="x1selec_radio">
+                      <property name="acceptDrops">
+                       <bool>false</bool>
+                      </property>
                       <property name="text">
                        <string>X1 Graph</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
                       </property>
                      </widget>
                     </item>

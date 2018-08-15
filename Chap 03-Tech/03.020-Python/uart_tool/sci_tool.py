@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:\mbs\zs_github\LifeBook\Chap 03-Tech\03.020-Python\uart_tool\sci_tool.ui'
 #
-# Created: Wed Aug 08 19:39:40 2018
+# Created: Tue Aug 14 13:07:43 2018
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(997, 835)
+        MainWindow.resize(1122, 835)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(800, 500))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("link.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8("link.ico")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(_fromUtf8(""))
         self.centralwidget = QtGui.QWidget(MainWindow)
@@ -429,6 +429,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_20.setMargin(2)
         self.horizontalLayout_20.setObjectName(_fromUtf8("horizontalLayout_20"))
         self.x1_checkBox = QtGui.QCheckBox(self.disstringtext)
+        self.x1_checkBox.setChecked(True)
         self.x1_checkBox.setObjectName(_fromUtf8("x1_checkBox"))
         self.horizontalLayout_20.addWidget(self.x1_checkBox)
         self.x1_low_line = QtGui.QLineEdit(self.disstringtext)
@@ -475,6 +476,8 @@ class Ui_MainWindow(object):
         self.hexselec_radio.setObjectName(_fromUtf8("hexselec_radio"))
         self.horizontalLayout.addWidget(self.hexselec_radio)
         self.x1selec_radio = QtGui.QRadioButton(self.disstringtext)
+        self.x1selec_radio.setAcceptDrops(False)
+        self.x1selec_radio.setChecked(True)
         self.x1selec_radio.setObjectName(_fromUtf8("x1selec_radio"))
         self.horizontalLayout.addWidget(self.x1selec_radio)
         self.plotnum_Slider = QtGui.QSlider(self.disstringtext)

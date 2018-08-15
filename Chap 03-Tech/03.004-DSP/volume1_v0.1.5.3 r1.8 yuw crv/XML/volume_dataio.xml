@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<breakpoints xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="breakpoints.xsd">
+	<breakpoint type="Software">
+		<property>
+			<name>Physical Properties</name>
+			<property>
+				<name>Location</name>
+				<location>
+					<source>
+						<filename>volume.c</filename>
+						<line>61</line>
+					</source>
+					<page>0</page>
+				</location>
+			</property>
+		</property>
+		<property>
+			<name>Logical Properties</name>
+			<property>
+				<name>Condition</name>
+				<string></string>
+			</property>
+			<property>
+				<name>Skip Count</name>
+				<integer>0</integer>
+				<property>
+					<name>Current Count</name>
+					<integer>0</integer>
+				</property>
+			</property>
+			<property>
+				<name>Action</name>
+				<string>Read Data from File</string>
+				<property>
+					<name>File</name>
+					<file>E:\huamg\_prgm\volume1_v0.1.0\sine.dat</file>
+				</property>
+				<property>
+					<name>Wrap Around</name>
+					<boolean>1</boolean>
+				</property>
+				<property>
+					<name>Start Address</name>
+					<string>inp_buffer</string>
+					<property>
+						<name>Page</name>
+						<string>Data</string>
+					</property>
+				</property>
+				<property>
+					<name>Length</name>
+					<string>100</string>
+				</property>
+			</property>
+			<property>
+				<name>Group</name>
+				<string>Default Group</string>
+			</property>
+			<property>
+				<name>Name</name>
+				<string>Software</string>
+			</property>
+		</property>
+		<enabled>1</enabled>
+	</breakpoint>
+	<breakpoint type="Software">
+		<property>
+			<name>Physical Properties</name>
+			<property>
+				<name>Location</name>
+				<location>
+					<expression>dataIO</expression>
+					<page>0</page>
+				</location>
+			</property>
+		</property>
+		<property>
+			<name>Logical Properties</name>
+			<property>
+				<name>Condition</name>
+				<string></string>
+			</property>
+			<property>
+				<name>Skip Count</name>
+				<integer>0</integer>
+				<property>
+					<name>Current Count</name>
+					<integer>0</integer>
+				</property>
+			</property>
+			<property>
+				<name>Action</name>
+				<string>Halt Target</string>
+			</property>
+			<property>
+				<name>Group</name>
+				<string>Default Group</string>
+			</property>
+			<property>
+				<name>Name</name>
+				<string>Software</string>
+			</property>
+		</property>
+		<enabled>1</enabled>
+	</breakpoint>
+</breakpoints>
+

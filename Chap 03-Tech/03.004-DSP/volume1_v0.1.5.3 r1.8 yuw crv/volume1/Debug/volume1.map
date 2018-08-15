@@ -1,0 +1,427 @@
+******************************************************************************
+             TMS320C2000 Linker PC v6.1.0                      
+******************************************************************************
+>> Linked Thu Apr 20 10:02:30 2017
+
+OUTPUT FILE NAME:   <E:/_workroom/0101-SIMU/volume1_v0.1.5.3 r1.8 yuw crv/volume1/../Debug/volume1.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 003e95e4
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+PAGE 0:
+  PROG                  003e8000   00010000  00001c34  0000e3cc  R   
+  BOOT                  003ff000   00000fc0  00000000  00000fc0  R   
+  RESET                 003fffc0   00000002  00000002  00000000  R   
+  VECTORS               003fffc2   0000003e  00000002  0000003c  R   
+
+PAGE 1:
+  M0RAM                 00000000   00000400  000002b0  00000150  RW  
+  M1RAM                 00000400   00000400  00000190  00000270  RW  
+  L0L1RAM               00008000   00002000  00000000  00002000  RW  
+  H0RAM                 003f8000   00002000  00000bfe  00001402  RW  
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.pinit     0    003e8000    00000000     UNINITIALIZED
+
+.text      0    003e8000    00001948     
+                  003e8000    00000870     rts2800_ml.lib : _printfi.obj (.text)
+                  003e8870    00000237                    : lowlev.obj (.text)
+                  003e8aa7    000001f0                    : trgdrv.obj (.text)
+                  003e8c97    000001c8                    : memory.obj (.text)
+                  003e8e5f    00000107                    : ll_div.obj (.text)
+                  003e8f66    00000100                    : fopen.obj (.text)
+                  003e9066    000000a5                    : fputs.obj (.text)
+                  003e910b    0000009c                    : fd_add.obj (.text)
+                  003e91a7    00000095     calc_cpid.obj (.text)
+                  003e923c    0000008b     rts2800_ml.lib : fd_div.obj (.text)
+                  003e92c7    00000083                    : fd_mpy.obj (.text)
+                  003e934a    00000082                    : ankmsg.obj (.text)
+                  003e93cc    00000070                    : setvbuf.obj (.text)
+                  003e943c    00000065                    : _io_perm.obj (.text)
+                  003e94a1    00000060                    : fflush.obj (.text)
+                  003e9501    00000050                    : fputc.obj (.text)
+                  003e9551    0000004b                    : fclose.obj (.text)
+                  003e959c    00000048     appl_main.obj (.text)
+                  003e95e4    00000044     rts2800_ml.lib : boot.obj (.text)
+                  003e9628    0000003d                    : fseek.obj (.text)
+                  003e9665    00000038     simu_crv.obj (.text)
+                  003e969d    00000033     appl_volume.obj (.text)
+                  003e96d0    00000032     rts2800_ml.lib : printf.obj (.text)
+                  003e9702    00000031                    : atoi.obj (.text)
+                  003e9733    0000002c                    : ltoa.obj (.text)
+                  003e975f    0000002a                    : fd_cmp.obj (.text)
+                  003e9789    0000002a                    : l_div.obj (.text)
+                  003e97b3    00000021                    : fd_toi.obj (.text)
+                  003e97d4    00000021                    : memcpy_ff.obj (.text)
+                  003e97f5    0000001f                    : fd_tol.obj (.text)
+                  003e9814    0000001e                    : ll_cmp.obj (.text)
+                  003e9832    0000001e                    : strncpy.obj (.text)
+                  003e9850    0000001c                    : fs_tofd.obj (.text)
+                  003e986c    0000001c                    : l_tofd.obj (.text)
+                  003e9888    00000019                    : args_main.obj (.text)
+                  003e98a1    00000019                    : exit.obj (.text)
+                  003e98ba    00000014                    : ll_mpy.obj (.text)
+                  003e98ce    00000012                    : memccpy.obj (.text)
+                  003e98e0    0000000e                    : fd_sub.obj (.text)
+                  003e98ee    0000000d                    : memchr.obj (.text)
+                  003e98fb    0000000b                    : strchr.obj (.text)
+                  003e9906    0000000a                    : strcmp.obj (.text)
+                  003e9910    0000000a                    : strlen.obj (.text)
+                  003e991a    00000009     drv_load.obj (.text)
+                  003e9923    00000009     rts2800_ml.lib : _lock.obj (.text)
+                  003e992c    00000009                    : fd_neg.obj (.text)
+                  003e9935    00000009                    : strcpy.obj (.text)
+                  003e993e    00000007                    : memset.obj (.text)
+                  003e9945    00000003                    : remove.obj (.text)
+
+.cinit     0    003e9948    000002ec     
+                  003e9948    0000025e     simu_crv.obj (.cinit)
+                  003e9ba6    0000002d     rts2800_ml.lib : lowlev.obj (.cinit)
+                  003e9bd3    0000002a                    : defs.obj (.cinit)
+                  003e9bfd    00000011     appl_volume.obj (.cinit)
+                  003e9c0e    0000000a     rts2800_ml.lib : _lock.obj (.cinit)
+                  003e9c18    0000000a                    : exit.obj (.cinit)
+                  003e9c22    00000004     appl_main.obj (.cinit)
+                  003e9c26    00000004     calc_cpid.obj (.cinit)
+                  003e9c2a    00000004     rts2800_ml.lib : fopen.obj (.cinit)
+                  003e9c2e    00000004                    : memory.obj (.cinit)
+                  003e9c32    00000002     --HOLE-- [fill = 0]
+
+.reset     0    003fffc0    00000002     
+                  003fffc0    00000002     rts2800_ml.lib : boot.obj (.reset)
+
+.vectors   0    003fffc2    00000002     
+                  003fffc2    00000002     cpu_vectors.obj (.vectors)
+
+.sysmem    1    00000000    00000190     UNINITIALIZED
+                  00000000    00000001     rts2800_ml.lib : memory.obj (.sysmem)
+                  00000001    0000018f     --HOLE--
+
+.cio       1    000001c0    00000120     UNINITIALIZED
+                  000001c0    00000120     rts2800_ml.lib : ankmsg.obj (.cio)
+
+.stack     1    00000400    00000190     UNINITIALIZED
+                  00000400    00000190     --HOLE--
+
+.bss       1    00008000    00000000     UNINITIALIZED
+
+.ebss      1    003f8000    00000a08     UNINITIALIZED
+                  003f8000    00000428     calc_cpid.obj (.ebss)
+                  003f8428    00000008     rts2800_ml.lib : memory.obj (.ebss)
+                  003f8430    00000008                    : trgdrv.obj (.ebss)
+                  003f8438    00000004                    : _lock.obj (.ebss)
+                  003f843c    00000004                    : exit.obj (.ebss)
+                  003f8440    0000026c     simu_crv.obj (.ebss)
+                  003f86ac    00000001     appl_main.obj (.ebss)
+                  003f86ad    00000001     rts2800_ml.lib : fopen.obj (.ebss)
+                  003f86ae    00000012     --HOLE--
+                  003f86c0    00000160                    : defs.obj (.ebss)
+                  003f8820    00000020     --HOLE--
+                  003f8840    00000124     appl_volume.obj (.ebss)
+                  003f8964    0000001c     --HOLE--
+                  003f8980    00000088     rts2800_ml.lib : lowlev.obj (.ebss)
+
+.econst    1    003f8a08    000001f6     
+                  003f8a08    00000101     rts2800_ml.lib : ctype.obj (.econst:__ctypes_)
+                  003f8b09    00000001     --HOLE-- [fill = 0]
+                  003f8b0a    00000083     appl_main.obj (.econst:.string)
+                  003f8b8d    00000001     --HOLE-- [fill = 0]
+                  003f8b8e    00000024     rts2800_ml.lib : _printfi.obj (.econst:.string)
+                  003f8bb2    0000001a     simu_crv.obj (.econst:.string)
+                  003f8bcc    00000018     appl_volume.obj (.econst:.string)
+                  003f8be4    00000018     rts2800_ml.lib : _printfi.obj (.econst)
+                  003f8bfc    00000002                    : fputs.obj (.econst:.string)
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+00008000   .bss
+003e8000   .text
+003e98a1   C$$EXIT
+003e9395   C$$IO$$
+003e910b   FD$$ADD
+003e975f   FD$$CMP
+003e923c   FD$$DIV
+003e92c7   FD$$MPY
+003e992c   FD$$NEG
+003e98e0   FD$$SUB
+003e97b3   FD$$TOI
+003e97f5   FD$$TOL
+003e9850   FS$$TOFD
+003e9789   L$$DIV
+003e9798   L$$MOD
+003e986c   L$$TOFD
+003e9814   LL$$CMP
+003e8e5f   LL$$DIV
+003e8e9b   LL$$MOD
+003e98ba   LL$$MPY
+003e97a6   UL$$DIV
+003e97ad   UL$$MOD
+003e9826   ULL$$CMP
+003e8ed5   ULL$$DIV
+003e8f04   ULL$$MOD
+003e91de   _AlgCrrntcPid
+003e91a7   _Alg_cPid
+003e969d   _Appl_Volume
+003e91c5   _CrrntcPidInit
+003e8c6d   _HOSTclock
+003e8c46   _HOSTclose
+003e8c1e   _HOSTgetenv
+003e8bd7   _HOSTlseek
+003e8ba0   _HOSTopen
+003e8b6a   _HOSTread
+003e8b2c   _HOSTrename
+003e8b02   _HOSTtime
+003e8add   _HOSTunlink
+003e8aa7   _HOSTwrite
+003e968d   _SimuCrvPidInit
+003e9665   _SimuCurvePid
+000001c0   __CIOBUF_
+00000590   __STACK_END
+00000190   __STACK_SIZE
+00000190   __SYSMEM_SIZE
+00000001   __TI_args_main
+ffffffff   ___binit__
+00008000   ___bss__
+ffffffff   ___c_args__
+003e9948   ___cinit__
+00008000   ___end__
+003e9948   ___etext__
+003e97d4   ___memcpy_ff
+ffffffff   ___pinit__
+003e8000   ___text__
+003e9888   __args_main
+003e8fde   __cleanup
+003f843c   __cleanup_ptr
+003e9551   __closefile
+003f8a08   __ctypes_
+003e94a1   __doflush
+003f843e   __dtors_ptr
+003f86c0   __ft_end
+003f8700   __ftable
+003f843a   __lock
+003e992b   __nop
+003e877e   __printfi
+003e9476   __rd_ok
+003e9927   __register_lock
+003e9923   __register_unlock
+00000400   __stack
+00000000   __sys_memory
+003f8780   __tmpnams
+003f8438   __unlock
+003e943c   __wrt_ok
+003f8040   _aRealCrrnt
+003e98a1   _abort
+003e8a49   _add_device
+003e9702   _atoi
+003e95e4   _c_int00
+003e8e46   _calloc
+003e8e44   _chkheap
+003e8a17   _close
+003f8000   _cpid
+003e98a3   _exit
+003e958b   _fclose
+003e94d0   _fflush
+003e904c   _fopen
+003e9501   _fputc
+003e9066   _fputs
+003e8c97   _free
+003e8e28   _free_memory
+003e8ffc   _freopen
+003e9628   _fseek
+003f8440   _g_uiaFullCloseCrv
+003f8580   _g_uiaSampCloseCrv
+003f8840   _gain
+003f8880   _inp_buffer
+003e991a   _load
+003e89e9   _lseek
+003e9733   _ltoa
+003e959c   _main
+003e8d00   _malloc
+003e8e08   _max_free
+003e98ce   _memccpy
+003e98ee   _memchr
+003e993e   _memset
+003e8cdc   _minit
+003e8993   _open
+003f8900   _out_buffer
+003e96d6   _printf
+003f8841   _processingLoad
+003e9501   _putc
+003e954c   _putchar
+003e90f9   _puts
+003e8945   _read
+003e9399   _readmsg
+003e8d56   _realloc
+003e9945   _remove
+003e892b   _remove_device
+003e8902   _rename
+003e93cc   _setvbuf
+003f8842   _str
+003e98fb   _strchr
+003e9906   _strcmp
+003e9935   _strcpy
+003e9910   _strlen
+003e9832   _strncpy
+003e88ea   _unlink
+003e8870   _write
+003e934a   _writemsg
+ffffffff   binit
+003e9948   cinit
+00008000   end
+003e9948   etext
+ffffffff   pinit
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000000   __sys_memory
+00000001   __TI_args_main
+00000190   __STACK_SIZE
+00000190   __SYSMEM_SIZE
+000001c0   __CIOBUF_
+00000400   __stack
+00000590   __STACK_END
+00008000   .bss
+00008000   ___bss__
+00008000   ___end__
+00008000   end
+003e8000   .text
+003e8000   ___text__
+003e877e   __printfi
+003e8870   _write
+003e88ea   _unlink
+003e8902   _rename
+003e892b   _remove_device
+003e8945   _read
+003e8993   _open
+003e89e9   _lseek
+003e8a17   _close
+003e8a49   _add_device
+003e8aa7   _HOSTwrite
+003e8add   _HOSTunlink
+003e8b02   _HOSTtime
+003e8b2c   _HOSTrename
+003e8b6a   _HOSTread
+003e8ba0   _HOSTopen
+003e8bd7   _HOSTlseek
+003e8c1e   _HOSTgetenv
+003e8c46   _HOSTclose
+003e8c6d   _HOSTclock
+003e8c97   _free
+003e8cdc   _minit
+003e8d00   _malloc
+003e8d56   _realloc
+003e8e08   _max_free
+003e8e28   _free_memory
+003e8e44   _chkheap
+003e8e46   _calloc
+003e8e5f   LL$$DIV
+003e8e9b   LL$$MOD
+003e8ed5   ULL$$DIV
+003e8f04   ULL$$MOD
+003e8fde   __cleanup
+003e8ffc   _freopen
+003e904c   _fopen
+003e9066   _fputs
+003e90f9   _puts
+003e910b   FD$$ADD
+003e91a7   _Alg_cPid
+003e91c5   _CrrntcPidInit
+003e91de   _AlgCrrntcPid
+003e923c   FD$$DIV
+003e92c7   FD$$MPY
+003e934a   _writemsg
+003e9395   C$$IO$$
+003e9399   _readmsg
+003e93cc   _setvbuf
+003e943c   __wrt_ok
+003e9476   __rd_ok
+003e94a1   __doflush
+003e94d0   _fflush
+003e9501   _fputc
+003e9501   _putc
+003e954c   _putchar
+003e9551   __closefile
+003e958b   _fclose
+003e959c   _main
+003e95e4   _c_int00
+003e9628   _fseek
+003e9665   _SimuCurvePid
+003e968d   _SimuCrvPidInit
+003e969d   _Appl_Volume
+003e96d6   _printf
+003e9702   _atoi
+003e9733   _ltoa
+003e975f   FD$$CMP
+003e9789   L$$DIV
+003e9798   L$$MOD
+003e97a6   UL$$DIV
+003e97ad   UL$$MOD
+003e97b3   FD$$TOI
+003e97d4   ___memcpy_ff
+003e97f5   FD$$TOL
+003e9814   LL$$CMP
+003e9826   ULL$$CMP
+003e9832   _strncpy
+003e9850   FS$$TOFD
+003e986c   L$$TOFD
+003e9888   __args_main
+003e98a1   C$$EXIT
+003e98a1   _abort
+003e98a3   _exit
+003e98ba   LL$$MPY
+003e98ce   _memccpy
+003e98e0   FD$$SUB
+003e98ee   _memchr
+003e98fb   _strchr
+003e9906   _strcmp
+003e9910   _strlen
+003e991a   _load
+003e9923   __register_unlock
+003e9927   __register_lock
+003e992b   __nop
+003e992c   FD$$NEG
+003e9935   _strcpy
+003e993e   _memset
+003e9945   _remove
+003e9948   ___cinit__
+003e9948   ___etext__
+003e9948   cinit
+003e9948   etext
+003f8000   _cpid
+003f8040   _aRealCrrnt
+003f8438   __unlock
+003f843a   __lock
+003f843c   __cleanup_ptr
+003f843e   __dtors_ptr
+003f8440   _g_uiaFullCloseCrv
+003f8580   _g_uiaSampCloseCrv
+003f86c0   __ft_end
+003f8700   __ftable
+003f8780   __tmpnams
+003f8840   _gain
+003f8841   _processingLoad
+003f8842   _str
+003f8880   _inp_buffer
+003f8900   _out_buffer
+003f8a08   __ctypes_
+ffffffff   ___binit__
+ffffffff   ___c_args__
+ffffffff   ___pinit__
+ffffffff   binit
+ffffffff   pinit
+
+[136 symbols]
