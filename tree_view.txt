@@ -1,7 +1,8 @@
 Folder PATH listing
-Volume serial number is 0000004A 4EA2:E592
+Volume serial number is 0000007A 4EA2:E592
 C:.
 ©¦  cmd_tree.bat
+©¦  del_d_folder.bat
 ©¦  tree_view.txt
 ©¦  _02.007 chapter name-add.c
 ©¦  _03.001 CPCI.c
@@ -10,14 +11,26 @@ C:.
 ©¦  
 ©À©¤Chap 01-Org
 ©¦  ©À©¤01.001-PC_install
+©¦  ©¦      install list.txt
+©¦  ©¦      
 ©¦  ©À©¤01.002-Task
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤01.003-Group
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤01.004-BssTrp
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©¸©¤01.005-Kkk
+©¦          placeholder.txt
+©¦          
 ©À©¤Chap 02-Prj
 ©¦  ©¦  Step-1TS_2CBC_3Q_4FUNC_5HARD_6TECH_7PLAN_8FILE_9_10RAMS.txt
 ©¦  ©¦  
 ©¦  ©À©¤02.001-Template
+©¦  ©¦  ©¦  placeholder.txt
+©¦  ©¦  ©¦  
 ©¦  ©¦  ©À©¤MKxxxx-01-TRUNK
 ©¦  ©¦  ©À©¤MKxxxx-01-TS
 ©¦  ©¦  ©¦  ©¸©¤MKxxxx-Requirement
@@ -59,37 +72,116 @@ C:.
 ©¦  ©¦  ©¦  ©¸©¤MKxxxx-SRS
 ©¦  ©¦  ©¸©¤MKxxxx-10-RAMS
 ©¦  ©À©¤02.002-Colleague
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©¸©¤02.003-FourthGroup
 ©À©¤Chap 03-Tech
 ©¦  ©À©¤03.001+Electric
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.002-Agri
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.003-ARM
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.004-DSP
+©¦  ©¦    placeholder.txt
+©¦  ©¦  
 ©¦  ©À©¤03.005-Motor
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.006-PCB
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.007-PLC
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.008-FPGA
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.011+RTOS
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.013-Android
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.014-VM
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.015-VC
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.016-VB
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.017-JAVA
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.018-C
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.019-OS
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
+©¦  ©À©¤03.020-Python
+©¦  ©¦    placeholder.txt
+©¦  ©¦              
 ©¦  ©À©¤03.021+CANopen
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.022-Ethernet
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.023-MVB
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.024-UART 485
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.025-HDLC
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.026-GPRS
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
+©¦  ©À©¤03.027-BlueTooth
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.031+PID
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.032-Filter
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.034-MATLAB
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.041+LABVIEW
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.051+Photoshop
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.061+Patent
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
 ©¦  ©À©¤03.097-Summary
-©¦  ©¸©¤03.099-Latest
+©¦  ©¦      placeholder.txt
+©¦  ©¦      
+©¦  ©¸©¤03.099-Desktop
+©¦      ©À©¤_desk
+©¦      ©¦      placeholder.txt
+©¦      ©¦      
+©¦      ©À©¤_link
+©¦      ©¦      placeholder.txt
+©¦      ©¦      
+©¦      ©¸©¤_log
+©¦              placeholder.txt
+©¦              
 ©À©¤Chap 04-Std
-©¸©¤Chap 05-Pbm
+©¦      placeholder.txt
+©¦      
+©¸©¤Chap 05-Achieve
+        placeholder.txt
+        
