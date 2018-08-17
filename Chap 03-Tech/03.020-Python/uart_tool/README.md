@@ -12,3 +12,27 @@ Python使用3.4版本
 six/python-dateutil/pyqt-distutils
 
 开发使用的IDE：PyCharm
+
+
+//package.
+1、使用下载安装的方式安装的Pyinstaller打包方式
+
+将需要打包的文件放在解压得到的Pyinstaller文件夹中，打开cmd窗口，把路径切换到当前路径打开命令提示行，输入以下内容（最后的是文件名）：
+
+        python pyinstaller.py -Fw myfile.py
+
+2、使用pip方式安装的Pyinstaller打包方式
+
+打开cmd窗口，把路径切换到文件所在路径(文件随便放在哪里都行)打开命令提示行，输入以下内容（最后的是文件名）：
+
+        pyinstaller -F myfile.py
+
+pyinstaller -F test.py
+
+3、输入参数的含义
+
+    -F 表示生成单个可执行文件
+    -w 表示去掉控制台窗口，这在GUI界面时非常有用。不过如果是命令行程序的话那就把这个选项删除吧！
+    -p 表示你自己自定义需要加载的类路径，一般情况下用不到
+    -i 表示可执行文件的图标
+

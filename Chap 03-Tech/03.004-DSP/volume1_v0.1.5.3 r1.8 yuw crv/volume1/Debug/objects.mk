@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := $(GEN_CMDS__FLAG)
+LIBS :=
 

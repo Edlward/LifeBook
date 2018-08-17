@@ -187,14 +187,6 @@ motionControlConfig.hpp		enum { PUSH_SPEED_P 	= 30 };
 {
 virtual int16_t si16GetMotorCrrtLimit() const volatile = 0; //xxvv,2502=2.502A, v0.2.
 mbsLogPrintf("Software ID V00.03. \r");
-
-
-	
-
-
-
-
-
 	
 	
 G:\R&D\2018\Jerry Hua\002-ST-Link Utility Load Flash\	
@@ -214,6 +206,21 @@ C:\mbs\SwingDoorPlatform
 
 
 
+//================================ 
+2018.08.17 Friday.
+01. ECLPILSE graph tool: NOT FOUND.
+	CDT, //-P "${project_loc}/${config_name:${project_name}/${project_name}.hex" -V -Rst
+		 //C:\Program Files (x86)\STMicroelectronics\STM32 ST-LINK Utility\ST-LINK Utility\ST-LINK_CLI.exe
+		 //-f "${project_loc}/../zs_tool/st_link/stlink-v2.cfg" 
+		 //-f "${project_loc}/../zs_tool/st_link/stm32f1x_stlink.cfg"
+	文库账号；
+	
+02. 调试串口助手：数据接收显示；程序打包；
+	//display not 0.
+03. 英语；
+04. 直线电机控制：矢量算法；
+	//MISRA,
+05. 交流锻炼, Email, Skype。
 
 
 //================================ 
