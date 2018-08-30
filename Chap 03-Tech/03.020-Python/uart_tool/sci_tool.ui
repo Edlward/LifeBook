@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>947</width>
-    <height>643</height>
+    <width>1108</width>
+    <height>972</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1243,9 +1243,7 @@
          </layout>
         </item>
        </layout>
-       <zorder>debugtab</zorder>
        <zorder></zorder>
-       <zorder>verticalSpacer</zorder>
       </widget>
       <widget class="QWidget" name="about_tab">
        <attribute name="title">

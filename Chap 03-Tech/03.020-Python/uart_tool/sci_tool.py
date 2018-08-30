@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:\mbs\zs_github\LifeBook\Chap 03-Tech\03.020-Python\uart_tool\sci_tool.ui'
 #
-# Created: Fri Aug 17 16:30:38 2018
+# Created: Mon Aug 20 16:55:07 2018
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(947, 643)
+        MainWindow.resize(1108, 972)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)

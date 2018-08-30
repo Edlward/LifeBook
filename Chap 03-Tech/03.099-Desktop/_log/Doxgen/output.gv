@@ -1,0 +1,21 @@
+   digraph "digitalOutputInterface" {
+     rankdir=LR
+     nodesep = 0.4
+     graph [style = "filled", fillcolor = "white", fontsize=15];
+     {
+       rank=same
+       PhysicalPin [label="Physical Pin", style=rounded, shape=box]
+       McuHw [label="MCU HW", style=rounded, shape=box]
+       digitalOutput [label="digitalOutput", style=rounded, shape=box]
+       Application [label="Application", style=rounded, shape=box]
+     }
+
+     Application:w -> digitalOutput:w [ xlabel="   Settings   "]
+     digitalOutput:sw -> McuHw:w [ xlabel="   Settings   "]
+
+     McuHw:e -> digitalOutput:e [ xlabel="   Level   "]
+     digitalOutput:ne -> Application:e [ xlabel="   State   "]
+
+     McuHw -> PhysicalPin [style=invis]
+     PhysicalPin:n -> McuHw:s [ xlabel="   Level   "]
+   }

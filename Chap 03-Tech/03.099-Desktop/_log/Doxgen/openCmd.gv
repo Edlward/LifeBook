@@ -1,0 +1,21 @@
+    digraph "openCommandInterface" {
+        rankdir=BT
+        node [shape=circle, height=1.2, width=1.2]
+        nodesep = 1.0
+
+        open           [label=" OPEN "]
+        opening        [label="OPENING"]
+        wait_for_stall [label="WAIT \n FOR \n STALL"]
+        stalled        [label="STALLED"]
+
+        {rank=same; opening, wait_for_stall, stalled}
+
+        opening:n        -> open:w [ xlabel=" opened       "]
+        wait_for_stall:n -> open:s [ headlabel=" opened   "]
+        stalled:n        -> open:e [ xlabel=" opened "]
+
+        opening:se -> wait_for_stall [ headlabel="check stall   "]
+        wait_for_stall:nw -> opening [ headlabel="    open speed "]
+        wait_for_stall:e -> stalled:w [ xlabel=" time out "]
+        stalled:s -> opening:s [ taillabel=" open speed                 "]
+    }

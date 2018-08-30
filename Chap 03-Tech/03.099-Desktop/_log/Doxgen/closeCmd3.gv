@@ -1,0 +1,30 @@
+    digraph "closeCommandInterface" {
+        node [shape=circle, height=2, width=2]
+        nodesep = 1.0
+
+        obst2clsing          [shape=point, height=0.01, width=0.01]
+        closing                 [label="CLOSING"]
+        wait_for_closed    [label="WAIT \n FOR \n CLOSED"]
+        wait_for_obstruct [label="WAIT \n FOR \n OBSTRUCTED"]
+        obstructed           [label="OBSTRUCTED"]
+        closed                 [label=" CLOSED "]
+
+        closing:e           -> wait_for_closed:w [ headlabel=" check \n closed   "]
+        closing:ne         -> wait_for_obstruct:w [ headlabel=" check \n obstructed   "]
+        wait_for_closed -> closed [ headlabel=" closed "]
+        wait_for_closed -> wait_for_obstruct [ headlabel=" high position "]
+        wait_for_obstruct -> obstructed [ headlabel=" obstructed "]
+        wait_for_obstruct -> wait_for_closed [ headlabel=" low position "]
+        closed:sw -> closing:s [ headlabel=" high speed "]
+        obstructed:nw -> obst2clsing [ headlabel=" high speed ", dir=none]
+        obst2clsing -> closing:n
+
+        {rank=same; closing, wait_for_closed, closed}
+        {rank=same; obst2clsing, wait_for_obstruct, obstructed}
+
+        //invisable
+        edge [style=invis]
+        //edge [style=dotted, dir=none]
+        closed -> obstructed;
+        obst2clsing -> wait_for_obstruct:w;
+    }

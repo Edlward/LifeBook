@@ -68,8 +68,11 @@ EF : course start on 2 July
 //================================
 1015-sentence:
 {
-Fixed in new commit.
-Fixed in new commit as it may. 
+Corrected in new commit.
+Removed in new commit.
+It has been corrected.
+Removed the 'open' state.
+Fixed？ in new commit as it may. 
 As far as my concerned it's use full to distinguish class and object with C(class).
 Changed to xxx in new commit.
 Removed the outputConfig.hpp file in new commit.
@@ -93,7 +96,7 @@ G:\R&D\2017\Janny Zhang\标准\USA
 //1015.
 
 
-//================================
+//=================================
 4005-questions:
 {
 //questions:
@@ -119,9 +122,10 @@ STM32F103-RET6-GQ21U
 	uint16_t ui16ThisI0 = static_cast<uint16_t>(inputInternal::ADCInputImp::aui16ReceivedBuffer[1U]);
 	ui16ThisI0 += static_cast<uint16_t>(inputInternal::ADCInputImp::aui16ReceivedBuffer[2U]);
 
------------------------------------	
+-----------------------------------
 03. reset.
-#8     00000 00:00:00.007    Info quasarMain OMSBasicMain task started
+addr2line -e <elf-file-name>.elf 0x8038F53 
+#8  00000 00:00:00.007    Info quasarMain OMSBasicMain task started
 MBS Console online, type help for a list of available commands
 > 
 ## Assert failed at LR 0x801D03F, task commApp
@@ -137,12 +141,12 @@ MBS Console online, type help for a list of available commands
 
 -----------------------------------	
 06. initial speed -40; //
-const int16_t CloseCommandImp::csi16SetSpeedAtClosed           = -40; /* -0.040 rad/s shaft speed */
+const int16_t CloseCommandImp::csi16SetSpeedAtClosed    = -40; /* -0.040 rad/s shaft speed */
 /SwingDoorPlatform/modules/motionControl/motorBoard/mbs_st_m64_core_v10/config/src/motionControlConfig.cpp==
 
 -----------------------------------	
 07. Kp, Ki, Kc.
-enum { PUSH_SPEED_P = 400 }; 				//400Nms/radian on output shaft
+enum { PUSH_SPEED_P = 400 }; 				 //400Nms/radian on output shaft
 enum { MAX_ALLOW_CURRENT = 4000 };
 /SwingDoorPlatform/modules/motionControl/motorBoard/mbs_st_m64_core_v10/config/inc/motionControlConfig.hpp==
 
@@ -205,6 +209,94 @@ C:\mbs\SwingDoorPlatform
 
 
 
+
+
+
+
+
+
+
+
+//================================ 
+2018.08.27 Monday.
+01. jeppa email; 	//slow open design.
+02. arm code; 		//arm, tractroty.
+03. english;
+04. power assist program:   //system play; //free swing; //push & go test;
+05. pull arm program: c300.
+06. 高速停机不稳定；
+07. 开关门时间可调；		//UL228;
+08. 上位机工具；下周；
+
+
+
+
+//================================ 
+2018.08.27 Monday.
+01. jeppa email;
+02. arm code; 	//arm, tractroty.
+03. debug; 		//开到位抖动(位置保持)，关不到位（电机问题）， 拉杆的门（pull）；
+04. review learn code;
+
+
+岗位职责：
+
+职责：负责构建用户环境中，系统使用芯片的实际应用开发。负责芯片bringup以及板级BSP构建。
+
+任职要求：
+1、 电子工程，计算机相关专业本科及以上学历
+2、 5年以上软件设计开发工作经验，精通C/C++
+3、 熟悉Linux操作系统和Android架构，熟悉ARM或X86平台开发和编译环境
+4、 掌握嵌入式Linux内核的裁剪、移植，设备驱动程序的开发、优化
+5、 熟悉PCIe & AXI等协议，具有PCIe、DMA、I2C、UART、HDMI等模块的开发调试经验
+6、 良好的中英文沟通能力
+具有以下经验者优先：
+
+1、 熟悉芯片研发流程，有芯片BSP或SDK开发经验
+2、 熟悉OpenCV、OpenGL等视觉图像处理开源库
+3、 深刻理解设计模式，对基于API的设计有丰富的开发经验
+4、 有一定分布式计算框架的理解和经验
+
+高级软件研发工程师
+
+1.负责开发电机控制器固件和仪表固件功能开发，制定开发计划、撰写项目文档；	
+2.负责将研发新品的软件设计需求转化为设计规范与测试规范；			
+3.负责固件的测试、调试、验证工作等；			
+4. 协助硬件、结构和测试工程师进行新品功能、性能、可靠性等方面的测试、验证及外部认证；		
+5. 配合生产和技术服务部门，为产品的调试、测试和故障排查提供技术支持。		
+任职要求：			
+1. 可独立带领研发小组，完成相关项目研发工作；
+2. 3年以上嵌入式产品研发经验，熟悉ARM 32位MCU者优先；			
+3. 熟练掌握C语言，编码风格良好，调试技巧丰富，能独立解决问题；有基于C#的上位机软件开发经验者优先。			
+4. 熟悉交流电机控制原理，有电机控制器固件和仪表固件开发经验者优先考虑；		
+5. 良好的团队协作，能够承压、迎接挑战，能接受不定期的出差和客户端调试。		
+6.必须有仪表或电驱动相关工作经验；	
+
+//================================ 
+2018.08.22 Wednesday.
+01. project code.
+02. 调试串口助手：数据接收显示；
+03. 英语；
+04. 直线电机控制：矢量算法；
+05. 交流锻炼, Email, Skype。
+
+//================================ 
+2018.08.21 Tuesday.
+01. project code.
+02. 调试串口助手：数据接收显示；程序打包；
+03. 英语；
+04. 直线电机控制：矢量算法；
+05. 交流锻炼, Email, Skype。
+
+//================================ 
+2018.08.20 Monday.
+01. project code.
+	文库账号；
+02. 调试串口助手：数据接收显示；程序打包；
+	//display not 0.
+03. 英语；
+04. 直线电机控制：矢量算法；
+05. 交流锻炼, Email, Skype。
 
 //================================ 
 2018.08.17 Friday.
