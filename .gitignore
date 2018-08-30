@@ -1,3 +1,4 @@
 ##ignore files in this folder.
 PyInstaller/
 Debug/
+sci_main.exe
