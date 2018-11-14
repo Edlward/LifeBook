@@ -1,0 +1,152 @@
+/* All distances are in mm. All angles are in rad. */
+
+/* C is the distance between Telescope arm point to bracket in door
+   and the door */
+C:15.47;
+
+/* F is the distance between the hinge center to the door + door thickness */
+F:65;
+
+/* A is the reveal. Could be 0-305 mm.  */
+A:50;
+
+/* O is the distance from frame to drive center */
+O:46.5;
+
+/* S is the distance between arm point in door to drive shaft center */
+S:70;
+
+/* B is the distance between hinge center to drive shaft center */
+B:280;
+
+/* K is the turning arm length */
+K:280;
+
+/* L3 is the distance between the drive shaft center to telescope arm 
+   point bracket in the door when the door is closed (alpha_D = 0) */
+L3:sqrt((A + O - C)^2 + S^2);
+
+/* alpha is the arm angle (zero when the door is closed") This
+   is kept symbolic since it is the variable that the door angle
+   is dependant on */
+kill(alpha);
+
+/* alpha_0 is the arm angle when the door is closed 
+   (zero in the "south direction") */
+alpha_0:asin(S/K);
+alpha_0_degree: floor(alpha_0*180/%pi);
+
+/* L is the telescope arm length 
+   depending on the reveal. */
+L:A+O-C+K*cos(alpha_0);
+
+/* b_x and b_y are the rectangular coordinates for the arm system
+   knee point in a system with origo in the drive shaft center as a
+   function of the shaft angle alpha */
+b_x(alpha):=-K*sin(alpha + alpha_0);
+b_y(alpha):=-K*cos(alpha + alpha_0);
+
+/* f_x and f_y are the rectangular coordinates for the hinge point */
+f_x:B;
+f_y:F+A+O;
+
+/* L1 is the distance between the arm system knee point (b) and
+   the hinge center as function of the shaft angle, alpha */
+L1(alpha):=sqrt((b_x(alpha) - f_x)^2 + (b_y(alpha) - f_y)^2);
+
+/* L2 is the distance between the telescope arm joint with the bracket 
+   in the door and the hinge center */
+L2:sqrt((B+S)^2+(F+C)^2);
+
+/* alpha_D is the door angle (zero when the door is closed) as function
+   of the shaft angle */
+   
+aD1_1(alpha) := asin((f_x - b_x(alpha))/L1(alpha));
+aD1_2(alpha) := %pi - asin((f_x - b_x(alpha))/L1(alpha));
+aD2(alpha) := acos((L1(alpha)^2 + L2^2 - L^2)/(2*L1(alpha)*L2));
+aD3(alpha) := atan((F+C)/(B+S));
+
+define(d_alpha_D_d_alpha_1(alpha), diff(aD1_1(alpha) + aD2(alpha) + aD3(alpha) ,alpha,1));
+define(d_alpha_D_d_alpha_2(alpha), diff(aD1_2(alpha) + aD2(alpha) + aD3(alpha),alpha,1));
+define(d2_alpha_D_d_alpha2_1(alpha), diff(aD1_1(alpha) + aD2(alpha) + aD3(alpha) ,alpha,2));
+define(d2_alpha_D_d_alpha2_2(alpha), diff(aD1_2(alpha) + aD2(alpha) + aD3(alpha),alpha,2));
+
+alpha_D(alpha):= if (f_y > b_y(alpha)) then aD1_1(alpha) + aD2(alpha) +aD3(alpha) - %pi/2
+                 else aD1_2(alpha) + aD2(alpha) +aD3(alpha) - %pi/2;
+
+/* c_x and c_y are the rectangular coordinates for the telescope arm
+   joint with the bracket in the door as function of the shaft angle, alpha */
+c_x(alpha):=-L2*cos(acos((f_y-b_y(alpha))/L1(alpha)) + 
+                    acos((L^2-L1(alpha)^2-L2^2)/(-2*L1(alpha)*L2))) + 
+             f_x;
+c_y(alpha):=-L2*sin(acos((f_y-b_y(alpha))/L1(alpha)) + 
+                    acos((L^2-L1(alpha)^2-L2^2)/(-2*L1(alpha)*L2))) + 
+             f_y;
+
+define(d_alpha_D_d_alpha(alpha),if (f_y > b_y(alpha)) then d_alpha_D_d_alpha_1(alpha)
+                                else d_alpha_D_d_alpha_2(alpha));
+
+define(d2_alpha_D_d_alpha2(alpha),if (f_y > b_y(alpha)) then d2_alpha_D_d_alpha2_1(alpha)
+                                  else d2_alpha_D_d_alpha2_2(alpha));
+								
+/*                    d alpha_D d²alpha_D d alpha      d alpha_D   d²alpha
+   Tau_Shaft = J_Door(--------- ---------(-------)² + (---------)² -------)
+                       d alpha  d alpha²    d t         d alpha     d t²
+
+   create and export tables for door angle, T1 and T2 with 
+
+                                  d²alpha_D
+                                  ---------
+              1                    d alpha²
+   T1 = --------------  and T2 = --------------
+          d alpha_D                d alpha_D
+         (---------)²              ---------
+		    d_alpha                 d alpha
+
+		d alpha_D d²alpha_D           d alpha_D
+   T1 = --------- --------- and T2 = (---------)²
+         d alpha  d alpha²             d alpha
+*/
+define(T1(alpha),1/(d_alpha_D_d_alpha(alpha)^2));
+define(T2(alpha),d2_alpha_D_d_alpha2(alpha)/d_alpha_D_d_alpha(alpha));
+/*
+define(T1(alpha),d_alpha_D_d_alpha(alpha)*d2_alpha_D_d_alpha2(alpha));
+define(T2(alpha),d_alpha_D_d_alpha(alpha)^2);
+*/
+
+/* Create conversion table from door radians/100 to axle radians */
+
+kill(convtab);
+array(convtab, flonum, last_table_index);
+errormsg:false;
+lastroot: float(0);
+for a:0 step 1 thru last_table_index do (errcatch(convtab[a]: float(find_root(alpha_D(alpha)-(a/100),alpha,0,%pi))),
+                                         if convtab[a] = 0.0 then convtab[a] : lastroot else lastroot:convtab[a]);
+
+/* Create conversion table from door radians/100 to arm system gear ration */
+
+kill(geartab);
+array(geartab, flonum, last_table_index);
+for a:0 step 1 thru last_table_index do (errcatch(geartab[a]:float(1/d_alpha_D_d_alpha(convtab[a]))));
+
+/* Create test-points for the unit tests */
+/* At 45 degrees door angle */
+tp45degShaftAngle:find_root(alpha_D(alpha)-(%pi/4),alpha,0,%pi);
+tp45degGearRatio:1/d_alpha_D_d_alpha(tp45degShaftAngle);
+/* At 90 degrees door angle */
+tp90degShaftAngle:find_root(alpha_D(alpha)-(%pi/2),alpha,0,%pi);
+tp90degGearRatio:1/d_alpha_D_d_alpha(tp90degShaftAngle);
+
+/* The T1 and T2 tables have values for every 0.01 radian shaft angle (alpha) */
+min_position: 0;
+max_position: 261; /* corresponding to 2,61 radians or 149,5 degrees */
+
+/*
+plot2d([alpha_D(alpha*%pi/180)*180/%pi,
+        1/d_alpha_D_d_alpha(alpha*%pi/180),
+        d_alpha_D_d_alpha(alpha*%pi/180),
+        d2_alpha_D_d_alpha2(alpha*%pi/180)],
+       [alpha,0,180]);
+*/
+		armsystem: "Push";
+batchload("ArmTable_printf.mac");

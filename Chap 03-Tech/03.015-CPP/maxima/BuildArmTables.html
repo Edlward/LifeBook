@@ -1,0 +1,1100 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+  <TITLE>BuildArmTables</TITLE>
+  <META NAME="generator" CONTENT="wxMaxima">
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    displayAlign: "left",
+    context: "MathJax",
+    TeX: {TagSide: "left"}
+  })
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML">
+</script>
+  <link rel="stylesheet" type="text/css" href="BuildArmTables_htmlimg/BuildArmTables.css"/>
+ </HEAD>
+ <BODY>
+
+<!-- ***************************************************** -->
+<!--          Created with wxMaxima version 18.10.1         -->
+<!-- ***************************************************** -->
+<noscript><div class="error message">    Please enable JavaScript in order to get a 2d display of the equations embedded in this web page.</div></noscript>\(      \DeclareMathOperator{\abs}{abs}
+      \newcommand{\ensuremath}[1]{\mbox{$#1$}}
+\)
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">kill</span>(<span class="code_variable">all</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">nl</span><span class="code_operator">:</span><span class="code_function">sconcat</span>(<span class="code_function">ascii</span>(<span class="code_number">13</span>),<span class="code_function">ascii</span>(<span class="code_number">10</span>))<span class="code_endofline">;</span> <span class="code_comment">/·</span><span class="code_comment"> </span><span class="code_comment">=</span><span class="code_comment"> </span><span class="code_comment">CR</span><span class="code_comment">−</span><span class="code_comment">LF</span><span class="code_comment"> </span><span class="code_comment">·/</span><BR>
+<BR>
+<span class="code_variable">table_granularity</span><span class="code_operator">:</span><span class="code_number">100</span><span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">min_table_index</span><span class="code_operator">:</span><span class="code_number">0</span><span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">max_table_index</span><span class="code_operator">:</span><span class="code_number">222</span><span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">last_table_index</span><span class="code_operator">:</span><span class="code_variable">max_table_index</span><span class="code_operator">−</span><span class="code_variable">min_table_index</span><span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">table_size</span><span class="code_operator">:</span><span class="code_variable">max_table_index</span><span class="code_operator">−</span><span class="code_variable">min_table_index</span><span class="code_operator">+</span><span class="code_number">1</span><span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">load</span>(<span class="code_string">&quot;operatingsystem&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;components&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;application&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;swingDoorGeneric&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;armSystem&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;maxima&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">srcFile</span><span class="code_operator">:</span> <span class="code_function">openw</span>(<span class="code_string">&quot;../src/armTables.cpp&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">note</span><span class="code_operator">:</span> <span class="code_string">&quot;&quot;</span><span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;/··~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot; &nbsp;\\file armTables.cpp~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot; &nbsp;\\par Copyright &amp;copy; 2018 ASSA ABLOY ES Production AB~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot; &nbsp;The copyright to this program is the property of ASSA ABLOY Entrance Systems AB~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot; &nbsp;Created with Maxima batch script BuildArmTables.mac on ~a~%&quot;</span>, <span class="code_function">timedate</span>())<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot; &nbsp;\\addtogroup MotionControl~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot; &nbsp;\\{~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;#include \&quot;armSystemImp.hpp\&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;/· Index in table represent shaft angle in radians divided with ~d.~%&quot;</span>, <span class="code_variable">table_granularity</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot; &nbsp;&nbsp;Value in tables are in SI units −radians for angles. &nbsp;·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;namespace motionControlInternal {~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">incFile</span><span class="code_operator">:</span> <span class="code_function">openw</span>(<span class="code_string">&quot;../inc/armTables.hpp&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;/··~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;\\file armTable.hpp~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;\\par Copyright &amp;copy; 2018 ASSA ABLOY ES Production AB~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;The copyright to this program is the property of ASSA ABLOY Entrance Systems AB~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;\\brief &nbsp;Header file for the arm tables~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;Created with Maxima batch script BuildArmTables.mac on ~a~%&quot;</span>, <span class="code_function">timedate</span>())<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;\\addtogroup MotionControl~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;\\{~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;#ifndef _ARM_TABLE_HPP_~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;#define _ARM_TABLE_HPP_ //lint !e1960 MISRA C++, 17−0−2. Re−use is done to form a standard header guard in this case~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;#include &lt;stdint.h&gt;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;namespace motionControlInternal~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;{~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;enum { ARM_TABLE_SIZE = ~d };~%&quot;</span>, <span class="code_variable">table_size</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;typedef struct {~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;&nbsp;&nbsp;const int32_t csi32ShaftAngleInMicroRad[ARM_TABLE_SIZE];~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;&nbsp;&nbsp;const int16_t csi16GearRatioTimes1024[ARM_TABLE_SIZE];~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot; &nbsp;} trArmTablesType;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">testSrcFile</span><span class="code_operator">:</span> <span class="code_function">openw</span>(<span class="code_string">&quot;../unitTest/src/armTestPoints.cpp&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot;/··~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot; &nbsp;\\file armTestPoints.cpp~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot; &nbsp;\\par Copyright &amp;copy; 2018 ASSA ABLOY ES Production AB~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot; &nbsp;The copyright to this program is the property of ASSA ABLOY Entrance Systems AB~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot; &nbsp;Created with Maxima batch script BuildArmTables.mac on ~a~%&quot;</span>, <span class="code_function">timedate</span>())<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot; &nbsp;\\addtogroup ArmSystemTest~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot; &nbsp;\\{~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot;·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot;#include \&quot;armTestPoints.hpp\&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_variable">testIncFile</span><span class="code_operator">:</span> <span class="code_function">openw</span>(<span class="code_string">&quot;../unitTest/inc/armTestPoints.hpp&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;/··~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;\\file armTestPoints.hpp~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;\\par Copyright &amp;copy; 2018 ASSA ABLOY ES Production AB~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;The copyright to this program is the property of ASSA ABLOY Entrance Systems AB~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;\\brief &nbsp;Header file defining test points for use in the unit−tests of armSystem~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;Created with Maxima batch script BuildArmTables.mac on ~a~%&quot;</span>, <span class="code_function">timedate</span>())<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;\\addtogroup ArmSystemTest~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;\\{~%&quot;</span>)<span class="code_endofline">;</span><BR>
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;#ifndef _ARM_TEST_POINTS_HPP~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;#define _ARM_TEST_POINTS_HPP_ //lint !e1960 MISRA C++, 17−0−2. Re−use is done to form a standard header guard in this case~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;#include &lt;stdint.h&gt;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;namespace armSystemTestHelpers~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;{~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;&nbsp;&nbsp;typedef struct {~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int32_t csi32DoorAngleInMicroRad;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int32_t csi32ShaftAngleInMicroRad;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int32_t csi32GearRatioTimes1024;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot; &nbsp;&nbsp;&nbsp;} trArmTestPointType;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">load</span>(<span class="code_string">&quot;ArmTable_Pull.mac&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">load</span>(<span class="code_string">&quot;ArmTable_Push.mac&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;} /· end of namespace motionControlInternal ·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">srcFile</span>, <span class="code_string">&quot;/··~%\\}~%·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">close</span>(<span class="code_variable">srcFile</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;} /· end of namespace motionControlInternal ·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;#endif /· _ARM_TABLE_HPP_ ·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">incFile</span>, <span class="code_string">&quot;/··~%\\}~%·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">close</span>(<span class="code_variable">incFile</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testSrcFile</span>, <span class="code_string">&quot;/··~%\\}~%·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">close</span>(<span class="code_variable">testSrcFile</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;} /· end of namespace armSystemTestHelpers ·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;#endif /· _ARM_TEST_POINTS_HPP_ ·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">printf</span>(<span class="code_variable">testIncFile</span>, <span class="code_string">&quot;/··~%\\}~%·/~%&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">close</span>(<span class="code_variable">testIncFile</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;..&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;..&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;..&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;..&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+
+<!-- Code cell -->
+
+
+<TABLE><TR><TD>
+  <SPAN CLASS="prompt">
+ -->	
+  </SPAN></TD>
+  <TD><SPAN CLASS="input">
+<span class="code_function">chdir</span>(<span class="code_string">&quot;..&quot;</span>)<span class="code_endofline">;</span>  </SPAN></TD>
+</TR></TABLE>
+
+
+ <HR>
+ <SMALL> Created with <A HREF="https://wxMaxima-developers.github.io/wxmaxima/">wxMaxima</A>.</SMALL>
+ </BODY>
+</HTML>

@@ -1,0 +1,25 @@
+[gui]
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[difftool "meld"]
+	path = c:/meld186/meld/meld.exe
+[mergetool "meld"]
+	path = c:/meld186/meld/meld.exe
+[alias]
+	tr1		= log -1 --graph  --oneline
+	tr5		= log -5 --graph  --oneline
+	tr10	= log -10 --graph  --oneline
+	tr50	= log -50 --graph  --oneline
+	ss 		= status 
+	bb 		= branch
+	cc 		= checkout 
+	cm 		= commit 
+	mm		= merge --no-ff
+	bt 		= !"for k in `git branch|perl -pe s/^..//`;do echo `git show --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset\" $k|head -n 1`\\\t$k;done|sort"
+[user]
+	name = jerhua
+	email = jerry.hua@assaabloy.com
+[difftool]
+	prompt = false

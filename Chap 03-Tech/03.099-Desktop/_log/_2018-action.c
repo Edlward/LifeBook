@@ -1,4 +1,3 @@
-
 //================================
 1000-plan list:
 {
@@ -43,8 +42,20 @@ EF : course start on 2 July
 {
 01.	tool list.
 02.	git.  0.GIT+0.MBS.
-01.	mbsSdk.
+03.	mbsSdk.
 04.	share.
+05. \Weekly plans\
+	\Item-breakdown\
+		G:\R&D\Folder_Tree_Management\41_Active_Projects_Electronics
+		\SwingDoorPlatform\time plan
+		
+06. \100_Special_Project\
+	\\cnsuzsfp01\suzhou$\R&D\Folder_Tree_Management\100_Special_Project\Slider\Magnetic linear drive sliding door
+	
+07. G:\R&D\2018\Jeff Zhang\Weekly meeting\
+08. G:\R&D\Folder_Tree_Management\95_Project_Review\
+09. G:\R&D\Folder_Tree_Management\41_Active_Projects_Electronics\Technology sharing\
+
 }
 
 //================================
@@ -60,7 +71,10 @@ EF : course start on 2 July
 {
 01. backup .setting.
 02. send email for one question.
-03. 做事，完成清单；帮助，别人的支持；
+03. 做事，完成清单；帮助，别人的支持； 
+	适应环境与人，Jeppa remove enum ADC_TO_VOLT, 要求严格，干净。
+04. 运行调试：机械连杆，CCL电机（编码线），SPM电机（驱动线），
+			功能开到位晃动，
 }
 //1006.
 
@@ -94,6 +108,28 @@ G:\R&D\2017\Janny Zhang\标准\USA
 
 }
 //1015.
+
+//================================
+1016-platform design:
+{
+01. 0907-It would be good to have a small test-plan for the comming work. 
+		 It could be just comments indicating what tests will need to be developped.
+	0908-the documentation in PiController.hpp that the "incremental" form of a PI controller is used.
+	0905-there was a general update of the code to comply with our PC-lint
+	0903-length.
+MOTION_COMMAND_TRANSITION_DELAY_TIMER_ID(41-length)
+MOTION_CONTROL_TRANSITION_DELAY_TIMER_ID(41-length)	
+
+	0910-the filter function should be made as simple as possible, since it will execute in the ISR context of the motor controller. 
+	check what PC-Lint says
+	0910-The unit test should run on target as well. //eventTimer/unitTest && $(MAKE) runWindows
+	0910-variableWithUnit.
+	1030-Could the code be shared instead of copied? //not repeated code.
+	1030-calculate less.
+	1030-common helper function.
+
+}
+//1016.
 
 
 //=================================
@@ -135,6 +171,8 @@ MBS Console online, type help for a list of available commands
 
 -----------------------------------	
 04. can comm. //jump. //open-signal.
+	extern  CanComm* const can1; 
+	C:\mbs\SwingDoorPlatform\modules\comm\mainBoard\mbs_st_m64_core_v10\init\inc\comm.hpp
 
 -----------------------------------	
 05. ADC_ResetCalibration(ADC1);
@@ -180,11 +218,77 @@ motionControlConfig.hpp		enum { PUSH_SPEED_P 	= 30 };
     const int32_t csi32MotorResistanceInMilliOhm    = 430;
     const int32_t csi32MotorInductanceInMicroH      = 960;
     const int32_t csi32TorqueConstantInMilliNmOverA = 9980; // For SW300
+
+-----------------------------------	
+09. serial dbg_port
+C:\mbs\zs_plat\modules\drivers\serial\mbs_st_m64_core_v10\config\src\serialConfig.c
+#define _DEBUG_PORT_ENABLED_	
 	
+	static_cast<uint32_t>( MAX_ALLOW_VOLTAGE )
+-----------------------------------	
+10. 编码器连接，红灯亮；
+	首次上电门抖动，手动推门门打开，开到位抖动不止，编码器反向；
+	通信端子连接；
+
+-----------------------------------	
+11. 
+UnitTest/makefile 
+products/unitTest/motionControl/abs-binary.mk  
+
+lint/conf/project.lnt	
+
+-----------------------------------	
+12. TorqueLimiterImp* torqueLimiter = pTorqueLimiterConstruction();
+    TorqueLimiter* torqueLimiter = pTorqueLimiterConstruction();
+    TorqueLimiterBackEnd* torqueLimiterBackEnd = torqueLimiter;
 }
 //4005.
 
 
+//================================
+40006-V3 prototype pins:
+{
+//===MOTOR BOARD===//		V3.
+pin26-PB0 , not used,     HW_VERSION.
+pin24-PC4 , not used,     HW_VERSION.
+
+pin16-PA2 , 'U_ENCODER_FB', not used in V3.
+pin20-PA4 , v3.3,         /I_ENCODER_FB.
+pin21-PA5 , "v2.5REF",      not used in V3.
+pin22-PA6 , not used,     /v2.5REF.
+pin44-PA11, not used,     /MOTOR_WATCHDOG. //"MOTOR_POWER" power, relay.
+
+pin39-PC8 , HOME1,     	  not used.
+pin40-PC9 , not used,     /MOTOR_ENABLE. //module/init/output.cpp
+//---//1-Right.
+pin33-PB12, not used,     SPI_MEMORY_SELECT.
+pin34-PB13, not used,     SPI_SCK.
+pin35-PB14, "MOTOR_ENABLE", SPI_MISO.
+pin36-PB15, "MOTOR_POWER",  SPI_MOSI.
+//...//2-Left.
+pin56-PB4,  JTRST,        not used.
+pin03-Pc14, DC-,          not used.
+
+//===MAIN BOARD===//
+pin14-PA00, BT_CTS,       	U_6V6_PB.
+pin15-PA01, BT_RTS,       	PSU_HW_VERSION.
+pin16-PA02, BLE_TX,       	U_LOCK_FB.
+pin17-PA03, BLE_RX,       	ALARM_LED.
+pin21-PA05, PSU_HW_VERSION, BLE_SPI_SCK.
+pin22-PA06, U_LOCK_FB,      BLE_SPI_MISO.
+pin23-PA07, AN_6V_CHECK,    BLE_SPI_MOSI.
+//---//
+pin24-PC04, BT_EN,    		HW_VERSION.
+pin25-PC05, not used,    	U_6V_FB.
+pin38-PC07, '24V_OUT_EN',    	BLE_READY.
+pin51-PC10, not used,    	BLE_BOOT.
+pin52-PC11, not used,    	/24V_OUT_EN.  //output/mainBoard/init/???
+pin53-PC12, not used,    	BLE_nRST.
+//...//2.
+pin60-BOOT0, BOOT0,  		GND.
+pin28-PB02 , BOOT1,  		STATUS_LED.
+}
+//4006.
 
 //################################
 5000-log:
@@ -199,6 +303,7 @@ G:\R&D\2018\Jerry Hua\002-ST-Link Utility Load Flash\
 C:\mbs\zs_plat
 C:\mbs\SwingDoorPlatform
 
+V3 board.
 
 
 
@@ -216,6 +321,448 @@ C:\mbs\SwingDoorPlatform
 
 
 
+
+
+
+
+
+
+
+
+
+//================================
+2018.11.14 Wednesday.
+00. platform, freeWing.
+01. vs2005，C# code: 
+02. FOC, doctor paper.
+03. freeRTOS.
+
+//================================
+2018.11.06 Tuesday.
+01. code: 
+
+C:\Users\jerhua\Downloads\Jenkins\
+int32_t si32DeltaVoltage = pTorqueLimitTest->si32SetMotorVoltageInMilliVolt1 - pTorqueLimitTest->si32SetMotorVoltageInMilliVolt2;
+
+//================================
+2018.11.02 Wednesday.
+01. code: 
+    void MotorImp::vTranslateSetCurrentToAdQuanta() const volatile
+    {
+        int32_t si32AdSetValue = static_cast<int32_t>( CURRENT_OFFSET_IN_AD_QUANTA );
+        si32AdSetValue += static_cast<int32_t>( ( static_cast<int32_t>( RAW_CURRENT_QUANTA )*si16SetCurrentInMilliA )/static_cast<int32_t>( CURRENT_SENSOR_RANGE_IN_MILLI_A ) );
+        si16SetCurrentInAdQuanta = static_cast<int16_t>( si32AdSetValue );
+    }
+
+//================================
+2018.11.01 Thursday.
+01. code: 
+
+//================================
+2018.10.29 Monday.
+01. review: 
+-DUSE_MBS_COMPILER_ATTRS=0
+
+据吉尼斯世界纪录统计，阿加莎?克里斯蒂是人类史上最畅销的著书作家。
+而将所有形式的著作算入，只有圣经与威廉?莎士比亚的著作的总销售量在她之上。
+其著作曾翻译成超过103种语言，总销突破20亿本 
+
+无人生还、东方快车谋杀案、尼罗河谋杀案、罗杰疑案 
+
+//================================
+2018.10.26 Friday.
+01. review: 
+
+//================================
+2018.10.25 Thursday.
+01. code,	//torque limiter. #### low energy, min>max, how to find the according test? set breakpoint in min>max place!
+02. foc,
+03. english.
+04. email.
+05. commu.
+
+siCalculateMaxPowerAssistTorqueLimit()
+siCalculatePowerAssistTorqueLimit()
+
+C:\mbs\SwingDoorPlatform\unitTest\common\lib\cppUTest\CppUTest
+C:\mbs\SwingDoorPlatform\unitTest\common\lib\cppUTest\Platforms\armcc
+C:\mbs\SwingDoorPlatform\unitTest\common\inc\CppUTest
+
+Can't find a source file at 
+"/cygdrive/c/Users/sejgr/Downloads/cpputest-3.8/cpputest_build/../src/CppUTest/Utest.cpp" 
+
+/*! When the motor object is instantiated, GPIO shall be enabled as output for driving the H-bridge,
+ *  A timer shall be set up for PWM generation on the two channels, with a repetition frequency of 10 kHz.
+ *  The timer shall provide a trigger for start of AD Conversion, and the end of AD Conversion
+ *  interrupt shal be enabled. */
+ /*! When the motor object is instantiated, and the first mcuGpioStm32f10xConfigure returns false, an mbsAssert shall
+ * be thrown */
+/*! When the motor object is instantiated, and the second mcuGpioStm32f10xConfigure returns false, an mbsAssert shall
+ * be thrown */
+/*! When the motor is enabled and the set current is changed to 4000 mA, the controller shall drive the
+ * motor current to 4000 mA +- 5% within 1,5 ms. While doing so, the ADC conversion trigger shall be
+ * correctly placed behind the first occurring edge that is followed by more than 25% of the total PWM
+ * timer cycle time without additional switching. The AD conversion trigger shall occur ADC_SETTLE_DELAY
+ * after the selected edge
+ */
+ /*! When the motor is enabled and the set current is changed to -4000 mA, the controller shall drive the
+ * motor current to -4000 mA +- 5% within 1,5 ms. While doing so, the ADC conversion trigger shall be
+ * correctly placed behind the first occurring edge that is followed by more than 25% of the total PWM
+ * timer cycle time without additional switching. The AD conversion trigger shall occur ADC_SETTLE_DELAY
+ * after the selected edge
+ */
+ /*! It shall be possible to drive the motor at 4000 mA as the counter EMF increases
+ * When the gap between the first edge of the positive motor input and the negative motor input
+ * gets larger than 50% of the total PWM period (i.e. 25 us or 1800 timer ticks) the AD triger interrupt
+ * shall be scheduled to happen after the positive edge of the positive input.
+ */
+ /*! It shall be possible to drive the motor at -4000 mA when the counter EMF decreases
+ * When the gap between the first edge of the negative motor input and the positive motor input
+ * gets larger than 50% of the total PWM period (i.e. 25 us or 1800 timer ticks) the AD triger interrupt
+ * shall be scheduled to happen after the positive edge of the negative input.
+ */
+/*! There shall be limited glitches in the output in time and magnitude when the link voltage drops rapidly
+ *  and the motor is running with high positive current and EMF */
+/*! There shall be limited glitches in the output in time and magnitude when the link voltage drops rapidly
+ *  and the motor is running with high negative current and EMF */
+ /*! When the motor object is disabled, by calling the vSetMotorEnable method with argument MOTOR_DIABLE
+ *  50 % synchronous PWM shall be output on both the H-bridge PWM pins, and the AD-trigger PWM shall
+ *  have its first rising edge AD_TRIGGER_DELAY after the first rising common edge of the two H-bridge pins.
+ */
+ /*! When the motor object is instantiated the Enable-Status shall be set to Disabled
+ */
+ /*! When the motor has been disabled for some time, so that the motor current has reached zero,
+ *  the step response when enabled again shall be similar to when it was enabled immediately after
+ *  initialization. I.e. all internal regulator states shall be reset when the motor is disabled.
+ */
+ /*! When the End Of Conversion interrupt is called, the vSampleAndFilter method of each adcBackEnd object
+ *  that exist in the adcObject array shall be called
+ */
+/*! When the End Of Conversion interrupt is called, the vSampleAndFilter method of each adcBackEnd object
+ *  that exist in the adcObject array shall be called even if MotorControl is Disabled
+ */\
+ /*! It shall be possible to set the output torque as an alternative to the output current.
+ *  The resulting current shall correspond to the requested torque on the output shaft.
+ */
+ 
+    vUpdateMaxMinStartAndTargetLimit(   /* si32MaxStart  */   MAX_TORQUE_LIMIT,
+                                        /* si32MinStart  */   MIN_TORQUE_LIMIT,
+                                        /* si32MaxTarget */   siCalculatePowerTorqueLimit(pTorqueLimitTest->si32SetMotorVoltageInMilliVolt),
+                                        /* si32MinTarget */   MAX_EXTENDED_CLOSE_TORQUE_LIMIT*pTorqueLimitTest->si8ExtendedClosingPercentTest/100,
+                                        /* pTorqueLimitTest*/ pTorqueLimitTest );
+										
+    vUpdateMaxMinStartAndTargetLimit(   /* si32MaxStart  */   pTorqueLimitTest->si32TargetMaxTorqueLimitInMilliNm,
+                                        /* si32MinStart  */   pTorqueLimitTest->si32TargetMinTorqueLimitInMilliNm,
+                                        /* si32MaxTarget */   siCalculatePowerTorqueLimit(pTorqueLimitTest->si32SetMotorVoltageInMilliVolt),
+                                        /* si32MinTarget */   si32MinHardwareTorqueLimitInMilliNm,
+                                        /* pTorqueLimitTest*/ pTorqueLimitTest );
+	
+    vUpdateMaxMinStartAndTargetLimitByRampTimes(   /* si32OldMaxStart   */ pTorqueLimitTest->si32StartMaxTorqueLimitInMilliNm,
+                                                   /* si32OldMinStart   */ pTorqueLimitTest->si32StartMinTorqueLimitInMilliNm,
+                                                   /* si32OldMaxTarget  */ pTorqueLimitTest->si32TargetMaxTorqueLimitInMilliNm,
+                                                   /* si32OldMinTarget  */ pTorqueLimitTest->si32TargetMinTorqueLimitInMilliNm,
+                                                   /* si32NewMaxTarget  */ siCalculatePowerTorqueLimit(pTorqueLimitTest->si32SetMotorVoltageInMilliVolt),
+                                                   /* si32NewMinTarget  */ MAX_EXTENDED_CLOSE_TORQUE_LIMIT*pTorqueLimitTest->si8ExtendedClosingPercentTest/100,
+                                                   /* ui16RampTimes     */ ui16RampTimesTest,
+                                                   /* pTorqueLimitTest  */ pTorqueLimitTest );	
+	
+            //maximum low energy torque limit
+            si32MaxLowEnergyTorqueInMilliNm = si32SpringTorqueInMilliNm;
+            si32MaxLowEnergyTorqueInMilliNm += si32LowEnergyTorqueInMilliNm;
+            si32MaxLowEnergyTorqueInMilliNm += csi32UpperLowEnergyTorqueMarginInMilliNm;
+            //minimum low energy torque limit
+            si32MinLowEnergyTorqueInMilliNm = si32SpringTorqueInMilliNm;
+            si32MinLowEnergyTorqueInMilliNm -= si32LowEnergyTorqueInMilliNm;
+            si32MinLowEnergyTorqueInMilliNm -= csi32LowerLowEnergyTorqueMarginInMilliNm;
+		
+    //hardware limit
+    const int32_t si32MaxHardwareTorqueLimitInMilliNm = motionControlInternal::MAX_HARDWARE_TORQUE;
+    const int32_t si32MinHardwareTorqueLimitInMilliNm = - si32MaxHardwareTorqueLimitInMilliNm;		
+  	///power limit: (90000/24)*(2555/256)=37426, 
+    //max low energy limit:-45000+67000+1000=23000.
+    si32TargetMaxTorqueLimitInMilliNm = siCalculateMaxLowEnergyTorqueLimit(si32SetSpringTorqueMilliNm);
+	
+	int32_t si32PowerAssistSettingTorque = pTorqueLimitTest->si8SetPowerAssistPercentTest*MAX_POWER_ASSIST_TORQUE_LIMIT/100-MAX_POWER_ASSIST_TORQUE_MARGIN;
+	
+	pTorqueLimitTest->si32SetSpringTorqueMilliNm + FREE_SWING_TORQUE_OFFSET_RANGE
+	
+	
+    //extended set: -6000*(30/100)=-18000, 
+	//min low energy limit:-45000-67000-1000=-103000.
+	hardware limit: 4000*2555/256        = 39921,
+	negative hardware limit:-4000*2555/256=-39921
+    power limit  : (90000/24)*(2555/256) = 37426
+	power limit  : (90000/26)*(2555/256) = 34547,
+	
+	max low energy limit:-45000+67000+1000=23000.
+	min low energy limit:-45000-67000-1000=-103000.
+	
+ siCalculatePowerTorqueLimit(pTorqueLimitTest->si32SetMotorVoltageInMilliVolt); //(90000/24)*(2555/256)=37426
+ siCalculateHardwareTorqueLimit(); //4000*2555/256=39921.
+ - siCalculateHardwareTorqueLimit(); //-4000*2555/256=-39921.
+ siCalculatePowerTorqueLimit(pTorqueLimitTest->si32SetMotorVoltageInMilliVolt); //(90000/-24)*(2555/256)=-37426
+	
+    ///Delta.
+    siDeltaRampMinLimitTorqueInMilliNm = si32TargetMinTorqueLimitInMilliNm - MIN_TORQUE_LIMIT;
+	siDeltaRampMaxLimitTorqueInMilliNm = si32TargetMaxTorqueLimitInMilliNm - MAX_TORQUE_LIMIT;
+	
+	///switch to auto mode
+    eTorqueModeTest = motionControl::TorqueLimiter::TORQUE_MODE_AUTO;
+	
+    si32StartMaxTorqueLimitInMilliNm = MAX_TORQUE_LIMIT;
+    si32StartMinTorqueLimitInMilliNm = MIN_TORQUE_LIMIT;
+    si32TargetMaxTorqueLimitInMilliNm = siCalculatePowerTorqueLimit(si32SetMotorVoltageInMilliVolt); //(90000/24)*(2555/256)=37426
+    si32TargetMinTorqueLimitInMilliNm = MAX_EXTENDED_CLOSE_TORQUE_LIMIT*si8ExtendedClosingPercentTest/100;	
+
+	//the torque limit above back check angle.
+    si32StartMinTorqueLimitInMilliNm = si32TargetMinTorqueLimitInMilliNm;
+    si32StartMaxTorqueLimitInMilliNm = si32TargetMaxTorqueLimitInMilliNm;
+    si32TargetMinTorqueLimitInMilliNm = MAX_EXTENDED_CLOSE_TORQUE_LIMIT*si8ExtendedClosingPercentTest/100;
+    ///si32TargetMaxTorqueLimitInMilliNm, not changed.
+	
+	    void vRampTorqueLimitCheck (        motionControlInternal::TorqueLimiterImp* pTorqueLimiterImp,
+                                        int32_t si32SetVoltage,
+                                        int32_t si32TargetMaxSelectTorqueLimit,
+                                        int32_t si32TargetMinSelectTorqueLimit,
+                                        int32_t si32StartMaxSelectTorqueLimit,
+                                        int32_t si32StartMinSelectTorqueLimit, /* max/min torque */
+                                        motionControl::TorqueLimiterBackEnd::teLowEnergyModeType eLowEnergyMode,
+                                        motionControl::TorqueLimiter::teTorqueModeType eTorqueMode,
+                                        bool boExtendedClosingState,
+                                        bool boSpringExistState,                /* mode */
+                                        int32_t si32SetDoorAngle,
+                                        uint16_t ui16RampTimes );
+
+    vCommonTorqueLimitCheck (   torqueLimiterImp,
+                                si32SetMotorVoltageInMilliVolt,
+                                si32SetPowerInMilliWatt,
+                                si32TargetMaxTorqueLimitInMilliNm,
+                                si32TargetMinTorqueLimitInMilliNm,
+                                si32StartMaxTorqueLimitInMilliNm,
+                                si32StartMinTorqueLimitInMilliNm, /* max/min torque */
+                                eLowEnergyModeTest,
+                                eTorqueModeTest,
+                                boSetExtendedClosingStateTest,
+                                boSetMockSpringExistStateTest, /* mode */
+                                si32SetDoorAngleInMicroRad,
+                                si32SetSpringTorqueMilliNm,
+                                si8ExtendedClosingPercentTest,
+                                si8SetPowerAssistPercentTest );
+								
+	///===
+	arguments:  -r1 -v
+	
+	cyggcc_s-1.dll
+	cygwin1.dll
+	cygstdc++-6.dll
+	
+
+//================================
+2018.10.10 Wednesday.
+01. code,	//torque limiter.
+02. foc,
+03. english.
+04. email.
+05. commu.
+
+//================================
+2018.10.09 Tuesday.
+01. code,	//speed-control
+02. foc,
+03. english.
+04. email.
+05. commu.
+
+//================================
+2018.10.08 Monday.
+01. code,	//position, pi-controller.
+02. foc,
+03. english.
+04. email.
+05. commu.
+
+//================================
+2018.10.06 sat.
+
+https://yunpan.cn/crRgFzPfWniZi ???????? cae4
+
+//================================
+2018.09.25 Thursday.
+01. Email.
+02. code design.
+
+//------unit test.
+realease, 
+//------
+C:\Users\jerhua\Videos\Lync Recordings\Cui, Willis, Grosshog, Jeppa, Hua, Jerry - Tuesday, September 25, 2018 2.23.08 PM.mp4
+
+_UNIT_TEST_COMMON_DIR_ = $(_PROJ_DIR_)unitTest/common/
+
+
+
+10:36:52 **** Build of configuration Default for project SwingDoorPlatform ****
+make -j program,unitTest/drivers,ARMCM3_GCC-debug-none-mbs_st_m64_core_v10 
+$MBS_CC_TOOLCHAIN is [gcc-arm-none-eabi-4_9-2015q3]. To use another compiler, redefine MBS_CC_TOOLCHAIN
+ABS - making product "products/unitTest/drivers", configuration:
+- ABS_BUILD_ARCH: ARMCM3_GCC
+- ABS_BUILD_VAR:  debug
+- ABS_BUILD_CPU:  none
+- ABS_BUILD_HW:   mbs_st_m64_core_v10
+Reading makefiles...
+*** using cached data from "_output/products-unitTest-drivers/ARMCM3_GCC-debug-none-mbs_st_m64_core_v10/products-unitTest-drivers.elf_cache"
+$ABS_LINK_SCRIPT is [stm32f10x_hd_256k_48k_flash.ld]
+### file "../src/system_stm32f10x.c" does not exist [mbsSdk/components/halMcu/init/stm32f10x/bareMetal/abs-component.mk]
+*** [components: 17]
+
+Programming...
+BINARY = _output/products-unitTest-drivers/ARMCM3_GCC-debug-none-mbs_st_m64_core_v10/products-unitTest-drivers.elf
+
+INFO: No tasks running with the specified criteria.
+Open On-Chip Debugger 0.9.0 (2015-05-19-12:06)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+>>>> Trasport selected: hla_swd
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 1000 kHz
+adapter_nsrst_delay: 100
+none separate
+none separate
+Info : Unable to match requested speed 1000 kHz, using 950 kHz
+Info : Unable to match requested speed 1000 kHz, using 950 kHz
+Info : clock speed 950 kHz
+Info : STLINK v2 JTAG v28 API v2 SWIM v7 VID 0x0483 PID 0x3748
+Info : using stlink api v2
+Info : Target voltage: 3.055409
+Info : stm32f1x.cpu: hardware has 6 breakpoints, 4 watchpoints
+    TargetName         Type       Endian TapName            State       
+--  ------------------ ---------- ------ ------------------ ------------
+ 0* stm32f1x.cpu       hla_target little stm32f1x.cpu       running
+target state: halted
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x0804c920 msp: 0x2000add0
+auto erase enabled
+Info : device id = 0x10036414
+Info : flash size = 512kbytes
+target state: halted
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x2000003a msp: 0x2000add0
+wrote 520192 bytes from file _output/products-unitTest-drivers/ARMCM3_GCC-debug-none-mbs_st_m64_core_v10/products-unitTest-drivers.elf in 22.748951s (22.331 KiB/s)
+target state: halted
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x2000002e msp: 0x2000add0
+target state: halted
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x2000002e msp: 0x2000add0
+verified 518980 bytes in 7.454123s (67.991 KiB/s)
+shutdown command invoked
+ABS - "program,unitTest/drivers,ARMCM3_GCC-debug-none-mbs_st_m64_core_v10" done
+
+10:37:29 Build Finished (took 37s.579ms)
+
+
+
+//================================
+2018.09.20 Thursday.
+01. Email.
+02. code design.
+
+AUTO
+MANUAL
+POWER_ASSIST
+MAX_POWER_ASSIST
+FREE_SWING
+//RAMP_TO_FREE_SWING
+TORQUE_MODE_BRAKING
+
+-> torque mode  
+-> braking
+-> freeSwing
+
+One could elaborate some on the function. 
+
+One idea is to set the 'torque mode' to FREE_SWING from start 
+and use max-allowed-torque form the torqueLimiter during braking, 
+and then 'ramp' the torque limit to max-limited-torque, perhaps in 
+an intermediate internal state, (e.g. RAMP_TO_FREE_SWING). 
+
+Another solution is to do the 'ramp' in the torqueLimiter, this 
+might be a better solution? 
+anyway, in that case stopCommand should 'start' with a new torque-mode, 
+TORQUE_MODE_BRAKING. in that mode the torqueLimiter will put out 
+limited-torque equal to max-allowed-torque. 
+Then, when the torqueMode is switched to FREE_SWING, 
+//the ramp is done in torqueLmiter instead.
+
+Also, is it possible to implement something generic for the FREE_SWING 
+part that may be reused in the freeSwing command?
+
+
+
+For the freeSwing we have to remember that we may need to brake both-dir 
+when approaching the frame and when approaching the doorStop. 
+How will this be solved? Dual brake controllers, or a single controller 
+that is limited in different directions depending on the direction of 
+the door movement?
+
+
+//================================
+2018.09.19 Wednesday.
+01. Email.
+02. code design.
+
+//================================
+2018.09.18 Tuesday.
+01. Email.
+02. code design. //slowOpen unit test!
+03. 双双聚餐。
+
+//================================
+2018.09.17 Monday.
+01. Email.
+02. TrueSTUDIO,  http://update.toem.de
+	OS_USE_TRACE_SEMIHOSTING_DEBUG
+	C++11 'constexpr' only available with -std=c++11 or -std=gnu++11
+      for (i=9541; i>0; i--)
+      {
+    	  for (j=200; j>0; j--)
+    	  {
+    		  k++;
+    	  }
+      }
+
+//================================
+2018.09.10 Monday.
+01. Email.
+02. code design.
+03. english learn.
+04. communication, 
+05. diease, residence.
+
+//================================
+2018.09.06 Thursday.
+01. linear motor control.
+02. slow open implementation set-up.
+03. 
+
+//================================ 20:00
+2018.09.05 Wednesday.
+01. chance, change,
+02. perfect design, perfect code.
+03. knowledge learn.
+
+//================================ 18:00
+2018.09.04 Tuesday.
+01. kang1200.
+02. jeppa brake speed control mock.
+03. torquelimit design.
+
+//================================ 20:00
+2018.09.03 Monday.
+01. jeppa email; 	//slow open design.
+02. arm table; 		//arm, tractroty.
+03. load program;
+04. slow open imp-setup;
 
 //================================ 
 2018.08.27 Monday.
@@ -227,9 +774,6 @@ C:\mbs\SwingDoorPlatform
 06. 高速停机不稳定；
 07. 开关门时间可调；		//UL228;
 08. 上位机工具；下周；
-
-
-
 
 //================================ 
 2018.08.27 Monday.
@@ -771,6 +1315,14 @@ modules/output/motorBoard/mbs_st_m64_core_v10/init/src/output.cpp //motor model.
 2018.06.25 Monday.
 01. can test. //normal 3.3V， push button, get data low.
 	//motor 42X40, encoder ccw to cw.
+	//modules/output/motorBoard/m64/init/src/output.cpp
+static  MotorImp myMotorImp(
+						/*motor direction*/			motorWrapper::CCW,
+						/*motor inductance*/		2300,		//2300uH
+						/*motor resistance*/		2600,		//2600mOhm
+						/*torque/current constant*/	46U,		//46milliNm/A
+						/*gear ration*/				245U
+						);			
 02. board, slope.
 
 //================================ 20:00

@@ -2,6 +2,38 @@
 //================================
 1002-account list:
 {
+	BizFAX, 分机号，1277，密码1277.
+	服务器 10.249.104.36 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	Email: Jerry.Hua@assaabloy.com  	（File, Mail, Signature.）
 	
 	usrname: jerhua, i7RBq9y5.

@@ -1,0 +1,133 @@
+/* Tables for arm system Pull-600, 420 mm with reveal 65 mm */
+/* All distances are in mm. All angles are in rad. */
+
+/* C is the distance between arm attachment point in door strip to the door */
+C:17.5; 
+
+/* F is the distance between the hinge center to the door*/
+F:15;
+
+/* A is the reveal. Could be -20 - 230 mm.  */
+A:0;
+
+/* O is the distance from frame to drive center */
+O:23.5;
+
+/* B is the distance between hinge center to drive shaft center */
+B:240;
+
+/* L is the turning arm length. */
+L:370;
+
+/* S is the distance between arm point in door to drive shaft center at closed door */
+S:sqrt(L^2 - (A + O - C)^2);
+
+/* L2_0 is the distance between point c and hinge centre at closed door */
+L2_0:sqrt((B + S)^2 + (F - C)^2);
+
+/* alpha is the arm angle (zero when the door is closed) This
+   is kept symbolic since it is the variable that the door angle
+   is dependant on */
+kill(alpha);
+
+/* alpha_0 is the arm angle when the door is closed 
+   (zero in the "west direction RHD") */
+alpha_0:-acos(S/L);
+alpha_0_degree: floor(alpha_0*180/%pi);
+
+/* c_x and c_y are the rectangular coordinates for the arm
+   strip point in the door as function of the shaft angle, alpha */
+c_x(alpha):=-L*cos(alpha+alpha_0);
+c_y(alpha):=-L*sin(alpha+alpha_0);
+
+/* f_x and f_y are the rectangular coordinates for the hinge point */
+f_x:B;
+f_y:A + O - F;
+
+/* L2 is the distance between point c and hinge centre */
+L2(alpha):=sqrt((f_x - c_x(alpha))^2 + (f_y - c_y(alpha))^2);
+
+/* alpha_D is the door angle (zero when the door is closed) as function
+   of the shaft angle */
+aD0_1(alpha):=  acos((f_x - c_x(alpha))/L2(alpha));
+aD0_2(alpha):= -acos((f_x - c_x(alpha))/L2(alpha));
+aD0_3(alpha):=  asin((f_y - c_y(alpha))/L2(alpha));
+aD0_4(alpha):= -asin((f_y - c_y(alpha))/L2(alpha));
+aD1(alpha):= -asin((C - F) / L2(alpha));
+
+alpha_D(alpha) := if c_y(alpha) < f_y - L2(alpha)/100 then aD0_1(alpha) + aD1(alpha)
+                  else ( if c_y(alpha) > f_y + L2(alpha)/100 then aD0_2(alpha) + aD1(alpha)
+				         else ( if c_x(alpha) < f_x  then aD0_3(alpha) + aD1(alpha)
+                                else aD0_4(alpha) + aD1(alpha) ) );
+                
+define(d_alpha_D_d_alpha_1(alpha), diff(aD0_1(alpha)+aD1(alpha),alpha,1));
+define(d_alpha_D_d_alpha_2(alpha), diff(aD0_2(alpha)+aD1(alpha),alpha,1));
+define(d_alpha_D_d_alpha_3(alpha), diff(aD0_3(alpha)+aD1(alpha),alpha,1));
+define(d_alpha_D_d_alpha_4(alpha), diff(aD0_4(alpha)+aD1(alpha),alpha,1));
+define(d2_alpha_D_d_alpha2_1(alpha),diff(aD0_1(alpha)+aD1(alpha),alpha,2));
+define(d2_alpha_D_d_alpha2_2(alpha),diff(aD0_2(alpha)+aD1(alpha),alpha,2));
+define(d2_alpha_D_d_alpha2_3(alpha),diff(aD0_3(alpha)+aD1(alpha),alpha,2));
+define(d2_alpha_D_d_alpha2_4(alpha),diff(aD0_4(alpha)+aD1(alpha),alpha,2));
+
+define(d_alpha_D_d_alpha(alpha),if c_y(alpha) < f_y - L2(alpha)/100 then d_alpha_D_d_alpha_1(alpha)
+                                else ( if c_y(alpha) > f_y + L2(alpha)/100 then d_alpha_D_d_alpha_2(alpha)
+								       else ( if c_x(alpha) < f_x then d_alpha_D_d_alpha_3(alpha)
+									          else d_alpha_D_d_alpha_4(alpha) ) ) );
+
+define(d2_alpha_D_d_alpha2(alpha),if c_y(alpha) < f_y - L2(alpha)/100 then d2_alpha_D_d_alpha2_1(alpha)
+                                  else ( if c_x(alpha) > f_x + L2(alpha)/100 then d2_alpha_D_d_alpha2_2(alpha)
+								         else ( if c_x(alpha) < f_x then d2_alpha_D_d_alpha2_3(alpha)
+										        else d2_alpha_D_d_alpha2_4(alpha) ) ) );
+						
+/*                    d alpha_D d²alpha_D d alpha      d alpha_D   d²alpha
+   Tau_Shaft = J_Door(--------- ---------(-------)² + (---------)² -------)
+                       d alpha  d alpha²    d t         d alpha     d t²
+
+   create and export tables for door angle, T1 and T2 with 
+
+                                  d²alpha_D
+                                  ---------
+              1                    d alpha²
+   T1 = --------------  and T2 = --------------
+          d alpha_D                d alpha_D
+         (---------)²              ---------
+		    d_alpha                 d alpha
+*/
+
+define(T1(alpha),1/(d_alpha_D_d_alpha(alpha)^2));
+define(T2(alpha),d2_alpha_D_d_alpha2(alpha)/d_alpha_D_d_alpha(alpha));
+
+/* Create conversion table from door radians/100 to axle radians */
+
+kill(convtab);
+array(convtab, flonum, last_table_index);
+errormsg:false;
+lastroot: float(0);
+for a:0 step 1 thru last_table_index do (errcatch(convtab[a]: float(find_root(alpha_D(alpha)-(a/100),alpha,0,%pi))),
+                            if convtab[a] = 0.0 then convtab[a] : lastroot else lastroot:convtab[a]);
+
+/* Create conversion table from door radians/100 to arm system gear ration */
+
+kill(geartab);
+array(geartab, flonum, last_table_index);
+for a:0 step 1 thru last_table_index do (errcatch(geartab[a]:float(1/d_alpha_D_d_alpha(convtab[a]))));
+
+tp45degShaftAngle:find_root(alpha_D(alpha)-(%pi/4),alpha,0,%pi);
+tp45degGearRatio:1/d_alpha_D_d_alpha(tp45degShaftAngle);
+/* At 90 degrees door angle */
+tp90degShaftAngle:find_root(alpha_D(alpha)-(%pi/2),alpha,0,%pi);
+tp90degGearRatio:1/d_alpha_D_d_alpha(tp90degShaftAngle);
+
+/* The T1 and T2 tables have values for every 0.01 radian shaft angle (alpha) */
+min_position: 0;
+max_position: 314; /* corresponding to 3,14 radians or 180 degrees */
+
+/*
+plot2d([alpha_D(alpha*%pi/180)*180/%pi,
+        1/d_alpha_D_d_alpha(alpha*%pi/180),
+        d_alpha_D_d_alpha(alpha*%pi/180),
+        d2_alpha_D_d_alpha2(alpha*%pi/180)],
+       [alpha,0,180]);
+*/
+		armsystem: "Pull";
+batchload("ArmTable_printf.mac");

@@ -1,0 +1,47 @@
+
+https://github.com/tcmak/CppUTestEclipseJunoTestRunner
+
+Once installed it should be possible to create C/C++ Unit run targets where you can select CppUTest as test-runner.
+
+
+
+This is the test runner plugin for CppUTest (http://www.cpputest.org) with Eclipse Juno CDT Test Runner. It works with Kepler and Luna as well.
+
+HOW TO INSTALL
+
+    Create directory "<YOUR_PATH_TO_ECLIPSE>/eclipse/dropins/CppUTest".
+
+    In this repository, change into the directory "org.eclipse.cdt.testrunner.cpputest".
+
+    Copy the following artifacts from there to "<YOUR_PATH_TO_ECLIPSE>/eclipse/dropins/CppUTest":
+
+bin/org/ --> org/
+META-INF/
+plugin.properties
+plugin.xml
+
+You must copy "bin/org/" to "org/" and not to "bin/org/" !
+
+    Close Eclipse.
+
+Start Eclipse from a command shell with the following command:
+
+Eclipse -clean -console -consoleLog
+
+"CppUTest Tests Runner" should now be selectable as a test runner within Eclipse and successfully run a CppUTest test project.
+
+---------------------------------------------
+
+
+To set up a launch target for the monitoredImpulseTest as example, 
+1.open Run Configurations... under the run button on the menu row. 
+
+2.Select a new configuration of "C/C++ Unit" type. In the name row, type e.g. monitoredImpulseTest, 
+
+3.in C/C++ Application browse to the exe file created when building the test, i.e. components/application/aaesGeneric/monitoredImpulse/unitTest/_output/win_test_runner.exe.
+
+4.In Project, browse to the SwingDoorPlatform project. If you like to enable autobuild you will have to create a new Build Configuration, that builds this particular test, and then add that. Otherwise, check Disable auto build, and build manually with the target in the build pane. 
+
+5.Then go to the C/C++ Testing tab, and in the drop-down list you should be able to select "CppUTest Test Runner"
+
+6.And finally, if you like to run the test outside the ide you can just start a command prompt, go to the folder were the test binary is created and run it with command "win_test_runner -c". The -c is just to color the "Pass" message green and the "Fail" message red.

@@ -1,0 +1,134 @@
+kill(all);
+
+nl:sconcat(ascii(13),ascii(10)); /* = CR-LF */
+
+table_granularity:100;
+min_table_index:0;
+max_table_index:222;
+last_table_index:max_table_index-min_table_index;
+table_size:max_table_index-min_table_index+1;
+
+load("operatingsystem");
+chdir("components");
+chdir("application");
+chdir("swingDoorGeneric");
+chdir("armSystem");
+chdir("maxima");
+
+srcFile: openw("../src/armTables.cpp");
+note: "";
+printf(srcFile, "/**~%");
+printf(srcFile, "  \\file armTables.cpp~%");
+printf(srcFile, "~%");
+printf(srcFile, "  \\par Copyright &copy; 2018 ASSA ABLOY ES Production AB~%");
+printf(srcFile, "  The copyright to this program is the property of ASSA ABLOY Entrance Systems AB~%");
+printf(srcFile, "~%");
+printf(srcFile, "  Created with Maxima batch script BuildArmTables.mac on ~a~%", timedate());
+printf(srcFile, "  \\addtogroup MotionControl~%");
+printf(srcFile, "  \\{~%");
+printf(srcFile, "*/~%");
+printf(srcFile, "#include \"armSystemImp.hpp\"~%");
+printf(srcFile, "~%");
+printf(srcFile, "/* Index in table represent shaft angle in radians divided with ~d.~%", table_granularity);
+printf(srcFile, "   Value in tables are in SI units -radians for angles.  */~%");
+printf(srcFile, "~%");
+printf(srcFile, "namespace motionControlInternal {~%");
+
+incFile: openw("../inc/armTables.hpp");
+printf(incFile, "/**~%");
+printf(incFile, "  \\file armTable.hpp~%");
+printf(incFile, "~%");
+printf(incFile, "  \\par Copyright &copy; 2018 ASSA ABLOY ES Production AB~%");
+printf(incFile, "  The copyright to this program is the property of ASSA ABLOY Entrance Systems AB~%");
+printf(incFile, "~%");
+printf(incFile, "  \\brief  Header file for the arm tables~%");
+printf(incFile, "  Created with Maxima batch script BuildArmTables.mac on ~a~%", timedate());
+printf(incFile, "~%");
+printf(incFile, "  \\addtogroup MotionControl~%");
+printf(incFile, "  \\{~%");
+printf(incFile, "*/~%");
+printf(incFile, "~%");
+printf(incFile, "#ifndef _ARM_TABLE_HPP_~%");
+printf(incFile, "#define _ARM_TABLE_HPP_ //lint !e1960 MISRA C++, 17-0-2. Re-use is done to form a standard header guard in this case~%");
+printf(incFile, "~%");
+printf(incFile, "#include <stdint.h>~%");
+printf(incFile, "~%");
+printf(incFile, "namespace motionControlInternal~%");
+printf(incFile, "{~%");
+printf(incFile, "  enum { ARM_TABLE_SIZE = ~d };~%", table_size);
+printf(incFile, "  typedef struct {~%");
+printf(incFile, "    const int32_t csi32ShaftAngleInMicroRad[ARM_TABLE_SIZE];~%");
+printf(incFile, "    const int16_t csi16GearRatioTimes1024[ARM_TABLE_SIZE];~%");
+printf(incFile, "  } trArmTablesType;~%");
+printf(incFile, "~%");
+printf(incFile, "~%");
+
+testSrcFile: openw("../unitTest/src/armTestPoints.cpp");
+printf(testSrcFile, "/**~%");
+printf(testSrcFile, "  \\file armTestPoints.cpp~%");
+printf(testSrcFile, "~%");
+printf(testSrcFile, "  \\par Copyright &copy; 2018 ASSA ABLOY ES Production AB~%");
+printf(testSrcFile, "  The copyright to this program is the property of ASSA ABLOY Entrance Systems AB~%");
+printf(testSrcFile, "~%");
+printf(testSrcFile, "  Created with Maxima batch script BuildArmTables.mac on ~a~%", timedate());
+printf(testSrcFile, "  \\addtogroup ArmSystemTest~%");
+printf(testSrcFile, "  \\{~%");
+printf(testSrcFile, "*/~%");
+printf(testSrcFile, "#include \"armTestPoints.hpp\"~%");
+printf(testSrcFile, "~%");
+printf(testSrcFile, "~%");
+
+testIncFile: openw("../unitTest/inc/armTestPoints.hpp");
+printf(testIncFile, "/**~%");
+printf(testIncFile, "  \\file armTestPoints.hpp~%");
+printf(testIncFile, "~%");
+printf(testIncFile, "  \\par Copyright &copy; 2018 ASSA ABLOY ES Production AB~%");
+printf(testIncFile, "  The copyright to this program is the property of ASSA ABLOY Entrance Systems AB~%");
+printf(testIncFile, "~%");
+printf(testIncFile, "  \\brief  Header file defining test points for use in the unit-tests of armSystem~%");
+printf(testIncFile, "  Created with Maxima batch script BuildArmTables.mac on ~a~%", timedate());
+printf(testIncFile, "~%");
+printf(testIncFile, "  \\addtogroup ArmSystemTest~%");
+printf(testIncFile, "  \\{~%");
+printf(testIncFile, "*/~%");
+printf(testIncFile, "~%");
+printf(testIncFile, "#ifndef _ARM_TEST_POINTS_HPP~%");
+printf(testIncFile, "#define _ARM_TEST_POINTS_HPP_ //lint !e1960 MISRA C++, 17-0-2. Re-use is done to form a standard header guard in this case~%");
+printf(testIncFile, "~%");
+printf(testIncFile, "#include <stdint.h>~%");
+printf(testIncFile, "~%");
+printf(testIncFile, "namespace armSystemTestHelpers~%");
+printf(testIncFile, "{~%");
+printf(testIncFile, "    typedef struct {~%");
+printf(testIncFile, "        const int32_t csi32DoorAngleInMicroRad;~%");
+printf(testIncFile, "        const int32_t csi32ShaftAngleInMicroRad;~%");
+printf(testIncFile, "        const int32_t csi32GearRatioTimes1024;~%");
+printf(testIncFile, "    } trArmTestPointType;~%");
+printf(testIncFile, "~%");
+printf(testIncFile, "~%");
+
+load("ArmTable_Pull.mac");
+load("ArmTable_Push.mac");
+
+printf(srcFile, "} /* end of namespace motionControlInternal */~%");
+printf(srcFile, "/**~%\\}~%*/~%");
+close(srcFile);
+
+printf(incFile, "} /* end of namespace motionControlInternal */~%");
+printf(incFile, "#endif /* _ARM_TABLE_HPP_ */~%");
+printf(incFile, "/**~%\\}~%*/~%");
+close(incFile);
+
+printf(testSrcFile, "/**~%\\}~%*/~%");
+close(testSrcFile);
+
+printf(testIncFile, "} /* end of namespace armSystemTestHelpers */~%");
+printf(testIncFile, "#endif /* _ARM_TEST_POINTS_HPP_ */~%");
+printf(testIncFile, "/**~%\\}~%*/~%");
+close(testIncFile);
+
+chdir("..");
+chdir("..");
+chdir("..");
+chdir("..");
+chdir("..");

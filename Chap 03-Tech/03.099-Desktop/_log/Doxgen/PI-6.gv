@@ -1,0 +1,43 @@
+digraph "PI_calc" {
+	node[shape=box, height=0.8, width=1.2]
+	KP     [label="KP"]
+	PT     [label="P/T"]
+	TS     [label="Ts"]
+	TC     [label="1/Tc"]
+	LT     [label="Limit"]
+	node[shape=circle, height=0.5, width=0.5]
+	A1     [label="+"]
+	A2     [label="+"]
+	A3     [label="+"]
+	node[shape=point, style=dashed, height=0, width=0]
+	start1 [label="st1"]
+	start  [label="st"]
+	end    [label="end"]
+	end2   [label="end2"]
+	node[shape=point, style=dashed, height=0, width=0]
+	P21    [label="P21"]
+	P01    [label="P01"]
+	{rank=same; start1, start, PT, A1, TS, A2, P21, LT, end, end2}
+	{rank=same; TC, A3}
+	{rank=same; KP, P01}
+	
+	start1 -> start [label="sp-pv"]
+	start  -> PT
+	PT:e   -> A1:w  [headlabel=" + \n"]
+	A1     -> TS
+	TS:e   -> A2    [headlabel=" + \n"]
+	A2     -> P21
+	P21    -> LT
+	LT     -> end
+	end    -> end2  [label="U"]
+	KP       -> TS    [style=invis]
+	TC       -> TS    [style=invis]
+	P01      -> PT    [style=invis]
+	P01    -> KP
+	P01:w  -> start:n   [dir=back]
+	KP:e   -> A2:n      [headlabel=" + \n"]
+	A1:s   -> TC:w      [dir=back, taillabel=" _ "]
+	TC       -> A3    [dir=back]
+	A3       -> P21   [dir=back, taillabel=" _ \n\n"]
+	A3:e     -> end:s [dir=back, taillabel=" + "]
+}

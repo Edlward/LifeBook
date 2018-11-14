@@ -1,0 +1,75 @@
+printf(srcFile, "/* ~a conversion tables created with:~%  A:~f B:~f O:~4f F:~f C:~f K:~f L:~5f */~%", 
+       armsystem, A, B, O, F, 0, 0, L);
+       
+if note="" then note:"" else printf(srcFile, "/* ~a */~%",note);
+
+printf(srcFile,"    const trArmTablesType ArmSystemImp::crArmTable~a =~%", armsystem);
+printf(srcFile,"    {~%");
+printf(srcFile,"        //lint -e{9034} -e{712} -e{569} -e{1960} ToDo fix definition of int32_t in lint~%");
+printf(srcFile,"        /* .csi32ShaftAngleInMicroRad = */~%");
+printf(srcFile,"        {~%");
+printf(srcFile,"            ");    
+       
+for a:0 step 1 thru last_table_index do (printf(srcFile, "~10d, ",round(1000000*convtab[a])), 
+                                         if mod(a-10,10) = 9 and a < last_table_index then printf(srcFile,"~%            "));
+printf(srcFile,"~%");
+printf(srcFile,"        },~%");
+printf(srcFile,"        /* .csi16GearRatioTimes1024 = */~%");
+printf(srcFile,"        {~%");
+printf(srcFile,"            ");
+
+for a:0 step 1 thru last_table_index do (printf(srcFile, "~10d, ",round(1024*geartab[a])), 
+                                         if mod(a-10,10) = 9 and a < last_table_index then printf(srcFile,"~%            "));
+printf(srcFile,"~%");
+printf(srcFile,"        }~%");
+printf(srcFile,"    };~%");
+
+printf(testSrcFile, "////////////// Test points, ~a arm-system /////////////////~%~%", armsystem);
+printf(testSrcFile, "  const armSystemTestHelpers::trArmTestPointType armSystemTestHelpers::r~aTestPointClosedAngle =~%", armsystem);
+printf(testSrcFile, "  {~%");
+printf(testSrcFile, "      /* csi32DoorAngleInMicroRad */  0,~%");
+printf(testSrcFile, "      /* csi32ShaftAngleInMicroRad */ 0,~%");
+printf(testSrcFile, "      /* csi32GearRatioTimes1024 */   ~d,~%", round(1024*geartab[0]));
+printf(testSrcFile, "  };~%");
+printf(testSrcFile, "~%");
+
+printf(testSrcFile, "  const armSystemTestHelpers::trArmTestPointType armSystemTestHelpers::r~aTestPointMaxAngle =~%", armsystem);
+printf(testSrcFile, "  {~%");
+printf(testSrcFile, "      /* csi32DoorAngleInMicroRad */  ~d,~%", round(10000*last_table_index));
+printf(testSrcFile, "      /* csi32ShaftAngleInMicroRad */ ~d,~%", round(1000000*convtab[last_table_index]));
+printf(testSrcFile, "      /* csi32GearRatioTimes1024 */   ~d,~%", round(1024*geartab[last_table_index]));
+printf(testSrcFile, "  };~%");
+printf(testSrcFile, "~%");
+
+printf(testSrcFile, "  const armSystemTestHelpers::trArmTestPointType armSystemTestHelpers::r~aTestPointIndex42 =~%", armsystem);
+printf(testSrcFile, "  {~%");
+printf(testSrcFile, "      /* csi32DoorAngleInMicroRad */  ~d,~%", round(10000*42));
+printf(testSrcFile, "      /* csi32ShaftAngleInMicroRad */ ~d,~%", round(1000000*convtab[42]));
+printf(testSrcFile, "      /* csi32GearRatioTimes1024 */   ~d,~%", round(1024*geartab[42]));
+printf(testSrcFile, "  };~%");
+printf(testSrcFile, "~%");
+
+printf(testSrcFile, "  const armSystemTestHelpers::trArmTestPointType armSystemTestHelpers::r~aTestPoint45Degrees =~%", armsystem);
+printf(testSrcFile, "  {~%");
+printf(testSrcFile, "      /* csi32DoorAngleInMicroRad */  ~d,~%", round(1000000*%pi/4));
+printf(testSrcFile, "      /* csi32ShaftAngleInMicroRad */ ~d,~%", round(1000000*tp45degShaftAngle));
+printf(testSrcFile, "      /* csi32GearRatioTimes1024 */   ~d,~%", round(1024*tp45degGearRatio));
+printf(testSrcFile, "  };~%");
+printf(testSrcFile, "~%");
+
+printf(testSrcFile, "  const armSystemTestHelpers::trArmTestPointType armSystemTestHelpers::r~aTestPoint90Degrees =~%", armsystem);
+printf(testSrcFile, "  {~%");
+printf(testSrcFile, "      /* csi32DoorAngleInMicroRad */  ~d,~%", round(1000000*%pi/2));
+printf(testSrcFile, "      /* csi32ShaftAngleInMicroRad */ ~d,~%", round(1000000*tp90degShaftAngle));
+printf(testSrcFile, "      /* csi32GearRatioTimes1024 */   ~d,~%", round(1024*tp90degGearRatio));
+printf(testSrcFile, "  };~%");
+printf(testSrcFile, "~%");
+
+printf(testIncFile, "    extern const trArmTestPointType r~aTestPointClosedAngle;~%", armsystem);
+printf(testIncFile, "    extern const trArmTestPointType r~aTestPointMaxAngle;~%", armsystem);
+printf(testIncFile, "    extern const trArmTestPointType r~aTestPointIndex42;~%", armsystem);
+printf(testIncFile, "    extern const trArmTestPointType r~aTestPoint45Degrees;~%", armsystem);
+printf(testIncFile, "    extern const trArmTestPointType r~aTestPoint90Degrees;~%", armsystem);
+
+printf(testIncFile, "~%");
+

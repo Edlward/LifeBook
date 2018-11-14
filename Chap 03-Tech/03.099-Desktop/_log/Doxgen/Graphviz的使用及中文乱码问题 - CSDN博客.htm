@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://blog.csdn.net/xiajian2010/article/details/23748557"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <meta name="description" content="缘起
+在Linux下的绘图软件，自动的，半自动的，最后遇到神器Graphviz。整个流程还算波折，起初，编译docbook的部分遇到这个软件，后来，在看Korat: Automated Testing Based on Java Predicates（2000年ACM的最佳论文），发现其软件实现Korat中使用了Graphviz的实现来绘图程序依赖图，最后，在学习Latex的时候，考虑要嵌入图片" />
+    <meta name="keywords" content="dot,python" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <script src="https://csdnimg.cn/release/phoenix/vendor/tingyun/tingyun-rum-blog.js"></script>
+
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <title>Graphviz的使用及中文乱码问题 - CSDN博客</title>
+
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/detail-1285c05898.min.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-9b39979775.min.css">
+
+    <script type="text/javascript">
+        var username = "xiajian2010";
+        var blog_address = "https://blog.csdn.net/xiajian2010";
+        var static_host = "https://csdnimg.cn/release/phoenix/";
+        var currentUserName = "";
+        var isShowAds = true;
+        var isOwner = false;
+        var loginUrl = "https://passport.csdn.net/account/login?from=https://blog.csdn.net/xiajian2010/article/details/23748557"
+        var blogUrl = "https://blog.csdn.net/";
+        //页面皮肤样式
+        var curSkin = "skin3-template";
+    </script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="https://csdnimg.cn/rabbit/exposure-click/main-1.0.6.js"></script>
+    <!-- 新版上报 -->
+    <script src="//g.csdnimg.cn/track/1.1.1/track.js" type="text/javascript"></script>
+    <!-- 新版上报end -->
+            <link rel="stylesheet" href="https://csdnimg.cn/public/sandalstrap/1.3/css/sandalstrap.min.css">
+    <style>
+        .MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <script id="toolbar-tpl-scriptId" src="https://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="https://blog.csdn.net/"></script>
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/blog_code-c3a0c33d5c.css">
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.css">
+<script type="text/javascript" src="//static.mediav.com/js/mvf_news_feed.js"></script>
+<div style="display:none;">
+	<img src="" onerror='setTimeout(function(){if(!/(csdn.net|iteye.com|baiducontent.com|googleusercontent.com|360webcache.com|sogoucdn.com|bingj.com|baidu.com)$/.test(window.location.hostname)){window.location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74"}},3000);'>
+</div>
+<link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/chart-3456820cac.css" />
+
+
+
+<script src="https://dup.baidustatic.com/js/ds.js"></script>
+<div class="container clearfix" id="mainBox">
+		<!-- <div id="breadcrumbs">
+			<span><a href="https://blog.csdn.net/">博客首页</a></span>
+			<i>></i>
+			<span><a href="https://blog.csdn.net/xiajian2010">xiajian2010的专栏...</a></span>
+			<i>></i>
+			<span>Graphviz的使用及中文乱码问题</span>
+		</div> -->
+    <main>
+        <div class="blog-content-box">
+	<div class="article-header-box">
+		<div class="article-header">
+			<div class="article-title-box">
+				<span class="article-type type-1 float-left">原</span>				<h1 class="title-article">Graphviz的使用及中文乱码问题</h1>
+			</div>
+			<div class="article-info-box">
+				<div class="article-bar-top">
+																				<span class="time">2014年04月15日 12:07:41</span>
+						<span class="read-count">阅读数：15715</span>
+												
+														<span class="tags-box artic-tag-box">
+								<span class="label">标签：</span>
+																<a data-track-click='{"mod":"popu_626","con":"dot"}' data-track-view='{"mod":"popu_626","con":"dot"}' class="tag-link" href="http://so.csdn.net/so/search/s.do?q=dot&t=blog" target="_blank">dot																<a data-track-click='{"mod":"popu_626","con":"python"}' data-track-view='{"mod":"popu_626","con":"python"}' class="tag-link" href="http://so.csdn.net/so/search/s.do?q=python&t=blog" target="_blank">python																<a data-track-click='{"mod":"popu_626","con":"graphviz"}' data-track-view='{"mod":"popu_626","con":"graphviz"}' class="tag-link" href="http://so.csdn.net/so/search/s.do?q=graphviz&t=blog" target="_blank">graphviz																<a data-track-click='{"mod":"popu_626","con":"中文乱码"}' data-track-view='{"mod":"popu_626","con":"中文乱码"}' class="tag-link" href="http://so.csdn.net/so/search/s.do?q=中文乱码&t=blog" target="_blank">中文乱码																</a>
+							</span>
+																					<div class="tags-box space">
+								<span class="label">个人分类：</span>
+																<a class="tag-link" href="https://blog.csdn.net/xiajian2010/article/category/1544033"  target="_blank">经验类																<a class="tag-link" href="https://blog.csdn.net/xiajian2010/article/category/2194659"  target="_blank">Graphviz																<a class="tag-link" href="https://blog.csdn.net/xiajian2010/article/category/2187337"  target="_blank">python																<a class="tag-link" href="https://blog.csdn.net/xiajian2010/article/category/2175819"  target="_blank">绘图																</a>
+							</div>
+																								</div>
+				<div class="operating">
+														</div>
+			</div>
+			
+		</div>
+	</div>
+	<article>
+		<div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog"  data-mod=popu_307  data-dsm = "post" >
+								            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-e2445db1a8.css" />
+						<div class="htmledit_views">
+                
+<div>
+<h1><span style="font-size:18px;">缘起</span></h1>
+<p><span style="font-size:18px;">在<span style="font-family:'Times New Roman';">Linux</span><span style="font-family:'宋体';">下的绘图软件，自动的，半自动的，最后遇到神器</span><span style="font-family:'Times New Roman';">Graphviz</span><span style="font-family:'宋体';">。整个流程还算波折，起初，编译</span><span style="font-family:'Times New Roman';">docbook</span><span style="font-family:'宋体';">的部分遇到这个软件，后来，在看</span><span style="font-family:'Times New Roman';">Korat: Automated Testing Based on Java Predicates</span><span style="font-family:'宋体';">（</span><span style="font-family:'Times New Roman';">2000</span><span style="font-family:'宋体';">年</span><span style="font-family:'Times New Roman';">ACM</span><span style="font-family:'宋体';">的最佳论文），发现其软件实现</span><span style="font-family:'Times New Roman';">Korat</span><span style="font-family:'宋体';">中使用了</span><span style="font-family:'Times New Roman';">Graphviz</span><span style="font-family:'宋体';">的实现来绘图程序依赖图，最后，在学习</span><span style="font-family:'Times New Roman';">Latex</span><span style="font-family:'宋体';">的时候，考虑要嵌入图片，想起这个绘图工具，就对这个著名的工具做了一些研究，其实就是</span><span style="font-family:'Times New Roman';">Google</span><span style="font-family:'宋体';">了一下，只能算是文献调研。</span></span></p>
+<p><span style="font-size:18px;">以下，是<span style="font-family:'Times New Roman';">OpenFoundry</span><span style="font-family:'宋体';">上看到的介绍</span><span style="font-family:'Times New Roman';">Graphviz</span><span style="font-family:'宋体';">的文章，原文为繁体字，用</span><span style="font-family:'Times New Roman';">google translation</span><span style="font-family:'宋体';">转换为简体中文，修改一下一些术语，添加了一下内容（乱码问题）。</span></span></p>
+<h1><span style="font-size:18px;">1. 简介</span></h1>
+<p><span style="font-size:18px;">Graphviz <span style="font-family:'宋体';">是一个运用广泛的命令行绘图软体，不过说是绘图软体，它能绘的图并不是一般人想像中的漫画或</span><span style="font-family:'Times New Roman';">logo</span><span style="font-family:'宋体';">，而是数学意义上的</span><span style="font-family:'Times New Roman';">"graph"</span><span style="font-family:'宋体';">，比较通俗的说法就是「关系图」。</span></span></p>
+<p><span style="font-size:18px;">举例来说，像是下面这种图：</span></p>
+<p><span style="font-size:18px;"> <img src="https://img-blog.csdn.net/20140415113945890" alt="" /></span></p>
+<h1><span style="font-size:18px;">2. 安装</span></h1>
+<p><span style="font-size:18px;">Graphviz <span style="font-family:'宋体';">支援</span><span style="font-family:'Times New Roman';">Windows</span><span style="font-family:'宋体';">、</span><span style="font-family:'Times New Roman';">Mac OS X</span><span style="font-family:'宋体';">、</span><span style="font-family:'Times New Roman';">FreeBSD</span><span style="font-family:'宋体';">、</span><span style="font-family:'Times New Roman';">Solaris</span><span style="font-family:'宋体';">、</span><span style="font-family:'Times New Roman';">Linux </span><span style="font-family:'宋体';">等多种系统。</span><span style="font-family:'Times New Roman';">Ubuntu</span><span style="font-family:'宋体';">或</span><span style="font-family:'Times New Roman';">Debian</span><span style="font-family:'宋体';">下安装很简单，</span><span style="font-family:'Times New Roman';">sudo apt-get install graphviz</span><span style="font-family:'宋体';">。</span></span></p>
+<p><span style="font-size:18px;">Windows<span style="font-family:'宋体';">用户，请前往这里下载安装档：</span><a href="http://www.graphviz.org/Download_windows.php" rel="nofollow">http://www.graphviz.org/Download_windows.php</a></span></p>
+<p><span style="font-size:18px;">Mac OS X<span style="font-family:'宋体';">的使用者请往这边走：</span><a href="http://www.graphviz.org/Download_macos.php" rel="nofollow">http://www.graphviz.org/Download_macos.php</a></span></p>
+<h1><span style="font-size:18px;">3. Graphviz<span style="font-family:'宋体';">的使用</span></span></h1>
+<p><span style="font-size:18px;"># Graphviz </span></p>
+<p><span style="font-size:18px;">＜<span style="font-family:'Times New Roman';">cmd</span><span style="font-family:'宋体';">＞ ＜</span><span style="font-family:'Times New Roman';">inputfile</span><span style="font-family:'宋体';">＞ </span><span style="font-family:'Times New Roman';">-T </span><span style="font-family:'宋体';">＜</span><span style="font-family:'Times New Roman';">format</span><span style="font-family:'宋体';">＞ </span><span style="font-family:'Times New Roman';">-o </span><span style="font-family:'宋体';">＜</span><span style="font-family:'Times New Roman';">outputfile</span><span style="font-family:'宋体';">＞</span></span></p>
+<p><span style="font-size:18px;">#<span style="font-family:'宋体';">举例：输出</span><span style="font-family:'Times New Roman';">png</span></span></p>
+<p><span style="font-size:18px;">dot input.dot -T png -o output.png </span></p>
+<p><span style="font-size:18px;">#<span style="font-family:'宋体';">举例：一样是输出</span><span style="font-family:'Times New Roman';">png </span><span style="font-family:'宋体';">，只不过档名是</span><span style="font-family:'Times New Roman';">txt</span></span></p>
+<p><span style="font-size:18px;">dot input.dot -T png -o output.txt</span></p>
+<p><span style="font-size:18px;">首先，我们看看上面的＜<span style="font-family:'Times New Roman';">cmd</span><span style="font-family:'宋体';">＞ 部份。</span></span></p>
+<p><span style="font-size:18px;">Graphviz <span style="font-family:'宋体';">的＜</span><span style="font-family:'Times New Roman';">cmd</span><span style="font-family:'宋体';">＞ 有好几种，每种使用方法都完全相同，差别只在于渲染出来的图片效果不一样。</span><span style="font-family:'Times New Roman';">man</span><span style="font-family:'宋体';">中的简介是这样的：</span></span></p>
+<table align="center"><tbody><tr><td>
+<p><span style="font-size:18px;">dot</span></p>
+</td>
+<td>
+<p><span style="font-size:18px;">渲染的图具有明确方向性。</span></p>
+</td>
+</tr><tr><td>
+<p><span style="font-size:18px;">neato</span></p>
+</td>
+<td>
+<p><span style="font-size:18px;">渲染的图缺乏方向性。</span></p>
+</td>
+</tr><tr><td>
+<p><span style="font-size:18px;">twopi</span></p>
+</td>
+<td>
+<p><span style="font-size:18px;">渲染的图采用放射性布局。</span></p>
+</td>
+</tr><tr><td>
+<p><span style="font-size:18px;">circo</span></p>
+</td>
+<td>
+<p><span style="font-size:18px;">渲染的图采用环型布局。</span></p>
+</td>
+</tr><tr><td>
+<p><span style="font-size:18px;">fdp</span></p>
+</td>
+<td>
+<p><span style="font-size:18px;">渲染的图缺乏方向性。</span></p>
+</td>
+</tr><tr><td>
+<p><span style="font-size:18px;">sfdp</span></p>
+</td>
+<td>
+<p><span style="font-size:18px;">渲染大型的图，图片缺乏方向性。</span></p>
+</td>
+</tr></tbody></table><p><span style="font-size:18px;">可以透过<span style="font-family:'Times New Roman';">man </span><span style="font-family:'宋体';">＜</span><span style="font-family:'Times New Roman';">cmd</span><span style="font-family:'宋体';">＞ 取得进一步说明。但还是亲自用用比较容易理解。在本文中，凡没有说明的图，预设都是以</span><span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">渲染出来的。</span></span></p>
+<p><span style="font-size:18px;">继续往下看。在<span style="font-family:'Times New Roman';">Graphviz</span><span style="font-family:'宋体';">中，若您不指定</span><span style="font-family:'Times New Roman';">-T</span><span style="font-family:'宋体';">参数，</span><span style="font-family:'Times New Roman';">Graphviz</span><span style="font-family:'宋体';">并不会自动猜测您想要产生什么格式，只会以预设格式渲染。可选格式相当多，包括（但不限于）</span><span style="font-family:'Times New Roman';">jpg</span><span style="font-family:'宋体';">、</span><span style="font-family:'Times New Roman';">png</span><span style="font-family:'宋体';">、</span><span style="font-family:'Times New Roman';">svg</span><span style="font-family:'宋体';">等，全部列表可见</span><a href="http://www.graphviz.org/doc/Dot.ref" rel="nofollow">官网说明页</a>的最下方。</span></p>
+<p><span style="font-size:18px;">-o <span style="font-family:'宋体';">可让您指定储存档案的档名。如果您不用</span><span style="font-family:'Times New Roman';">-o </span><span style="font-family:'宋体';">选项指定输出档名，</span><span style="font-family:'Times New Roman';">Graphviz </span><span style="font-family:'宋体';">则会将结果输出到标准输出上（图片格式输出到标准输出就是乱码的二进制文件）。</span></span></p>
+<p><span style="font-size:18px;">除非用法很特殊，否则这两个参数，每次都要输入并传递给<span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">。这样输入命令就是：</span></span></p>
+<p><span style="font-size:18px;">dot -Tpng demo.dot -o demo.png</span></p>
+<p><span style="font-size:18px;">为了减少打字的次数，编写简单的<span style="font-family:'Times New Roman';">shell</span><span style="font-family:'宋体';">脚本</span><span style="font-family:'Times New Roman';">dot.sh</span><span style="font-family:'宋体';">，其中涉及获取文件名和扩展，从网上搜的，工作的很好，但不太清楚实现原理：</span></span></p>
+<table align="center"><tbody><tr><td>
+<p><span style="font-size:18px;">#!/bin/sh</span></p>
+<p><span style="font-size:18px;"># dot.sh</span></p>
+<p><span style="font-size:18px;">file=$1</span></p>
+<p><span style="font-size:18px;">filename=<span>${file%.*}</span></span></p>
+<p><span style="font-size:18px;">extension=<span>${file##*.}</span></span></p>
+<p><span style="font-size:18px;">outfile=${filename}.png</span></p>
+<p><span style="font-size:18px;">dot -Tpng $file -o $outfile</span></p>
+<p><span style="font-size:18px;">#show generate image file</span></p>
+<p><span style="font-size:18px;">eog $outfile &amp;</span></p>
+</td>
+</tr></tbody></table><p><span style="font-size:18px;">给脚本<span style="font-family:'Times New Roman';">dot.sh</span><span style="font-family:'宋体';">加上执行权限，然后调用命令就简化为：</span></span></p>
+<p><span style="font-size:18px;">./dot.sh demo.dot</span></p>
+<p><span style="font-size:18px;">当然，如果整个命令很常用的话，可以将改作函数其写到<span style="font-family:'Times New Roman';">.bashrc</span><span style="font-family:'宋体';">中。</span></span></p>
+<h1><span style="font-size:18px;">4. dot<span style="font-family:'宋体';">语言说明</span></span></h1>
+<p><span style="font-size:18px;">指挥<span style="font-family:'Times New Roman';">Graphviz </span><span style="font-family:'宋体';">绘图时，所使用的语言叫作</span><span style="font-family:'Times New Roman';">"dot"</span><span style="font-family:'宋体';">。下边就来介绍如何使用它。</span></span></p>
+<h2><span style="font-size:18px;">4.1. 有向图与无向图</span></h2>
+<p><span style="font-size:18px;">使用<span style="font-family:'Times New Roman';">dot </span><span style="font-family:'宋体';">语言，第一步就是决定要画哪种图。</span></span></p>
+<p><span style="font-size:18px;">图分两种：有向图与无向图。</span></p>
+<p><span style="font-size:18px;">有向图以<span style="font-family:'Times New Roman';">digraph</span><span style="font-family:'宋体';">申明图片，节点间的关系写为</span><span style="font-family:'Times New Roman';">"-&gt;"</span><span style="font-family:'宋体';">。</span></span></p>
+<pre><code class="language-plain">/*demo1。顺便一提，在dot语言中可使用C++中允许的注解。本行为C风格注解*/
+digraph demo1{ //这也是注解，C++风格的。
+a -&gt; b -&gt; c;
+c -&gt; a; 
+}</code></pre><span style="font-size:18px;">结果图<span style="font-family:'Times New Roman';">:</span></span>
+<p><img src="https://img-blog.csdn.net/20140415114206593?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></p>
+<p><span style="font-size:18px;">无向图以<span style="font-family:'Times New Roman';">graph </span><span style="font-family:'宋体';">宣告图片，节点间的关系可以写为</span><span style="font-family:'Times New Roman';">"--"</span><span style="font-family:'宋体';">。</span></span></p>
+<pre><code class="language-plain">//demo2
+graph demo2{
+a -- b -- c;
+c -- a;
+}</code></pre>
+<p><span style="font-size:18px;">结果图：</span></p>
+<p><span style="font-size:18px;"><img src="https://img-blog.csdn.net/20140415114216000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></span></p>
+<p><span style="font-size:18px;">其中<span style="font-family:'Times New Roman';">demo1 </span><span style="font-family:'宋体';">与</span><span style="font-family:'Times New Roman';">demo2 </span><span style="font-family:'宋体';">是图片的名称。</span></span></p>
+<h2><span style="font-size:18px;">4.2. 使用引号</span></h2>
+<p><span style="font-size:18px;">上文中的<span style="font-family:'Times New Roman';">a, b, c </span><span style="font-family:'宋体';">除了作为程式内的识别字以外，也会成为节点的显示名称</span><span style="font-family:'Times New Roman';">(label)</span><span style="font-family:'宋体';">。不过如果这名称中混了</span>中文或夹了空格，<span style="font-family:'Times New Roman';">Graphviz </span><span style="font-family:'宋体';">就有可能搞错你的意思。</span></span></p>
+<p><span style="font-size:18px;">为防不必要的误解，所以平常最好都用英文引号括住。就像下面这样：</span></p>
+<pre><code class="language-plain">//demo3
+digraph {
+"总攻" -&gt; "受";
+"强攻" -&gt; "受";
+"健气攻" -&gt; "受";
+}</code></pre>
+<p><span style="font-size:18px;"> 图<span style="font-family:'Times New Roman';">4</span><span style="font-family:'宋体';">：混合了空白的示范</span></span></p>
+<p><span style="font-size:18px;"><span style="font-family:'宋体';"><img src="https://img-blog.csdn.net/20140415114413578?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></span></span></p>
+<p><span style="font-size:18px;">这样就没问题了！</span></p>
+<p><span style="font-size:18px;">子图与简化技巧</span></p>
+<p><span style="font-size:18px;">来看个复杂一点的例子，这是一份地中海海域的大略连接图：</span></p>
+<p><span style="font-size:18px;">//demo4</span></p>
+<p><span style="font-size:18px;">graph G{</span></p>
+<blockquote>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">黑海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">亚速海</span><span style="font-family:'Times New Roman';">";</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">黑海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">博斯普鲁斯海峡</span><span style="font-family:'Times New Roman';">"</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">达达尼尔海峡</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">爱琴海</span><span style="font-family:'Times New Roman';">"</span></span></p>
+<p><span style="font-size:18px;">subgraph cluster_T{//<span style="font-family:'宋体';">新东西</span></span></p>
+<p><span style="font-size:18px;">label = "<span style="font-family:'宋体';">黑海海峡</span><span style="font-family:'Times New Roman';">";//</span><span style="font-family:'宋体';">新东西</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">达达尼尔海峡</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">马尔马拉海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">博斯普鲁斯海峡</span><span style="font-family:'Times New Roman';">";</span></span></p>
+</blockquote>
+<blockquote>
+<p><span style="font-size:18px;">}</span></p>
+</blockquote>
+<blockquote>
+<p><span style="font-size:18px;">subgraph cluster_M{</span></p>
+<p><span style="font-size:18px;">label = "<span style="font-family:'宋体';">地中海海域</span><span style="font-family:'Times New Roman';">";</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">中部地中海</span><span style="font-family:'Times New Roman';">" -- {"</span><span style="font-family:'宋体';">爱琴海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">爱奥尼亚海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">西西里海峡</span><span style="font-family:'Times New Roman';">"}; //</span><span style="font-family:'宋体';">也是新东西</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">西部地中海</span><span style="font-family:'Times New Roman';">" -- {"</span><span style="font-family:'宋体';">西西里海峡</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">第勒尼安海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">利古里亚海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">伊比利海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">阿尔沃兰海</span><span style="font-family:'Times New Roman';">"};</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">爱奥尼亚海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">亚得里亚海</span><span style="font-family:'Times New Roman';">";</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">阿尔沃兰海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">直布罗陀海峡</span><span style="font-family:'Times New Roman';">";</span></span></p>
+<p><span style="font-size:18px;">}</span></p>
+</blockquote>
+<p><span style="font-size:18px;">}</span> </p>
+<p>结果图：</p>
+<p><img src="https://img-blog.csdn.net/20140415114720828?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></p>
+<span style="font-size:18px;"></span>
+<p><span style="font-size:18px;">图<span style="font-family:'Times New Roman';">5</span><span style="font-family:'宋体';">：地中海海域连接图，使用</span><span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">渲染。</span></span></p>
+<p><span style="font-size:18px;">这张图有些新东西可以看。</span></p>
+<p><span style="font-size:18px;">第一个是<span style="font-family:'Times New Roman';">subgraph </span><span style="font-family:'宋体';">关键字。一如名字所示，他是用来定义「次级图片」用的。</span></span></p>
+<p><span style="font-size:18px;">次级图片在<span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">的官方文件中常被叫作</span><span style="font-family:'Times New Roman';">cluster subgraph</span><span style="font-family:'宋体';">，特指图示中被方框包裹起来的那两块，其定义方式和一般的</span><span style="font-family:'Times New Roman';">graph</span><span style="font-family:'宋体';">非常相似，不过使用上有两件事需要留意：</span></span></p>
+<p><span style="font-size:18px;">graph<span style="font-family:'宋体';">的命名得以</span><span style="font-family:'Times New Roman';">cluster</span><span style="font-family:'宋体';">前缀开头，否则语法虽然能过关，但生不出图面上您预期的效果。</span></span></p>
+<p><span style="font-size:18px;">如果父图是无向图，他本身也得是无向图；反之如果父图是有向图，这边也得乖乖照着来。</span></p>
+<p><span style="font-size:18px;">第二个重点是下面这段：</span></p>
+<p><span style="font-size:18px;">1 "<span style="font-family:'宋体';">中部地中海</span><span style="font-family:'Times New Roman';">" -- {"</span><span style="font-family:'宋体';">爱琴海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">爱奥尼亚海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">西西里海峡</span><span style="font-family:'Times New Roman';">"};</span></span></p>
+<p><span style="font-size:18px;">用大括号括起，用空格分开－这是一口气将好几个节点群组起来同时操作的方法，其等效于：</span></p>
+<p><span style="font-size:18px;">1 "<span style="font-family:'宋体';">中部地中海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">爱琴海</span><span style="font-family:'Times New Roman';">"; 2 "</span><span style="font-family:'宋体';">中部地中海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">爱奥尼亚海</span><span style="font-family:'Times New Roman';">"; 3 "</span><span style="font-family:'宋体';">中部地中海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">西西里海峡</span><span style="font-family:'Times New Roman';">";</span></span></p>
+<p><span style="font-size:18px;">您甚至可以用以下程式码画出图<span style="font-family:'Times New Roman';">6</span><span style="font-family:'宋体';">：</span></span></p>
+<p><span style="font-size:18px;">//demo5</span></p>
+<p><span style="font-size:18px;">digraph G{//{}中的注意空格</span></p>
+<p><span style="font-size:18px;">{ a b c} -&gt; { d e f }</span></p>
+<p><span style="font-size:18px;">}</span></p>
+<p><img src="https://img-blog.csdn.net/20140415114817781?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></p>
+<p><span style="font-size:18px;">图<span style="font-family:'Times New Roman';">6</span><span style="font-family:'宋体';">：大括号效果示意图</span></span></p>
+<p><span style="font-size:18px;">这语法糖很方便好吃，可以灵活运用。</span></p>
+<p><span style="font-size:18px;">第三个不同处在于<span style="font-family:'Times New Roman';">label=XXX </span><span style="font-family:'宋体';">这行。这是「属性」的指定方式。</span></span></p>
+<p><span style="font-size:18px;">关于属性，我们下章再讲。</span></p>
+<h2><span style="font-size:18px;">4.3. 属性</span></h2>
+<p><span style="font-size:18px;">有了前面介绍过的技巧，所有图面关系都可以顺利地绘制出来。</span></p>
+<p><span style="font-size:18px;">然而，通常我们画图的时候，还会对图片做一些特别的处理。好比说把字加粗、把图变色、把标签或连接线的外型改变、把某些节点水平对齐<span style="font-family:'Times New Roman';">......</span><span style="font-family:'宋体';">诸如此类。</span></span></p>
+<p><span style="font-size:18px;">要控制这些东西，就要用到属性。</span></p>
+<p><span style="font-size:18px;">属性有四种：</span></p>
+<p><span style="font-size:18px;">1. 用在节点上<span style="font-family:'Times New Roman';">(Node, N)</span></span></p>
+<p><span style="font-size:18px;">2. 用在线段上<span style="font-family:'Times New Roman';">(Edge, E)</span></span></p>
+<p><span style="font-size:18px;">3. 用在根图片上<span style="font-family:'Times New Roman';">(Graph, G)</span></span></p>
+<p><span style="font-size:18px;">4. 用在子图片上<span style="font-family:'Times New Roman';">(Cluster subgraph, C)</span></span></p>
+<p><span style="font-size:18px;">您可以阅读<a href="http://www.graphviz.org/doc/info/attrs.html" rel="nofollow"><span>手册</span></a>中的表，判断哪些属性能用在哪些地方。</span></p>
+<p><span style="font-size:18px;">那么，属性要怎么用呢？</span></p>
+<h3><span style="font-size:18px;">4.3.1. 属性的套用</span></h3>
+<p><span style="font-size:18px;">如果要设定根图片或子图片的属性，得像前面范例中所示的那样，在图片的大括号范围内指定<span style="font-family:'Times New Roman';">..</span></span></p>
+<p><span style="font-size:18px;">属性名称<span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">;</span></span></p>
+<p><span style="font-size:18px;">这样就行了。</span></p>
+<p><span style="font-size:18px;">对于节点<span style="font-family:'Times New Roman';">(node) </span><span style="font-family:'宋体';">的属性，有以下几种指定法：</span></span></p>
+<p><span style="font-size:18px;">1节点名<span style="font-family:'Times New Roman';">[</span><span style="font-family:'宋体';">节点属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">];</span></span></p>
+<p><span style="font-size:18px;">2节点名<span style="font-family:'Times New Roman';">[</span><span style="font-family:'宋体';">节点属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">,</span><span style="font-family:'宋体';">节点属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">];</span></span></p>
+<p><span style="font-size:18px;">3 node [<span style="font-family:'宋体';">节点属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">,</span><span style="font-family:'宋体';">节点属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">];</span></span></p>
+<p><span style="font-size:18px;">属性指定的语句必须要被中括号括起。当一次指定多值时，需用英文逗点隔开。</span></p>
+<p><span style="font-size:18px;">第三行中的<span style="font-family:'Times New Roman';">node </span><span style="font-family:'宋体';">是个关键字，用来代称「图片范围内」所有「还没创建」的节点，或者您也可将它理解为：在当前大括号的范围内，所有尚未创建节点的属性预设值，会被这个语句给变更。</span></span></p>
+<p><span style="font-size:18px;">线段<span style="font-family:'Times New Roman';">(edge)</span><span style="font-family:'宋体';">的属性指定，与节点属性指定方式很类似：</span></span></p>
+<p><span style="font-size:18px;">1节点名<span style="font-family:'Times New Roman';">-&gt;</span><span style="font-family:'宋体';">节点名</span><span style="font-family:'Times New Roman';">[</span><span style="font-family:'宋体';">线段属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">];</span></span></p>
+<p><span style="font-size:18px;">2节点名<span style="font-family:'Times New Roman';">--</span><span style="font-family:'宋体';">节点名</span><span style="font-family:'Times New Roman';">[</span><span style="font-family:'宋体';">线段属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">,</span><span style="font-family:'宋体';">线段属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">];</span></span></p>
+<p><span style="font-size:18px;">3 edge [<span style="font-family:'宋体';">线段属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值，线段属性名</span><span style="font-family:'Times New Roman';">=</span><span style="font-family:'宋体';">值</span><span style="font-family:'Times New Roman';">];</span></span></p>
+<p><span style="font-size:18px;">其中<span style="font-family:'Times New Roman';">edge </span><span style="font-family:'宋体';">是关键字。</span></span></p>
+<p><span style="font-size:18px;">这边顺便补充一个关于线段的观念：有些线段相关的属性，具有<span style="font-family:'Times New Roman';">head</span><span style="font-family:'宋体';">值与</span><span style="font-family:'Times New Roman';">tail</span><span style="font-family:'宋体';">值。而这边说的</span><span style="font-family:'Times New Roman';">head </span><span style="font-family:'宋体';">与</span><span style="font-family:'Times New Roman';">tail</span><span style="font-family:'宋体';">，得将它想像成一个「箭头」的形状（就像是「</span><span style="font-family:'Times New Roman';">a -&gt; b</span><span style="font-family:'宋体';">」这样）。</span></span></p>
+<p><span style="font-size:18px;">对于线段来说，这个箭头指向的头部才是<span style="font-family:'Times New Roman';">head</span><span style="font-family:'宋体';">。这可能和直觉上不一样，因为这边说的「</span><span style="font-family:'Times New Roman';">Head</span><span style="font-family:'宋体';">」其实是两个节点中，后面的那一个。</span></span></p>
+<h3><span style="font-size:18px;">4.3.2. 属性范例</span></h3>
+<p><span style="font-size:18px;">把先前的看过的例子加上一些属性试试。</span></p>
+<p><span style="font-size:18px;">//demo6</span></p>
+<p><span style="font-size:18px;">graph G{</span></p>
+<blockquote>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">黑海</span><span style="font-family:'Times New Roman';">" [shape = circle, color = blueviolet, fontcolor = blueviolet, fontsize = 20];</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">黑海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">亚速海</span><span style="font-family:'Times New Roman';">" [label = "</span><span style="font-family:'宋体';">刻赤海峡</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">subgraph cluster_T{</span></p>
+<p><span style="font-size:18px;">label = "<span style="font-family:'宋体';">黑海海峡</span><span style="font-family:'Times New Roman';">";</span></span></p>
+<p><span style="font-size:18px;">fontsize = 24;</span></p>
+<p><span style="font-size:18px;">fillcolor = darkslategray;</span></p>
+<p><span style="font-size:18px;">style = filled;</span></p>
+<p><span style="font-size:18px;">fontcolor = white;</span></p>
+<p><span style="font-size:18px;">node [fontcolor = white, color = white];</span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">博斯普鲁斯海峡</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">马尔马拉海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">达达尼尔海峡</span><span style="font-family:'Times New Roman';">" [color = white];</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">博斯普鲁斯海峡</span><span style="font-family:'Times New Roman';">" [shape = parallelogram];</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">达达尼尔海峡</span><span style="font-family:'Times New Roman';">" [shape = parallelogram];</span></span></p>
+<p><span style="font-size:18px;">}</span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">黑海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">博斯普鲁斯海峡</span><span style="font-family:'Times New Roman';">" [color = red ,penwidth = 2];</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">达达尼尔海峡</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">爱琴海</span><span style="font-family:'Times New Roman';">" [color = red ,penwidth = 2];</span></span></p>
+<p><span style="font-size:18px;">subgraph cluster_M{</span></p>
+<p><span style="font-size:18px;">label = "<span style="font-family:'宋体';">地中海海域</span><span style="font-family:'Times New Roman';">";</span></span></p>
+<p><span style="font-size:18px;">fontsize = 24;</span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">西部地中海</span><span style="font-family:'Times New Roman';">" [shape = Mcircle, style = filled, color = grey, fillcolor = aquamarine, fontsize = 20];</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">中部地中海</span><span style="font-family:'Times New Roman';">" [shape = Mcircle, style = filled, color = grey, fillcolor = aquamarine, fontsize = 20];</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">直布罗陀海峡</span><span style="font-family:'Times New Roman';">" [shape = parallelogram, fontcolor = red];</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">西西里海峡</span><span style="font-family:'Times New Roman';">" [shape = parallelogram ];</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">中部地中海</span><span style="font-family:'Times New Roman';">" -- {"</span><span style="font-family:'宋体';">爱琴海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">爱奥尼亚海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">西西里海峡</span><span style="font-family:'Times New Roman';">"};</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">西部地中海</span><span style="font-family:'Times New Roman';">" -- {"</span><span style="font-family:'宋体';">西西里海峡</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">第勒安海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">利古里亚海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">伊比利海</span><span style="font-family:'Times New Roman';">" "</span><span style="font-family:'宋体';">阿尔沃兰海</span><span style="font-family:'Times New Roman';">"};</span></span></p>
+<p><span style="font-size:18px;">"<span style="font-family:'宋体';">爱奥尼亚海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">亚得里亚海</span><span style="font-family:'Times New Roman';">"; 30 "</span><span style="font-family:'宋体';">阿尔沃兰海</span><span style="font-family:'Times New Roman';">" -- "</span><span style="font-family:'宋体';">直布罗陀海峡</span><span style="font-family:'Times New Roman';">";</span></span></p>
+<p><span style="font-size:18px;"><span style="font-family:'Times New Roman';">}</span></span></p>
+</blockquote>
+<p><span style="font-size:18px;">}</span></p>
+<p><img src="https://img-blog.csdn.net/20140415114945484?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></p>
+<p><span style="font-size:18px;">图<span style="font-family:'Times New Roman';">7</span><span style="font-family:'宋体';">：地中海海域连接图（加入属性）。</span></span></p>
+<p><span style="font-size:18px;">诸多属性中，最常用的大概是<span style="font-family:'Times New Roman';">label </span><span style="font-family:'宋体';">了。</span></span></p>
+<p><span style="font-size:18px;">label<span style="font-family:'宋体';">可以决定节点、线段或子图片上要显示些什么。如果您的节点名很长的话，可以在程序内部取个简短的名称，之后透过短名称操作它，另外透过</span><span style="font-family:'Times New Roman';">label </span><span style="font-family:'宋体';">指定它的显示内容。</span></span></p>
+<p><span style="font-size:18px;">color<span style="font-family:'宋体';">、</span><span style="font-family:'Times New Roman';">fillcolor</span><span style="font-family:'宋体';">、</span><span style="font-family:'Times New Roman';">fontcolor </span><span style="font-family:'宋体';">这些属性都是控制颜色用的，不过</span><span style="font-family:'Times New Roman';">fillcolor </span><span style="font-family:'宋体';">只有在</span><span style="font-family:'Times New Roman';">style </span><span style="font-family:'宋体';">被指定为</span><span style="font-family:'Times New Roman';">"filled" </span><span style="font-family:'宋体';">时才会生效。</span></span></p>
+<p><span style="font-size:18px;">shape<span style="font-family:'宋体';">可以指定节点的形状，形状列表参考这里（</span>http://www.graphviz.org/content/node-shapes）。</span></p>
+<p><span style="font-size:18px;">线段属性方面。有向图中的箭头可透过<span style="font-family:'Times New Roman';">arrowhead </span><span style="font-family:'宋体';">与</span><span style="font-family:'Times New Roman';">arrowtail </span><span style="font-family:'宋体';">属性来指定头尾样式。至于线段本身，则可透过</span><span style="font-family:'Times New Roman';">style </span><span style="font-family:'宋体';">属性，指定不同类型的虚线与短截线。使用者还可以用</span><span style="font-family:'Times New Roman';">dir </span><span style="font-family:'宋体';">属性让箭头方向反过来。</span></span></p>
+<p><span style="font-size:18px;">另外还有一个<span style="font-family:'Times New Roman';">image </span><span style="font-family:'宋体';">属性，可以指定让</span><span style="font-family:'Times New Roman';">node </span><span style="font-family:'宋体';">显示图片，需要时也可参考看看。</span></span></p>
+<p><span style="font-size:18px;">属性很多，无法一一介绍，请查官网手册<span style="font-family:'Times New Roman';">(http://www.graphviz.org/doc/info/attrs.html)</span><span style="font-family:'宋体';">。</span></span></p>
+<h3><span style="font-size:18px;">4.3.3. rank</span></h3>
+<p><span style="font-size:18px;">dot <span style="font-family:'宋体';">语言中有一个叫作</span><span style="font-family:'Times New Roman';">rank </span><span style="font-family:'宋体';">的概念。</span></span></p>
+<p><span style="font-size:18px;">所谓的<span style="font-family:'Times New Roman';">rank</span><span style="font-family:'宋体';">，在</span><span style="font-family:'Times New Roman';">dot </span><span style="font-family:'宋体';">语言中，含意比较接近于「等级」。他主要用在</span><span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">渲染器中。</span></span></p>
+<p><span style="font-size:18px;">请看以下的图：</span></p>
+<p><img src="https://img-blog.csdn.net/20140415115010906?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></p>
+<p><span style="font-size:18px;">图<span style="font-family:'Times New Roman';">8</span><span style="font-family:'宋体';">：</span><span style="font-family:'Times New Roman';">rank </span><span style="font-family:'宋体';">示例。</span></span></p>
+<p><span style="font-size:18px;">很明显可以看出来，图片被从上到下分为四层－这就是<span style="font-family:'Times New Roman';">rank</span><span style="font-family:'宋体';">。</span></span></p>
+<p><span style="font-size:18px;">下方是与上图对应的<span style="font-family:'Times New Roman';">dot </span><span style="font-family:'宋体';">陈述</span><span style="font-family:'Times New Roman';">:</span></span></p>
+<p><span style="font-size:18px;">//demo7</span></p>
+<p><span style="font-size:18px;">digraph demo{</span></p>
+<p><span style="font-size:18px;">a -&gt; b -&gt; c -&gt; d;</span></p>
+<p><span style="font-size:18px;">b -&gt; { e f };</span></p>
+<p><span style="font-size:18px;">}</span></p>
+<p><span style="font-size:18px;">观察程序，可看出<span style="font-family:'Times New Roman';">rank</span><span style="font-family:'宋体';">是如何被指定的。</span></span></p>
+<p><span style="font-size:18px;">其基本规则在于：<strong>每个线段的头端，都会比尾端多出一个等级</strong>（在图上面就是往下面一层）。</span></p>
+<p><span style="font-size:18px;">但等等，如果等级指定的语句彼此矛盾呢？</span></p>
+<p><span style="font-size:18px;">修改以上程式码为：</span></p>
+<p><span style="font-size:18px;">//demo8</span></p>
+<p><span style="font-size:18px;">digraph demo{</span></p>
+<p><span style="font-size:18px;">a -&gt; b -&gt; c -&gt; d [label = "rank<span style="font-family:'宋体';">增加</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">b -&gt; { e f } [label = "rank<span style="font-family:'宋体';">增加</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">f -&gt; a [label = "<span style="font-family:'宋体';">不影响</span><span style="font-family:'Times New Roman';">rank"];</span></span></p>
+<p><span style="font-size:18px;">}</span></p>
+<p><img src="https://img-blog.csdn.net/20140415115058625?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></p>
+<p><span style="font-size:18px;">图<span style="font-family:'Times New Roman';">9</span><span style="font-family:'宋体';">：</span><span style="font-family:'Times New Roman';">rank </span><span style="font-family:'宋体';">示例。</span></span></p>
+<p><span style="font-size:18px;">看上面的结果，显然<span style="font-family:'Times New Roman';">rank </span><span style="font-family:'宋体';">的指定是「先说先赢」的。</span></span></p>
+<p><span style="font-size:18px;">除了基本规则外，<span style="font-family:'Times New Roman';">rank</span><span style="font-family:'宋体';">也可以透过属性来加以调节，有必要时要参看手册。</span></span></p>
+<h1><span style="font-size:18px;">5. 在脚本中使用<span style="font-family:Arial;">Graphviz</span></span></h1>
+<h2><span style="font-size:18px;">5.1. 在<span style="font-family:Arial;">shell</span><span style="font-family:'宋体';">中使用</span><span style="font-family:Arial;">Graphviz</span></span></h2>
+<p><span style="font-size:18px;">在了解了 <span style="font-family:'Times New Roman';">Graphviz DOT </span><span style="font-family:'宋体';">语言的基础知识之后，您可以开始创建脚本，从而动态创建一个 </span><span style="font-family:'Times New Roman';">DOT </span><span style="font-family:'宋体';">文件。这允许您动态创建始终准确且保持最新的图表。</span></span></p>
+<p><span style="font-size:18px;">示例<span style="font-family:'Times New Roman';">1</span><span style="font-family:'宋体';">是一个 </span><span style="font-family:'Times New Roman';">bash shell </span><span style="font-family:'宋体';">脚本，它连接到 </span><span style="font-family:'Times New Roman';">Hardware Management Console (HMC)</span><span style="font-family:'宋体';">，收集托管服务器和逻辑分区 </span><span style="font-family:'Times New Roman';">(LPAR) </span><span style="font-family:'宋体';">的相关信息，然后使用这些信息来创建 </span><span style="font-family:'Times New Roman';">DOT </span><span style="font-family:'宋体';">输出。</span></span></p>
+<p><span style="font-size:18px;">示例<span style="font-family:'Times New Roman';">1 hmc_to_dot.sh</span></span></p>
+<table align="center"><tbody><tr><td>
+<p><span style="font-size:18px;">#!/bin/bash</span></p>
+<p><span style="font-size:18px;"> </span></p>
+<p><span style="font-size:18px;">HMC="$1"</span></p>
+<p><span style="font-size:18px;"> </span></p>
+<p><span style="font-size:18px;">serverlist=`ssh -q -o "BatchMode yes" $HMC lssyscfg -r sys -F "name" | sort`</span></p>
+<p><span style="font-size:18px;"> </span></p>
+<p><span style="font-size:18px;">echo "graph hmc_graph{"</span></p>
+<p><span style="font-size:18px;"> </span></p>
+<p><span style="font-size:18px;">for server in $serverlist; do</span></p>
+<p><span style="font-size:18px;">    echo " \"$HMC\" -- \"$server\" "</span></p>
+<p><span style="font-size:18px;">    lparlist=`ssh -q -o "BatchMode yes" $HMC lssyscfg -m $server -r lpar -F "name" | sort`</span></p>
+<p><span style="font-size:18px;">    for lpar in $lparlist; do</span></p>
+<p><span style="font-size:18px;">             echo "    \"$server\" -- \"$lpar\" "</span></p>
+<p><span style="font-size:18px;">    done</span></p>
+<p><span style="font-size:18px;">done</span></p>
+<p><span style="font-size:18px;"> </span></p>
+<p><span style="font-size:18px;">echo "}"</span></p>
+</td>
+</tr></tbody></table><p><span style="font-size:18px;">通过提供一个 <span style="font-family:'Times New Roman';">HMC </span><span style="font-family:'宋体';">服务器名称作为参数传递给脚本，便可运行此脚本。该脚本将传递的第一个参数设置为 </span><span style="font-family:'Times New Roman';">$HMC </span><span style="font-family:'宋体';">变量。设置 </span><span style="font-family:'Times New Roman';">$serverlist </span><span style="font-family:'宋体';">变量的方法是连接到 </span><span style="font-family:'Times New Roman';">HMC </span><span style="font-family:'宋体';">并获得该 </span><span style="font-family:'Times New Roman';">HMC </span><span style="font-family:'宋体';">控制的所有托管服务器的清单。在这些托管服务器上进行循环，而脚本将为每台托管服务器打印一行 </span><span style="font-family:'Times New Roman';">"HMC" -- "server" </span><span style="font-family:'宋体';">，这表明 </span><span style="font-family:'Times New Roman';">Graphviz </span><span style="font-family:'宋体';">在每台 </span><span style="font-family:'Times New Roman';">HMC </span><span style="font-family:'宋体';">与其托管服务器之间绘制了一条直线。此外针对每台托管服务器，脚本再次连接到 </span><span style="font-family:'Times New Roman';">HMC </span><span style="font-family:'宋体';">并获得该托管系统上的 </span><span style="font-family:'Times New Roman';">LPAR </span><span style="font-family:'宋体';">清单，然后通过它们循环打印一行 </span><span style="font-family:'Times New Roman';">"server" -- "LPAR"</span><span style="font-family:'宋体';">。这表明 </span><span style="font-family:'Times New Roman';">Graphviz </span><span style="font-family:'宋体';">在每台托管服务器与其 </span><span style="font-family:'Times New Roman';">LPAR </span><span style="font-family:'宋体';">之间都绘制了一条直线。</span></span></p>
+<p><span style="font-size:18px;">此脚本要求您在运行脚本的服务器与 <span style="font-family:'Times New Roman';">HMC </span><span style="font-family:'宋体';">之间设置 </span><span style="font-family:'Times New Roman';">Secure Shell (SSH) </span><span style="font-family:'宋体';">密钥身份验证。</span></span></p>
+<p><span style="font-size:18px;">事例<span style="font-family:'Times New Roman';">1`</span><span style="font-family:'宋体';">脚本的输出</span><span style="font-family:'Times New Roman';">:</span></span></p>
+<table align="center"><tbody><tr><td>
+<p><span style="font-size:18px;">graph hmc_graph{</span></p>
+<p><span style="font-size:18px;"> "hmc01" -- "test520"</span></p>
+<p><span style="font-size:18px;">    "test520" -- "lpar2"</span></p>
+<p><span style="font-size:18px;">    "test520" -- "lpar3"</span></p>
+<p><span style="font-size:18px;"> "hmc01" -- "test570"</span></p>
+<p><span style="font-size:18px;">    "test570" -- "aixtest01"</span></p>
+<p><span style="font-size:18px;">    "test570" -- "aixtest02"</span></p>
+<p><span style="font-size:18px;">    "test570" -- "aixtest03"</span></p>
+<p><span style="font-size:18px;"> "hmc01" -- "test510"</span></p>
+<p><span style="font-size:18px;">    "test510" -- "lpar1"</span></p>
+<p><span style="font-size:18px;">}</span></p>
+</td>
+</tr></tbody></table><p><span style="font-size:18px;">从脚本生成图的具体方法是运行以下命令：<span style="font-family:'Times New Roman';">./hmc_to_dot.shhmc_server_name|dot-Tpng-ohmc_graph.png</span></span></p>
+<p><span style="font-size:18px;">上述命令运行脚本，并动态创建 <span style="font-family:'Times New Roman';">DOT </span><span style="font-family:'宋体';">语言的文本，然后将这些输出传递给 </span><span style="font-family:'Times New Roman';">dot </span><span style="font-family:'宋体';">命令，以便让它创建一个文件名为 </span><span style="font-family:'Times New Roman';">hmc_graph.png </span><span style="font-family:'宋体';">的图表。图 </span><span style="font-family:'Times New Roman';">10 </span><span style="font-family:'宋体';">显示了创建的图表。</span></span></p>
+<p><span style="font-size:18px;">图 <span style="font-family:'Times New Roman';">10 </span><span style="font-family:'宋体';">从 </span><span style="font-family:'Times New Roman';">hmc_to_dot.sh </span><span style="font-family:'宋体';">脚本创建的图表</span></span></p>
+<p><img src="https://img-blog.csdn.net/20140415115348171" alt="" /><br /></p>
+<p><span style="font-size:18px;">备注：这里的脚本的使用和具体的环境有关，详细参考<span style="font-family:'Times New Roman';">[3],</span><span style="font-family:'宋体';">具体的语境为</span><span style="font-family:'Times New Roman';">AIX</span><span style="font-family:'宋体';">小型机上的</span><span style="font-family:'Times New Roman';">Virtual I/O Servers </span><span style="font-family:'宋体';">有关，很明显，我不能可能有的</span><span style="font-family:'Times New Roman';">AIX</span><span style="font-family:'宋体';">小型机来测试，所以这个图不是我自己生成的，但是，这里在</span><span style="font-family:'Times New Roman';">shell</span><span style="font-family:'宋体';">脚本中生成</span><span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">的源码确实值得学习。</span></span></p>
+<h2><span style="font-size:18px;">5.2. 在<span style="font-family:Arial;">Python</span><span style="font-family:'宋体';">中使用</span><span style="font-family:Arial;">Graphviz</span></span></h2>
+<p><span style="font-size:18px;">dot<span style="font-family:'宋体';">不是一个真正的编程语言，但它是很容易与真正的编程交互。可以绑定多种编程语言，包括</span><span style="font-family:'Times New Roman';">Java</span><span style="font-family:'宋体';">，</span><span style="font-family:'Times New Roman';">Perl</span><span style="font-family:'宋体';">和</span><span style="font-family:'Times New Roman';">Python</span><span style="font-family:'宋体';">。更轻量级替代是从喜欢的语言中生成</span><span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">代码。 这样做将使您自动化整个图形生成过程。</span></span></p>
+<p><span style="font-size:18px;">Python写的用来生成<span style="font-family:'Times New Roman';">dot</span>的例子。此示例脚本展示了如何以最小的努力绘制的<span style="font-family:'Times New Roman';">Python</span><span style="font-family:'宋体';">类层次</span>。</span></p>
+<p><span style="font-size:18px;"># dot.py </span></p>
+<p><span style="font-size:18px;">"Require Python 2.3 (or 2.2. with from __future__ import generators)"</span></p>
+<p><span style="font-size:18px;">def dotcode(cls):</span></p>
+<p><span style="font-size:18px;">    setup='node [color=Green,fontcolor=Blue,fontname=Courier]\n'</span></p>
+<p><span style="font-size:18px;">    name='hierarchy_of_%s' % cls.__name__</span></p>
+<p><span style="font-size:18px;">    code='\n'.join(codegenerator(cls))</span></p>
+<p><span style="font-size:18px;">    return "digraph %s{\n\n%s\n%s\n}" % (name, setup, code)</span></p>
+<p><span style="font-size:18px;"> </span></p>
+<p><span style="font-size:18px;">def codegenerator(cls):</span></p>
+<p><span style="font-size:18px;">    "Returns a line of dot code at each iteration."</span></p>
+<p><span style="font-size:18px;">    # works for new style classes; see my Cookbook</span></p>
+<p><span style="font-size:18px;">    # recipe for a more general solution</span></p>
+<p><span style="font-size:18px;">    for c in cls.__mro__:</span></p>
+<p><span style="font-size:18px;">        bases=c.__bases__</span></p>
+<p><span style="font-size:18px;">        if bases: # generate edges parent -&gt; child</span></p>
+<p><span style="font-size:18px;">            yield ''.join([' %s -&gt; %s\n' % ( b.__name__,c.__name__)</span></p>
+<p><span style="font-size:18px;">                           for b in bases])</span></p>
+<p><span style="font-size:18px;">        if len(bases) &gt; 1: # put all parents on the same level</span></p>
+<p><span style="font-size:18px;">            yield " {rank=same; %s}\n" % ''.join(</span></p>
+<p><span style="font-size:18px;">                ['%s ' % b.__name__ for b in bases])</span></p>
+<p><span style="font-size:18px;">if __name__=="__main__": </span></p>
+<p><span style="font-size:18px;">    # returns the dot code generating a simple diamond hierarchy</span></p>
+<p><span style="font-size:18px;">    class A(object): pass</span></p>
+<p><span style="font-size:18px;">    class B(A): pass</span></p>
+<p><span style="font-size:18px;">    class C(A): pass</span></p>
+<p><span style="font-size:18px;">    class D(B,C): pass</span></p>
+<p><span style="font-size:18px;">    print dotcode(D)</span></p>
+<p><span style="font-size:18px;"> </span></p>
+<p><span style="font-size:18px;">函数<span style="font-family:'Times New Roman';">dotcode</span><span style="font-family:'宋体';">需要一个类，并返回绘制类的系谱树所需的</span><span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">源代码。</span><span style="font-family:'Times New Roman';">codegenerator</span><span style="font-family:'宋体';">生成的代码，遍历类的祖先的列表（类的方法解析序列中），并确定边和节点的层次结构。</span><span style="font-family:'Times New Roman';">Codegenerator</span><span style="font-family:'宋体';">是一个在每次迭代中返回一行的</span><span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">代码的生成器。返回一个迭代产生点阵码在每次迭代。生成器是最近添加到</span><span style="font-family:'Times New Roman';">Python</span><span style="font-family:'宋体';">中的工具，在处理生成文本或源代码的目的问题时特别方便。脚本的输出是如下不言自明的</span><span style="font-family:'Times New Roman';">dot</span><span style="font-family:'宋体';">代码：</span></span></p>
+<p><span style="font-size:18px;">digraph hierarchy_of_D {</span></p>
+<p><span style="font-size:18px;">node [color=Green,fontcolor=Blue,font=Courier]</span></p>
+<p><span style="font-size:18px;"> B -&gt; D</span></p>
+<p><span style="font-size:18px;"> C -&gt; D</span></p>
+<p><span style="font-size:18px;"> {rank=same; B C }</span></p>
+<p><span style="font-size:18px;"> A -&gt; B</span></p>
+<p><span style="font-size:18px;"> A -&gt; C</span></p>
+<p><span style="font-size:18px;"> object -&gt; A</span></p>
+<p><span style="font-size:18px;">}</span></p>
+<p><span style="font-size:18px;">处理命令：python dot.py | dot -Tpng -o x.png</span></p>
+<p><span style="font-size:18px;">生成的图片如下：</span></p>
+<p><img src="https://img-blog.csdn.net/20140415115450062?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /></p>
+<p>备注：例子来自参考4。<br /></p>
+<h1><span style="font-size:18px;">6. 中文乱码问题</span></h1>
+<p><span style="font-size:18px;">如果<span style="font-family:'Times New Roman';">graphviz</span><span style="font-family:'宋体';">中出现了中文乱码问题，可以采用两种方法来处理，一种就是上面的将文本保存为</span><span style="font-family:'Times New Roman';">UTF8</span><span style="font-family:'宋体';">（</span><span style="font-family:'Times New Roman';">Ubuntu</span><span style="font-family:'宋体';">下默认为</span><span style="font-family:'Times New Roman';">UTF8</span><span style="font-family:'宋体';">，</span><span style="font-family:'Times New Roman';">Windows</span><span style="font-family:'宋体';">下默认为</span><span style="font-family:'Times New Roman';">ASNI</span><span style="font-family:'宋体';">），并将中文包含在英文的引号（</span><span style="font-family:'Times New Roman';">“”</span><span style="font-family:'宋体';">）中。另一种方法多一个将图或结点的字体属性设置为中文字体的步骤，具体步骤如下：</span></span></p>
+<p><span style="font-size:18px;">l 保存为<span style="font-family:'Times New Roman';">UTF8</span><span style="font-family:'宋体';">格式</span></span></p>
+<p><span style="font-size:18px;">l 设置中文字体，常见的中文字体的对应的名字如下：</span></p>
+<p><span style="font-size:18px;">黑体：<span style="font-family:'Times New Roman';">SimHei </span><span style="font-family:'宋体';">宋体：</span><span style="font-family:'Times New Roman';">SimSun </span><span style="font-family:'宋体';">新宋体：</span><span style="font-family:'Times New Roman';">NSimSun </span><span style="font-family:'宋体';">仿宋：</span><span style="font-family:'Times New Roman';">FangSong </span><span style="font-family:'宋体';">楷体：</span><span style="font-family:'Times New Roman';">KaiTi</span></span></p>
+<p><span style="font-size:18px;">仿宋<span style="font-family:'Times New Roman';">_GB2312</span><span style="font-family:'宋体';">：</span><span style="font-family:'Times New Roman';">FangSong_GB2312 </span><span style="font-family:'宋体';">楷体</span><span style="font-family:'Times New Roman';">_GB2312</span><span style="font-family:'宋体';">：</span><span style="font-family:'Times New Roman';">KaiTi_GB2312</span></span></p>
+<p><span style="font-size:18px;">下列以编译原理的处理流程图为例演示，第二种中文处理方法，此外，其中还演示了使用一些复杂的属性。</span></p>
+<p><span style="font-size:18px;">compile_process.dot<span style="font-family:'宋体';">程序代码</span><span style="font-family:'Times New Roman';">:</span></span></p>
+<table><tbody><tr><td valign="top">
+<p><span style="font-size:18px;">//compile_process.dot</span></p>
+<p><span style="font-size:18px;">digraph G {</span></p>
+<p><span style="font-size:18px;">edge [fontname="FangSong"];</span></p>
+<p><span style="font-size:18px;">node [shape=box, fontname="FangSong" size="20,20"];</span></p>
+<p><span style="font-size:18px;">{</span></p>
+<p><span style="font-size:18px;">Lexical_Analyzer [label="<span style="font-family:'宋体';">词法分析器</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">Syntax_Analyzer [label="<span style="font-family:'宋体';">语法分析器</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">Semantic_Analyzer [label="<span style="font-family:'宋体';">语义分析</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">Intermediate_Code_Generator [label="<span style="font-family:'宋体';">中间代码生成器</span><span style="font-family:'Times New Roman';">" ];</span></span></p>
+<p><span style="font-size:18px;">Machine_Independent_Code_Optimizer [label="<span style="font-family:'宋体';">机器无关代码优化器</span><span style="font-family:'Times New Roman';">"</span> ];</span></p>
+<p><span style="font-size:18px;">Code_Generator [label="<span style="font-family:'宋体';">代码生成器</span><span style="font-family:'Times New Roman';">" ];</span></span></p>
+<p><span style="font-size:18px;">Machine_Dependent_Code_Optimizer [label="<span style="font-family:'宋体';">机器相关代码优化器</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">}</span></p>
+<p><span style="font-size:18px;">node[shape=plaintext, fontname="KaiTi" ]{</span></p>
+<p><span style="font-size:18px;">character_stream [label="<span style="font-family:'宋体';">字符流</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">target_machine_code [label="<span style="font-family:'宋体';">目标机器语言</span><span style="font-family:'Times New Roman';">" ];</span></span></p>
+<p><span style="font-size:18px;">}</span></p>
+<p><span style="font-size:18px;">    character_stream -&gt;Lexical_Analyzer;</span></p>
+<p><span style="font-size:18px;">Lexical_Analyzer -&gt;Syntax_Analyzer [label="<span style="font-family:'宋体';">符号流</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">Syntax_Analyzer  -&gt;Semantic_Analyzer  [label="<span style="font-family:'宋体';">语法树</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">Semantic_Analyzer  -&gt;Intermediate_Code_Generator  [label="<span style="font-family:'宋体';">语法树</span><span style="font-family:'Times New Roman';">"] ;</span></span></p>
+<p><span style="font-size:18px;">Intermediate_Code_Generator-&gt;Machine_Independent_Code_Optimizer  [label="<span style="font-family:'宋体';">中间表示形式</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">Machine_Independent_Code_Optimizer  -&gt;Code_Generator  [label="<span style="font-family:'宋体';">中间表示形式</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">Code_Generator -&gt;Machine_Dependent_Code_Optimizer [label="<span style="font-family:'宋体';">目标机器语言</span><span style="font-family:'Times New Roman';">"];</span></span></p>
+<p><span style="font-size:18px;">Machine_Dependent_Code_Optimizer-&gt;target_machine_code ;</span></p>
+<p><span style="font-size:18px;">}</span></p>
+</td>
+</tr></tbody></table><p><span style="font-size:18px;">dot<span style="font-family:'宋体';">渲染生成的图，其他的格式（fdp等）渲染的效果不太好：</span></span></p>
+<p><img src="https://img-blog.csdn.net/20140415120402500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></p>
+<p><span style="font-size:18px;">fdp<span style="font-family:'宋体';">渲染的该图（效果非常不好）：</span></span></p>
+<p><img src="https://img-blog.csdn.net/20140415120414906?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhamlhbjIwMTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" /><br /></p>
+<h1><span style="font-size:18px;">小结</span></h1>
+<p><span style="font-size:18px;">Graphviz<span style="font-family:'宋体';">的确实一个非常的强大的工具，而且其官方的文档还非常全面。更多的内容，参考其官方的文档，地址为：</span><a href="http://www.graphviz.org/Documentation.php" rel="nofollow"><span>http://www.graphviz.org/Documentation.php</span></a>。</span></p>
+<h1><span style="font-size:18px;">参考文献</span></h1>
+<p><span style="font-size:18px;">[1] Graphviz -<span style="font-family:'宋体';">用指令来画关系图吧！</span><a href="http://www.openfoundry.org/en/foss-programs/8820-graphviz-" rel="nofollow"><span>http://www.openfoundry.org/en/foss-programs/8820-graphviz-</span></a></span></p>
+<p><span style="font-size:18px;">[2]<a href="http://blog.163.com/prevBlogPerma.do?host=lockriver&amp;srl=487232242010101761749383&amp;mode=prev" rel="nofollow"><span>Graphviz<span style="font-family:SimSun;">中文乱码问题</span></span></a></span></p>
+<p><span style="font-size:18px;">[3]<span style="font-family:'宋体';">使用 </span><span style="font-family:'Times New Roman';">Graphviz </span><span style="font-family:'宋体';">生成自动化系统图</span><span style="font-family:'Times New Roman';">:</span><a href="http://www.ibm.com/developerworks/cn/aix/library/au-aix-graphviz/" rel="nofollow"><span>http://www.ibm.com/developerworks/cn/aix/library/au-aix-graphviz/</span></a></span></p>
+<p><span style="font-size:18px;"><a href="http://www.ibm.com/developerworks/cn/aix/library/au-aix-graphviz/" rel="nofollow"><span><span style="color:#000000;">[4]An Introduction to GraphViz and dot :</span>http://www.linuxdevcenter.com/pub/a/linux/2004/05/06/graphviz_dot.html<br /></span></a></span></p>
+</div>
+            </div>
+                </div>
+				<div class="hide-article-box text-center">
+			<a class="btn" id="btn-readmore" data-track-view='{"mod":"popu_376","con":",https://blog.csdn.net/xiajian2010/article/details/23748557,"}' data-track-click='{"mod":"popu_376","con":",https://blog.csdn.net/xiajian2010/article/details/23748557,"}'>阅读更多</a>
+			<a class="btn" href="https://passport.csdn.net/account/login?utm_source=csdn_blog_pc_more_login" target="_self" id="btn-lobinreadmore" data-track-view='{"mod":"popu_557","con":",https://blog.csdn.net/xiajian2010/article/details/23748557,"}' data-track-click='{"mod":"popu_557","con":",https://blog.csdn.net/xiajian2010/article/details/23748557,"}'>登录后自动展开</a>
+		</div>
+        	</article>
+	
+</div>
+<script>
+    $(".MathJax").remove();
+</script>
+
+<!-- 博客详情页PC增加广告系统刷量代码 -->
+<div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+<script id="adJs52b5334"></script>
+<script>document.getElementById("adJs52b5334").src = "https://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+</div>
+
+<script>
+	(function(){
+		var btnReadmore = $("#btn-readmore");
+		if(btnReadmore.length>0){
+			var winH = $(window).height();
+			var articleBox = $("div.article_content");
+			var artH = articleBox.height();
+			if(artH > winH*2){
+				articleBox.css({
+					'height':winH*2+'px',
+					'overflow':'hidden'
+				})
+				btnReadmore.click(function(){
+					articleBox.removeAttr("style");
+					$(this).parent().remove();
+				})
+			}else{
+				btnReadmore.parent().remove();
+			}
+		}
+	})()
+</script>
+        <div class="t0 clearfix">
+                                                <a href="https://blog.csdn.net/qq_31037181/article/details/71302405" target="_blank" data-track-view='{"mod":"popu_642","con": ",https://blog.csdn.net/qq_31037181/article/details/71302405,"}' data-track-click='{"mod":"popu_642","con": ",https://blog.csdn.net/qq_31037181/article/details/71302405,"}'>
+                                                    <div class="text-content">
+                                                        <h4><em>Graphviz</em><em>中文</em>处理</h4>
+                                                        <div class="description">graphviz中显示中文需将dot文件保存为UTF-8格式；
+脚本中需要明确中文字体，例如以下定义中文字体为仿宋体：
+digraph G {
+edge [fontname=&quot;FangSong&quot;...</div>
+                                                    </div>
+                                                </a>
+                                            </div>        <a id="commentBox"></a>
+<div class="comment-box">
+	  	<div class="unlogin-box text-center">
+		想对作者说点什么？
+		<!-- $curl 当前地址 -->
+		<a href="https://passport.csdn.net/account/login?from=https://blog.csdn.net/xiajian2010/article/details/23748557#commentBox" class="btn btn-sm btn-red">我来说一句</a>
+	</div>
+			<div class="comment-list-container">
+		<a id="comments"></a>
+		<div class="comment-list-box">
+		</div>
+		<div id="commentPage" class="pagination-box d-none"></div>
+		<div class="opt-box text-center">
+			<button class="btn btn-sm btn-link-blue" id="btnMoreComment"></button>
+		</div>
+	</div>
+</div>        <div class="recommend-box">
+            		<div class="recommend-item-box recommend-box-ident type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/flyxiao28/article/details/80342736,BlogCommendFromBaidu_1"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/flyxiao28/article/details/80342736,BlogCommendFromBaidu_1"}'>
+		<a href="https://blog.csdn.net/flyxiao28/article/details/80342736" target="_blank" title="<em>graphviz</em> Windows<em>中文</em>乱码">
+			<div class="content">
+				<h4 class="text-truncate oneline">
+						<em>graphviz</em> Windows<em>中文</em>乱码				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="avatar">
+							<img src="https://avatar.csdn.net/B/C/F/3_flyxiao28.jpg" alt="flyxiao28" class="avatar-pic">
+							<span class="namebox">
+								<span class="name">flyxiao28</span>
+								<span class="triangle"></span>
+							</span>
+					</p>
+					<p class="date-and-readNum">
+						<span class="date hover-show">05-16</span>
+						<span class="read-num hover-hide">
+							<svg class="icon csdnc-yuedushu" aria-hidden="true">
+								<use xlink:href="#csdnc-yuedushu"></use>
+							</svg>
+							119</span>
+						</p>
+					</div>
+					<p class="content oneline">
+							第一步：修改：C:\Program Files\Graphviz2.38\fonts&amp;amp;lt;!-- Font directory list --&amp;amp;gt;    &amp;amp;lt;dir&amp;...					</p>
+			</div>
+					</a>
+	</div>
+						<div class="recommend-item-box recommend-box-ident type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/Innoghen_lou/article/details/73005527,BlogCommendFromBaidu_6"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/Innoghen_lou/article/details/73005527,BlogCommendFromBaidu_6"}'>
+		<a href="https://blog.csdn.net/Innoghen_lou/article/details/73005527" target="_blank" title="有关<em>graphviz</em><em>中文</em>乱码的一个与总不同的很无奈的解决方法">
+			<div class="content">
+				<h4 class="text-truncate oneline">
+						有关<em>graphviz</em><em>中文</em>乱码的一个与总不同的很无奈的解决方法				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="avatar">
+							<img src="https://avatar.csdn.net/8/C/4/3_innoghen_lou.jpg" alt="Innoghen_lou" class="avatar-pic">
+							<span class="namebox">
+								<span class="name">Innoghen_lou</span>
+								<span class="triangle"></span>
+							</span>
+					</p>
+					<p class="date-and-readNum">
+						<span class="date hover-show">06-10</span>
+						<span class="read-num hover-hide">
+							<svg class="icon csdnc-yuedushu" aria-hidden="true">
+								<use xlink:href="#csdnc-yuedushu"></use>
+							</svg>
+							1052</span>
+						</p>
+					</div>
+					<p class="content oneline">
+							（注：斜体部分为废话）
+辛辛苦苦写的博客，刷新了一下，想哭。
+
+
+如果在此之前你试了所有你能找到的有关graphviz中文乱码的解决方法还是不行，那么找到这篇博客后，我感觉你在解决这个问题的路...					</p>
+			</div>
+					</a>
+	</div>
+									<!-- 第四范式广告开关 -->
+				<div class="p4courset3_target _4paradigm_box recommend-item-box clearfix" ></div>
+				<script>window.p4sdk_enable_recommendBox=true</script>
+			
+					<div class="recommend-item-box recommend-box-ident type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/yangyangrenren/article/details/78604183,BlogCommendFromBaidu_2"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/yangyangrenren/article/details/78604183,BlogCommendFromBaidu_2"}'>
+		<a href="https://blog.csdn.net/yangyangrenren/article/details/78604183" target="_blank" title="<em>Graphviz</em> <em>中文</em>乱码">
+			<div class="content">
+				<h4 class="text-truncate oneline">
+						<em>Graphviz</em> <em>中文</em>乱码				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="avatar">
+							<img src="https://avatar.csdn.net/8/C/D/3_yangyangrenren.jpg" alt="yangyangrenren" class="avatar-pic">
+							<span class="namebox">
+								<span class="name">yangyangrenren</span>
+								<span class="triangle"></span>
+							</span>
+					</p>
+					<p class="date-and-readNum">
+						<span class="date hover-show">11-22</span>
+						<span class="read-num hover-hide">
+							<svg class="icon csdnc-yuedushu" aria-hidden="true">
+								<use xlink:href="#csdnc-yuedushu"></use>
+							</svg>
+							424</span>
+						</p>
+					</div>
+					<p class="content oneline">
+							系统环境：centos 7，查看命令：cat /etc/redhat-release 
+文件已经是utf-8格式的了，但是依然显示中文时候乱码，安装字体 
+yum install cjkuni-uka...					</p>
+			</div>
+					</a>
+	</div>
+						<div class="recommend-item-box recommend-box-ident type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/qq_22194911/article/details/80882853,BlogCommendFromBaidu_7"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_22194911/article/details/80882853,BlogCommendFromBaidu_7"}'>
+		<a href="https://blog.csdn.net/qq_22194911/article/details/80882853" target="_blank" title="<em>graphviz</em>画决策树图<em>中文</em><em>乱码问题</em>解决">
+			<div class="content">
+				<h4 class="text-truncate oneline">
+						<em>graphviz</em>画决策树图<em>中文</em><em>乱码问题</em>解决				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="avatar">
+							<img src="https://avatar.csdn.net/8/B/7/3_qq_22194911.jpg" alt="qq_22194911" class="avatar-pic">
+							<span class="namebox">
+								<span class="name">qq_22194911</span>
+								<span class="triangle"></span>
+							</span>
+					</p>
+					<p class="date-and-readNum">
+						<span class="date hover-show">07-02</span>
+						<span class="read-num hover-hide">
+							<svg class="icon csdnc-yuedushu" aria-hidden="true">
+								<use xlink:href="#csdnc-yuedushu"></use>
+							</svg>
+							247</span>
+						</p>
+					</div>
+					<p class="content oneline">
+							1、修改graphviz配置文件
+
+C:\Program Files\Graphviz2.38\fonts 
+&amp;amp;lt;dir&amp;amp;gt;C:\WINDOWS\Fonts&amp;amp;lt;/d...					</p>
+			</div>
+					</a>
+	</div>
+						<div class="recommend-item-box recommend-box-ident type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/u013657981/article/details/50436085,BlogCommendFromBaidu_3"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/u013657981/article/details/50436085,BlogCommendFromBaidu_3"}'>
+		<a href="https://blog.csdn.net/u013657981/article/details/50436085" target="_blank" title="在 Windows 上設定 <em>Graphviz</em> <em>中文</em>字型">
+			<div class="content">
+				<h4 class="text-truncate oneline">
+						在 Windows 上設定 <em>Graphviz</em> <em>中文</em>字型				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="avatar">
+							<img src="https://avatar.csdn.net/C/6/5/3_u013657981.jpg" alt="u013657981" class="avatar-pic">
+							<span class="namebox">
+								<span class="name">u013657981</span>
+								<span class="triangle"></span>
+							</span>
+					</p>
+					<p class="date-and-readNum">
+						<span class="date hover-show">12-30</span>
+						<span class="read-num hover-hide">
+							<svg class="icon csdnc-yuedushu" aria-hidden="true">
+								<use xlink:href="#csdnc-yuedushu"></use>
+							</svg>
+							2114</span>
+						</p>
+					</div>
+					<p class="content oneline">
+							http://electronic-blue.wikidot.com/blog:9
+
+在 Windows 上設定 Graphviz 中文字型 
+
+Shan-Yung
+ Yang
+
+
+...					</p>
+			</div>
+					</a>
+	</div>
+						<div class="recommend-item-box recommend-box-ident type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/qq_40776020/article/details/78436703,BlogCommendFromBaidu_4"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/qq_40776020/article/details/78436703,BlogCommendFromBaidu_4"}'>
+		<a href="https://blog.csdn.net/qq_40776020/article/details/78436703" target="_blank" title="<em>graphviz</em>  Windows<em>中文</em>乱码">
+			<div class="content">
+				<h4 class="text-truncate oneline">
+						<em>graphviz</em>  Windows<em>中文</em>乱码				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="avatar">
+							<img src="https://avatar.csdn.net/D/B/4/3_qq_40776020.jpg" alt="qq_40776020" class="avatar-pic">
+							<span class="namebox">
+								<span class="name">qq_40776020</span>
+								<span class="triangle"></span>
+							</span>
+					</p>
+					<p class="date-and-readNum">
+						<span class="date hover-show">11-03</span>
+						<span class="read-num hover-hide">
+							<svg class="icon csdnc-yuedushu" aria-hidden="true">
+								<use xlink:href="#csdnc-yuedushu"></use>
+							</svg>
+							563</span>
+						</p>
+					</div>
+					<p class="content oneline">
+							1.第一步：
+C:\Program Files (x86)\Graphviz2.37\etc\fonts    fonts.conf
+
+C:/WINDOWS/Fonts
+ ~/.fonts
+...					</p>
+			</div>
+					</a>
+	</div>
+								<div class="recommend-item-box recommend-ad-box" id="a_d_feed_0"></div>
+			<script>
+				var width = $("div.recommend-box").outerWidth() - 48;
+				NEWS_FEED({
+					w: width,
+					h: 60,
+					showid: 'Afihld',
+					placeholderId: 'a_d_feed_0',
+					inject: 'define',
+					define: {
+						imagePosition: 'left',
+						imageBorderRadius: 0,
+						imageWidth: 90,
+						imageHeight: 60,
+						imageFill: 'clip',
+						displayImage: true,
+						displayTitle: true,
+						titleFontSize: 20,
+						titleFontColor: '#333',
+						titleFontFamily: 'Microsoft Yahei',
+						titleFontWeight: 'bold',
+						titlePaddingTop: 0,
+						titlePaddingRight: 0,
+						titlePaddingBottom: 10,
+						titlePaddingLeft: 8,
+						displayDesc: true,
+						descFontSize: 14,
+						descPaddingLeft: 14,
+						descFontColor: '#6b6b6b',
+						descFontFamily: 'Microsoft Yahei',
+						paddingTop: 0,
+						paddingRight: 0,
+						paddingBottom: 0,
+						paddingLeft: 0,
+						backgroundColor: '#fff',
+						hoverColor: '#ca0c16'
+					}
+				})
+			</script>
+							<div class="recommend-item-box recommend-box-ident recommend-download-box clearfix" data-track-view='{"mod":"popu_387","con":",https://download.csdn.net/download/u010415192/9219945,BlogCommendFromBaidu_5"}' data-track-click='{"mod":"popu_387","con":",https://download.csdn.net/download/u010415192/9219945,BlogCommendFromBaidu_5"}'>
+			<a href="https://download.csdn.net/download/u010415192/9219945" target="_blank">
+				<div class="content">
+					<div class="">
+						<span class="type">下载</span>
+						<h4 class="text-truncate oneline clearfix">
+							<em>Graphviz</em><em>中文</em>教程指南						</h4>
+						<span class="data float-right">10-28</span>
+					</div>
+					<div class="desc oneline">
+							graphviz是贝尔实验室开发的一个开源的工具包，它使用一个特定的DSL(领域特定语言):dot作为脚本语言，然后使用布局引擎来解析此脚本，并完成自动布局。此文档为Graphviz中文教程，转载请注					</div>
+				</div>
+			</a>
+		</div>
+						<div class="recommend-item-box recommend-box-ident type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/ouening/article/details/55506249,BlogCommendFromBaidu_8"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/ouening/article/details/55506249,BlogCommendFromBaidu_8"}'>
+		<a href="https://blog.csdn.net/ouening/article/details/55506249" target="_blank" title="<em>Graphviz</em><em>使用</em>注意事项">
+			<div class="content">
+				<h4 class="text-truncate oneline">
+						<em>Graphviz</em><em>使用</em>注意事项				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="avatar">
+							<img src="https://avatar.csdn.net/8/6/8/3_ouening.jpg" alt="ouening" class="avatar-pic">
+							<span class="namebox">
+								<span class="name">ouening</span>
+								<span class="triangle"></span>
+							</span>
+					</p>
+					<p class="date-and-readNum">
+						<span class="date hover-show">02-17</span>
+						<span class="read-num hover-hide">
+							<svg class="icon csdnc-yuedushu" aria-hidden="true">
+								<use xlink:href="#csdnc-yuedushu"></use>
+							</svg>
+							2208</span>
+						</p>
+					</div>
+					<p class="content oneline">
+							系统环境：win10 64bit 
+工具：Graphviz, Notepad++关于Graphviz的介绍就不多说了，官网下载安装即可，安装后手动将程序所在文件目录添加到系统环境变量，然后打开控制台窗...					</p>
+			</div>
+					</a>
+	</div>
+						<div class="recommend-item-box recommend-box-ident type_blog clearfix" data-track-view='{"mod":"popu_387","con":",https://blog.csdn.net/a1368783069/article/details/52067404,BlogCommendFromBaidu_9"}' data-track-click='{"mod":"popu_387","con":",https://blog.csdn.net/a1368783069/article/details/52067404,BlogCommendFromBaidu_9"}'>
+		<a href="https://blog.csdn.net/a1368783069/article/details/52067404" target="_blank" title="<em>Graphviz</em> -图形可视化，python实现">
+			<div class="content">
+				<h4 class="text-truncate oneline">
+						<em>Graphviz</em> -图形可视化，python实现				</h4>
+				<div class="info-box d-flex align-content-center">
+					<p class="avatar">
+							<img src="https://avatar.csdn.net/9/A/C/3_a1368783069.jpg" alt="a1368783069" class="avatar-pic">
+							<span class="namebox">
+								<span class="name">a1368783069</span>
+								<span class="triangle"></span>
+							</span>
+					</p>
+					<p class="date-and-readNum">
+						<span class="date hover-show">07-29</span>
+						<span class="read-num hover-hide">
+							<svg class="icon csdnc-yuedushu" aria-hidden="true">
+								<use xlink:href="#csdnc-yuedushu"></use>
+							</svg>
+							1.6万</span>
+						</p>
+					</div>
+					<p class="content oneline">
+							系统自己的系统是  Mac OSX EI Capitan 
+python版本是 python3.5 64bit在Graphviz 官网查看到的mac os 的版本比较旧，没找到当前系统的版本。据其介绍...					</p>
+			</div>
+					</a>
+	</div>
+				
+            <div class="recommend-loading-box">
+                <img src='https://csdnimg.cn/release/phoenix/images/feedLoading.gif'>
+            </div>
+            <div class="recommend-end-box">
+                <p class="text-center">没有更多推荐了，<a href="https://blog.csdn.net/" class="c-blue c-blue-hover c-blue-focus">返回首页</a></p>
+            </div>
+        </div>
+    </main>
+    <aside>
+		    <div id="asideProfile" class="aside-box">
+    <h3 class="aside-title">个人资料</h3>
+    <div class="profile-intro d-flex">
+        <div class="avatar-box d-flex justify-content-center flex-column">
+            <a href="https://blog.csdn.net/xiajian2010">
+                <img src="https://avatar.csdn.net/3/3/1/3_xiajian2010.jpg" class="avatar_pic">
+            </a>
+        </div>
+        <div class="user-info d-flex justify-content-center flex-column">
+            <p class="name csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                <a href="https://blog.csdn.net/xiajian2010" target="_blank" class="text-truncate" id="uid">xiajian2010</a>
+            </p>
+                    </div>
+                <div class="opt-box d-flex justify-content-center flex-column">
+            <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379">
+                                <a class="btn btn-sm btn-red-hollow" href="https://passport.csdn.net/account/login?from=https://blog.csdn.net/xiajian2010/article/details/23748557" target="_self">关注</a>
+                            </span>
+                    </div>
+            </div>
+    <div class="data-info d-flex item-tiling">
+                <dl class="text-center" title="66">
+                        <dt><a href="https://blog.csdn.net/xiajian2010?t=1">原创</a></dt>
+            <dd><a href="https://blog.csdn.net/xiajian2010?t=1"><span class="count">66</span></a></dd>
+                    </dl>
+        <dl class="text-center" title="33">
+            <dt>粉丝</dt>
+            <dd><span class="count" id="fan">33</span></dd>
+        </dl>
+        <dl class="text-center" title="4">
+            <dt>喜欢</dt>
+            <dd><span class="count">4</span></dd>
+        </dl>
+        <dl class="text-center" title="32">
+            <dt>评论</dt>
+            <dd><span class="count">32</span></dd>
+        </dl>
+    </div>
+    <div class="grade-box clearfix">
+        <dl>
+            <dt>等级：</dt>
+            <dd>
+                <a href="https://blog.csdn.net/home/help.html#level" title="5级,点击查看等级说明" target="_blank">
+                    <svg class="icon icon-level" aria-hidden="true">
+                        <use xlink:href="#csdnc-bloglevel-5"></use>
+                    </svg>
+                </a>
+            </dd>
+        </dl>
+        <dl>
+            <dt>访问：</dt>
+            <dd title="240582">
+                24万+            </dd>
+        </dl>
+        <dl>
+            <dt>积分：</dt>
+            <dd title="3039">
+                3039            </dd>
+        </dl>
+        <dl title="15870">
+            <dt>排名：</dt>
+            <dd>1万+</dd>
+        </dl>
+    </div>
+    </div>		    <div class="csdn-tracking-statistics mb8 box-shadow" data-pid="blog" data-mod="popu_4" style="height:250px;">
+    <div class="aside-content text-center" id="cpro_u2734133">
+      <!-- 广告位：PC-博客内页-百度联盟-300x250 --><script type="text/javascript" src="//rabc1.iteye.com/source/api/ymebi.js?bwoc=oltly"></script>    </div>
+</div>
+		    <div id="asideNewArticle" class="aside-box">
+    <h3 class="aside-title">最新文章</h3>
+    <div class="aside-content">
+        <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/xiajian2010/article/details/38553909" target="_blank">关于Jekyll</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/xiajian2010/article/details/38437407" target="_blank">[水]一次工作中摸鱼</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/xiajian2010/article/details/38039885" target="_blank">[水]关于web地图</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/xiajian2010/article/details/37757349" target="_blank">Ubuntu中Nginx 开机自启动</a>
+            </li>
+                        <li class="clearfix">
+                <a href="https://blog.csdn.net/xiajian2010/article/details/34118153" target="_blank">关于Bash中的source命令</a>
+            </li>
+                    </ul>
+    </div>
+</div>
+		    		    <div id="asideCategory" class="aside-box flexible-box">
+    <h3 class="aside-title">个人分类</h3>
+    <div class="aside-content">
+        <ul>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1302071">
+                    MFC                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1302072">
+                    C++                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1302073">
+                    XML                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1521319">
+                    软件安装                    <span class="count float-right">26篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1521377">
+                    学习笔记                    <span class="count float-right">27篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1537867">
+                    软件测试                    <span class="count float-right">9篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1538731">
+                    java                    <span class="count float-right">14篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1539153">
+                    Eclipse插件安装                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1540679">
+                    C                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1544033">
+                    经验类                    <span class="count float-right">58篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1544063">
+                    Linux                    <span class="count float-right">33篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1552839">
+                    C#                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1552841">
+                    设计模式                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1554415">
+                    读书                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1614993">
+                    英语学习                    <span class="count float-right">5篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1780231">
+                    算法                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/1808725">
+                    JVM                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2170235">
+                    服务器                    <span class="count float-right">11篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2172779">
+                    Perl                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2173033">
+                    Javascript                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2173589">
+                    PHP                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2175819">
+                    绘图                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2187337">
+                    python                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2194659">
+                    Graphviz                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2194963">
+                    翻译                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2204279">
+                    github                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2204321">
+                    vim                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2204323">
+                    浏览器                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2205235">
+                    ubuntu                    <span class="count float-right">9篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2227195">
+                    文档工具                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2227569">
+                    学术研究                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2234333">
+                    wiki                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2253723">
+                    ruby                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2253725">
+                    rails                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2253727">
+                    rubygems                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2253769">
+                    windows                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2256579">
+                    数据库                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2262525">
+                    CGI                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2262577">
+                    web                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2262579">
+                    REST                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2268871">
+                    mysql                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2269397">
+                    pdf                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2335535">
+                    xorg                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                        <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/category/2335553">
+                    OpenGL                    <span class="count float-right">1篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+		    <div id="asideArchive" class="aside-box flexible-box">
+    <h3 class="aside-title">归档</h3>
+    <div class="aside-content">
+        <ul class="archive-list">
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2014/08">
+                    2014年8月                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2014/07">
+                    2014年7月                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2014/06">
+                    2014年6月                    <span class="count float-right">4篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2014/05">
+                    2014年5月                    <span class="count float-right">12篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2014/04">
+                    2014年4月                    <span class="count float-right">16篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2014/03">
+                    2014年3月                    <span class="count float-right">3篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2014/02">
+                    2014年2月                    <span class="count float-right">5篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2013/12">
+                    2013年12月                    <span class="count float-right">7篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2013/11">
+                    2013年11月                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2013/10">
+                    2013年10月                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2013/09">
+                    2013年9月                    <span class="count float-right">5篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2013/08">
+                    2013年8月                    <span class="count float-right">29篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2013/07">
+                    2013年7月                    <span class="count float-right">5篇</span>
+                </a>
+            </li>
+                        <!--归档统计-->
+            <li>
+                <a href="https://blog.csdn.net/xiajian2010/article/month/2012/12">
+                    2012年12月                    <span class="count float-right">2篇</span>
+                </a>
+            </li>
+                    </ul>
+    </div>
+        <p class="text-center">
+        <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a>
+    </p>
+    </div>
+		    <div id="asideHotArticle" class="aside-box">
+	<h3 class="aside-title">热门文章</h3>
+	<div class="aside-content">
+		<ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+							<li>
+					<a href="https://blog.csdn.net/xiajian2010/article/details/23748557">Graphviz的使用及中文乱码问题</a>
+					<p class="read">阅读量：<span>15687</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/xiajian2010/article/details/17376157">java jvm 参数 -Xms -Xmx -Xmn -Xss 调优总结</a>
+					<p class="read">阅读量：<span>15267</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/xiajian2010/article/details/9625131">Ubuntu中在tty终端显示和输入汉字</a>
+					<p class="read">阅读量：<span>13008</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/xiajian2010/article/details/17376453">JVM详解之Java垃圾回收机制详解和调优</a>
+					<p class="read">阅读量：<span>12985</span></p>
+				</li>
+							<li>
+					<a href="https://blog.csdn.net/xiajian2010/article/details/25965109">关于C# 连接Mysql</a>
+					<p class="read">阅读量：<span>8488</span></p>
+				</li>
+					</ul>
+	</div>
+</div>
+		    <div id="asideNewComments" class="aside-box">
+    <h3 class="aside-title">最新评论</h3>
+    <div class="aside-content">
+        <ul class="newcomment-list">
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/xiajian2010/article/details/9799059#comments">Unix原理与应用(第四版)学习笔...</a>
+                <p class="comment">
+                    <a href="https://my.csdn.net/xiajian2010" class="user-name" target="_blank">xiajian2010</a>：以前的我，好牛逼                </p>
+            </li>
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/xiajian2010/article/details/23748557#comments">Graphviz的使用及中文乱码问题</a>
+                <p class="comment">
+                    <a href="https://my.csdn.net/zhy755788055" class="user-name" target="_blank">zhy755788055</a>：http://blog.163.com/prevBlogPerma.do?host=lockriv...                </p>
+            </li>
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/xiajian2010/article/details/17376157#comments">java jvm 参数 -Xms ...</a>
+                <p class="comment">
+                    <a href="https://my.csdn.net/zhangpengwe" class="user-name" target="_blank">zhangpengwe</a>：非堆内存分配
+JVM使用-XX:PermSize设置非堆内存初始值,默认是物理内存的1/64;由X...                </p>
+            </li>
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/xiajian2010/article/details/25965109#comments">关于C# 连接Mysql</a>
+                <p class="comment">
+                    <a href="https://my.csdn.net/longgege2053" class="user-name" target="_blank">longgege2053</a>：有帮助。                </p>
+            </li>
+                        <li>
+                <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/xiajian2010/article/details/17376157#comments">java jvm 参数 -Xms ...</a>
+                <p class="comment">
+                    <a href="https://my.csdn.net/YWGuang" class="user-name" target="_blank">YWGuang</a>：保持怀疑，积极验证。帖子很不错，学习到很多东西。赞                </p>
+            </li>
+                    </ul>
+    </div>
+</div>
+		<div id="asideFooter">
+			
+		<div class="aside-box">
+						<script type="text/javascript" src="//rabc1.iteye.com/source/res/yn6yz.js?ojylrgb=yk"></script>
+					</div>
+				<div class="aside-box">
+			<div class="persion_article">
+			</div>
+		</div>
+	</div>
+</aside>
+<script src="https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js" data-isfootertrack="false" type="text/javascript"></script>
+<script>
+	$("a.flexible-btn").click(function(){
+		$(this).parents('div.aside-box').removeClass('flexible-box');
+		$(this).remove();
+	})
+</script>
+</div>
+<div class="mask-dark"></div>
+<div class="pulllog-box" style="display: block;">
+	<div class="pulllog clearfix">
+		<span class="text float-left">
+			<!-- 广告位：PC-博客内页底通 文字链位置 -->
+			<script>
+			(function() {
+				var s = "_" + Math.random().toString(36).slice(2);
+				document.write('<div id="baidufooter_0001"></div>');
+				(window.slotbydup=window.slotbydup || []).push({
+					id: '5851901',
+					container: 'baidufooter_0001',
+					size: '520,40',
+					display: 'inlay-fix'
+				});
+			})();
+			</script>
+			<script src="https://dup.baidustatic.com/js/os.js"></script>
+			<style>
+				#baidufooter_0001{
+					display: none !important;
+				}
+			</style>
+		</span>
+		<div class="pulllog-btn float-right clearfix">
+            <button class="pulllog-login float-left csdn-tracking-statistics tracking-click" data-mod="popu_557">
+                <a href="https://passport.csdn.net/account/login?utm_source=csdn_blog_pc_login" target="_self">登录</a>
+            </button>
+            <div class="pulllog-sigin float-left csdn-tracking-statistics tracking-click" data-mod="popu_558">
+                <a href="https://passport.csdn.net/account/mobileregister" target="_blank">注册</a>
+            </div>
+            <button class="btn-close">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#csdnc-times"></use>
+                </svg>
+            </button>
+		</div>
+	</div>
+</div>
+<div id="loginWrap" style="display:none"></div>
+<div class="tool-box">
+	<ul class="meau-list">
+		<li>
+			<button class="long-height hover-box btn-like " title="点赞">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup-ok"></use>
+				</svg><svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-thumbsup"></use>
+				</svg>
+				<span class="hover-show text-box text">
+					<span class="no-active">点赞</span>
+					<span class="active">取消点赞</span>
+				</span>
+				<p>1</p>
+			</button>
+		</li>
+		<li>
+						
+			<a class="btn-comments long-height hover-box" title="写评论" href="#commentBox">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-comments"></use>
+				</svg>
+				<span class="hover-show text">评论</span>
+				<p class="">
+						1				</p>
+			</a>
+		</li>
+		<li class="toc-container-box" id="liTocBox">
+			<button class="btn-toc low-height hover-box" title="目录">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-contents"></use>
+				</svg>
+				<span class="hover-show text">目录</span>
+			</button>
+			<div class="toc-container">
+				<div class="pos-box">
+					<div class="icon-arrow"></div>
+					<div class="scroll-box">
+						<div class="toc-box"></div>
+					</div>
+				</div>
+				<div class="opt-box">
+					<button class="btn-opt prev nomore" title="向上">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevronup"></use>
+						</svg>
+					</button>
+					<button class="btn-opt next">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#csdnc-chevrondown"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li>
+			<button class="btn-bookmark low-height hover-box" title="收藏">
+				<svg class="icon active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark-ok"></use>
+				</svg>
+				<svg class="icon no-active hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-bookmark"></use>
+				</svg>
+					<span class="hover-show text">收藏</span>
+				<!-- <span class="hover-show text-box text">
+					<span class="no-active">收藏</span>
+					<span class="active">取消收藏</span>
+				</span> -->
+			</button>
+		</li>
+				<li class="bdsharebuttonbox">
+			<button class="btn-comments low-height hover-box" >
+				<a href="#" class="bds_weixin clear-share-style" data-cmd="weixin" title="手机看"></a>
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-wechat"></use>
+				</svg>
+				<span class="hover-show text">
+					手机看
+				</span>
+			</button>
+		</li>
+							<li class="">
+				<a class="btn-comments low-height hover-box" href="https://blog.csdn.net/xiajian2010/article/details/23746995" title="The DOT Language">
+					<svg class="icon hover-hide" aria-hidden="true">
+						<use xlink:href="#csdnc-shangyiye"></use>
+					</svg>
+					<span class="hover-show text">上一篇</span>
+				</a>
+			</li>
+								<li class="">
+			<a class="btn-comments hover-box low-height" href="https://blog.csdn.net/xiajian2010/article/details/23750431" title="关于Pidgin和webqq">
+				<svg class="icon hover-hide" aria-hidden="true">
+					<use xlink:href="#csdnc-xiayiye"></use>
+				</svg>
+				<span class="hover-show text">下一篇</span>
+			</a>
+		</li>
+						<li class="bdsharebuttonbox"style="margin-top: 8px;">
+			<script type="text/javascript" src="//cjhd.mediav.com/js/interactive_plugin.js"></script> 
+			<style>
+				#_360_interactive > *{
+					 margin-left: -8px;
+				}
+			</style>
+			<div id="_360_interactive" > 
+				<script> INTERACTIVE_PLUGIN.render({ showid : 'N0ufqn', w: 60, h: 60, type: 'hover', placeholderId: '_360_interactive' }); </script> 
+			</div>
+			<img src="//img-ads.csdn.net/2016/201608021757063065.png" style="margin: 0 auto;display: block;" alt="">
+		</li>
+	  	</ul>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://csdnimg.cn/static/api/js/share.js?v=89860594'];</script>
+<script>
+    var recommendCount = 9;
+    recommendCount = recommendCount > 1 ? (recommendCount + (recommendCount>6 ? 2 : 1)) : recommendCount;
+    var articleTit = "Graphviz的使用及中文乱码问题";
+    var ChannelId = 0;
+    var articleId = "23748557";
+    var commentscount = 1;
+    var islock = false;
+    var curentUrl = "https://blog.csdn.net/xiajian2010/article/details/23748557";
+    var myUrl = "https://my.csdn.net/";
+    //1禁止评论，2正常
+    var commentAuth = 2;
+    //百度搜索
+    var baiduKey = "python+graphviz%E8%BE%93%E5%87%BA%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81";
+    var needInsertBaidu = false;
+    // 代码段样式
+    var codeStyle = '';
+    var highlight = ["graphviz","\u4f7f\u7528","\u4e2d\u6587","\u4e71\u7801\u95ee\u9898"];//高亮数组
+</script>
+<script src="https://csdnimg.cn/public/sandalstrap/1.3/js/sandalstrap.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/vendor/pagination/paging.js"></script>
+<script src='https://csdnimg.cn/public/common/gotop/js/goTop-v1.0.min.js?v201803151422'></script>
+<script>
+    GoTop({
+        right: 8,
+        hasReport: true,
+        reportFun: function() {
+            showReport(false,"Graphviz的使用及中文乱码问题");
+        }
+    })
+</script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/common-4d72a3f9df.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/template/js/detail-a659ec5fba.min.js"></script>
+<script src="https://csdnimg.cn/release/phoenix/themes/skin3-template/skin3-template-9376486353.min.js"></script>
+<script src="https://csdnimg.cn/search/baidu_search-1.1.2.js?v=201802071056&autorun=true&install=true&keyword=python+graphviz%E8%BE%93%E5%87%BA%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81"  type="text/javascript"></script>
+</body>
+<div class="box-box-aways">
+    <a class="btn-remove">
+        关闭
+    </a>
+		<div id="adAways">
+		<script>
+			(function() {
+				(window.slotbydup=window.slotbydup || []).push({
+					id: '5868728',
+					container: 'adAways',
+					size: '250,500',
+					display: 'inlay-fix'
+				});
+			})();
+			</script>
+		<script src="https://dup.baidustatic.com/js/os.js"></script>
+</div>
+
+</div>
+<div class="box-box-default">
+    <a class="btn-remove">
+        关闭
+    </a>
+		<div id="right_height_a_d"></div>
+</div>
+<div class="box-box-large">
+    <a class="btn-remove">
+        关闭
+    </a>
+		<div id="right_alert_a_d"></div>
+</div>
+<!-- 第四范式SDK -->
+
+<!-- 高亮未与 markdown兼容  -->
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.3.1/ckeditor/plugins/chart/chart.css" />
+	<script type="text/javascript" src="https://csdnimg.cn/release/blog_editor_html/release1.3.1/ckeditor/plugins/chart/lib/chart.min.js"></script>
+	<script type="text/javascript" src="https://csdnimg.cn/release/blog_editor_html/release1.3.1/ckeditor/plugins/chart/widget2chart.js"></script>
+	<link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.3.1/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-dark.css">
+	<script type="text/javascript" src="https://csdnimg.cn/release/phoenix/production/pc_wap_common-93244aa03c.js" /></script>
+
+	<script type="text/javascript">
+	$(function(){
+		var allEscRegex = /&(lt|gt|amp|quot|nbsp|shy|#\d{1,5});/g,
+		    namedEntities = {
+					lt: '<',
+					gt: '>',
+					amp: '&',
+					quot: '"',
+					nbsp: '\u00a0',
+					shy: '\u00ad'
+				}
+		var allEscDecode = function( match, code ) {
+				return namedEntities[ code ];
+		};
+		htmlDecodeAttr = function( text ) {
+				return text.replace( allEscRegex, allEscDecode );
+		}
+	  hljs.initHighlightingOnLoad();
+	  hljs.initCopyButtonOnLoad();
+	  hljs.initLineNumbersOnLoad();
+		if($('pre .language-plain').length>0){
+			$('pre .language-plain').each(function(i,e){
+				var highlightRe = hljs.highlightAuto(htmlDecodeAttr(e.innerHTML))
+				e.innerHTML = highlightRe.value;
+				e.className = 'language-'+highlightRe.language;
+			});
+		}
+	})
+	</script>
+<script type="text/javascript" src="https://static-blog.csdn.net/mdeditor/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "94%container" },
+                    imageFont: null
+            },
+            tex2jax: {
+                preview: "none"
+            },
+            mml2jax: {
+                preview: 'none'
+            }
+    });
+</script>
+</html>
