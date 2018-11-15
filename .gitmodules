@@ -1,0 +1,3 @@
+[submodule "Chap_03-Tech/03.015-CPP/CppCheck/Chap_03-Tech/03.015-CPP/CppCheck/cppcheck"]
+	path = Chap_03-Tech/03.015-CPP/CppCheck/Chap_03-Tech/03.015-CPP/CppCheck/cppcheck
+	url = https://github.com/danmar/cppcheck.git
