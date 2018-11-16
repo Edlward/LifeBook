@@ -328,7 +328,13 @@ V3 board.
 
 
 
-
+//================================
+2018.11.16 Friday.
+00. platform, freeWing.
+01. vs2005£¬C# code: 
+02. FOC, doctor paper.
+03. freeRTOS.
+04. pc-lint.
 
 //================================
 2018.11.14 Wednesday.
