@@ -3,7 +3,7 @@ PyInstaller/
 Debug/
 sci_main.exe
 
-_output/
+
 _output_icTest/
 *.pyc
 *.bak

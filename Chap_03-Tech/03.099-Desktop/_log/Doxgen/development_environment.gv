@@ -1,0 +1,55 @@
+digraph "development_environment" {
+    rankdir=LR
+
+    subgraph cluster_eclipse_paltform {
+        style=invis
+        subgraph cluster_eclipse {
+            style=invis
+            Eclipse [style=rounded, shape = box, height=0.8, width=3]
+         } 
+        subgraph cluster_A1 {
+        style=invis
+            A1 [style=invis, shape = box, height=0.5, width=2]
+         } 
+     }
+
+    subgraph cluster_EGM {
+        style=dashed
+        subgraph cluster_DLU {
+            style=dashed
+            Doxgen   [style=rounded, shape = box , height=0.5, width=2]
+            Lint     [style=rounded, shape = box , height=0.5, width=2]
+            UnitTest [style=rounded, shape = box , height=0.5, width=2]
+        }//DLU.
+
+        subgraph cluster_make_git {
+            style=dashed
+            Git [style=rounded, shape = box , height=0.5, width=1]
+            Make [style=rounded, shape = box , height=0.5, width=1]
+        }//make_git.
+
+        subgraph cluster_files {
+            files [ shape=record, style=rounded
+                label="<header>|
+                {<headfile>  hpp         |<code> cpp           }|
+                {<makefile>  Makefile    |<target_mk> xxx.mk   }|
+                {<jenkins>   Jenkins                           }|
+                {<linux_cmd> Shell.sh    |<window_cmd> xxx.bat }|
+                {<readme>    Readme.md   |<help>     Help.txt  }|
+                {<footer>}"]
+        }//files.
+    }//EGM.
+    
+    //---//invis
+    //compound = true
+    //Eclipse:n  -> files:footer       [lhead=cluster_EGM]
+    Git:e        -> files:footer         []
+    Make:e    -> files:makefile       []
+    //
+    files:header  -> Doxgen:w          [dir=back]
+    files:code  -> Lint:w               [dir=back]
+    files:target_mk  -> UnitTest:w         [dir=back]
+    //files:window_cmd  -> UnitTest:w         [dir=back]
+    //eclipse alien middle.
+    A1:e        -> Eclipse:w            [style=invis]
+}

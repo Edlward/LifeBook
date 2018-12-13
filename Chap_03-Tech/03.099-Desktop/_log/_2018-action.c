@@ -12,6 +12,7 @@
 04. Python.
 05. doxgen example.
 
+
 EF : course start on 2 July
 }
 
@@ -62,6 +63,12 @@ EF : course start on 2 July
 1005-template:
 {
 
+dekai-suzhou.
+qtk12345678
+
+
+#export PATH=$PATH:/C/mbs/programs/bin/
+#export PATH=$PATH:/C/mbs/programs/bin/
 
 }
 //1005.
@@ -75,9 +82,77 @@ EF : course start on 2 July
 	适应环境与人，Jeppa remove enum ADC_TO_VOLT, 要求严格，干净。
 04. 运行调试：机械连杆，CCL电机（编码线），SPM电机（驱动线），
 			功能开到位晃动，
+			
+05. State Machine. How many states? What States?
+	//! object   ------->states. //isoSgl ->0, 1.------>state machine       ------------>condition table.
+		//!      ------->signals                 ------>events              ------------>messages.
+	//! signals -> events. signalsArray[SGINAL_IDx], eventsArray[EVENT_ID]. SetEvent(event, EVENT_ID, MESSAGE_ID). 
+		//! input signals  ->events.  
+		//! fault signals  ->events.
+		//! process signals->events.
+		//! state signals  ->events.
+	//! events -> messages:    messageArray[MESSAGE_ID].   between modules, independence.
+		//! CMD.
+		/// enum {MSG_ISO_SET = 0, ..., MSG_LENGTH}
+	
+	//event, jump edge once, send to other module. //reset iso event, to interior light, to open cmd.
+	if (signal)
+	{
+		isoSetMsgToIntLight = signal;
+		isoSetMsgToOpnCmd   = signal;
+	}
+	else //can recover event.
+	{
+		isoResetMsgToIntLight = signal;
+	}
+
+	SetEvent(signal, SGINAL_IDx, EVENT_IDx)
+	{
+		if (signalsArray[SGINAL_IDx] != signal)
+		{
+			if (signal)
+			{
+				eventsArray[EVENT_IDx] = signal;
+			}
+			signalsArray[SGINAL_IDx] = signal;
+		}
+	}
+	SetEvent((!isoSgl), SGINAL_IDx, EVENT_ISO_RESET_IDx);
+	
+	
+	//! conditions: truth table.
+	//! priority: priority table.
+	switch, state no more 5. 
+	
+    if, else if  only use 1 condition. many conditons, use truth table.
+	
+	SetLightOnTruthTable    = (A && B && C && D);
+	SetLightFlashTruthTable = (E && F && G && D);
+	if (SetLightOnTruthTable)
+	{	LightValue = ON;
+	}
+	else if (SetLightFlashTruthTable)
+	{	LightValue = FLASH;
+	}
+	else
+	{	LightValue = OF;
+	}
+	
+	PriorityTable = (!A && !B && !C && D);
 }
 //1006.
 
+
+//================================
+1007-code finshed:
+{
+01. digitalOutput component.
+02. torqueLimiter.
+03. freeSwingCommand.
+04. slowOpenCommand. (debug and revise closeCommand.cpp without spring./*init open, close obstruct, if check 1 condition.*/)
+05. doorControlApp.
+}
+//1005.
 
 //================================
 1015-sentence:
@@ -90,6 +165,11 @@ Fixed？ in new commit as it may.
 As far as my concerned it's use full to distinguish class and object with C(class).
 Changed to xxx in new commit.
 Removed the outputConfig.hpp file in new commit.
+//csi16StalledSpeedDifferenceLimit is not used as a speed difference, but rather as an absolute limit
+I think that the introduced statuses SLOW_OPENING ad SLOW_STALLED are unnecessary. 
+Use the normal once OPENING and STALLED.
+
+a more descriptive name.
 
 pop up an issue
 comment,
@@ -127,7 +207,13 @@ MOTION_CONTROL_TRANSITION_DELAY_TIMER_ID(41-length)
 	1030-Could the code be shared instead of copied? //not repeated code.
 	1030-calculate less.
 	1030-common helper function.
-
+	
+	1100-quasar and quasarMotor target doesn’t compile
+	1101-check the door opens and closes.
+	1102-Check if the onObject() function.
+	1103-indentation bloopers.
+	1104-git pull before continuing.
+	1105-NOT use tab, use 4 spaces.
 }
 //1016.
 
@@ -246,7 +332,7 @@ lint/conf/project.lnt
 
 
 //================================
-40006-V3 prototype pins:
+4006-V3 prototype pins:
 {
 //===MOTOR BOARD===//		V3.
 pin26-PB0 , not used,     HW_VERSION.
@@ -290,6 +376,12 @@ pin28-PB02 , BOOT1,  		STATUS_LED.
 }
 //4006.
 
+//================================
+4007-error
+{
+001. error: cannot convert 'motionControl::MotionCommand* const' to 'motionControlInternal::OpeningCommandBackEnd*' in initialization
+}
+//4007.
 //################################
 5000-log:
 {
@@ -312,6 +404,7 @@ V3 board.
 
 
 
+2740 uH
 
 
 
@@ -327,6 +420,167 @@ V3 board.
 
 
 
+
+
+
+
+
+
+
+
+
+
+//================================
+2018.12.12 Wednesday.
+01. email !
+02. platform: slowOpen.
+03. pc-lint.
+12. FOC, doctor paper.('MOTOR')
+13. freeRTOS.         ('rtos')
+14. vs2005，C# code:  ('pc sw')
+
+21. /// STM32CubeMX.
+22. //make.exe -> Cygwin Gcc.
+23. //gcc -> cmd.
+24. //openocd.
+25. c++ design.
+26. python.
+
+//================================
+2018.12.10 Monday.
+01. email !
+02. platform: slowOpen.
+03. pc-lint.
+12. FOC, doctor paper.('MOTOR')
+13. freeRTOS.         ('rtos')
+14. vs2005，C# code:  ('pc sw')
+
+#125   00000 00:00:23.023    Info doorLogicApp set current -972 mA # 
+
+## Assert failed at LR 0x801DD25, task CanSrvRx
+
+===========================
+MBS logging to UART started
+#0     00000 00:00:00.000    Info SYS_CTRL last reset flag(s): Pin reset
+#1     00000 00:00:00.000    Info SYS_CTRL last reset flag(s): Software reset
+#2     00000 00:00:00.000    Info SYS_CTRL build-id Len:20 Data:0x35ef12d711efb56d22a4967d65e8dedae9c88614
+#3     00000 00:00:00.000 Warning Error from previous run ## Assert failed at LR 0x801DD25, task CanSrvRx
+#4     00000 00:00:00.003    Info initGlobals Globals initialized
+#5     00000 00:00:00.005    Info initDoorLogicApp Using SERIAL driver = HAL-SERIAL_Stm32 v-1, config = mbs_st_m64_core_v10 v-1 
+=========================================
+>>> Out of sequence or lost log record(s)
+=========================================
+#7     00000 00:00:00.006 Warning mbsBufferDynamic Heap low memory!
+=========================================
+>>> Out of sequence or lost log record(s)
+=========================================
+#6     00000 00:00:00.006    Info inputApp input task started
+=========================================
+>>> Out of sequence or lost log record(s)
+=========================================
+#8     00000 00:00:00.006    Info motionControlApp motionControl task started
+#9     00000 00:00:00.007    Info doorLogicApp OMSBasicMain task started
+#10    00000 00:00:00.007    Info doorLogicApp Motor Version =_= 0906. 
+#11    00000 00:00:00.007    Info doorLogicApp motor speed 0 mrad/s # 
+#12    00000 00:00:00.007    Info doorLogicApp motor pos 0 urad # 
+#13    00000 00:00:00.007    Info doorLogicApp set current 0 mA # 
+MBS Console online, type help for a list of available commands
+
+> #14    00000 00:00:01.008    Info doorLogicApp Motor Version =_= 0906. 
+#15    00000 00:00:01.008    Info doorLogicApp motor speed 0 mrad/s # 
+#16    00000 00:00:01.008    Info doorLogicApp motor pos 0 urad # 
+
+
+
+//================================
+2018.12.08 Sat.
+
+	My groceries cost about $400 each month. 			我的杂货费用每月约400 美元。
+	My train pass is $50 a month. 						我的火车通票是每月50美元。
+	My utility bill is usually around 200 per month. 	我的水电费账单通常大约每月200。
+	My monthly mortgage payment is $2,500. 				我每月按揭付款为2，500美元。
+	I pay about 7,000 in property tax every year. 		我每年付大约7，000房产税。
+  	  	 
+	对于一些在一段时间内发生不止一次的费用，你可以使用像twice或three times这样的单词。
+  	  	 
+	I pay my car insurance twice a year. 				我每年付两次汽车保险。
+	I buy a subway ticket three times a week. 			我一周买三次地铁票。
+	
+	
+	列举选项
+	处理一个问题的方法是列出你的选项，然后选择最好的一个。 注意这里有几个单词的意思和option相同。
+	One option is to lay off workers with low seniority. 	  	一个选择是解雇工龄短的工人。
+	We have to make some hard choices. 	  	我们不得不做一些艰难的选择。
+	One alternative is to use attrition. We just don't replace workers who leave. 	  	一个选择是使用损耗。员工离开后我们不会再招人填补职位。
+	Another possibility is to offer older workers a large retirement bonus. 	  	另一个可能性是给老员工一笔大额的退休奖金。
+	We may have to consider more drastic options. 	  	我们可能不得不考虑更极端的选择。
+	
+	
+	 My salary is $60,000, but my total compensation adds up to about $80,000 per year.
+	  	我的工资是60，000美元，但是我的总体薪酬加起来每年大约80，000美元。
+	I'm really happy with the compensation package at my company. 	  	我对我们公司的薪酬包很满意。
+	
+	 	
+My benefits include generous medical and retirement plans, and three weeks of vacation each year.
+	  	我的福利包括慷慨的医疗和退休方案，和每年三个星期的休假。
+	My company contributes $500 every month to my retirement plan. 	  	我的公司每月支付500美元到我的退休方案中。
+	There is a 400-a-month deduction for the medical plan. 	  	每月扣除400的医疗计划钱。
+	Our medical plan includes dental work and any counseling we need. 	  	我们的医疗方案包括牙科和我们需要的任何咨询费用。
+
+My incomes expenses debts are about $ 3,000 a month, including rent and food.
+Because of my student loan, I have about $ 5,000 in income debt savings .
+My income debt saving from work is about $ 5,000 a month.
+I have about $ 3,000 in expenses savings borrows in the bank.
+My parents paid back borrowed loaned me $ 6,000 for school.
+I pay back borrow owe the bank about $ 4,000 for my loan.
+
+//================================
+2018.11.28 Wednesday.
+00. email.
+00. platform: slowOpen.
+01. vs2005，C# code: 
+02. FOC, doctor paper.
+03. freeRTOS.
+04. pc-lint.
+05. email.
+
+mock, expect指向同一个地址。
+    void vExpectGetDoorAngle( int32_t* psi32DoorAngle )
+    {
+        mock().expectOneCall( "si32GetDoorAngleInMicroRad" )
+              .andReturnValue( static_cast<void*>( psi32DoorAngle ) );
+    }
+
+指针类型不能转换，直接源头定义为应用的类型。
+SlowOpenCommandImp* slowOpenCmdImp = reinterpret_cast<SlowOpenCommandImp*>(slowOpenCommand);
+
+//================================
+2018.11.28 Wednesday.
+00. email.
+00. platform: slowOpen.
+01. vs2005，C# code: 
+02. FOC, doctor paper.
+03. freeRTOS.
+04. pc-lint.
+05. email.
+
+indentation.
+
+//================================
+2018.11.19 Monday.
+/*
+## Library/*
+## !Library/*.asset
+## 表示忽略Library文件夹但是不忽略Library文件夹下的.asset结尾的文件。
+## 需要注意的是，忽略的文件夹一定要结尾 /* ，否则不忽略规则将无法生效。
+
+## “#”表示注释
+## “/”表示目录；
+## “*”通配多个字符；
+## “?”通配单个字符
+## “[]”包含单个字符的匹配列表，参见正则表达式；
+## “!”表示不忽略*匹配到的文件或目录；
+*/
 
 //================================
 2018.11.16 Friday.
@@ -480,7 +734,7 @@ Can't find a source file at
             si32MinLowEnergyTorqueInMilliNm = si32SpringTorqueInMilliNm;
             si32MinLowEnergyTorqueInMilliNm -= si32LowEnergyTorqueInMilliNm;
             si32MinLowEnergyTorqueInMilliNm -= csi32LowerLowEnergyTorqueMarginInMilliNm;
-		
+			
     //hardware limit
     const int32_t si32MaxHardwareTorqueLimitInMilliNm = motionControlInternal::MAX_HARDWARE_TORQUE;
     const int32_t si32MinHardwareTorqueLimitInMilliNm = - si32MaxHardwareTorqueLimitInMilliNm;		
