@@ -380,6 +380,21 @@ pin28-PB02 , BOOT1,  		STATUS_LED.
 4007-error
 {
 001. error: cannot convert 'motionControl::MotionCommand* const' to 'motionControlInternal::OpeningCommandBackEnd*' in initialization
+
+    //! Sub-id of MOTION_CONTROL_STATUS
+    enum
+    {
+        MOTION_CONTROL_STATUS_CLOSING = 0,//0
+        MOTION_CONTROL_STATUS_MANUAL,     //1
+        MOTION_CONTROL_STATUS_CLOSED,     //2
+        MOTION_CONTROL_STATUS_OBSTRUCTED, //3
+        MOTION_CONTROL_STATUS_OPENING,    //4
+        MOTION_CONTROL_STATUS_OPEN,       //5
+        MOTION_CONTROL_STATUS_STALLED,    //6
+        MOTION_CONTROL_STATUS_DRIFT_COMP, //7
+        MOTION_CONTROL_STATUS_STOPPED     //8
+    };
+    
 }
 //4007.
 //################################
@@ -413,8 +428,11 @@ V3 board.
 
 
 
+Error	1	Inconsistent accessibility: field type 'Kalman2005.KalmanFilter.kalmanType' is less accessible than field 'Kalman2005.KalmanFilter.kal'	C:\Users\jerhua\_huamg_assa_\03-tech\03.061-Git\Kalman2005\DrawLine2005\Form1.Designer.cs	153	27	Kalman2005
 
+Inconsistent accessibility: field type  is less accessible than field 
 
+Error	1	'Kalman2005.kalmanType.X' is inaccessible due to its protection level	C:\Users\jerhua\_huamg_assa_\03-tech\03.061-Git\Kalman2005\DrawLine2005\Form1.cs	174	17	Kalman2005
 
 
 
