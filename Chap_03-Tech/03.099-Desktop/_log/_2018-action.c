@@ -139,6 +139,17 @@ qtk12345678
 	}
 	
 	PriorityTable = (!A && !B && !C && D);
+    
+06. instruction mode / order logic design:
+    fireMode > learnMode > manualMode > safetyMode > activeMode
+    
+07. c struct instead of c++ class.
+    1-function pointer, (fun *)(parameters,..)
+    2-this pointer.
+    3-_VAL_ARGUS
+    4-Structor function.
+    5-inherit, //use no-named struct.
+    6-
 }
 //1006.
 
@@ -152,7 +163,7 @@ qtk12345678
 04. slowOpenCommand. (debug and revise closeCommand.cpp without spring./*init open, close obstruct, if check 1 condition.*/)
 05. doorControlApp.
 }
-//1005.
+//1007.
 
 //================================
 1015-sentence:
@@ -428,11 +439,14 @@ V3 board.
 
 
 
-Error	1	Inconsistent accessibility: field type 'Kalman2005.KalmanFilter.kalmanType' is less accessible than field 'Kalman2005.KalmanFilter.kal'	C:\Users\jerhua\_huamg_assa_\03-tech\03.061-Git\Kalman2005\DrawLine2005\Form1.Designer.cs	153	27	Kalman2005
+Error	1	Inconsistent accessibility: field type 'Kalman2005.KalmanFilter.kalmanType' 
+is less accessible than field 'Kalman2005.KalmanFilter.kal'	
+C:\Users\jerhua\_huamg_assa_\03-tech\03.061-Git\Kalman2005\DrawLine2005\Form1.Designer.cs	153	27	Kalman2005
 
 Inconsistent accessibility: field type  is less accessible than field 
 
-Error	1	'Kalman2005.kalmanType.X' is inaccessible due to its protection level	C:\Users\jerhua\_huamg_assa_\03-tech\03.061-Git\Kalman2005\DrawLine2005\Form1.cs	174	17	Kalman2005
+Error	1	'Kalman2005.kalmanType.X' is inaccessible due to its protection level	
+C:\Users\jerhua\_huamg_assa_\03-tech\03.061-Git\Kalman2005\DrawLine2005\Form1.cs	174	17	Kalman2005
 
 
 
@@ -446,7 +460,53 @@ Error	1	'Kalman2005.kalmanType.X' is inaccessible due to its protection level	C:
 
 
 
+//================================
+2018.12.26 Wednesday.
+01. email!
+02. platform: sendDoorAngle.//doorControlApp. //debugPort, //serialPort.//makefile.
+03. pc-lint.
+12. FOC, doctor paper.('MOTOR')
+13. freeRTOS.         ('rtos')
+14. vs2005£¬C# code:  ('pc sw')
 
+21. c struct make c++ class.
+22. inline func.
+23. C macro # STR, ## CONS.
+24. //openocd.
+25. c++ design.
+26. python.
+
+//================================
+2018.12.24 Monda.
+01. email!
+02. platform: doorControlApp. //debugPort, //serialPort.//makefile.
+03. pc-lint.
+12. FOC, doctor paper.('MOTOR')
+13. freeRTOS.         ('rtos')
+14. vs2005£¬C# code:  ('pc sw')
+
+21. /// STM32CubeMX.
+22. //make.exe -> Cygwin Gcc. //LaTeX. //MakeDown. //MathJax. //Dot.
+23. //gcc -> cmd.
+24. //openocd.
+25. c++ design.
+26. python.
+
+//================================
+2018.12.13 Friday.
+01. email!
+02. platform: doorControlApp. //debugPort, //serialPort.//makefile.
+03. pc-lint.
+12. FOC, doctor paper.('MOTOR')
+13. freeRTOS.         ('rtos')
+14. vs2005£¬C# code:  ('pc sw')
+
+21. /// STM32CubeMX.
+22. //make.exe -> Cygwin Gcc. //LaTeX. //MakeDown. //MathJax. //Dot.
+23. //gcc -> cmd.
+24. //openocd.
+25. c++ design.
+26. python.
 
 //================================
 2018.12.12 Wednesday.
