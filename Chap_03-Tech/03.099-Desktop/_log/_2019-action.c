@@ -71,6 +71,10 @@ advisors@ef.com
 	
 06. read 2 doc everyday.
 
+07. jenkins run CNOffice test, can message door open and close.
+
+08. jira develop stage drag and assign.
+
 }
 //1001.
 
@@ -92,6 +96,7 @@ advisors@ef.com
 07. G:\R&D\2018\Jeff Zhang\Weekly meeting\
 08. G:\R&D\Folder_Tree_Management\95_Project_Review\
 09. G:\R&D\Folder_Tree_Management\41_Active_Projects_Electronics\Technology sharing\
+10. G:\R&D\Folder_Tree_Management\95_Project_Review\KPI\2018\
 
 }
 //1002.
@@ -101,7 +106,7 @@ advisors@ef.com
 {
 001. hardware.
 {
-    //===MOTOR BOARD===//		V3.
+    //===MOTOR BOARD===//		V3. jerry_dev_v3_prototype.  helloWorld.cpp:202:       GPIO_SetBits(GPIOC, GPIO_Pin_11);
     pin26-PB0 , not used,     HW_VERSION.
     pin24-PC4 , not used,     HW_VERSION.
 
@@ -147,7 +152,21 @@ advisors@ef.com
     mock().actualCall( "pGetPayloadBuffer" )
     mock().expectOneCall( "pGetPayloadBuffer" )
 }    
-    
+  
+003. git cmd
+{
+	git for-each-ref --sort=-committerdate refs/heads/
+}
+
+004. eclipse cmd
+{
+	uml_mdt - file:/C:/Users/jerhua/Downloads/mdt-uml2-Update-5.5.0/
+	
+	http://plantuml.com/eclipse
+	http://hallvard.github.io/plantuml/
+	http://files.idi.ntnu.no/publish/plantuml/repository/
+}
+  
 }
 //1003.
 
@@ -439,6 +458,27 @@ documentation,
 //################################
 1009-log:
 {
+
+//================================
+2019.01.10 Thursday.
+01. SPS_50, SPS_51.
+02. eclipse shortcut, bookmark: Alt+Shift+B¡£  //Ctrl+Shift+G
+03. compare meld right key not necessary.
+04. effective learn, code, tool find and use. //serial tool. QT is too large 2.8G for windows
+	test in vitrual box.					  //better to use c#.
+05. professional knowledge!!!
+
+//================================
+2019.01.09 Wednesday.
+01. KPI.
+02. trajactory breakpoints reset.
+03. ABS_INTERFACE.
+
+//================================
+2019.01.08 Tuesday.
+01. KPI.
+02. put plantuml.jar in doxgen graphic/bin/.
+
 //================================
 2019.01.04 Friday.
 01. KPI.
