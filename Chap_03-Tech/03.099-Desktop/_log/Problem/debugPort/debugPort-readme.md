@@ -10,26 +10,19 @@
     products/"quasarMotor"/abs-module.mk:  components/application/test/debugPort \
                                            components/application/test/gpioTestPins \
 
-*03. add header include:  *
-
-    components/application/swingDoorGeneric/motionCommand/src/openCommand.cpp
-
-    #include "debugPort.hpp"
-    extern testInternal::DebugPort dbgPort; //if defined in other file, extern in test-file(openCommand.cpp) namespace.
-
-*04. define dbgPort in namespace: *
+*03. define dbgPort in namespace: *
 
     such as in "modules/motionControl/motorBoard/mbs_st_m64_core_v10/init/src/motionControl.cpp"
 
+#ifdef  _DEBUG_PORT_
     #include "debugPort.hpp"
-
     namespace motionControlInternal
     {
         testInternal::DebugPort dbgPort;
-        //...
     }
+#endif //  _DEBUG_PORT_	
 
-*05. open and enable debug port: *
+*04. open and enable debug port: *
 
     In "modules/motionControl/motorBoard/mbs_st_m64_core_v10/init/src/motionControl.cpp"
 
@@ -37,14 +30,44 @@
                                               INIT_MOTION_CONTROL_LEVEL, \
                                               INIT_MOTION_CONTROL_ORDER )
     {
+	#ifdef  _DEBUG_PORT_
         motionControlInternal::dbgPort.vOpen();
+	#endif //  _DEBUG_PORT_	
         //...
     }
-    then close mbsLogPrintf(), and enable '_DEBUG_PORT_ENABLED_'
+	
+*05. close mbsLogPrintf.
+    Then close mbsLogPrintf(), and enable '_DEBUG_PORT_ENABLED_'
     /modules/drivers/serial/mbs_st_m64_core_v10/config/src/serialConfig.c
-    #define _DEBUG_PORT_ENABLED_
+	
+	#define _DEBUG_PORT_ENABLED_    2    //for check macro define valid.
 
-*06. use dbgPort print: *
+#ifdef  _DEBUG_PORT_
+#define _DEBUG_PORT_ENABLED_    1
+#endif
+
+#ifndef _DEBUG_PORT_ENABLED_
+        .portName     = "console",
+        .aliasName    = "log",
+#else
+        .portName     = "debug",
+        .aliasName    = "dbg",
+#endif
+
+
+*06. add header include:  *  in associated project cpp file.
+
+    such as in  components/application/swingDoorGeneric/motionCommand/src/openCommand.cpp
+
+#ifdef  _DEBUG_PORT_
+#include "debugPort.hpp"
+#endif
+
+#ifdef  _DEBUG_PORT_
+extern testInternal::DebugPort dbgPort;
+#endif //namespace.
+	
+*07. use dbgPort print: *
 
     such as in "void OpenCommandImp::vUpdate( const int16_t si16ShaftSpeed )".
 

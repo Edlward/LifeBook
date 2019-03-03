@@ -1,7 +1,9 @@
 Run -> Exernal Tools Config ...
-Lint file => Main:: location: 		${project_loc}/lint/lin.bat
-	         :: working directorty: ${project_loc}/lint
-		 :: arguments: 		${resource_loc}
-Lint proj => Main:: location: 		${project_loc}/lint/lin.bat
-	         :: working directorty: ${project_loc}/lint
-		 :: arguments: 		${project_loc}/lint/conf/project.lnt
+Lint file => -Main:: location: 		 ${project_loc}/lint/lin.bat
+	          :: working directorty: ${project_loc}/lint
+		  :: arguments: 	 ${resource_loc}
+	     -build  no "Build before lanuch"
+Lint proj => -Main:: location: 		 ${project_loc}/lint/lin.bat
+	          :: working directorty: ${project_loc}/lint
+		  :: arguments: 	 ${project_loc}/lint/conf/project.lnt
+	     -build  no "Build before lanuch"

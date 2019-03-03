@@ -2,17 +2,40 @@
 //================================
 1000-plan list:
 {
-01. every day 	: Code.
+00. 2019-plan: 	English,   			Speechcraft,
+				Heart HuSea ocean,  Heart-Mouth-Step-One.
+				FOC board, 			TaoBao CodeStore, 
+				Work commu skill,	Taekwondo,			Chinese Go Chess 'Do',
+				Honeymoon, 			WeddingPhotos,		Wedding feast,
+				
+01. every day : 01.00-(Notes)Note, is just note. 	//note.
+				01.01-(Commu)Email,					//commu-understand-english.
+				01.02-(Rview)GitLab web, git shell fetch.	//check state.
+				01.03-(Assgn)Jira,		//assign.
+				01.04-(Tools)Eclipse,  	//NotePad, Q-Dir, FireFox, Email.
+				01.05-(Speak)English,  	//speadk.
+				
+				  Code.
 				  project board; 
 				  Git commit; 
                   smile to problem; 
                   email;
 				  UnitTest.
+					  
+		
+					  
 02. every Monday: swing door platform meeting.
 03. trainning.
 04. Python.
-05. doxgen example.
+05. Key Words:
 
+	NCV, ATS;// WORK.
+	EGM, DLU;//(eclipse)
+	BFC, CMP.//(git)
+	CPI, OVS.// name.
+
+	
+	
 
 EF : course start on 2 July
 姓名： Hua Jerry
@@ -47,6 +70,54 @@ advisors@ef.com
 第一种形式是小班会话课，每天24小时的整点和大部分半点开课，每堂课45Min，没有参加次数限制，但是小班会话课是按照您是否在课堂待满30分钟以上及是否发言积极来评分的，所以不积极发言的分数可能不高。
 第二种形式是每单元最后有一节对应的私人课堂（20分钟），主要是对这个单元的复习和回顾，所以需要您先把前面的四节自学课自行完成，完成后会自动解锁，由于这节课是一对一的，所以需要您提前24小时在网上预约或者取消。
 第三种形式是40分钟的私教课，主要是根据您的个人喜好选定一个主题，老师会根据您选定的主题来展开上课的主要内容。由于这节课也是一对一的，所以需要您提前24小时在网上预约或者取消。
+
+
+
+
+Dear All,
+
+根据《关于苏州工业园区实施人才安居工程的若干意见（试行）》（苏园工〔2017〕29号）精神，现就组织申报园区2018年度人才薪酬补贴通知如下。
+
+1申报范围
+在园区注册成立，并符合下列条件之一的企事业单位，可组织人员申报园区人才薪酬补贴：
+1．国家级人才工程、国家万人计划、江苏省双创人才计划、姑苏人才计划、园区金鸡湖人才计划入选者创办的企业；
+2．国家高新技术企业；
+3．生物医药、人工智能、纳米技术应用等新兴产业企业；
+4．高端装备制造、总部经济、金融机构、专业服务、现代物流、服务外包、电子商务、商贸、文化创意、科技中介、医疗机构等先进制造业、现代服务业领域的企事业单位；
+5．区内科研院所和科教创新区内高等院校。
+园区国有企事业单位及税收征收级次在市级的单位不纳入申报范围（法人金融机构及推动在园区设立功能性总部的金融分支机构除外）。
+
+2申报对象
+园区人才薪酬补贴申报对象应同时具备以下条件：
+1．与企业依法签订1年以上（含1年）劳动合同，并正常缴纳园区社保或个税3个月以上（含3个月）；
+2．具有全日制硕士及以上学位或具有正高级职称；
+3．年龄不超过45周岁。
+企业控股股东、法定代表人、董事长、总经理等不纳入申报对象。
+
+3补贴标准
+具有硕士学位的人才，给予3万元薪酬补贴；具有博士学位的人才，给予4万元薪酬补贴；具有正高级职称的人才，给予5万元薪酬补贴。补贴金额均为税前金额，个人所得税自理。
+4申报受理
+1．申报时间：2019年1月18日至2月28日。
+2．申报方式：符合条件的企事业单位和人才分别登录园区人才薪酬补贴申报网站
+（www.siphrd.com/sipac_xcbt_2018），按要求完整填报企业及人员信息，并上传相关证明材料原件
+（彩色）扫描件；人才申请名单由所在单位按推荐顺序进行排列。
+3．认定程序：
+网上初审：2019年3月1日至3月31日，各业务主管部门对照条件，审核企事业单位及申报人资质、相关材料的完整度以及材料与所填信息的匹配度，符合申报条件且材料齐备后方可通过初审。
+专家评审：2019年4月1日至4月30日，各业务主管部门组织专家组，根据申报人人才评价积分及其他事项完成评审，形成复审通过人员名单；
+现场审验：2019年5月1日至5月31日，通过复审人员携带申报材料原件和复印件至园区一站式服务中心进行现场审验。
+认定发文：2019年6月1日至6月30日，建议补贴名单报园区人才办主任会议审定后，面向社会公示。公示无异议，即正式发文公布补贴名单；公示有异议，由园区组织部进行核查并提出处理意见。
+补贴拨付：2019年7月1日至7月20日，受补贴人员根据要求至园区企业发展服务中心提交薪酬补贴拨付所需材料原件和复印件，7月底前一次性拨付2018年度人才薪酬补贴。
+5其它事项
+1．符合申报范围的企事业单位当年度申报人员数量原则上不超过10人；已获得过薪酬补贴的人才可继续申请，但需重新申报接受评审，累计补贴原则上不超过3年。
+2．已获姑苏重点产业紧缺人才资助者，不再重复享受园区人才薪酬补贴；获补贴人员若在2019年7月20日前从申请单位离职的，本年度薪酬补贴不予发放。
+3．申请人及申请单位应对申报材料的真实性负责，如有虚假申报，一经查实即取消申报资格，并依法依规追究相关责任。
+4．薪酬补贴申报开始后，后续工作信息将通过申报系统网站和园区智慧人才微信公众号对外发布，请及时关注。
+
+
+Sunny Su
+HR & Admin Manager
+Pedestrian Door Solutions
+
 
 }
 //1000.
@@ -97,7 +168,11 @@ advisors@ef.com
 08. G:\R&D\Folder_Tree_Management\95_Project_Review\
 09. G:\R&D\Folder_Tree_Management\41_Active_Projects_Electronics\Technology sharing\
 10. G:\R&D\Folder_Tree_Management\95_Project_Review\KPI\2018\
-
+     //idcproxy， chinaproxy
+11. G:\R&D\2018\Jeff Zhang\2018 KPI\Review result
+	\\cnsuzsfp01\suzhou$\R&D\2019\Jeff Zhang\Vacation list
+	G:\R&D\Folder_Tree_Management\41_Active_Projects_Electronics\SwingDoorPlatform\
+	
 }
 //1002.
 
@@ -117,7 +192,7 @@ advisors@ef.com
     pin44-PA11, not used,     /MOTOR_WATCHDOG. //"MOTOR_POWER" power, relay.
 
     pin39-PC8 , HOME1,     	  not used.
-    pin40-PC9 , not used,     /MOTOR_ENABLE. //module/init/output.cpp
+    pin40-PC9 , not used,     /MOTOR_ENABLE.   //module/init/output.cpp
     //---//1-Right.
     pin33-PB12, not used,     SPI_MEMORY_SELECT.
     pin34-PB13, not used,     SPI_SCK.
@@ -151,6 +226,10 @@ advisors@ef.com
 {
     mock().actualCall( "pGetPayloadBuffer" )
     mock().expectOneCall( "pGetPayloadBuffer" )
+	
+	There should be some test-case testing that the trajectoryGenerator->vResetSpeed function is called. A good aproach is to write the testcase first to see that it fails and then update the code to make it pass. That way one knows that the test is relevant.
+	.
+	Corrected in new commit. In my understanding now, the method should be used to learn spring exist state, so it should not assume spring exist state.
 }    
   
 003. git cmd
@@ -173,6 +252,10 @@ advisors@ef.com
 //=================================
 1004-problems:
 {
+issue:
+	motor enable;
+	basic io 24v_out_en;
+	
 //questions:
 -----------------------------------
 STM32F103-RET6-GQ21U
@@ -455,9 +538,427 @@ documentation,
 }
 //1008.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //################################
 1009-log:
 {
+周二，09：00
+周三，13：00
+	
+	
+==================================	
+2019.02.11 - 16 WK07.
+01. Platform code, issuse fix, transform to sdk4.4.0, springImp.
+02. sw300 code,
+03. foc control.
+04. english.
+05. chess.	
+
+
+//==================================	
+2019.03.01 Friday.
+01. UNIT-TEST
+
+//-01-// enum
+enum { MAX_LEARN_CYCLE_TIME = 120000 }; /* ms */
+
+//-02-// help variables  //类似全局变量，不用函数传参，方便。
+int32_t si32DoorAngle = 0;
+
+//-03-// FSM goto function.
+motionControl::MotionCommand* pGotoSettleDoorStopPhase();
+
+//-04-// Config Test helper function.
+void vConfigNormalLearnResults ( 0 /*pv1*/, 1 /*pv2*/, 2 /*pv3*/ );
+
+//-05-// Function Test helper function.
+void vTestReleaseTension(motionControl::MotionCommand* testLearnCommad);
+
+//-06-// Function Expect helper function.
+void vExpectReleaseTension(motionControl::MotionCommand* testLearnCommad);
+
+//-07-// "Repeat" expect helper function. //重复的代码，封装为函数；同类多数据，传入为参数。
+void vSubExpectGetDoorAngle ( int32_t* psi32DoorAngle ); //subroutine
+
+//-08-// TEST.
+TEST( LearnCommand, RestartLearnCommand)
+
+	pui8EncoderInfo[0U]		= static_cast<uint8_t>(ui32Temp /16777216U);		// right shift 24 bits
+	pui8EncoderInfo[1U] 	= static_cast<uint8_t>(ui32Temp /65536U);			// right shift 16 bits
+	pui8EncoderInfo[2U] 	= static_cast<uint8_t>(ui32Temp /256U);				// right shift 8  bits
+	pui8EncoderInfo[3U] 	= static_cast<uint8_t>(ui32Temp);					// right shift 0  bits
+	
+
+//==================================	
+2019.02.28 Thursday.
+01. Learn command,
+02. 1009203-slider.
+
+
+I have reviewed the code, and had some “comments”. 
+
+I really like the “vUpdate” function, since it is easy to follow. 
+The “vTimeOutEvent” function could be refactored in a similar fasion. 
+Other than that I had some suggestions on simplifications in the “FSM”. 
+
+The “unit-tests” are also very well designed, with helper functions that drives the FSM to each state that you need to test. 
+This should make them easy to update and maintain. Well done!
+
+    int32_t si32DoorAngle = 0;
+    int16_t si16SampleSpeed = 0;
+    int16_t si16DeltaSpeed = 0;
+    int16_t si16ExpectedSpeed = 0;
+    uint32_t ui32TimeInterval = 0;
+	
+	// vl=60mrad/s, vh=600mrad/s, ar=300mrad/ss, ad=-300mrad/ss.
+    // tr=(600-60)/300=1.8s, Pr=(600-60)*1.8/2=486mrad=(486/3141.6)*180=55.7degree.
+
+	
+
+//==================================	
+2019.02.22 Friday.
+01. Learn command,
+02. 1009203-slider.
+
+
+
+配置下Java环境
+
+1. //vim .bash_profile 
+	添加：  
+2.  //export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+	//export PATH=${JAVA_HOME}/bin:$PATH
+	通过:wq，保存并关闭vim
+3.  source .bash_profile
+
+C:\Users\jerhua\.bash_profile
+
+GCC_PATH=/C/mbs/mbsToolchains/gcc-arm-none-eabi-4_9-2015q3/bin
+MBS_BIN=/C/mbs/programs/bin
+MAKE_PATH=/C/mbs/programs/cygwin/bin
+export PATH=$PATH:$GCC_PATH:$MBS_BIN:$MAKE_PATH
+
+勒克斯lux，法定符号lx)是照度(Illuminance)的单位。被光均匀照射的物体，在1平方米面积上所得的光通量是1流明时，它的照度是1勒克斯。适宜于阅读和缝纫等的照度约为500勒克斯。
+
+流明，光通量的单位。
+
+发光强度为1坎德拉(cd)的点光源，在单位立体角（1球面度）内发出的光通量为“1流明”，英文缩写(lm)。
+
+勒克斯是引出单位，由流明(lm)引出。流明则由标准单位坎德拉(cd)引出
+
+坎德拉，曾一度称为新烛光
+发光强度简称光强，国际单位是（坎德拉）简写cd.
+
+光通量（luminous flux）指人眼所能感觉到的辐射功率，它等于单位时间内某一波段的辐射能量和该波段的相对视见率的乘积。
+
+Segmentation fault 这个提示还是比较常见的，这个提示就是段错误，这是翻译还是十分恰当的。
+
+Core Dump 有的时候给我们呈现的翻译很有趣是”吐核“，但是实际上比较贴切的翻译是核心转储（是操作系统在进程收到某些信号而终止运行时，将此时进程地址空间的内容以及有关进程状态的其他信息写出的一个磁盘文件。这种信息往往用于调试），这个“吐核”的产生和王安博士有着一些关联，其实“吐核”这个词形容的很恰当，就是核心内存吐出来。
+
+出现这种错误可能的原因（其实就是访问了内存中不应该访问的东西）：
+
+　　1，内存访问越界：
+
+　　　　（1） 数组访问越界，因为下标出超出了范围。
+
+  　　　  （2） 搜索字符串的时候，通过字符串的结尾符号来判断结束，但是实际上没有这个结束符。
+
+                （3）使用strcpy, strcat, sprintf, strcmp,strcasecmp等字符串操作函数，超出了字符中定义的可以存储的最大范围。使用strncpy, strlcpy, strncat, strlcat, snprintf, strncmp, strncasecmp等函数防止读写越界。
+
+　　2，多线程程序使用了线程不安全的函数。
+
+　　3，多线程读写的数据未加锁保护。
+
+　　　　对于会被多个线程同时访问的全局数据，应该注意加锁保护，否则很容易造成核心转储
+
+　　4，非法指针
+
+  　　　　（1）使用NULL指针
+
+ 　　　　 （2）随意使用指针类型强制转换，因为在这种强制转换其实是很不安全的，因为在你不确认这个类型就应该是你转化的类型的时候，这样很容易出错，因为就会按照你强制转换的类型进行访问，这样就有可能访问到不应该访问的内存。
+
+ 　　5，堆栈溢出
+
+　　　　不要使用大的局部变量（因为局部变量都分配在栈上），这样容易造成堆栈溢出，破坏系统的栈和堆结构，导致出现莫名其妙的错误。  
+
+
+        si32DoorAngle = motionControlInternal::LEARN_COMMAND_BP4_IN_MICRO_RAD - 100;
+        si16SampleSpeed = static_cast<int16_t>( motionControlInternal::LEARN_LOW_SPEED );
+        si32DeltaSpeed = LEARN_OPEN_ACC_DELTA_SPEED;
+        si16ExpectedSpeed = static_cast<int16_t>( motionControlInternal::LEARN_LOW_SPEED );
+        si16ExpectedSpeed += static_cast<int16_t>( si32DeltaSpeed/1000 );
+
+        //acceleration before BP4.
+        vExpectOpenPhaseOneBeforeBP4 ( &ui32TimeInterval, &si32DoorAngle, &si16ExpectedSpeed );
+        testLearnCommad->vUpdate( si16SampleSpeed );
+
+        //next acceleration
+        uint16_t ui16Counter = 100;
+        for (uint16_t index=2; index<ui16Counter; index++)
+        {
+            int32_t si32TempDeltaSpeed = si32DeltaSpeed;
+            si32TempDeltaSpeed *= index;
+            si32TempDeltaSpeed /= 1000;
+            si16ExpectedSpeed = static_cast<int16_t>( LEARN_LOW_SPEED );
+            si16ExpectedSpeed += static_cast<int16_t>( si32TempDeltaSpeed );
+            vExpectOpenPhaseOneBeforeBP4 ( &ui32TimeInterval, &si32DoorAngle, &si16ExpectedSpeed );
+            testLearnCommad->vUpdate( si16ExpectedSpeed );
+        }
+	
+		
+		
+		
+		
+		
+		
+长线游：
+1.长滩5晚6日游
+时间：3月14日～3月19日(3月13日晚上19：30左右从公司出发)
+价格：鉴于酒店房间数量有限，按最终出游人数确定入住酒店：
+4180元/人（住FAIRWAYS或同级）或3980元/人（住SAVOY或同级）
+
+短线游：
+三清山婺源三日游
+时间：3月15日～3月17日
+价格：1492元
+
+ 
+菲律宾团队旅游签证所需材料： 
+1. 护照原件（有效期从回国之日算至少六个月以上）；
+2. 签证申请表2份，并附上二张2寸白底彩色近6个月免冠证件照
+3. 身份证正反面复印件
+4. 十八周岁以下儿童需提供 出身证明复印件，并必须与父母其中一方出行，否则无法办理
+
+
+
+//==================================	
+2019.02.21 Thursday.
+01. Learn command,
+02. cell   -> format,  protect -> hide
+	review -> protect,
+
+//==================================	
+2019.02.19 Tuesday.
+01. Learn command,
+02. English,
+03. Birthday.
+
+    uint32_t ui32AccelerateTimes = (motionControlInternal::LEARN_MAX_SPEED - motionControlInternal::LEARN_LOW_SPEED);
+    ui32AccelerateTimes *= 1000;
+    ui32AccelerateTimes /= motionControlInternal::LEARN_OPEN_ACC_INTERVAL;
+   for (uint16_t i=0; i<ui32AccelerateTimes; i++)
+   {
+       int32_t si32CalculatedSpeed = (motionControlInternal::LEARN_OPEN_ACC_INTERVAL)*(motionControlInternal::LEARN_OPEN_ACCELERATION);
+       si32CalculatedSpeed *= i;
+       si32CalculatedSpeed /= 1000;
+       si32CalculatedSpeed += motionControlInternal::LEARN_LOW_SPEED;
+       int16_t si16ExpectedSpeed = static_cast<int16_t>( si32CalculatedSpeed );
+       vExpectOpenPhaseOneBeforeBP4 ( &si32DoorAngle, &si16ExpectedSpeed );
+       learnCommand->vUpdate(si16SampleSpeed);
+   }
+
+//==================================	
+2019.02.18 Monday
+01. Learn command,
+02. English, meeting,
+03. Matrix,
+
+git remote show origin
+git remote prune origin
+git fetch -p
+
+
+//==================================	
+2019.02.14 Thursday
+01. 真实说话，学会表达，对猪闭嘴；
+02. 掌握财务，争取优秀，心中有湖。
+03. 转换系统，工作投入。。。
+
+@rem The arguments for this batch file: 
+@rem %1: The path to the project folder
+@rem %2: The path to the CodeWarrior installation folder
+
+@rem ------------------------------------------------------
+@rem Path to my project folder
+SET PROJ_PATH=%1
+@rem Path to CodeWarrior installation folder (which is e.g. "C:\Freescale\CW MCU v10.2\eclipse\..\MCU")
+SET CW_PATH=%2
+
+@rem Path to lint-nt.exe
+SET LINT_EXE=C:\lint\lint-nt.exe
+
+@rem Path to my lint configuration files
+SET LOCAL_LNT_FILES=C:\Freescale\PC-lint\fsl_lnt
+
+@rem Path to my local lint folder inside the project
+SET PROJ_LINT_PATH=%PROJ_PATH%\lint
+
+@rem Lint configuration files and includes
+SET LNT_INCLUDES=-i"%LOCAL_LNT_FILES%" "%LOCAL_LNT_FILES%\co-mwhc08.lnt" -i%LOCAL_LNT_FILES%
+
+@rem --------------- Run PC-lint ---------------------------
+%LINT_EXE% %LNT_INCLUDES% %PROJ_LINT_PATH%\proj_options.lnt %PROJ_LINT_PATH%\proj_files.lnt -vf
+
+
+//==================================	
+2019.02.13 Wednesday
+01. 请假2小时，感冒咳嗽睡。
+02. lint compile.
+
+make -f co-gcc.mak GCC_BIN='name of the gcc binary' GXX_BIN='name of the g++ binary' \
+ CFLAGS='[usual C compile switches here]' \
+ CXXFLAGS='[usual C++ compile switches here]' \
+ CPPFLAGS='[usual common preprocessor switches here]' \
+ COMMON_FLAGS='[usual C & C++ compile switches here]'
+	
+//==================================	
+2019.02.12 Tuesday
+请假，老妈生日。
+	
+//==================================	
+2019.02.11 Monday
+01. Backup branches.
+02. Calander.
+03. Eclipse.
+04. Stock.
+
+  EMC_test_v3_2A         6ff77b9b [origin/EMC_test_v3: ahead 3] emc test 4A.
+  EMC_test_v3_2ms        32e321e0 [origin/EMC_test_v3] change sample time to 2ms.
+  SPS_103                055ab6f3 [origin/SPS_103] updated by review discuss.
+  SPS_48                 180788e9 [origin/wls_dev_doorCtl: behind 8] Updated some documentation and misspellings
+  debugPort_cherry_pick  cc45af36 Lint debug port for "cherry-pick".
+  develop                12c3b401 [origin/develop: behind 23] Merge branch 'jgr_sdk4.4.0' into 'develop'
+  jer_dev_dbgPort        bd250336 change some comments.
+  jer_dev_doorAngle      bd250336 [origin/jer_dev_doorAngle] change some comments.
+  jer_dev_doorCtlApp     5e66d144 [origin/jer_dev_doorCtlApp] partly finish door control app unit test.
+  jer_dev_freeSwCmd      5d3c9ae9 [origin/jer_dev_freeSwCmd: behind 2] Revert the time delay to 200, rename two test cases
+  jer_dev_slowOpnCmd     24393893 [origin/jer_dev_slowOpnCmd: behind 5] Merge branch 'jer_dev_slowOpnCmd' of aaes.githost.io:AAESSwingDoor/SwingDoorPlatform into jer_dev_slowOpnCmd
+  jer_dev_spring         d950e391 [origin/jer_dev_spring] Merge branch 'jer_dev_spring' of aaes.githost.io:AAESSwingDoor/SwingDoorPlatform into jer_dev_spring
+  jer_dev_swgSdk4.4.0    984470a0 [origin/jer_dev_swgSdk4.4.0: behind 5] Merge remote-tracking branch 'origin/develop' into jer_dev_swgSdk4.4.0
+  jerry_dev_doorLogic    13fb4d4a [origin/jerry_dev_doorLogic: ahead 1] revise.
+  jerry_dev_doorLogicApp 2133a04f doorLogicApp disign.
+  jerry_dev_torqueLimit  d6f20307 [origin/jerry_dev_torqueLimit] Merge branch 'origin/develop' into jerry_dev_torqueLimit
+  jerry_ms1_110          79c249f7 [origin/jerry_ms1_CCL: gone] open to 110 degree.
+  jerry_ms1_CCL+SPM      29e6512a [origin/jerry_ms1_CCL: gone] CCL encoder reverse.
+  jerry_ms1_print        06a58adc [origin/develop_ms1_demo: ahead 14] debug port commit for cherry-pick.
+  jerry_v1_prototype     5b86a6f7 [origin/jerry_dev_v1_prototype: gone] add up door open angle.
+  jerry_v2_prototype     dbfc2a3c [origin/jerry_dev_v2_prototype: gone] motor current limit to 2500mA, add version id.
+  jerry_v3_prototype     0f335eb3 [origin/jerry_ms1_CCL: gone] print moter sample current, not set current.
+  jgr_sdk4.4.0           d242463f [origin/jgr_sdk4.4.0] change decription in readme.md
+  mg_noise_v3_5s         20ca7604 [origin/develop: ahead 2, behind 38] debug port for cherry-pick
+  mg_revPush_v03_agl     90792b08 [origin/develop: ahead 1, behind 84] new revese push mechanic system, enlarge door angle.
+  mg_rtos_v01_read       29e6512a CCL encoder reverse.
+* mg_sdk4_powerAssist    2599c338 try to add power assist openning assist force.
+  mg_sdk4_test9          ec938de6 [origin/develop: ahead 16, behind 23] Merge branch 'develop' of aaes.githost.io:AAESSwingDoor/SwingDoorPlatform into mg_sdk4_test9
+  ms2_noSpring           71fde08e add motor pwm test, close trajactory may wrong.
+  ms2_test               8a8a3648 [origin/ms2_test: ahead 7] format closecommand.cpp
+  ms3_wls_pushAndGo      939f20a6 [origin/wls_dev_doorCtl: ahead 1, behind 9] push & go, test not full opened
+
+	
+//mbsSdk4.4.0
+	
+//2015q3.
+make -j build,quasarMotor,ARMCM3_GCC-release-none-mbs_st_m64_core_v10 
+/cygdrive/c/mbs/SwingDoorPlatform/mbsSdk/tools/ABS/build.mk:17: *** Toolchain "gcc-arm-none-eabi-6-2017-q2" is not supported, choose one of the following: { gcc-arm-none-eabi-4_9-2015q3 }. If you have defined a custom MBS_CC_TOOLCHAIN_PATH, make sure to end it with a slash.  Stop.
+
+//can crc8.h
+components/application/aaesGeneric/canComm/src/canComm.cpp:13:19: fatal error: crc8.h: No such file or directory
+  #include <crc8.h>
+
+	C:\mbs\SwingDoorPlatform\mbsSdk\components\common\utilities\inc
+
+
+modules/comm/motorBoard/mbs_st_m64_core_v10/init/src/comm.cpp:91:81: error: invalid conversion from 'const char*' to 'MbsMsgMailboxIdentifier {aka char*}' [-fpermissive]
+      if( MBS_STATUS_OK != mbsMsgRegister( &canCommServerHandle, canSrvName, 20U ) )
+
+C:\mbs\SwingDoorPlatform/components/application/aaesGeneric/canComm/src/canComm.cpp:202: undefined reference to `crc8calc'
+
+	  /*
+	  char* const canSrvName = commInternal::can1Imp.pGetCanServiceName();
+		components/application/aaesGeneric/canComm/src/canComm.cpp
+	  */
+	
+==================================	
+2019.01.21 - 25 WK04.
+01. Platform code, issuse fix, transform to sdk4.4.0, springImp.
+02. sw300 code,
+03. foc control.
+04. english.
+05. chess.
+
+	
+//================================
+2019.01.25 Friday
+01. meeting: SL500 trainning 通用部分, Slider train scope爆炸图, Julie电机控制。
+02. plan-2019: KPI mark, welcome new.
+
+//================================
+2019.01.24 Thursday.
+01. summary note.
+02. better work.
+	
+//================================
+2019.01.23 Wednesday.
+_SPRING_SYSTEM_IS_INCLUDED_IN_DUT_ \
+
+    components/application/swingDoorGeneric/springSystem/unitTest \
+
+
+==================================	
+2019.01.14 - 18 WK03.
+01. Platform code, issuse fix.
+02. sw300 code,
+03. foc code.
+04. protocol. //kan kai. cheng zhang you suohuo.
+05. english.
+06. chess.
+
+
+
+//================================
+2019.01.16 Wednesday.
+01. sw300 code,
+02. plat form code.
+03. foc code.
+
+//================================
+2019.01.14 Monday.
+01. sw300 code,
+02. plat form code.
+03. maxima.
+
+//================================
+2019.01.11 Friday.
+01. meeting.
+02. Maxma use, 
+03. UML use, 
+04. safety in motor board, no-freeRTOS, OPD ?
+
 
 //================================
 2019.01.10 Thursday.

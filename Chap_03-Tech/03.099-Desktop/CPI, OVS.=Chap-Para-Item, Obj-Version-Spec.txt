@@ -1,0 +1,14 @@
+CPI, OVS.
+=Chap-Para-Item, Obj-Version-Spec
+
+CPI, OBVS.
+=Chap-Para-Item, Obj-Base-Version-Spec
+
+=Chap-Para-Item, +Who+Obj-Base-Version-Spec
+
+
+branch name:
+"mg_rtos_v01_read"
+
+Folder name:
+"mg_hex_b03_v02_EMC2ms"
