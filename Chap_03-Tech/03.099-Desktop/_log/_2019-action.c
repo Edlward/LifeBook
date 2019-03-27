@@ -173,6 +173,9 @@ Pedestrian Door Solutions
 	\\cnsuzsfp01\suzhou$\R&D\2019\Jeff Zhang\Vacation list
 	G:\R&D\Folder_Tree_Management\41_Active_Projects_Electronics\SwingDoorPlatform\
 	
+12. http://demeesis0038.ad.global:8080/job/SwingDoors/job/jer_dev_learnCmd/15/consoleFull
+	
+	
 }
 //1002.
 
@@ -235,16 +238,34 @@ Pedestrian Door Solutions
 003. git cmd
 {
 	git for-each-ref --sort=-committerdate refs/heads/
+		
+	git branch -r --contains CommitID
+	
+	git reset --hard HEAD~1则 删除了commit3，如果发现删除错误了，需要恢复commit3，这个时候就要使用git reflog
 }
 
 004. eclipse cmd
 {
+	----------------------
 	uml_mdt - file:/C:/Users/jerhua/Downloads/mdt-uml2-Update-5.5.0/
 	
 	http://plantuml.com/eclipse
 	http://hallvard.github.io/plantuml/
 	http://files.idi.ntnu.no/publish/plantuml/repository/
+	
+	----------------------
+	window -> preference -> C/C++ -> codeStyle -> formatter.
+	MingoBSD_Wrap_Func03
+	file   -> export -> general -> preference.
+	
+	----------------------
 }
+
+005. concept
+{
+	前端就是作为用户（使用系统的人）来说可以"看得到"的交互部分， 后端则是持久化数据或者将持久化数据读取出来的"不可见"部分。
+}
+
   
 }
 //1003.
@@ -390,7 +411,7 @@ qtk12345678
 {
 01. backup .setting.
 02. send email for one question.
-03. 做事，完成清单；帮助，别人的支持； 
+03. 做事，完成清单；帮助，别人的支持； //做事，提出风险，请示领导通过。
 	适应环境与人，Jeppa remove enum ADC_TO_VOLT, 要求严格，干净。
 04. 运行调试：机械连杆，CCL电机（编码线），SPM电机（驱动线），
 			功能开到位晃动，
@@ -550,12 +571,14 @@ documentation,
 
 
 
+MBS_CC_TOOLCHAIN_PATH   ../mbsToolchains/
+
+make -j build,quasar,ARMCM3_GCC-debug-none-mbs_st_m64_core_v10 
+/cygdrive/c/mbs/zs_plat/mbsSdk/tools/ABS/build.mk:17: *** Toolchain "gcc-arm-none-eabi-6-2017-q2" is not supported, choose one of the following: {  }. If you have defined a custom MBS_CC_TOOLCHAIN_PATH, make sure to end it with a slash.  Stop.
 
 
 
-
-
-
+${GCC_HOME}\bin;${GRAPHVIZ_HOME}\bin;${CYGWIN_HOME}\bin;C:\mbs\programs\bin\;C:\mbs\programs\cygwin\bin;C:/Program Files (x86)/Java/jre1.8.0_161/bin/client;C:/Program Files (x86)/Java/jre1.8.0_161/bin;C:/Program Files (x86)/Java/jre1.8.0_161/lib/i386;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Lib\site-packages\PyQt4;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Python27;C:\Python27\DLLs;C:\Python27\Scripts;C:\Python27\gnuplot\binary;C:\Program Files (x86)\pythonxy\SciTE-3.5.1-4;C:\Program Files (x86)\pythonxy\console;C:\Program Files (x86)\Borland\StarTeam SDK 10.4\Lib;C:\Program Files (x86)\Borland\StarTeam SDK 10.4\Bin;C:\Program Files\Git\cmd;C:\Users\jerhua\AppData\Local\Microsoft\WindowsApps;C:\mbs\programs\eclipse
 
 
 
@@ -569,7 +592,81 @@ documentation,
 {
 周二，09：00
 周三，13：00
+
+01. push-pull same program?
+02. no-spring open angle not correct? no-spring initial?
+03. door interia only 1000 gm^2.
+04. //pi table. from motor voltage.
+
+
+
+//==================================	
+2019.03.22 Friday.
+01. topic: IHS-Infomation handling system. info-scheme-decesion.
+	BOM-Bill of Material, 
+	EMS-Environmental Management System. IMI. 
+	PDS, ProDirectSoccer代购中文站点
+	PCN-Process Change Notice,.
+
+//==================================	
+2019.03.19 Tuesday.
+01. static 
+02. meeting points: 
+	1-back-check-angle, 2-ble, 3-American, 4-UL docum(how much), 5-safeRTOS, 
+	6-jira-SPS126, SPS127, SPS128, 7-merge param branch, 8-everyone has work.
+	who: jeppa, dh, matin.
+
 	
+//==================================	
+2019.03.08 Friday.
+01. 制版，重复多次 有意见，问题请示；
+02. 贴标，注意形象；
+03. 电池，携带美国；
+04. DSS200 发布release，不等测试完成； CP, CM,
+05. 电池测试，前后端原理，接口，优缺点；
+
+
+宁德时代
+比亚迪，补贴退坡，
+亿纬锂能
+
+它是由BJT（双极型三极管）和MOS（绝缘栅型场效应管）组成的复合全控型电压驱动式功率半导体器件，它拥有的特性是：高输入阻抗，可采用通用低成本的驱动线路；高速开关特性；导通状态低损耗。IGBT兼有MOSFET的高输入阻抗和GTR的低导通压降两方面的优点。GTR饱和压降低，载流密度大，但驱动电流较大；MOSFET驱动功率很小，开关速度快，但导通压降大，载流密度小。IGBT综合了以上两种器件的优点：驱动功率小而饱和压降低，是一种适合于中、大功率应用的电力电子器件。IGBT在综合性能方面占有明显优势，非常适合应用于直流电压为600V及以上的变流系统如交流电机、变频器、开关电源、照明电路、牵引传动等领域。
+	
+==================================	
+2019.03.04 - 09 WK10.
+01. topic,
+02. name list,
+03. code,
+04. 
+
+        int32_t siPos1 = encoder->si32GetShaftPosition();
+        int32_t siPos2 = armSystem->si32GetDoorAngleInMicroRad();
+        #ifdef  _DEBUG_PORT_
+        dbgPort << siPos1 << "  "
+                << siPos2 << "\n";
+        #endif
+			
+
+//==================================	
+2019.03.08 Friday.
+01. 制版，重复多次 有意见，问题请示；
+02. 贴标，注意形象；
+03. 电池，携带美国；
+04. DSS200 发布release，不等测试完成； CP, CM,
+05. 电池测试，前后端原理，接口，优缺点；
+
+//==================================	
+2019.03.06 Wednesday.
+	
+encoder: const uint32_t ui16Temp = static_cast<uint16_t>(si16ShaftSpeed);
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // Enums and defines needed by the lockDriver
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //! Lock driver enable unlock deci-door angle range
+    enum { LOCK_DRIVER_UNLOCK_DECI_DOOR_ANGLE = 8730};
+
 	
 ==================================	
 2019.02.11 - 16 WK07.
@@ -579,6 +676,25 @@ documentation,
 04. english.
 05. chess.	
 
+备注：	
+北线：	
+A.公司大门口	
+B.锦丰广场	
+C.东环大润发（南门口）	
+D.杨枝塘城区高速入口	
+	
+南线：	
+E.公司大门口	
+F.钟南街地铁站3号出入口	
+G.湖东邻里中心公交车站	
+H.杨枝塘城区高速入口	
+	
+
+
+
+//==================================	
+2019.03.04 Monday.
+01. UNIT-TEST
 
 //==================================	
 2019.03.01 Friday.
@@ -705,32 +821,6 @@ Core Dump 有的时候给我们呈现的翻译很有趣是”吐核“，但是实际上比较贴切的翻译是核
  　　5，堆栈溢出
 
 　　　　不要使用大的局部变量（因为局部变量都分配在栈上），这样容易造成堆栈溢出，破坏系统的栈和堆结构，导致出现莫名其妙的错误。  
-
-
-        si32DoorAngle = motionControlInternal::LEARN_COMMAND_BP4_IN_MICRO_RAD - 100;
-        si16SampleSpeed = static_cast<int16_t>( motionControlInternal::LEARN_LOW_SPEED );
-        si32DeltaSpeed = LEARN_OPEN_ACC_DELTA_SPEED;
-        si16ExpectedSpeed = static_cast<int16_t>( motionControlInternal::LEARN_LOW_SPEED );
-        si16ExpectedSpeed += static_cast<int16_t>( si32DeltaSpeed/1000 );
-
-        //acceleration before BP4.
-        vExpectOpenPhaseOneBeforeBP4 ( &ui32TimeInterval, &si32DoorAngle, &si16ExpectedSpeed );
-        testLearnCommad->vUpdate( si16SampleSpeed );
-
-        //next acceleration
-        uint16_t ui16Counter = 100;
-        for (uint16_t index=2; index<ui16Counter; index++)
-        {
-            int32_t si32TempDeltaSpeed = si32DeltaSpeed;
-            si32TempDeltaSpeed *= index;
-            si32TempDeltaSpeed /= 1000;
-            si16ExpectedSpeed = static_cast<int16_t>( LEARN_LOW_SPEED );
-            si16ExpectedSpeed += static_cast<int16_t>( si32TempDeltaSpeed );
-            vExpectOpenPhaseOneBeforeBP4 ( &ui32TimeInterval, &si32DoorAngle, &si16ExpectedSpeed );
-            testLearnCommad->vUpdate( si16ExpectedSpeed );
-        }
-	
-		
 		
 		
 		

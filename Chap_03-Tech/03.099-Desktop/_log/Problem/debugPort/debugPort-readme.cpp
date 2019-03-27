@@ -7,8 +7,20 @@
 
 *02. change makefile:  *
 
+	//---------------------------------------------------------
     products/"quasarMotor"/abs-module.mk:  components/application/test/debugPort \
                                            components/application/test/gpioTestPins \
+										   
+	_DEBUG_PORT_ := 1
+
+	ifdef  _DEBUG_PORT_
+
+	ABS_COMPONENTS += \
+		components/application/test/gpioTestPins \
+		components/application/test/debugPort \
+
+	endif #_DEBUG_PORT_
+	
 
 *03. define dbgPort in namespace: *
 
@@ -61,13 +73,14 @@
 
 #ifdef  _DEBUG_PORT_
 #include "debugPort.hpp"
-#endif
+	namespace motionControlInternal
+    {
+        extern testInternal::DebugPort dbgPort;
+    }
+#endif //  _DEBUG_PORT_	
 
-#ifdef  _DEBUG_PORT_
-extern testInternal::DebugPort dbgPort;
-#endif //namespace.
 	
-*07. use dbgPort print: *
+*07. use dbgPort print: *  
 
     such as in "void OpenCommandImp::vUpdate( const int16_t si16ShaftSpeed )".
 
@@ -81,4 +94,47 @@ extern testInternal::DebugPort dbgPort;
             << "[C:Imtr = " << motor->si16GetMotorCurrent()                                     << "],"
             << "[C:Posi = " << encoder->si32GetMotorPosition()                                  << "]\n";
 
-    dbgPort << si16ShaftSpeed << "\n";
+    dbgPort << si16ShaftSpeed << "\n"; //"==="
+	
+	//===//add error sign (such as "===") after dbgPort sentence, then to compile; if there is error, macro used.
+	
+	    int32_t siPos1 = encoder->si32GetShaftPosition();
+        int32_t siPos2 = armSystem->si32GetDoorAngleInMicroRad();
+        #ifdef  _DEBUG_PORT_
+        dbgPort << siPos1 << "  "
+                << siPos2 << "\n";
+        #endif
+		
+			
+			
+			
+		//==================================================================================	
+		mbsLogPrintf("center shaft pos %d urad\r", static_cast<int>(si32CenterShaftPosition));
+	
+	
+	
+		//==================================================================================
+	    static int32_t siDataBuf[100];
+        static int16_t siIndex = 0;
+
+        static int16_t siCounter = 0;
+        if ( siCounter < 100)
+        {
+            siCounter++;
+        }
+        else
+        {
+            siCounter = 0;
+
+            if ( siIndex < 100 )
+            {
+                siIndex++;
+            }
+            else
+            {
+                siIndex = 0;
+            }
+            siDataBuf[siIndex] = siPos1;
+        }
+		
+		
