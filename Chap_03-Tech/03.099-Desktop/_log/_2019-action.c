@@ -593,12 +593,13 @@ ${GCC_HOME}\bin;${GRAPHVIZ_HOME}\bin;${CYGWIN_HOME}\bin;C:\mbs\programs\bin\;C:\
 周二，09：00
 周三，13：00
 
-01. push-pull same program?
-02. no-spring open angle not correct? no-spring initial?
-03. door interia only 1000 gm^2.
-04. //pi table. from motor voltage.
-
-
+//==================================	
+2019.05.29 Wednesday.
+    01. Android, do do do.
+    02. PLC,
+    03. platform code, new added, rtos, mbs, debug reset,
+    04. diagram designer,
+    05. change gitlat server.
 
 //==================================	
 2019.03.22 Friday.
