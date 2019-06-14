@@ -50,6 +50,7 @@ all shell interface, enter 3 times.
 	git config diff.tool 	  //config check xxx...
 	git difftool --tool-help  //difftool help.
 	git config --global diff.tool meld. //global config.
+    
 07. skill:
 	git config --global alias.st status
 	git config --global alias.name "config --global alias" //////error.

@@ -237,6 +237,8 @@ Pedestrian Door Solutions
   
 003. git cmd
 {
+    git config --global alias.st status
+        
 	git for-each-ref --sort=-committerdate refs/heads/
 		
 	git branch -r --contains CommitID
@@ -565,12 +567,6 @@ documentation,
 
 
 
-
-
-
-
-
-
 MBS_CC_TOOLCHAIN_PATH   ../mbsToolchains/
 
 make -j build,quasar,ARMCM3_GCC-debug-none-mbs_st_m64_core_v10 
@@ -590,8 +586,167 @@ ${GCC_HOME}\bin;${GRAPHVIZ_HOME}\bin;${CYGWIN_HOME}\bin;C:\mbs\programs\bin\;C:\
 //################################
 1009-log:
 {
-周二，09：00
+周一，10：00
+周二，09：00 -10:30
 周三，13：00
+
+Android,
+PLC,
+FreeRTOS,
+
+//Fast debug: change struct(switch out)
+//Push, before check web, or fetch. //delete wrong push.
+
+
+桌面； bash,  eclipse; 
+       email, web;
+       notePad, pctool;
+       dir,     everything.
+
+------------------------------------
+List:
+01. Learn    : After learned, recycle door, burn motor board relay;
+02. Parameter: push and go not disabled; not 4 degree， maybe 30 degree.
+    Just can change block 0.
+    hold open time, short.
+03. Torque   :  //Open stalled, adapter reset; torqueLimiter hardware limit work;
+                //Spring retension, FreeSwing negative spring torque.
+04. BLE      : ble conneted status;
+05. safeRTOS : version, MPU;
+06. Power assist:  0%-100% //(mode enter？torque mode keep?)
+07. Foce     : <133; now 150-170;
+08. Open angle: longtime open angle changed from 90 to 110.
+08. New sw rd:
+09. document : learn command ? learn calculator?
+10. Difference: Adc plus5, old one.
+
+------------------------------------
+
+    // Parameters for MOTION_CONTROL_STATUS
+    constexpr uint8_t MOTION_CONTROL_STATUS_CLOSING     = 0U;
+    constexpr uint8_t MOTION_CONTROL_STATUS_MANUAL      = 1U;
+    constexpr uint8_t MOTION_CONTROL_STATUS_CLOSED      = 2U;
+    constexpr uint8_t MOTION_CONTROL_STATUS_OBSTRUCTED  = 3U;
+    constexpr uint8_t MOTION_CONTROL_STATUS_OPENING     = 4U;
+    constexpr uint8_t MOTION_CONTROL_STATUS_OPEN        = 5U;
+    constexpr uint8_t MOTION_CONTROL_STATUS_STALLED     = 6U;
+    constexpr uint8_t MOTION_CONTROL_STATUS_DRIFT_COMP  = 7U;
+    constexpr uint8_t MOTION_CONTROL_STATUS_STOPPED     = 8U;
+    constexpr uint8_t MOTION_CONTROL_STATUS_LEARN       = 9U;
+
+> #26    00000 00:14:54.522    Info vDispatch Received new door status message: 1
+#27    00000 00:15:29.526    Info vDispatch Received new door status message: 4
+#28    00000 00:15:29.528    Info vDispatch Received new door status message: 5
+#29    00000 00:15:49.170    Info vDispatch Received new door status message: 0
+#30    00000 00:15:54.998    Info vDispatch Received new door status message: 2
+#31    00000 00:15:55.592    Info vDispatch Received new door status message: 0
+#32    00000 00:15:56.132    Info vDispatch Received new door status message: 2
+    
+  
+ 
+
+
+
+//==================================	
+2019.06.14 Friday
+    01. 瑞典问候，有道翻译；耳机连接；
+    02. git difftool config; (difftool messages)
+    03. issues; 不急，处理，回前，处理下个；
+    04. branch scope, one branch for one issues; each other br;
+    05. UL, safeRTOS order(docu, code), system test, time schedule;
+    06. SafeRTOS issue commu; price;
+
+//==================================	
+2019.06.13
+    01. TickType_t: typedef uint32_t TickType_t;
+    /SwingDoorPlatform/mbsSdk/components/common/rtos/freeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h
+        typedef __uint32_t uint32_t ;
+        typedef __UINT32_TYPE__ __uint32_t;
+        #define __UINT32_TYPE__ unsigned int
+    c:/mbs/programs/cygwin/usr/include/sys/_stdint.h
+        
+    02. typedef portTickType TickType;
+    /SwingDoorPlatform/mbsSdk/components/common/rtos/safeRTOS/taskControl/inc/taskControl.h
+        typedef unsigned long			portTickType;
+    /SwingDoorPlatform/mbsSdk/components/common/rtos/safeRTOS/Source/portable/003_GCC/033_ARM_CM4/portmacro.h
+
+        
+The powerAssist function is not entirely correct. It should work so that, in principle, 
+when power assist is 100% all spring torque should be cancelled, maybe with //addition 
+of some Nm to counter mechanical resistance in the gearbox. When power assist is 0% no 
+helping torque should be added, and in between the value should be calculated as the 
+given percentage of power assist.
+
+//Then when there is spring:
+So if we find that a constant offset is needed, then max power assist is Ts + Tc, with 
+/*Ts*/ being the spring torque and /*Tc*/ is the constant offset, and normal power assist is (Ts+Tc)*p/100
+with p being the wanted percentage of power assist.
+/*
+    power assist is Tp = (Ts + Tc)* p%;
+    torque limit equals to Tp;
+*/
+
+Then when there is no spring, the motor needs to apply torque in the closing direction 
+to keep the door closed. This torque is Tclose. If then an offset is needed as described 
+above, to counter mechanical resistance in the motor, Tc, then max power assist is Tc, 
+Tc zero power assist is Tclose and power assist in between is Tclose + (Tc-TClose)*p/100
+/*
+    power assist is Tp = Tc * p%;
+    torque limit is (Tclose + Tp);
+*/        
+    
+//==================================	
+2019.06.12
+    01. reset: 
+$ ./export-gcc-cmd-motor.sh 0x801FF31
+C:\mbs\SwingDoorPlatform/components/application/aaesGeneric/canComm/src/canComm.cpp:255
+    
+//==================================	
+2019.06.11
+    01. crash
+    02. safeRTOS 2 branches,
+    03. sps-158,
+    04. pipeline,
+    05. unit tests,
+    06. learn command doc
+    
+//==================================	
+2019.06.10
+    01. crash
+    02. safeRTOS 2 branches,
+    03. sps-158, 
+    
+//==================================	
+2019.06.3  
+    01. action-plan,
+    02. code change,
+        products/quasar/conf/FreeRTOSConfig.h
+        products/quasarMotor/conf/FreeRTOSConfig.h
+    04. arch diagram.
+    05. UL standard.
+
+//==================================	
+2019.05.31
+    01. 四连杆，向量法；角度之间的关系；
+    02. 求导微分，角速度，加速度；
+    03. PUSH, 导轨机构门上， 滑块机构门上；
+    04. 运动学分析，受力分析；static  analysis
+    05. 惯性力P = -ma; M = - J * a; 转动点，质心； 矩阵法；
+    EN1154;
+    K S B C A O F .  
+    K, S rise, shaft angle fall;
+    B fall, angle fall;
+    SolidWorks; 四连杆实际测试；
+        
+    06. 公式应用，认证，   机械，软件；
+    
+//==================================	
+2019.05.30
+    01. However, when you erase all parameters, you have to restart the system for the new value to take effect
+        PRAMETER_UPDATED-messages completely filling the ISOTP-queue 
+    02. components/application/swingDoorGeneric/errorHandler/motorBoard/inc/profiler.hpp
+    05. not tested setting parameters or erasing them via the BLE-interface
+    06. branch called “dh_dev_profiling” , error-handler ticks
 
 //==================================	
 2019.05.29 Wednesday.

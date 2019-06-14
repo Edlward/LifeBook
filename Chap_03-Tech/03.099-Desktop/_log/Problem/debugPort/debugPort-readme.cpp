@@ -7,19 +7,30 @@
 
 *02. change makefile:  *
 
-	//---------------------------------------------------------
+//---------------------------------------------------------
+    products/"quasarMotor"/conf/abs-component.mk: 
+    ABS_DEFINES := \
+               FW_VER_MAJOR=1 \
+               FW_VER_MINOR=0 \
+               FW_VER_BUILD=0 \
+               _DEBUG_PORT_
+
+make clean, then build.
+= //=To check MACRO enable or not?
+
+//---------------------------------------------------------
     products/"quasarMotor"/abs-module.mk:  components/application/test/debugPort \
                                            components/application/test/gpioTestPins \
-										   
-	_DEBUG_PORT_ := 1
+    
+//--------or like this-----------------
+_DEBUG_PORT_ := 1
 
-	ifdef  _DEBUG_PORT_
+ifdef  _DEBUG_PORT_
+ABS_COMPONENTS += \
+    components/application/test/gpioTestPins \
+    components/application/test/debugPort \
 
-	ABS_COMPONENTS += \
-		components/application/test/gpioTestPins \
-		components/application/test/debugPort \
-
-	endif #_DEBUG_PORT_
+endif #_DEBUG_PORT_
 	
 
 *03. define dbgPort in namespace: *
@@ -48,11 +59,11 @@
         //...
     }
 	
-*05. close mbsLogPrintf.
+/* *05. close mbsLogPrintf.
     Then close mbsLogPrintf(), and enable '_DEBUG_PORT_ENABLED_'
     /modules/drivers/serial/mbs_st_m64_core_v10/config/src/serialConfig.c
 	
-	#define _DEBUG_PORT_ENABLED_    2    //for check macro define valid.
+#define _DEBUG_PORT_ENABLED_    2    //for check macro define valid.
 
 #ifdef  _DEBUG_PORT_
 #define _DEBUG_PORT_ENABLED_    1
@@ -64,7 +75,7 @@
 #else
         .portName     = "debug",
         .aliasName    = "dbg",
-#endif
+#endif */
 
 
 *06. add header include:  *  in associated project cpp file.
@@ -81,6 +92,16 @@
 
 	
 *07. use dbgPort print: *  
+    
+        void CloseCommandImp::vRestart()
+    {
+#define _DEBUG_PORT_ //coding use, use ecplise check.
+#ifdef  _DEBUG_PORT_
+#include "debugPort.hpp"
+        dbgPort << "[v19.05.31]\n";= //=To check MACRO enable or not?
+#endif //  _DEBUG_PORT_
+        
+        
 
     such as in "void OpenCommandImp::vUpdate( const int16_t si16ShaftSpeed )".
 
@@ -137,4 +158,21 @@
             siDataBuf[siIndex] = siPos1;
         }
 		
-		
+*08. add input read: * 
+    
+    // input
+    char* DebugPort::charRead()
+    {
+        halSerialReadByte( port,
+                           reinterpret_cast<uint8_t*>( strScratchPad ),
+                           0);
+        return strScratchPad;
+    }
+    
+    char* readCmd = dbgPort.charRead();
+    if ( (readCmd[0]) == 'h' )
+    {
+        dbgPort << readCmd[0] <<readCmd[1];
+    }
+    #endif
+        
