@@ -637,7 +637,7 @@ FreeRTOS,
 Octave, 
 
 /Not push, give suggestions. (beer, git branch, code)/
-//Not desc, try sign °。
+//Not desc, try sign °。 ℃，∠，
 
 
 //DOCUMENT; LINT; UNIT-TEST; 
@@ -716,6 +716,14 @@ Lock voltage setting doesn't work: https://aaes-jira.assaabloy.net/browse/SPS-17
     03. mbs, baremental,
     04. BLE PC TOOL,
     
+    
+    
+亲爱的老婆，尊敬的夫人：
+    见信好！
+    在瑞典兰斯克鲁纳住的这段时间，有一种怕怕的感觉。不是对陌生的环境的胆怯，其实我稍微有点喜欢这里的环境，
+这里有清新的空气，有淡蓝清澈的天空，也有我最喜欢的园林。那我怕的是什么呢？
+    我在这里所惧怕的事情，是如果我们有一天变老了，我怕我记住不你，怕得了那种什么会导致遗忘的疾病，以至于
+记不住你美丽的相貌，你的声音，你的一切。想到这个，我曾从梦中惊醒！
     
 //==================================	
 2019.06.18 Tuesday
