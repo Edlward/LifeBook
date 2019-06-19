@@ -10,21 +10,59 @@
 	path = c:/meld186/meld/meld.exe
     cmd = c:/meld186/meld/meld.exe "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 [alias]
-	tr1		= log -1 --graph  --oneline
-	tr5		= log -5 --graph  --oneline
-	tr10	= log -10 --graph  --oneline
-	tr50	= log -50 --graph  --oneline
+	bt 		= !"for k in `git branch|perl -pe s/^..//`;do echo `git show --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset\" $k|head -n 1`\\\t$k;done|sort"
+    sort    = for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/
 	ss 		= status 
 	bb 		= branch
 	bv 		= branch -vv
 	cc 		= checkout 
 	cm 		= commit 
 	mm		= merge --no-ff
-	bt 		= !"for k in `git branch|perl -pe s/^..//`;do echo `git show --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset\" $k|head -n 1`\\\t$k;done|sort"
-	log5 = log -5 --graph --oneline
-	log10 = log -10 --graph --oneline
+	log5    = log -5 --graph --oneline
+	log10   = log -10 --graph --oneline
+    log1w   = log --author="Jerry.Hua" --after='1 week ago' --oneline
+    fet     = fetch -p
+    gr      = grep --break --heading --line-number
 [user]
 	name = jerhua
 	email = jerry.hua@assaabloy.com
 [difftool]
 	prompt = false
+[core]
+	whitespace = cr-at-eol
+	autocrlf = false
+	safecrlf = true
+[gui]
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[difftool "meld"]
+	path = c:/meld186/meld/meld.exe
+    cmd = c:/meld186/meld/meld.exe "$LOCAL" "$REMOTE"
+[mergetool "meld"]
+	path = c:/meld186/meld/meld.exe
+    cmd = c:/meld186/meld/meld.exe "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+[alias]
+	bt 		= !"for k in `git branch|perl -pe s/^..//`;do echo `git show --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset\" $k|head -n 1`\\\t$k;done|sort"
+    sort    = for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/
+	ss 		= status 
+	bb 		= branch
+	bv 		= branch -vv
+	cc 		= checkout 
+	cm 		= commit 
+	mm		= merge --no-ff
+	log5    = log -5 --graph --oneline
+	log10   = log -10 --graph --oneline
+    log1w   = log --author="Jerry.Hua" --after='1 week ago' --oneline
+    fet     = fetch -p
+    gr      = grep --break --heading --line-number
+[user]
+	name = jerhua
+	email = jerry.hua@assaabloy.com
+[difftool]
+	prompt = false
+[core]
+	whitespace = cr-at-eol
+	autocrlf = false
+	safecrlf = true

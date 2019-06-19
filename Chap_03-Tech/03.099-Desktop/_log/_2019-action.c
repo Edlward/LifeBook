@@ -237,13 +237,53 @@ Pedestrian Door Solutions
   
 003. git cmd
 {
+    //config
     git config --global alias.st status
+    git config --global alias.log10  "log -10 --graph --oneline"
+        
+    git whatchanged --since='2 weeks ago'
         
 	git for-each-ref --sort=-committerdate refs/heads/
 		
+    //branch, repository
+    git log10       /* branch tree. */
+    git branch -vv  /* upstream     */
+    git status      /* local status.*/
+    
 	git branch -r --contains CommitID
+    git checkout --orphan  NEW_BRANCH_NAME_HERE
+    
+    git fetch -p                /*获取和清除旧数据，非常好用。*/
 	
-	git reset --hard HEAD~1则 删除了commit3，如果发现删除错误了，需要恢复commit3，这个时候就要使用git reflog
+    //rebase
+    git rebase --continue       /*衍合，衍变融合； 他人有不一样的更改，需要解决冲突。*/
+	git reset --hard HEAD~1 则删除了commit3，如果发现删除错误了，需要恢复commit3，这个时候就要使用git reflog
+    
+    git bundle create <file> <branch-name>
+    
+    //log
+    git log Branch1 ^Branch2
+    
+    git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/
+    
+    //grep
+    git grep --break --heading --line-number
+    git grep 'variableName' -- '*.java'
+    git archive -o ../updated.zip HEAD $(git diff --name-only HEAD^)
+    
+    //git stash
+    git stash list
+    git stash show
+    git stash drop
+    
+    git stash push  
+    git stash pop  
+    git stash apply  
+    
+    git stash clear 
+    
+    //remote, origin
+     
 }
 
 004. eclipse cmd
@@ -594,6 +634,15 @@ Android,
 PLC,
 FreeRTOS,
 
+Octave, 
+
+/Not push, give suggestions. (beer, git branch, code)/
+//Not desc, try sign °。
+
+
+//DOCUMENT; LINT; UNIT-TEST; 
+
+//Git: checkout new branch, but upstream on old one(not push new branch), cause it is easy to REBASE.
 //Fast debug: change struct(switch out)
 //Push, before check web, or fetch. //delete wrong push.
 
@@ -634,18 +683,57 @@ List:
     constexpr uint8_t MOTION_CONTROL_STATUS_STOPPED     = 8U;
     constexpr uint8_t MOTION_CONTROL_STATUS_LEARN       = 9U;
 
-> #26    00000 00:14:54.522    Info vDispatch Received new door status message: 1
-#27    00000 00:15:29.526    Info vDispatch Received new door status message: 4
-#28    00000 00:15:29.528    Info vDispatch Received new door status message: 5
-#29    00000 00:15:49.170    Info vDispatch Received new door status message: 0
-#30    00000 00:15:54.998    Info vDispatch Received new door status message: 2
-#31    00000 00:15:55.592    Info vDispatch Received new door status message: 0
-#32    00000 00:15:56.132    Info vDispatch Received new door status message: 2
     
-  
+    int32_t ControllerImp::si32GetShaftTorqueWhithOpeningBrake () volatile
+    {
+        int32_t si32ShaftTorqueWithBrake = si32GetSpeedControllerTorqueLimitedToMaxSelectedLimits ();
+        int32_t si32OpenBrakeLimitTorque = si32GetLimitedOpeningBrakeTorque ();
+        if ( si32ShaftTorqueWithBrake > si32OpenBrakeLimitTorque )
+        {
+            si32ShaftTorqueWithBrake = si32OpenBrakeLimitTorque;
+            boHasBrakedInOpeningDirection = true;
+        }
+
+        return si32ShaftTorqueWithBrake;
+    }  
  
 
 
+ 
+//==================================	
+2019.06.19 Wednesday
+    01. issue,    
+We need to check how the expected behavior should be during learn. What kind of stop are we expecting? 
+Willies to double check with team in China: https://aaes-jira.assaabloy.net/browse/SPS-174
+Fix min 1,5s opening time: https://aaes-jira.assaabloy.net/browse/SPS-175
+Implement limitation on opening time depending on size: https://aaes-jira.assaabloy.net/browse/SPS-176
+Tuning needed for power assist! https://aaes-jira.assaabloy.net/browse/SPS-177
+Stop on stall doesn't work: https://aaes-jira.assaabloy.net/browse/SPS-178
+Lock voltage setting doesn't work: https://aaes-jira.assaabloy.net/browse/SPS-179
+2 degree mechanical flex causes issues for software determining positions: https://aaes-jira.assaabloy.net/browse/SPS-180
+    
+    02. code bug, read, ble console, lint file, make,
+    03. mbs, baremental,
+    04. BLE PC TOOL,
+    
+    
+//==================================	
+2019.06.18 Tuesday
+    01. Show power assist function to Jeppa, tuning.
+    02. Fast push, brake at stopper not well,
+    03. Door interia, unit he
+    04. New issue,
+    
+    csi32DeltaShaftAngle 2523083,
+    si32BrakeSpeedInMilliRadPerSecond 11377,
+    
+    
+//==================================	
+2019.06.17 Monday
+    01. Talking in english about weekend,
+    02. Gitlab thing; new version test;
+    03. Code issue ongoning;
+    04. Disk clean, virtual box;
 
 //==================================	
 2019.06.14 Friday
