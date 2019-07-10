@@ -1,0 +1,522 @@
+
+{
+	"NOT_USED": {},
+	"HEART_BEAT": {
+		"sequenceNumber": {
+			"type": "uint8_t",
+			"description": "A sequence number for the heart beat. Guarantees that no messages are lost in transmission."
+		},
+		"crc8": {
+			"type": "uint8_t",
+			"description": "A 8-bit CRC for the contents of the heart beat message."
+		}
+	},
+	"IMPULSE": {
+		"type": {
+			"type": [
+				"INNER",
+				"OUTER",
+				"KEY",
+				"OPEN_CLOSE",
+				"PRESENCE_DETECT",
+				"RUO",
+				"PAG",
+				"PROGRAM_OFF",
+				"PROGRAM_OPEN"
+			],
+			"description": "The type of impulse."
+		},
+		"active": {
+			"type": "bool",
+			"description": "True if active and false if the impulse is not active."
+		}
+	},
+	"SAFETY_IMPULSE": {
+		"type": {
+			"type": [
+				"PRESENCE"
+			],
+			"description": "The type of safety impulse."
+		},
+		"active": {
+			"type": "bool",
+			"description": "True if active and false if the impulse is not active."
+		},
+		"sequenceNumber": {
+			"type": "uint8_t",
+			"description": "A sequence number for the heart beat. Guarantees that no messages are lost in transmission."
+		},
+		"crc8": {
+			"type": "uint8_t",
+			"description": "A 8-bit CRC for the contents of the heart beat message."
+		}
+	},
+	"LEARN_BUTTON": {
+		"active": {
+			"type": "bool",
+			"description": "True if active and false if the impulse is not active."
+		}
+	},
+	"DOOR_CONTROL_TIMER_EVENT": {
+		"event": {
+			"type": "uint8_t",
+			"description": "The timer event that has occurred."
+		}
+	},
+	"ENCODER_INFO": {
+		"angle": {
+			"type": "int32_t",
+			"description": "The current encoder angle in micro-radians."
+		},
+		"shaftSpeed": {
+			"type": "int16_t",
+			"description": "The current shaft speed in milli-radians per second."
+		}
+	},
+	"SAFETY_CAN_ERROR": {
+		"errorMessageId": {
+			"type": "uint8_t",
+			"description": "The message ID of the message the error concerns."
+		},
+		"error": {
+			"type": [
+				"NONE",
+				"CRC",
+				"SEQ",
+				"TIMEOUT"
+			],
+			"description": "The error type."
+		}
+	},
+	"CAN_BUS_ERROR": {
+		"active": {
+			"type": "bool",
+			"description": "True if active and false if the error is not active."
+		}
+	},
+	"MOTION_CONTROL_STATUS": {
+		"status": {
+			"type": [
+				"CLOSING",
+				"MANUAL",
+				"CLOSED",
+				"OBSTRUCTED",
+				"OPENING",
+				"OPEN",
+				"STALLED",
+				"DRIFT_COMP",
+				"STOPPED",
+				"LEARN"
+			],
+			"description": "The new status of motion control."
+		}
+	},
+	"MOTION_CONTROL_COMMAND": {
+		"command": {
+			"type": [
+				"CLOSE",
+				"OPEN",
+				"STOP",
+				"FREE_SWING",
+				"LOCK_RETRY_OPEN",
+				"SLOW_OPEN",
+				"LOCK_RELEASE",
+				"LEARN"
+			],
+			"description": "The command."
+		}
+	},
+	"MOTION_CONTROL_EVENT_TIMEOUT": {
+		"event": {
+			"type": "uint8_t",
+			"description": "The event that timed out."
+		}
+	},
+	"DOOR_CONTROL_RENEW_CLOSED_ANGLE": {
+		"renew": {
+			"type": "bool",
+			"description": "True if the angle needs to be renewed, false if not."
+		}
+	},
+	"SET_ERROR": {
+		"errorCode": {
+			"type": "uint8_t",
+			"description": "The error code to set."
+		}
+	},
+	"CLEAR_ERROR": {
+		"errorCode": {
+			"type": "uint8_t",
+			"description": "The error code to clear."
+		}
+	},
+	"ABORT_IMPULSES_TIMEOUT": {
+		"abort": {
+			"type": "bool",
+			"description": "True if the abort impulse timed out, false if not."
+		}
+	},
+	"DOOR_ANGLE_REPETITION": {
+		"angle": {
+			"type": "uint16_t",
+			"description": "The door angle in micro-radians."
+		}
+	},
+	"ISO_TP_FRAME": {
+		"data": {
+			"type": "uint8_t[8]",
+			"description": "The payload of the ISO_TP_FRAME."
+		}
+	},
+	"LEARN_RESULTS": {
+		"doorInertiaInDeciKgMeterSquared": {
+			"type": "uint16_t",
+			"description": "The door inertia."
+		},
+		"doorOpenAngleInDeciDegrees": {
+			"type": "uint16_t",
+			"description": "The door open angle."
+		},
+		"springPreTensionInMillimeter": {
+			"type": "uint16_t",
+			"description": "The spring pre-tension."
+		},
+		"springExists": {
+			"type": "bool",
+			"description": "True if there is a spring, false if not."
+		}
+	},
+	"LEARN_LATCH_CHECK_ANGLE": {
+		"angle": {
+			"type": "uint16_t",
+			"description": "The angle for the latch check, in TODO: What?"
+		}
+	},
+	"LEARN_BACK_CHECK_ANGLE": {
+		"angle": {
+			"type": "uint16_t",
+			"description": "The learn back check angle in TODO: What?"
+		}
+	},
+	"LEARN_COMMAND_ERROR": {
+		"active": {
+			"type": "bool",
+			"description": "True if active and false if the error is not active."
+		}
+	},
+	"PROGRAM_OVERRIDE": {
+		"program": {
+			"type": [
+				"OFF",
+				"EXIT",
+				"AUTO",
+				"OPEN",
+				"LOCAL"
+			],
+			"description": "Override the current door program with a new one (or go back to default)."
+		}
+	},
+	"PROGRAM_UPDATED": {
+		"newProgram": {
+			"type": [
+				"OFF",
+				"EXIT",
+				"AUTO",
+				"OPEN"
+			],
+			"description": "The program for the door has changed to this new one."
+		}
+	},
+	"PARAMETER_SET_VALUE": {
+		"id": {
+			"type": "int32_t",
+			"description": "The parameter ID."
+		},
+		"value": {
+			"type": "int32_t",
+			"description": "The new value for the given parameter."
+		}
+	},
+	"PARAMETER_SET_DEFINITIONS": {},
+	"PARAMETER_GET_DATA": {
+		"type": {
+			"type": [
+				"VALUE",
+				"DEFINITION",
+				"MAP"
+			],
+			"description": "The type of data to get."
+		},
+		"id": {
+			"type": "int32_t",
+			"description": "The parameter ID of the parameter to get data for."
+		}
+	},
+	"PARAMETER_UPDATED": {
+		"id": {
+			"type": "int16_t",
+			"description": "The parameter ID of the parameter to that was updated."
+		},
+		"value": {
+			"type": "int32_t",
+			"description": "The new value for the given parameter."
+		},
+		"errorCode": {
+			"type": "uint8_t",
+			"description": "A non-zero value here means that there was some error when writing a new value to the given parameter. This probably means that the parameter does not have the value returned."
+		}
+	},
+	"PARAMETER_DEFINITION": {
+		"id": {
+			"type": "int32_t",
+			"description": "The parameter ID of the parameter to that was updated."
+		},
+		"defaultValue": {
+			"type": "int32_t",
+			"description": "The default value of the parameter."
+		},
+		"readLevel": {
+			"type": "int32_t",
+			"description": "The read level for the parameter (defined in HEX, the low nibble is level 1, up one is level 2 and so on)."
+		},
+		"writeLevel": {
+			"type": "int32_t",
+			"description": "The write level for the parameter (see read-level)."
+		},
+		"freezeFlags": {
+			"type": "int32_t",
+			"description": "Defined but not yet used."
+		},
+		"min": {
+			"type": "int32_t",
+			"description": "The minimum value for the parameter."
+		},
+		"max": {
+			"type": "int32_t",
+			"description": "The maximum value for the parameter."
+		},
+		"type": {
+			"type": [
+				"INT",
+				"ENUM",
+				"BITFIELD",
+				"BOOL"
+			]
+		}
+	},
+	"BLE_STATUS_UPDATED": {
+		"connection": {
+			"type": [
+				"CONNECTED",
+				"DISCONNECTED"
+			],
+			"description": "Whether any device is connected to the system via BLE."
+		}
+	},
+	"SYS_MON_THRES": {
+		"id": {
+			"type": [
+				"OverV_Encoder",
+				"UnderV_Encoder",
+				"MAIN_VOL_THRESHOLD_ID",
+				"MAIN_VOL_OVERVOL_THRESHOLD_ID",
+				"MAIN_VOL_UNDERVOL_THRESHOLD_ID",
+				"BR_CHOP_THRESHOLD_ID",
+				"BR_CHOP_OVERVOL_THRESHOLD_ID",
+				"MAIN_VOL_DIFF_THRESHOLD_ID",
+				"GENERATOR_MODE_THRESHOLD_ID",
+				"ShortCircuit_ExtVolt",
+				"OverVolt_ExtVolt",
+				"Volt_diff_motor",
+				"Amp_diff_motor"
+			],
+			"description": "The type of adc threshold."
+		},
+		"level": {
+			"type": "int32_t",
+			"description": "The threshold level of the adc object"
+		},
+		"status": {
+			"type": [
+				"BELOW_THRESHOLD",
+				"ABOVE_THRESHOLD"
+			],
+			"description": "Whether the adc value is below the threshold level"
+		}
+	},
+	"THRESHOLD_TYPE_2": {
+		"id": {
+			"type": "uint8_t",
+			"description": "The type of adc threshold."
+		},
+		"level": {
+			"type": "int32_t",
+			"description": "The threshold level of the adc object"
+		},
+		"status": {
+			"type": [
+				"BELOW_THRESHOLD",
+				"ABOVE_THRESHOLD"
+			],
+			"description": "Whether the adc value is below the threshold level"
+		}
+	},
+	"THRESHOLD_TYPE_3": {
+		"id": {
+			"type": "uint8_t",
+			"description": "The type of adc threshold."
+		},
+		"level": {
+			"type": "int32_t",
+			"description": "The threshold level of the adc object"
+		},
+		"status": {
+			"type": [
+				"BELOW_THRESHOLD",
+				"ABOVE_THRESHOLD"
+			],
+			"description": "Whether the adc value is below the threshold level"
+		}
+	},
+	"THRESHOLD_TYPE_4": {
+		"id": {
+			"type": "uint8_t",
+			"description": "The type of adc threshold."
+		},
+		"level": {
+			"type": "int32_t",
+			"description": "The threshold level of the adc object"
+		},
+		"status": {
+			"type": [
+				"BELOW_THRESHOLD",
+				"ABOVE_THRESHOLD"
+			],
+			"description": "Whether the adc value is below the threshold level"
+		}
+	},
+	"THRESHOLD_TYPE_5": {
+		"id": {
+			"type": "uint8_t",
+			"description": "The threshold type of the encoder voltage."
+		},
+		"level": {
+			"type": "int32_t",
+			"description": "The threshold level of the encoder voltage"
+		},
+		"status": {
+			"type": [
+				"BELOW_THRESHOLD",
+				"ABOVE_THRESHOLD"
+			],
+			"description": "Whether the adc value is below the threshold level"
+		}
+	},
+	"SYSTEM_MONITOR_STATUS": {
+		"status": {
+			"type": [
+				"RELAY_TEST_DONE",
+				"RELAY_ENERGIZED",
+				"RELAY_DE_ENERGIZED",
+				"MAIN_VOLTAGE_DROP",
+				"EXT_ENABLED",
+				"EXT_DISABLED",
+				"LOCK_ENERGIZED",
+				"LOCK_DE_ENERGIZED",
+				"MOTOR_75_PERCENT_OVERHEAT",
+				"MOTOR_80_PERCENT_OVERHEAT",
+				"MOTOR_85_PERCENT_OVERHEAT",
+				"MOTOR_90_PERCENT_OVERHEAT",
+				"MOTOR_95_PERCENT_OVERHEAT",
+				"CLEAR_MOTOR_75_PERCENT_OVERHEAT"
+			],
+			"description": "The status message of system monitoring module."
+		}
+	},
+	"SYSTEM_MONITOR_ERROR": {
+		"error": {
+			"type": [
+				"RELAY_ERROR",
+				"UDC_OVER_VOLTAGE_ERROR",
+				"UDC_UNDER_VOLTAGE_ERROR",
+				"UCTRLDC_OVER_VOLTAGE_ERROR",
+				"MAIN_VOLTAGE_DIFF_ERROR",
+				"ENCODER_CONNECT_ERROR",
+				"ENCODER_MANUAL_ERROR",
+				"ENCODER_OVER_VOLTAGE_ERROR",
+				"ENCODER_FICTIVE_RESISTANCE_ERROR",
+				"CLEAR_ENCODER_CONNECT_ERROR",
+				"CLEAR_OTHER_ENCODER_ERRORS",
+				"EXT_SHORT_CIRCUIT",
+				"EXT_OVER_VOLTAGE",
+				"CLEAR_EXT_SHORT_CIRCUIT",
+				"LOCK_VOLTAGE_ERROR",
+				"LOCK_BACKUP_ERROR",
+				"TEMINAL_5V4_ERROR",
+				"LED_6V_ERROR",
+				"REF_2V5_ERROR",
+				"24V_OVER_VOLTAGE_ERROR",
+				"24V_UNDER_VOLTAGE_ERROR",
+				"MOTOR_VOLTAGE_ERROR",
+				"MOTOR_CURRENT_ERROR",
+				"MOTOR_DRIVER_ERROR",
+				"MOTOR_OVERHEAT_ERROR",
+				"CLEAR_MOTOR_OVERHEAT_ERROR"
+			],
+			"description": "The error message of system monitoring module."
+		}
+	},
+
+	"SOFTWARE_RESET":{
+		"status": {
+			"type": "bool",
+			"description": "Always be true for software reset"
+		}
+	},
+	"REQUEST_STATUS": {
+		"keys": {
+			"type": "uint8_t[2]",
+			"description": "A value to be returned by the task, each task has its own key in the list."
+		}
+	},
+	"STATUS": {
+		"taskId": {
+			"type": "int8_t",
+			"description": "The global ID of the task, as defined by the system monitor (not the system task ID)."
+		},
+		"key": {
+			"type": "uint8_t",
+			"description": "They key received via the REQUEST_STATUS call with all bits flipped."
+		}
+	},
+	"SYSTEM_MONITOR_EVENT_TIMEOUT": {
+		"event": {
+			"type": "uint8_t",
+			"description": "The event that timed out."
+		}
+	},
+	
+	"BASIC_IO_HW_ERROR": {
+		"error": {
+			"type": "bool",
+			"description": "Always be true for BASIC_IO_HW_ERROR"
+		}
+	},
+	
+	"LOCK_ENERGIZED":{
+		"request": {
+			"type": "bool",
+			"description": "True value for request lock energized, false value for request lock de-energized"
+		}
+	},
+	"PARAMETER_MAP":{
+		"count": {
+			"type": "int32_t",
+			"description": "The number of parameter ID's defined by the system."
+		},
+		"map": {
+			"type": "uint8_t[3]",
+			"description": "Maps all used parameter IDs with bits. Each bit it 1 if the corresponding parameter ID is used. So for example, bit 2 of byte 3 represents parameter ID 17."
+		}
+	}
+}

@@ -619,7 +619,9 @@ ${GCC_HOME}\bin;${GRAPHVIZ_HOME}\bin;${CYGWIN_HOME}\bin;C:\mbs\programs\bin\;C:\
 
 
 
-
+error: Problems running PlantUML. 
+Verify that the command 'java -jar "C:/mbs/programs/graphviz/bin\plantuml.jar" -h' works from the command line. 
+Exit code: 200
 
 
 
@@ -638,27 +640,9 @@ FreeRTOS,
 
 Octave, 
 
-/Not push, give suggestions. (beer, git branch, code)/
+
 7.1-7.21 Sweden crash holiday, merge request?
 
-//Not desc, try sign °。 ℃，∠，
-
-
-//DOCUMENT; LINT; UNIT-TEST; 
-
-//Git: checkout new branch, but upstream on old one(not push new branch), cause it is easy to REBASE.
-//Fast debug: change struct(switch out)
-//Push, before check web, or fetch. //delete wrong push.
-
-    echo $PROJ  quasarMotor.
-    which make
-    Command-line Interface，CLI
-    ping linuxandubuntu.com -c 4
-    pacman -S git
-
-    fdisk -l
-    mkdir .mnt/home
-    uname -a
 
 **/
 
@@ -669,7 +653,7 @@ Octave,
        dir,     everything.
 
 ------------------------------------
-List:
+Q List:
 01. Learn    : After learned, recycle door, burn motor board relay;
 02. Parameter: push and go not disabled; not 4 degree， maybe 30 degree.
     Just can change block 0.
@@ -685,45 +669,30 @@ List:
 09. document : learn command ? learn calculator?
 10. Difference: Adc plus5, old one.
 
-------------------------------------
+------------------------------------ 
 
-    // Parameters for MOTION_CONTROL_STATUS
-    constexpr uint8_t MOTION_CONTROL_STATUS_CLOSING     = 0U;
-    constexpr uint8_t MOTION_CONTROL_STATUS_MANUAL      = 1U;
-    constexpr uint8_t MOTION_CONTROL_STATUS_CLOSED      = 2U;
-    constexpr uint8_t MOTION_CONTROL_STATUS_OBSTRUCTED  = 3U;
-    constexpr uint8_t MOTION_CONTROL_STATUS_OPENING     = 4U;
-    constexpr uint8_t MOTION_CONTROL_STATUS_OPEN        = 5U;
-    constexpr uint8_t MOTION_CONTROL_STATUS_STALLED     = 6U;
-    constexpr uint8_t MOTION_CONTROL_STATUS_DRIFT_COMP  = 7U;
-    constexpr uint8_t MOTION_CONTROL_STATUS_STOPPED     = 8U;
-    constexpr uint8_t MOTION_CONTROL_STATUS_LEARN       = 9U;
-
-    
-    int32_t ControllerImp::si32GetShaftTorqueWhithOpeningBrake () volatile
-    {
-        int32_t si32ShaftTorqueWithBrake = si32GetSpeedControllerTorqueLimitedToMaxSelectedLimits ();
-        int32_t si32OpenBrakeLimitTorque = si32GetLimitedOpeningBrakeTorque ();
-        if ( si32ShaftTorqueWithBrake > si32OpenBrakeLimitTorque )
-        {
-            si32ShaftTorqueWithBrake = si32OpenBrakeLimitTorque;
-            boHasBrakedInOpeningDirection = true;
-        }
-
-        return si32ShaftTorqueWithBrake;
-    }  
- 
-
-    04. pipe_suzhou: 
-        ==在linux安装git, gitlab-runner; （Debian: su, apt-get update, upgrade, install git.）(arch li: pacman -S git.)
-        ==build? 在linux里build， 完成之后，怎么==load？
-        ==st-link驱动，需要在linux里安装吗？
-        
-        ==python in linux,
-        ==doxygen？
-        
-       ping linuxandubuntu.com -c 4
-    
+       
+//==================================
+2019.07.10-Wednesday.
+01. ProgramSelector: (io param intf(impules),to private object(maybe not defined), &message, mode).
+02. DoorControlApp: (#define INT16_MAX (__INT16_MAX__) stdint.h, 
+    dispatch:   motion_control_status, timer_enent, impulse timeout,
+                door_angle_repetion, impulse, learn button, 
+                learn_error, ble_status_updated. ).
+       
+//==================================
+2019.07.05-Friday.
+01. 小组会议， 活动主题欢迎Cason.
+02. Denbin实习结束，软件招聘实习生；
+03. linux介绍：是什么，历史，对比window，能做什么，命令，编程...
+       
+       
+//==================================
+2019.07.04-Thursday.
+01. read files: yml, jenkins, gitlab error,.
+02. lockMonitor.
+03. ul doc.
+04. email, calendar.
        
 //==================================
 2019.07.01-code.

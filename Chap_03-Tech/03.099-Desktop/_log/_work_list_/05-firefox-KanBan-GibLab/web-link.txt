@@ -1,0 +1,4 @@
+01：git develop https://aaes.githost.io/AAESSwingDoor/SwingDoorPlatform/network/develop
+02: jenkins project http://demeesis0038.ad.global:8080/job/SwingDoors/
+03. jira board https://aaes-jira.assaabloy.net/secure/RapidBoard.jspa?projectKey=SPS&rapidView=58
+04. share point https://projectweb.assaabloyentrance.net/default.aspx
