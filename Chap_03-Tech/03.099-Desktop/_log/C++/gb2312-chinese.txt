@@ -1,0 +1,3 @@
+//?? static variable door lock retry detect angle in deci-degree
+
+//¡I static variable door lock retry detect angle in deci-degree

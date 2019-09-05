@@ -1,0 +1,63 @@
+#227   00000 00:08:08.022    Info vExecuteCurrentTest Test 0=ProgramFlowSend finished (in 2ms).
+#228   00000 00:08:08.033    Info vExecuteCurrentTest Test 1=RAM Test finished (in 14ms).
+#229   00000 00:08:08.035    Info vExecuteCurrentTest Test 2=Cpu Test finished (in 16ms).
+#230   00000 00:08:16.691    Info vExecuteCurrentTest Test 3=Flash Test finished (in 8802ms).
+#231   00000 00:08:16.693    Info vExecuteCurrentTest Test 4=ProgramFlowReceive finished (in 8804ms).
+#232   00000 00:08:22.798    Info vExecuteS
+
+## Hard fault occurred, see register details below
+R0   = 0x080131bd    R1   = 0x0803f61c
+R2   = 0x0803f678    R3   = 0x00000000
+R12  = 0x200071c8    LR   = 0x00000010
+PC   = 0x080362de    PSR  = 0x61000000
+BFAR = 0xe000ed38    CFSR = 0x01000000
+HFSR = 0x40000000    DFSR = 0x00000008
+AFSR = 0x00000000
+
+Debug tips:
+
+  arm-none-eabi-objdump -d -S <elf-file> | less
+
+ and search for line around LR f:
+
+## Assert failed at LR 0xF, task systemMonitor
+
+===========================
+MBS logging to UART started
+#0     00000 00:00:00.000    Info ecLogResetStatus Last cause of reset: Pin reset
+#1     00000 00:00:00.000    Info ecLogResetStatus Last cause of reset: Software reset
+#2     00000 00:00:00.000    Info SYS_CTRL build-id Len:20 Data:0x30ebb2e613908fce34eb4c2b7edebfdbe1eab883
+#3     00000 00:00:00.000 Warning Error from previous run ## Assert failed at LR 0xF, task systemMonitor
+#4     00000 00:00:00.004    Info initGlobals Globals initialized
+#5     00000 00:00:00.034    Info readParameterDefinition Reading parameter 0 result: 0
+#6     00000 00:00:00.039    Info readParameterDefinition Reading parameter 1 result: 0
+#7     00000 00:00:00.044    Info readParameterDefinition Reading parameter 2 result: 0
+#8     00000 00:00:00.049    Info readParameterDefinition Reading parameter 3 result: 0
+#9     00000 00:00:00.054    Info readParameterDefinition Reading parameter 4 result: 0
+
+===========================
+## Hard fault occurred, see register details below
+R0   = 0x00000000    R1   = 0x00000000
+R2   = 0x00000002    R3   = 0x00000000
+R12  = 0x200070d8    LR   = 0x08033225
+PC   = 0x08032c2e    PSR  = 0x01000000
+BFAR = 0xe000ed38    CFSR = 0x00000400
+HFSR = 0x40000000    DFSR = 0x00000000
+AFSR = 0x00000000
+
+Debug tips:
+
+  arm-none-eabi-objdump -d -S <elf-file> | less
+
+ and search for line around LR 8033224:
+
+## Assert failed at LR 0x8033224, task systemMonitor
+
+===========================
+jerhua@CNSUZL0009 MINGW64 /c/mbs/zs_tool
+$ ./export-gcc-cmd-motor.sh 0x8033224
+C:\mbs\SwingDoorPlatform/components/application/swingDoorGeneric/systemMonitorApp/motorBoard/src/systemMonitorApp.cpp:173
+
+jerhua@CNSUZL0009 MINGW64 /c/mbs/zs_tool
+$ ./export-gcc-cmd-motor.sh 0x8033225
+C:\mbs\SwingDoorPlatform/components/application/swingDoorGeneric/systemMonitorApp/motorBoard/src/systemMonitorApp.cpp:173

@@ -3,6 +3,7 @@
 1000-plan list:
 {
 00. 2019-plan: 	English,   			Speechcraft,
+                Janpanse,           Words,
 				Heart HuSea ocean,  Heart-Mouth-Step-One.
 				FOC board, 			TaoBao CodeStore, 
 				Work commu skill,	Taekwondo,			Chinese Go Chess 'Do',
@@ -21,6 +22,19 @@
                   smile to problem; 
                   email;
 				  UnitTest.
+
+    01. project doc, UL.
+    02. project code, led twinkle, //led indicator, sequencer comments.
+    03. project test, (mode change from open to auto, door pause short time.)
+                      (closed, current not same.)
+                      (reveal same, update sw changed arm table, door open angle change only 0.2 degree.)
+    04. project hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+    08. meeting, daily update, test sharing.
+    09. behave, slow speak fast thinking, fast action.
+    10. other, reimburement, stock, weiChat, lunch.
 					  
 		
 					  
@@ -34,89 +48,6 @@
 	BFC, CMP.//(git)
 	CPI, OVS.// name.
 
-	
-	
-
-EF : course start on 2 July
-姓名： Hua Jerry
-邮箱： jerry.hua@assaabloy.com
-电话： +86 051287181277
-手机： 18248788319
-公司： Assa Abloy
-国家： China
-您的测试结果
-日期： 2018-07-04
-推荐级别： 10级 － 中高级
-级别描述：
-此阶段结束的时候，您将能跟上一个熟悉的话题或就此发言，或者能跟上一个包含广泛话题的对话。
-能浏览文章来获取相关信息，并能理解复杂详细的说明或建议。能在别人讲话时做笔记，
-或能写以不标准语言描述要求的信件。
-总分： 52%
-语法： 42%
-听力： 52%
-阅读： 61%
-
-advisors@ef.com
-课程有效期至: 2018年12月30日
-
-个人学习计划：
-1）每月完成学习1个单元通用英语；
-4）每月至少参加1节小班会话课。
-3）每月至少参加1节单元最后的私人课堂；
-2）每月至少参加2节40分钟私教课堂；
-
-课程介绍：
-普通英语共有16个级别，每级别有6个单元，每个单元包含四节自学课以及两种形式的口语课。
-第一种形式是小班会话课，每天24小时的整点和大部分半点开课，每堂课45Min，没有参加次数限制，但是小班会话课是按照您是否在课堂待满30分钟以上及是否发言积极来评分的，所以不积极发言的分数可能不高。
-第二种形式是每单元最后有一节对应的私人课堂（20分钟），主要是对这个单元的复习和回顾，所以需要您先把前面的四节自学课自行完成，完成后会自动解锁，由于这节课是一对一的，所以需要您提前24小时在网上预约或者取消。
-第三种形式是40分钟的私教课，主要是根据您的个人喜好选定一个主题，老师会根据您选定的主题来展开上课的主要内容。由于这节课也是一对一的，所以需要您提前24小时在网上预约或者取消。
-
-
-
-
-Dear All,
-
-根据《关于苏州工业园区实施人才安居工程的若干意见（试行）》（苏园工〔2017〕29号）精神，现就组织申报园区2018年度人才薪酬补贴通知如下。
-
-1申报范围
-在园区注册成立，并符合下列条件之一的企事业单位，可组织人员申报园区人才薪酬补贴：
-1．国家级人才工程、国家万人计划、江苏省双创人才计划、姑苏人才计划、园区金鸡湖人才计划入选者创办的企业；
-2．国家高新技术企业；
-3．生物医药、人工智能、纳米技术应用等新兴产业企业；
-4．高端装备制造、总部经济、金融机构、专业服务、现代物流、服务外包、电子商务、商贸、文化创意、科技中介、医疗机构等先进制造业、现代服务业领域的企事业单位；
-5．区内科研院所和科教创新区内高等院校。
-园区国有企事业单位及税收征收级次在市级的单位不纳入申报范围（法人金融机构及推动在园区设立功能性总部的金融分支机构除外）。
-
-2申报对象
-园区人才薪酬补贴申报对象应同时具备以下条件：
-1．与企业依法签订1年以上（含1年）劳动合同，并正常缴纳园区社保或个税3个月以上（含3个月）；
-2．具有全日制硕士及以上学位或具有正高级职称；
-3．年龄不超过45周岁。
-企业控股股东、法定代表人、董事长、总经理等不纳入申报对象。
-
-3补贴标准
-具有硕士学位的人才，给予3万元薪酬补贴；具有博士学位的人才，给予4万元薪酬补贴；具有正高级职称的人才，给予5万元薪酬补贴。补贴金额均为税前金额，个人所得税自理。
-4申报受理
-1．申报时间：2019年1月18日至2月28日。
-2．申报方式：符合条件的企事业单位和人才分别登录园区人才薪酬补贴申报网站
-（www.siphrd.com/sipac_xcbt_2018），按要求完整填报企业及人员信息，并上传相关证明材料原件
-（彩色）扫描件；人才申请名单由所在单位按推荐顺序进行排列。
-3．认定程序：
-网上初审：2019年3月1日至3月31日，各业务主管部门对照条件，审核企事业单位及申报人资质、相关材料的完整度以及材料与所填信息的匹配度，符合申报条件且材料齐备后方可通过初审。
-专家评审：2019年4月1日至4月30日，各业务主管部门组织专家组，根据申报人人才评价积分及其他事项完成评审，形成复审通过人员名单；
-现场审验：2019年5月1日至5月31日，通过复审人员携带申报材料原件和复印件至园区一站式服务中心进行现场审验。
-认定发文：2019年6月1日至6月30日，建议补贴名单报园区人才办主任会议审定后，面向社会公示。公示无异议，即正式发文公布补贴名单；公示有异议，由园区组织部进行核查并提出处理意见。
-补贴拨付：2019年7月1日至7月20日，受补贴人员根据要求至园区企业发展服务中心提交薪酬补贴拨付所需材料原件和复印件，7月底前一次性拨付2018年度人才薪酬补贴。
-5其它事项
-1．符合申报范围的企事业单位当年度申报人员数量原则上不超过10人；已获得过薪酬补贴的人才可继续申请，但需重新申报接受评审，累计补贴原则上不超过3年。
-2．已获姑苏重点产业紧缺人才资助者，不再重复享受园区人才薪酬补贴；获补贴人员若在2019年7月20日前从申请单位离职的，本年度薪酬补贴不予发放。
-3．申请人及申请单位应对申报材料的真实性负责，如有虚假申报，一经查实即取消申报资格，并依法依规追究相关责任。
-4．薪酬补贴申报开始后，后续工作信息将通过申报系统网站和园区智慧人才微信公众号对外发布，请及时关注。
-
-
-Sunny Su
-HR & Admin Manager
-Pedestrian Door Solutions
 
 
 }
@@ -160,6 +91,9 @@ Pedestrian Door Solutions
 	\Item-breakdown\
 		G:\R&D\Folder_Tree_Management\41_Active_Projects_Electronics
 		\SwingDoorPlatform\time plan
+    /work_tasks_xlsx.
+    G:\R&D\Folder_Tree_Management\95_Project_Review\
+    
 		
 06. \100_Special_Project\
 	\\cnsuzsfp01\suzhou$\R&D\Folder_Tree_Management\100_Special_Project\Slider\Magnetic linear drive sliding door
@@ -174,6 +108,8 @@ Pedestrian Door Solutions
 	G:\R&D\Folder_Tree_Management\41_Active_Projects_Electronics\SwingDoorPlatform\
 	
 12. http://demeesis0038.ad.global:8080/job/SwingDoors/job/jer_dev_learnCmd/15/consoleFull
+
+
 	
 	
 }
@@ -306,6 +242,7 @@ Pedestrian Door Solutions
 005. concept
 {
 	前端就是作为用户（使用系统的人）来说可以"看得到"的交互部分， 后端则是持久化数据或者将持久化数据读取出来的"不可见"部分。
+    BackEnd: 对组件对配置，例如setRetryAttempts().
 }
 
   
@@ -319,89 +256,7 @@ issue:
 	motor enable;
 	basic io 24v_out_en;
 	
-//questions:
------------------------------------
-STM32F103-RET6-GQ21U
-01. "HSE_VALUE" redefined
-	/SwingDoorPlatform/modules/bsp/mbs_st_m64_core_v10/config/abs-component.mk //Here.
-	//HSE_VALUE=16000000 
-	/SwingDoorPlatform/modules/bsp/mbs_st_m64_core_v10/init/src/system_stm32f10x.c 
-    /* PCLK1 = HCLK/2 = 36MHz */
-    RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV2;
 
-    /* ADC = PCLK2/6 = 12MHZ */
-    RCC->CFGR |= (uint32_t)RCC_CFGR_ADCPRE_DIV6;
-	
-    /*  PLL configuration: PLLCLK = HSE / 2 * 9 = 72 MHz   HSE = 16MHZ */
-    RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLXTPRE |
-                                        RCC_CFGR_PLLMULL));
-    RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLSRC_HSE | RCC_CFGR_PLLMULL9 |RCC_CFGR_PLLXTPRE_HSE_Div2);
-
------------------------------------
-02. ADC sample: //component/motor.cpp.
-	uint16_t ui16ThisI0 = static_cast<uint16_t>(inputInternal::ADCInputImp::aui16ReceivedBuffer[1U]);
-	ui16ThisI0 += static_cast<uint16_t>(inputInternal::ADCInputImp::aui16ReceivedBuffer[2U]);
-
------------------------------------
-03. reset.
-addr2line -e <elf-file-name>.elf 0x8038F53 
-#8  00000 00:00:00.007    Info quasarMain OMSBasicMain task started
-MBS Console online, type help for a list of available commands
-> 
-## Assert failed at LR 0x801D03F, task commApp
-## Assert failed at LR 0x8014BBF, task outputApp
-	//message: vTaskDelayUntil( &xLastWakeTime, 100 ); in static void commApp( void* pvParameters ).
-	//\modules\messageRouter\motorBoard\mbs_st_m64_core_v10\config\src\messageRoutingTable.cpp
-
------------------------------------	
-04. can comm. //jump. //open-signal.
-	extern  CanComm* const can1; 
-	C:\mbs\SwingDoorPlatform\modules\comm\mainBoard\mbs_st_m64_core_v10\init\inc\comm.hpp
-
------------------------------------	
-05. ADC_ResetCalibration(ADC1);
-
------------------------------------	
-06. initial speed -40; //
-const int16_t CloseCommandImp::csi16SetSpeedAtClosed    = -40; /* -0.040 rad/s shaft speed */
-/SwingDoorPlatform/modules/motionControl/motorBoard/mbs_st_m64_core_v10/config/src/motionControlConfig.cpp==
-
------------------------------------	
-07. Kp, Ki, Kc.
-enum { PUSH_SPEED_P = 400 }; 				 //400Nms/radian on output shaft
-enum { MAX_ALLOW_CURRENT = 4000 };
-/SwingDoorPlatform/modules/motionControl/motorBoard/mbs_st_m64_core_v10/config/inc/motionControlConfig.hpp==
-
-ui32DoorInertiaSeenFromShaft		(30000U),//30kgm2
-/SwingDoorPlatform/components/application/swingDoorGeneric/speedController/src/normalSpeedController.cpp
-
------------------------------------
-08. _FIX_PWM_ //PI debug.
-/components/application/aaesGeneric/motor/src/motor.cpp
-
-_FIX_CURRENT_
-void MotorImp::vSetShaftTorque (const int32_t si32ShaftTorqueSet)
-
-_FIX_SPEED_
-/modules/motionControl/motorBoard/mbs_st_m64_core_v10/init/src/motionControl.cpp
-si16ShaftSpeed |= pui8MessagePayload[5]; //sample speed.
-#ifdef _FIX_SPEED_
-    si16ShaftSpeed = SPEED_VALUE_MRAD;
-#endif //_FIX_SPEED_
-armSystem->vUpdate(si32ShaftAngle,si16ShaftSpeed);
-
-------
-case CLOSING:
-    vSetLimitedTorqueFromSpeedController( -100, si16ShaftSpeed ); //CloseCommandImp::vUpdate()==
-------
-si32ShaftTorqueMax				(static_cast<int32_t>(25000)
-outputConfig.hpp			enum { PROPORIONAL_GAIN = 2000 };	1500. //SPM.
-							enum { INTEGRATION_FACTOR = 160 };	150.
-motionControlConfig.hpp		enum { PUSH_SPEED_P 	= 30 };
-
-    const int32_t csi32MotorResistanceInMilliOhm    = 430;
-    const int32_t csi32MotorInductanceInMicroH      = 960;
-    const int32_t csi32TorqueConstantInMilliNmOverA = 9980; // For SW300
 
 -----------------------------------	
 09. serial dbg_port
@@ -543,27 +398,27 @@ qtk12345678
 1008-platform design:
 {
 01. 0907-It would be good to have a small test-plan for the comming work. 
-		 It could be just comments indicating what tests will need to be developped.
-	0908-the documentation in PiController.hpp that the "incremental" form of a PI controller is used.
-	0905-there was a general update of the code to comply with our PC-lint
-	0903-length.
+     It could be just comments indicating what tests will need to be developped.
+0908-the documentation in PiController.hpp that the "incremental" form of a PI controller is used.
+0905-there was a general update of the code to comply with our PC-lint
+0903-length.
 MOTION_COMMAND_TRANSITION_DELAY_TIMER_ID(41-length)
 MOTION_CONTROL_TRANSITION_DELAY_TIMER_ID(41-length)	
 
-	0910-the filter function should be made as simple as possible, since it will execute in the ISR context of the motor controller. 
-	check what PC-Lint says
-	0910-The unit test should run on target as well. //eventTimer/unitTest && $(MAKE) runWindows
-	0910-variableWithUnit.
-	1030-Could the code be shared instead of copied? //not repeated code.
-	1030-calculate less.
-	1030-common helper function.
-	
-	1100-quasar and quasarMotor target doesn’t compile
-	1101-check the door opens and closes.
-	1102-Check if the onObject() function.
-	1103-indentation bloopers.
-	1104-git pull before continuing.
-	1105-NOT use tab, use 4 spaces.
+0910-the filter function should be made as simple as possible, since it will execute in the ISR context of the motor controller. 
+check what PC-Lint says
+0910-The unit test should run on target as well. //eventTimer/unitTest && $(MAKE) runWindows
+0910-variableWithUnit.
+1030-Could the code be shared instead of copied? //not repeated code.
+1030-calculate less.
+1030-common helper function.
+
+1100-quasar and quasarMotor target doesn’t compile
+1101-check the door opens and closes.
+1102-Check if the onObject() function.
+1103-indentation bloopers.
+1104-git pull before continuing.
+1105-NOT use tab, use 4 spaces.
     
 
 ------
@@ -596,8 +451,6 @@ comment,
 description,
 documentation,
 
-
-
 }
 //1008.
 
@@ -607,30 +460,42 @@ documentation,
 
 
 
-MBS_CC_TOOLCHAIN_PATH   ../mbsToolchains/
-
-make -j build,quasar,ARMCM3_GCC-debug-none-mbs_st_m64_core_v10 
-/cygdrive/c/mbs/zs_plat/mbsSdk/tools/ABS/build.mk:17: *** Toolchain "gcc-arm-none-eabi-6-2017-q2" is not supported, choose one of the following: {  }. If you have defined a custom MBS_CC_TOOLCHAIN_PATH, make sure to end it with a slash.  Stop.
-
-
-
-${GCC_HOME}\bin;${GRAPHVIZ_HOME}\bin;${CYGWIN_HOME}\bin;C:\mbs\programs\bin\;C:\mbs\programs\cygwin\bin;C:/Program Files (x86)/Java/jre1.8.0_161/bin/client;C:/Program Files (x86)/Java/jre1.8.0_161/bin;C:/Program Files (x86)/Java/jre1.8.0_161/lib/i386;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Lib\site-packages\PyQt4;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Python27;C:\Python27\DLLs;C:\Python27\Scripts;C:\Python27\gnuplot\binary;C:\Program Files (x86)\pythonxy\SciTE-3.5.1-4;C:\Program Files (x86)\pythonxy\console;C:\Program Files (x86)\Borland\StarTeam SDK 10.4\Lib;C:\Program Files (x86)\Borland\StarTeam SDK 10.4\Bin;C:\Program Files\Git\cmd;C:\Users\jerhua\AppData\Local\Microsoft\WindowsApps;C:\mbs\programs\eclipse
 
 
 
 
-error: Problems running PlantUML. 
-Verify that the command 'java -jar "C:/mbs/programs/graphviz/bin\plantuml.jar" -h' works from the command line. 
-Exit code: 200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 //################################
+//################################
 1009-log:
 {
-周一，10：00
-周二，09：00 -10:30
-周三，13：00
+周一，10：00 - 11:00+
+周二，09：00 - 10:30
+周三，09：00 - 10:50, 14:00-14:20
 
 
 /**
@@ -640,9 +505,7 @@ FreeRTOS,
 
 Octave, 
 
-
 7.1-7.21 Sweden crash holiday, merge request?
-
 
 **/
 
@@ -652,6 +515,7 @@ Octave,
        notePad, pctool;
        dir,     everything.
 
+------------------------------------
 ------------------------------------
 Q List:
 01. Learn    : After learned, recycle door, burn motor board relay;
@@ -670,8 +534,656 @@ Q List:
 10. Difference: Adc plus5, old one.
 
 ------------------------------------ 
+9.5-Deniel Hellsson wife birthday,
 
-       
+------------------------------------ 
+
+/What happens:
+
+When performing a Learn on a door that opens more than 90 degrees the Learn functionality appears to crash and closes the door slowly until the last bit where it slams shut.
+When door is blocked to a position less than 90 degrees the Learn finishes ok.
+This problem has been verified with Michael
+
+/Expectation:
+When Learn has opened the door fully it shall follow a specific close sequence where it closes the door quickly a bit before closing the door in a controlled way.
+On the weight door in the SE Test lab (EN 4) the door only opens to 90 degrees and there we do not see this problem. 
+
+/Step by step:
+
+    Door flashed (using the Gitlab pipeline)
+    Press the Learn button
+    Press open door button
+
+/Tested on:
+Two office table tops (CI and HIL) with larger than 90 degrees opening (estimate it to 110 degrees) and very little weight. Both fails in different ways
+Test lab door in Landskrona: EN4, open only 90 degrees. Works ok.
+
+/Build:
+develop_free: Pipeline #7962 (Fix submodule version to the correct one). The hex-files are attached.
+
+ 
+
+/Affects:
+
+This problem affects the development of automatic tests because all the test doors are larger than 90 degrees.
+    
+
+Available commands:
+    help - list all commands / help on specific command
+    exit - exit current mode
+    sysCtrlGetBuildId - print the hash number that is unique for this build
+    reboot - Reboot MCU
+    listParams - Print a list of all available parameters and their current value
+    eraseParams - Erase all the parameters in storage
+    setParamValue - Set a parameter's value
+    halMemEraseAll - Erase the whole partition
+    listStasts - Print a list of all available statistics and their current value
+    eraseStasts - Erase all the statistics in storage
+    clearStast - Clear a statistics's value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+settle 判定， 最終決定安排好。
+
+
+平等，即是不卑不亢。
+
+保持原有设计的基础上，调整相关参数，例子low energy force, 弹簧弹性系数更改；加大margin;
+最主要的还是需求，更改了门宽从1000->762mm
+
+参数更改，相关的都要更改，避免遗漏，全面检查。
+
+Boss Headache. CDC400,
+
+=================== 文件 =================
+C:\mbs\SwingDoorPlatform\mbsSdk\components\common\rtos\freeRTOS\Source\tasks.c
+C:\mbs\SwingDoorPlatform\mbsSdk\components\common\rtos\freeRTOS\Source\queue.c
+
+C:\mbs\SwingDoorPlatform\mbsSdk\components\halMcu\stdPeriphLib_tp\stm32f10x\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c
+C:\mbs\SwingDoorPlatform\mbsSdk\components\halMcu\init\stm32f10x\src\start_ARMCM3.s
+C:\mbs\SwingDoorPlatform\components\halMcu\interrupt\stm32f10x\src\mcuInterrupts.c
+
+C:\mbs\SwingDoorPlatform\modules\output\motorBoard\mbs_st_m64_core_v10\config\inc\outputConfig.hpp  //PROPORIONAL_GAIN， CURRENT_TO_TORQUE_FACTOR
+
+merge access,
+advantum access,
+
+=================== 实验 =================
+01. Updating CRC32 signature at [0x08046b40]
+    Checksum: 0xd9775671
+
+02. Switch_off relay:
+    Sw 009, 011, 016, 019, 020, 022.
+    Sw 009, 019 更新打印程序。
+    
+=================== 问题 =================
+new version:
+    01, reset, not continue cycle test=print reset. Still reset 2days running.
+        /switch off relay not energized again after reset.
+        console reset sw, to check relay enable status.
+    02, /low energy not work on force limit, 
+        close force67N.
+    03, /ADC drift.
+        datasheet, sensitity offset, 3.3v >> offset,
+        english,
+    04, learn open position, no margin.
+    05, flash test fail, change motor board. //crc32.
+    06. hardware version.
+    07. /no spring current 3.9A. 
+    08. sprints not fufill.
+    
+    UL test,
+    
+    
+
+ //==================================
+2019.09.03 Tuesday
+    01. project doc, UL.
+    02. project code, !!!
+        *.c, *.cpp, *.h, *.hpp, *.jenkins, *.jenkinsfile, *.json, *.markdown, *.md, *.mk
+        
+    03. project test, (relay off, ADC drift).
+        relay off 增加描述， 因为mainVoltage message not received， 电机运动时，导致ADC检测出错，没有发出消息；
+        增加延时之后，测试，复位之后继电器使能。指出复位问题是messageRouter.cpp 182 引起的，建立新的sps.
+        建立新的SPS，提供监控数据；
+    04. project stm32, hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+        /topic ppt, 
+    08. meeting, daily update, test sharing.
+        /sw team meeting.   
+    
+//==================================
+2019.09.02 Monday
+    01. project doc, UL.
+    02. project code, !!!
+        *.c, *.cpp, *.h, *.hpp, *.jenkins, *.jenkinsfile, *.json, *.markdown, *.md, *.mk
+        
+    03. project test, (relay off, ADC drift).
+    04. project stm32, hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+        /topic ppt, 
+    08. meeting, daily update, test sharing.
+        /sw team meeting.
+    
+
+//==================================
+2019.08.29 Thursday
+    01. project doc, UL.
+    02. project code, 
+    03. project test, (mode current).
+    04. project hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+        /topic ppt, 
+    08. meeting, daily update, test sharing.
+        /sw team meeting.
+        机械原理， 清华大学；
+
+//==================================
+2019.08.27 Tuesday
+    01. project doc, UL.
+    02. project code, led twinkle, //led indicator, sequencer comments.
+            error flashing code,
+            SPS-253 Documentation,
+            
+            lint sps-247 product test,
+            adc sample zero drift, measure range scale.
+            
+    03. project test, (mode current).
+    04. project hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+        standard-UL325, UL10C, A156.19, FCC Part 15.
+        BHMA, builders harware manufacture association
+        ANSI, American national staandards institute.
+        
+        A156.19-2007
+        UL325, electriacal safety,(UL60730)
+        UL10C, fire door assembles.
+        
+A156.19-2007: swinger.
+        1-Swinger, A156.10 cover Slider. A156.38-low energy,
+        2-Definition - power assist, 
+                     - low energy, 
+                     - Activation,
+                     - Time dealy, auto hold open 5s, push and go 3s. ???
+                     - Closing,
+                     - Force, kinetic, 手动推开门133N, 最小67N，
+         3-cycle tests
+         4-low energy power operated doors
+         5-cycle tests
+        
+        
+        
+        
+        
+    08. meeting, daily update, test sharing.
+    
+//==================================
+2019.08.26 Monday
+    01. project doc, UL.
+    02. project code, led twinkle, //led indicator, sequencer comments.
+            error flashing code,
+            SPS-253 Documentation,
+            
+            switch_off relay SPS, reset messageRouter.cpp
+            lint sps-247 product test,
+            adc sample zero drift, measure range scale.
+            
+            
+    03. project test, (mode current).
+    04. project hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+    08. meeting, daily update, test sharing.
+        Drawing review, 
+        work tasks,
+        test order,
+        NMI, Production test, doc, arch,
+        CDC4, 
+        OMS-operation mode selection.
+        escape route, sign, 24v 2s open 80%. 
+            electrical faults not resist normal open.
+            two motor, backup h24 open once. 
+            off->auto, backup battery+motor, open once.    
+    
+    
+//==================================
+2019.08.23 Frid
+    01. project doc, UL.
+    02. project code, led twinkle, //led indicator, sequencer comments.
+            error flashing code,
+            SPS-253 Documentation,
+            switch_off relay SPS,
+            
+            Sw 009, 011, 016, 019, 020, 022.
+            Sw 009, 019 更新打印程序。
+            
+    03. project test, (mode current).
+    04. project hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+    08. meeting, daily update, test sharing.
+        Drawing review, 
+        work tasks,
+        test order,
+        NMI, Production test, doc, arch,
+        CDC4, 
+        OMS-operation mode selection.
+        escape route, sign, 24v 2s open 80%. 
+            electrical faults not resist normal open.
+            two motor, backup h24 open once. 
+            off->auto, backup battery+motor, open once.
+            
+15:55 sw019 power on.
+        
+        
+    09. behave, slow speak fast thinking, fast action.
+    10. other, reimburement, stock, weiChat, lunch.
+    
+
+//==================================
+2019.08.22 Thursday
+    01. project doc, UL.
+    02. project code, led twinkle, //led indicator, sequencer comments.
+            error flashing code,
+            SPS-253 Documentation,
+    03. project test, (mode current.
+    04. project hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+    08. meeting, daily update, test sharing.
+    09. behave, slow speak fast thinking, fast action.
+    10. other, reimburement, stock, weiChat, lunch.
+
+
+//==================================
+2019.08.16 Friday
+    01. project doc, UL.
+    02. project code, led twinkle, //led indicator, sequencer comments.
+            SPS-224 Lean hold open time too longer,
+            SPS-253 Documentation,
+    03. project test, (mode current.
+    04. project hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+    08. meeting, daily update, test sharing.
+    09. behave, slow speak fast thinking, fast action.
+    10. other, reimburement, stock, weiChat, lunch.
+    
+
+    
+//==================================
+2019.08.14 Wednesday
+    01. project doc, UL.
+    02. project code, led twinkle, //led indicator, sequencer comments.
+    03. project test, (mode change from open to auto, door pause short time.)
+                      (closed, current not same.)
+                      (reveal same, update sw changed arm table, door open angle change only 0.2 degree.)
+                      (latch check close time not > 1.5s.)  给客户可选项，设定-结果公差；
+                      (start force overrange, ) UL325<133N (LOW ENERGY), UL156.19 <67N.
+    04. project hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+    08. meeting, daily update, test sharing.
+    09. behave, slow speak fast thinking, fast action.
+    10. other, reimburement, stock, weiChat, lunch.
+
+//==================================
+2019.08.14 Wednesday
+    01. //UL doc,
+    02. //led indicator, sequencer comments,
+    03. Code-LearnMode.cpp,
+    04. Hardware sch,
+    05. //Disk clean,
+    06. English,
+    07. Excecise, health, human, 
+    08. Slow.
+    09. Test team commu-bug list.
+    10. review 130mm， arm table.
+    11. ---meeting with Sweden, after holiday.
+    
+    building information modeling (BIM) 
+
+//==================================
+2019.08.13 Tuesday
+    01. UL doc,
+    02. led indicator, sequencer comments,
+    03. Code-LearnMode.cpp,
+    04. Hardware sch,
+    05. //Disk clean,
+    06. English,
+    07. Excecise, health, human, 
+    08. Slow.
+    09. Test team commu-bug list.
+    10. review 130mm， arm table.
+    11. ---meeting with Sweden, after holiday.
+    
+    building information modeling (BIM) 
+    
+    
+{ Hellsson, Daniel <Daniel.Hellsson@assaabloy.com>
+    I’m not sure how used all of you are to reporting time in JIRA. If you are, then skip to the end. If not, then I’ll tell you.
+
+For each JIRA issue you have been working on:
+1.	Open it up in JIRA
+2.	Click “More->Log work”
+3.	Write in “time spent” (make sure to enter days, not hours: “1d”)
+4.	Make sure “Date Started” points to the day when you did the work (if you report in the mornings, this will usually be yesterday).
+5.	Make sure that “Remaining Estimate” is adjusted accordingly. If you made progress, allow it to adjust automatically, if you feel that you now have a different opinion on how long it will take, choose “set to” or “reduce by”
+6.	Add a short description of what you did. You don’t have to, but I encourage you to, since this will make up a sort of “developer diary” that you (and others) can look back on to see how development progressed.
+
+It is important that you ask yourself if the estimate is good, each time you update it. If you keep saying “one more day” then you’re failing in the estimation. If you estimate 1 more day of development, ask yourself: “Will I really be done today? Is that realistic?” If not, then add another day, or two, if that feels more realistic.
+
+If you work half days, add “0.5d”, but please do not register 1 hour or 2 hours. That is way to detailed and will not help us in the end. Half-day is the smallest unit of measure you can put into an issue and 1 day is the shortest time anything can be delivered to the system, so never estimate a task to take less than 1 day.
+
+}
+    
+//==================================
+2019.08.12 Monday
+    01. UL doc,
+    02. led indicator, sequencer comments,
+    03. Code-LearnMode.cpp,
+    04. Hardware sch,
+    05. //Disk clean,
+    06. English,
+    07. Excecise, health, human, 
+    08. Slow.
+    09. Test team commu-bug list.
+    10. review 130mm， arm table.
+    11. ---meeting with Sweden, after holiday.
+    
+//==================================
+2019.08.09 Friday
+    01. UL doc,
+    02. led indicator, sequencer comments,
+    03. Code-LearnMode.cpp,
+    04. Hardware sch,
+    05. //Disk clean,
+    06. English,
+    07. Excecise, health, human, 
+    08. Slow.
+    09. Test team commu-bug list.
+    10. review 130mm， arm table.
+    11. ---meeting with Sweden, after holiday.
+    
+    training： 晶振，模数，高频，敷地；
+    射频电源，星形拓扑；
+
+
+
+//==================================
+2019.08.07 Wednesday
+    01. UL doc,
+    02. led indicator, sequencer comments,
+    03. Code-LearnMode.cpp,
+    04. Hardware sch,
+    05. //Disk clean,
+    06. English,
+    07. Excecise, health, human, 
+    08. Slow.
+    09. Test team commu-bug list.
+    10. review 130mm， arm table.
+    11. ---meeting with Sweden, after holiday.
+    
+
+//==================================
+2019.08.06 Tuesday
+    01. UL doc,
+    02. led indicator,
+    03. Code-structure, interface-backend, namespace,
+    04. Hardware sch,
+    05. //Disk clean,
+    06. English,
+    07. Excecise, health, human, 
+    08. Slow.
+    09. Test team commu-bug list.
+    10. review 130mm， arm table.
+    11. ---meeting with Sweden, after holiday.
+    
+    statistics, CM,
+    logs, revolver solution,
+    
+
+//==================================
+2019.08.05 Monday
+    01. UL doc,
+    02. Sequencer,
+    03. Code-structure, interface-backend, namespace,
+    04. Hardware sch,
+    05. //Disk clean,
+    06. English,
+    07. Excecise, health, human, 
+    08. Slow.
+    09. Test team commu-bug list.
+    10. review 130mm， arm table.
+    11. ---meeting with Sweden, after holiday.
+    
+        const enum //cycle counter-section
+		{
+        	ALWAYS_FLSHING = -1,
+        	STOP_FLASHING = 0
+		};
+
+//==================================
+2019.08.02 Friday
+    01. UL doc,
+    02. Sequencer,
+    03. Code-structure, interface-backend, namespace,
+    04. Hardware sch,
+    05. //Disk clean,
+    06. English,
+    07. Excecise, health, human, 
+    08. Slow.
+    09. Test team commu-bug list.
+    10. review 130mm， arm table.
+    
+    UL5085-1, transform,
+    thickness,
+    
+    
+    three-phase,
+    
+    
+        si16FlashingPulseTimes      ( 1 ),
+        si16FlashingCycleTimes      ( 1 )
+
+
+//==================================
+2019.08.01 Thursday
+    01. UL doc,
+    02. Sequencer,
+    03. Code-structure, interface-backend, namespace,
+    04. Hardware sch,
+    05. //Disk clean,
+    06. English,
+    07. Excecise, health, human, 
+    08. Slow.
+    09. Test team commu-bug list.
+    
+    147
+
+//==================================
+2019.07.30 Tuesday
+    00. lock kick, merge request,
+    01. led indicator
+    02. UL doc,
+    03. english,
+    04. doctor search.
+    
+    C:/mbs/SwingDoorPlatform/html/hhc.exe
+    
+
+//==================================
+2019.07.29 Monday
+    01. led indicator
+    02. UL doc,
+    03. english,
+    04. 
+  
+    
+        [SENQUENCER_TIMEOUT] =
+        {
+            /* ui8NrOfSubscribers */ 1U,
+            /* ui8Subscribers     */ { static_cast<uint8_t>( SYSTEM_MONITOR ), 255U, 255U }
+        },
+
+        [LED_INDICATOR_MODE] =
+        {
+            /* ui8NrOfSubscribers */ 1U,
+            /* ui8Subscribers     */ { static_cast<uint8_t>( OUTPUT_SEQUENCER ), 255U, 255U }
+        }
+  
+        
+        //! Implementation of the corresponding interface function
+        void vUpdate() volatile; //Give a update interface, can be updated in other module, not output module self.
+
+        void LedIndicatorImp::vDispatch( const uint8_t ui8MessageId ) volatile
+        {
+            switch ( ui8MessageId )
+            {
+                case messages::SENQUENCER_TIMEOUT:
+                    outputSequencerBackend->vTimeoutEvent( input::OUTPUT_SEQUENCER_TIMEOUT_TIMER_ID );
+                    break;
+
+                case messages::LED_INDICATOR_MODE:
+                    DispatchLedIndicatorMode();
+                    break;
+
+                default:
+                    //! Do nothing
+                    break;
+            }
+        }    
+
+//==================================
+2019.07.25 Thursday
+    01. led,
+    02. UL 60730,
+    03. Searching.
+    04. English.
+    
+    	"MOTION_CONTROL_EVENT_TIMEOUT": {
+		"event": {
+			"type": "uint8_t",
+			"description": "The event that timed out."
+		}
+	},
+
+
+//==================================
+2019.07.23 Tuesday
+    01. Automatic electrical controls for household
+    //02. makefile gcc,
+    03. 程序，outputSequencer 应用层： LED class, recv cmd, ctrl output;
+    04. 快速阅读UL文件；
+
+//==================================
+2019.07.23 Tuesday
+    01. //USB-HUB 采购；
+    02. //流量卡对比；
+    03. makefile gcc使用；
+    04. 程序；
+    05. //辛福培训时间安排；
+    06. outputSequencer 应用层： LED class, recv cmd, ctrl output;
+    07. english: single,
+
+
+//==================================
+2019.07.22 Monday
+    01. LED flash, //C:\mbs\SwingDoorPlatform\mbsSdk\components\system\sequencer\inc\outputSequencer.h
+    02. makefile function,
+    03. english,
+    //04. merge request,
+    
+    
+//==================================
+2019.07.19 Friday
+    01. Team meeting.
+    02. discuss 电流环输入和反馈的比较，同样速度环输入和反馈对比；
+        fictive resistance 电机运行了，但是没有检测到运行；
+    03. link script,
+    04. gcc manual,
+    05. build.mk, abs.mk.
+
+//==================================
+2019.07.17
+    01. //develop branch run again,   //access priority.
+    02. reimbursement,
+    03. EF,                         
+    04. //UL doc,
+    05. PCB simu PLC,
+    06. //jer_dev_arch  new merge request to develop_free.
+
+//==================================
+2019.07.16 Tuesday
+
+
+05. English:
+You are applying for a position as a manager at a major company. 
+Imagine you have extensive business qualifications and experience, 
+and write your cover letter.
+
+Read the example cover letter. Type in the input box. Write 45-65 words. 
+Use your own words where possible.
+
+Dear Ms. Rivers:
+
+I am writing to apply for the manager position at IBX. I believe my extensive experience and solid education make me a strong candidate.
+
+I graduated in electrical automation from Jangsu University with a master degree at 2011 year. Subsequently, I received a job in Nanjing. I worked in Nanjing about 4 years. Subsequently, I was invited to Changzhou by older class mate in Jangsu University. One years later, I was promoted to software director. I have extensive experience in software development. I am working at ASSA as an software engineer.
+
+Details about my education and experience are in the attached resume. Thank you for considering my application. I hope to hear from you soon.
+
+Sincerely,
+
+//==================================
+2019.07.15 Monday
+01. Code, 
+02. UL doc,
+03. English,
+04. gitlab runner,
+
+
+//==================================
+2019.07.12 Friday
+01. team buildig discuss;
+02. flowChart
+03. /SwingDoorPlatform/components/common/selfTest/STM3210C_EVAL/EWARM/stm32f10x_STLcpurunIARv5.s
+    /components/application/swingDoorGeneric/systemMonitorApp/motorBoard/inc/runtimeTestList.hpp
+    /: RuntimeTest("ProgramFlowReceive", PROGRAM_FLOW_RECEIVE_TEST)
+    
+//==================================
+2019.07.11 Thursday
+00. i2tMonitor:().
+01. encoderMonitor:().
+02. System test:().
+03. Runtime test:().
+
+
 //==================================
 2019.07.10-Wednesday.
 01. ProgramSelector: (io param intf(impules),to private object(maybe not defined), &message, mode).
@@ -679,13 +1191,14 @@ Q List:
     dispatch:   motion_control_status, timer_enent, impulse timeout,
                 door_angle_repetion, impulse, learn button, 
                 learn_error, ble_status_updated. ).
+03. ActiveImpulse: (message=>door_command, 使信号活化。).
+04. priorityList: (in doorCommand.hpp, DoorCommandPriorityListImp=>static apDoorCommandList[], constructor).
        
 //==================================
 2019.07.05-Friday.
 01. 小组会议， 活动主题欢迎Cason.
 02. Denbin实习结束，软件招聘实习生；
 03. linux介绍：是什么，历史，对比window，能做什么，命令，编程...
-       
        
 //==================================
 2019.07.04-Thursday.
