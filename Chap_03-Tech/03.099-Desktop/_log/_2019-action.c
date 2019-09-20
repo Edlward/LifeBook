@@ -628,6 +628,10 @@ advantum access,
     Sw 009, 011, 016, 019, 020, 022.
     Sw 009, 019 更新打印程序。
     
+03. Motor current sensor, test by Bob. //////
+
+
+    
 =================== 问题 =================
 new version:
     01, reset, not continue cycle test=print reset. Still reset 2days running.
@@ -636,6 +640,8 @@ new version:
     02, /low energy not work on force limit, 
         close force67N.
     03, /ADC drift.
+        zero sample,
+        change dir check keep current.
         datasheet, sensitity offset, 3.3v >> offset,
         english,
     04, learn open position, no margin.
@@ -643,9 +649,316 @@ new version:
     06. hardware version.
     07. /no spring current 3.9A. 
     08. sprints not fufill.
+    09. /Test Share.
+            v8_5 全部测试否,(Free Swing, Partial open, Push and Close, )
+            v8_5 Summary,
+            SPS Matin kan,
+Bob: SwingPlatform
+    Spring not learned,
+    No spring open current,
+    Learn open hit door,
+    RUO \ SOS not stable,
+Wang: UL quasar,
+    Close curve halt 200ms, (How, Let me how)
+    No spring size2, close force 0, manual open 10 degree. (ADC)
     
-    UL test,
     
+    /Hardware version,
+    
+    /basicIO led,
+   
+    v0,7 power board support.
+    
+    Advises_for_code.
+    
+    
+    
+  //==================================
+2019.09.19 Thursday
+    01. Test ADC sample in zero voltage GND,
+    02. MBS assert,
+    03. SOS, 
+    
+    
+    
+ //==================================
+2019.09.18 Wednesday
+    01. project doc, UL.  
+    02. PI, 
+        LOW SPEED, 
+        BACK-CHECK ANGLE, 
+        INERTIA, 
+        SAMPLE-TIME, 
+    
+ //==================================
+2019.09.12 Thursday
+    01. project doc, UL.
+    02. project code, !!!
+    . For Quasar cT=0,044, rG=245 -> 10,78
+    
+ //==================================
+2019.09.10 Tuesday
+    01. project doc, UL.
+    02. project code, !!!
+        *.c, *.cpp, *.h, *.hpp, *.jenkins, *.jenkinsfile, *.json, *.markdown, *.md, *.mk
+        
+    03. project test, (relay off, ADC drift).
+        relay off 
+    04. project stm32, hw, SCH.
+    05. project charge, code read.
+    06. learning, English, Janpanse.
+    07. learning, training, managerment development.
+        /topic ppt, 
+    08. meeting, daily update, test sharing.
+        /sw team meeting.      
+    
+
+Teacher: Karen/England
+
+
+Vocabulary
+
+planning
+
+preparation
+
+reserve hotel
+
+itinerary
+
+
+Pronunciation
+
+Italy
+
+Greece
+
+Singapore
+
+Malaysia
+
+Kuala Lumpur
+
+interests
+
+interested = in+ter+est+ed
+
+preferences
+
+
+
+PAGE: 20 / 23 STEP: 8 / 8
+
+
+
+So, what is it assault. 
+
+
+Self-Defense - a person protects himself/herself from being injured by causing harm to the other person.  
+
+
+Assault - when a person injuries another person.  
+
+
+Claimed Innocence - the accused (Josh) is starting that he/she is innocent.  In other words, he/she did not commit the crime that he/she is being accused of. 
+
+
+Accused will either state that they are guilty or innocent.  
+
+______________________________
+
+He was conviction yesterday and was sentenced …3 years in prison.  
+
+
+He was convicted yesterday and was sentenced to 3 years in prison.  
+
+
+Yes, the man hurted right away with blood. 
+
+Yes, the man was badly hurt.  
+
+OR
+
+Yes, the man bleed on his shirt. 
+
+________________________________
+
+
+Technology
+
+
+a calculated risk
+
+risk averse - wanting to avoid risk
+
+stability
+
+
+Do you think that sometimes we must take risks to continue to be stable?
+
+
+pragmatism - an attitude of acting based on practical evidence and rational thinking
+
+
+CORRECTIONS
+
+they have a similar knowledge about it...
+
+they have knowledge about...
+
+they are familiar with...
+
+
+
+My trip is better in my opinion. We don't have so long holidays.
+
+
+I don't have as many destinations. My destinations are not too far from each other. So we can have cheaper flights.
+
+
+Role Play
+
+It's a good idea but do you have a detailed plan? So many flights. According to your plan, I don't think you have enough time to enjoy your trip.
+
+I recommend you to visit 2 or 3 countries in 2 weeks and in one country you can visit one or two beautiful city. It will not be so tired and you can taste some delicious food in Thailand or Malaysia.
+
+
+Correction: I recommend you visit 2 or 3 countries in 2 weeks and in one country you can visit one or two beautiful cities.
+
+
+It will not be so tiring...
+
+
+Revision
+
+modal verbs
+
+eg would - for suggestion
+
+should - for obligation - to say you must
+
+
+Topic 2
+
+Vocabulary
+
+economy
+
+layover/stop over
+
+direct flight
+
+frequent flyer - membership for people who fly a lot
+
+
+
+Questions
+
+Name
+
+Passport
+
+Destination
+
+Departure date
+
+Frequent flyer membership number
+
+Length of trip
+
+How would you like to fly? eg economy or first class
+
+Direct flight
+
+Is it one way or return?
+
+
+Role Play
+
+Hello, I want to book a ticket to London. I plan a month from today.
+
+I'd like a direct flight.
+
+I prefer economy.
+
+I'm membership of your company. I have frequent flyer miles.
+
+
+Correction: I am a member of your company's frequent flyer club.
+
+===
+        
+Communications link media screen includes TV, newspapers and the web.
+
+The great thing about digital media is you can get everything of on off demand.
+
+Click on the link, and you'll see a pop-up window medium font .
+
+It's so cool! You just need to swipe screen blink your eye to turn the page.
+
+The screen font demand media is too small. I can't read the words.
+
+You don't need to type. Just font blink swipe your finger across the screen.
+
+当你将事情与过去对比时，使用下列类似表达强调现在。
+	These days, there's just so much information everywhere. 	如今，到处都充斥着大量的信息。
+	Nowadays, you can get any information on demand. 	如今，你能够获得任何要求的信息。
+	Recently, they've invented technology where you can turn the page by just blinking. 	最近，他们发明了只用眨眼就能翻页的技术。
+	Lately, I've been using my e-reader more than paper books. 	最近，相比纸质书，我更多地使用电子阅读器。
+
+使用 in the + 十年代指代过去。如需指明具体是年代的哪个时期，你可以使用 early、late 和 mid-。
+	In the '90s, no one was talking about e-books. 	90 年代，根本没人谈论电子书。
+	In the early 1930s, families read together by the fire. 	20 世纪 30 年代初，一家人围坐火炉读书。
+	In the late '70s, I watched a lot of TV instead of reading. 	70 年代末，我经常看电视，很少看书。
+	In the mid-'80s, I had this huge cellphone. It was so heavy! 	80 年代中期，我有一部巨大的手机，非常笨重！
+    
+    Somewhere along the way, Jules started reading on her smartphone. 	从某个时候开始，Jules 就用智能手机阅读了。
+	I recall the pride I felt at having on my shelves all the books I'd read. 	我书架上的书我全都看过了，我现在还记得当时心里的那份骄傲。
+	In the past, you couldn't change the font or the brightness of the screen. 	在过去，你不能改变屏幕的字体或亮度。
+	When I was growing up, I read constantly. 	在我长大的时候，我经常阅读。
+
+ 
+
+        本次活动首先讨论了当前苏州在扫黑除恶活动中所达成的效果，在居民生活娱乐中起到了良好的引导左右，特别提到了小区棋牌室打麻将等民众生活娱乐的改善，做到娱乐身心，而拒绝赌博影响生活。
+        接着讨论了当前热门的话题，房价对民众生活的影响。讨论了房子在生活中的重要性，分析了房价对当前民众生活和精神建设的影响。并由此引出当前猪肉价格飞涨的话题，以及对生活的影响。由于猪瘟蔓延，导致猪肉减产，价格飞涨。国家和政府采取了一系列措施，包括生猪养殖和环保政策，以及猪肉供给临时对策。政策起到了一定的作用。
+        最后又讨论了苏州建立自贸区的作用及影响，分析了建立自贸区对公司发展的良好作用。
+
+   逗号、冒号和分号
+ 
+在下一活动中，你将看到作者是如何使用逗号、冒号和分号传达重要信息的。
+ 
+逗号 ( , ) 用于 and、but、or 或 so 等连词之前，连接两个主句。
+ 
+The links are part of the electronic text, and I tap on them to go to a networking site. 	这些链接存在于电子文本中，我点击链接，转到一个网站。
+I have a tablet, so I swipe the screen to turn pages. 	我有一台平板电脑，因此我刷动屏幕翻页。
+
+你也可以在引导性单词、短语或从句之后使用逗号。
+ 
+Ideally, new technology should make reading even more relaxing. 	理想状况下，新技术应该让阅读更加轻松。
+In the late '90s, I read my first electronic book. 	90 年代末，我阅读了我的第一本电子书。
+When I was growing up, I read two newspapers a day. 	在我长大的时候，我每天看两份报纸。
+
+使用逗号分隔三个或三个以上连续出现的项目，and 前面不用逗号。
+ 
+I read on my phone, my tablet, my notebook and my desktop computer. 	我在我的手机、平板电脑、笔记本电脑和台式电脑上阅读。
+You swipe the screen, tap the word and follow the link. 	你刷动屏幕，点击单词，然后追踪链接。
+
+在主句后面使用冒号 ( : )，引出密切相关的信息，比如一种解释或清单内的物品。
+ 
+An e-reader is important to me for one reason: I can carry lots of books on one small device. 	电子阅读器对我来说重要的原因在于：我能够在一部小小的设备上装许许多多的书。
+  	 
+Right now, I've got four things to read on my tablet: a crime novel, a graphic novel about monsters, a newspaper and a magazine with healthy recipes. 	目前，我的平板电脑有四种读物：一部犯罪小说、一本描写怪兽的图画小说、一份报纸和一本介绍健康食谱的杂志。
+
+你可以在两个独立的句子之间，或者一个完整句和一个从句之间使用分号 ( ; )，连接两个密切相关的看法。分号可以替代诸如 but 和 and 等连词。有时，使用分号比两个独立的句子更为有效。
+ 
+With paper media, I use my fingers to turn a page; with electronic media, I use my fingers for swiping. 	用纸质媒体阅读时，我用手指翻页；用电子媒体阅读时，我用手指刷动屏幕。
+  	 
+Paper books are too heavy; e-readers, too light. 	纸质书太重，电子阅读器太轻。
+
+When I was younger, I read books printed on paper. I had read Forth Great Works of classic fiction, and some science fictions. My favorite is science fiction. Somewhere along the way, I've transitioned from paper to electronic media. In the middle of 2010s, I bought a smart phone and start to read e-books on it. Now, I read news on my smart phone. I also do search for new knowledge, new technology, and Japanese anime. It's a huge difference in learning for me. 
+I would use my fingers to turn a page. I tap or swipe my screen to go to next page. But I still have not been tried eye blink to turn pages yet. Someday I like to try this method. Sometimes news articles are absorbing, but the content of it is not so useful. We need to filter so many redundant information. In all, however, I like it.
+
+
     
 
  //==================================

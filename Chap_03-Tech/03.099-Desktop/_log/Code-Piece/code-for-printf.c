@@ -1,9 +1,14 @@
 
 
+extern "C" {
+    #include <mbsAssert.h>
+    #include <mbsLog.h>
+}
 
 extern "C" {
-    #include <mbsLog.h>
     #include <mbsAssert.h>
+    #include <mbsLog.h>
+    static int16_t xTickTimeCounter = 0;
 }
 
 
@@ -22,6 +27,7 @@ on jer-error-print.
             mbsLogInfo("closeState=%d\r", static_cast<int>( eState ));
         }
 
+            uint16_t xTickTimeCounter = 0;
             TickType_t xTickTimeCounter = 0;
 
             xTickTimeCounter++;
@@ -46,3 +52,12 @@ on jer-error-print.
             }
             
             
+
+        xTickTimeCounter++;
+        if ( xTickTimeCounter >= 100 )
+        {
+            xTickTimeCounter = 0;
+            mbsLogInfo("si16OpnBrakeSpeed=%d\r", static_cast<int>( csi16OpeningBrakeSetSpeed ));
+            mbsLogInfo("si16SetSpeed=%d\r", static_cast<int>( si16RequestedSpeed ));
+            mbsLogInfo("si16SmpSpeed=%d\n\r", static_cast<int>( csi16ShaftSpeedInMilliRadPerSecond ));
+        }

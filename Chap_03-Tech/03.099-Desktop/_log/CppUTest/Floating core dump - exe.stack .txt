@@ -1,0 +1,20 @@
+components/application/aaesGeneric/motor/unitTest/win_test_runner.exe.stackdump
+
+
+    uint16_t MotorImp::ui16GetCalibrationSampleValue( const uint16_t ui16SampleValue )
+    {
+        int32_t si32AdSampleValue = static_cast<int32_t>( ui16SampleValue );
+        int32_t si32Ref2v5RawValue = static_cast<int32_t>( ref2V5VoltAdc->ui16GetRawAdValue() );
+        if ( 0 != si32Ref2v5RawValue )  //////
+        {
+            si32AdSampleValue *= static_cast<int32_t>( ADC_QUANTA_OF_2V5_WITHIN_3V3 );
+            si32AdSampleValue /= si32Ref2v5RawValue;
+        }
+        return static_cast<uint16_t>( si32AdSampleValue );
+    }
+
+
+    volatile inputInternal::AdcInputBackEnd* const MotorImp::adcObject[NUMBER_OF_ADC_OBJECTS] = { motorTestHelpers::mainVoltageAdc,
+                                                                                                  motorTestHelpers::ref2V5VoltAdc,
+                                                                                                  motorTestHelpers::motorCurrent1Adc,
+                                                                                                  motorTestHelpers::motorCurrent2Adc };
