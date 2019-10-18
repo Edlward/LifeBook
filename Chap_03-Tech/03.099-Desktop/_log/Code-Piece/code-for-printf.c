@@ -3,6 +3,9 @@
 extern "C" {
     #include <mbsAssert.h>
     #include <mbsLog.h>
+    
+    #include "output.hpp"
+    
 }
 
 extern "C" {
