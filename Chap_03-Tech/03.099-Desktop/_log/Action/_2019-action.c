@@ -599,7 +599,7 @@ unit test script
 
 
 
-settle 判定， 最終決定安排好。
+settle 判定， 最終決定\安排好。
 
 
 平等，即是不卑不亢。
@@ -609,7 +609,7 @@ settle 判定， 最終決定安排好。
 
 参数更改，相关的都要更改，避免遗漏，全面检查。
 
-Boss Headache. CDC400,
+Boss Headache. CDC400.
 
 =================== 文件 =================
 C:\mbs\SwingDoorPlatform\mbsSdk\components\common\rtos\freeRTOS\Source\tasks.c

@@ -1,0 +1,28 @@
+Debug configuration::
+
+Name: SwingDoorPlatform,products-quasarMotor,mbs_st_m64_core_v10,stlink-v2,program-and-debug
+
+Main: 
+    Project: SwingDoorPlatform
+    C/C++ Application: _output/products-quasarMotor/ARMCM3_GCC-debug-none-mbs_st_m64_core_v10/products-quasarMotor.elf
+    Disable auto build.
+    
+Debugger:
+    GDB Command:
+    ${workspace_loc:SwingDoorPlatform}/../mbsToolchains/gcc-arm-none-eabi-6-2017-q2/bin/arm-none-eabi-gdb
+    Not use remote target.
+    
+Startup:
+    Init command:
+    shell sh mbsSdk/tools/debug/openocd/bin/killOpenocdWin.sh
+    target extended | mbsSdk/tools/debug/openocd/bin/Cygwin/openocd -c 'gdb_port pipe' -l _openocd.log -s mbsSdk/tools/debug/openocd/scripts_mbs -s mbsSdk/tools/debug/openocd/scripts_mbs -s mbsSdk/tools/debug/openocd/scripts -f interface/mbs_stlink-v2.cfg -f mcu/stm32f1.cfg -f debug/gdb.cfg -d3
+    monitor reset init
+    monitor poll on
+    source mbsSdk/tools/debug/gdb/gdbInit
+    
+    Load image,
+    Load symbols.
+    
+Common:
+    Save as:
+    Shared file: \SwingDoorPlatform\_output\products-quasarMotor\ARMCM3_GCC-debug-none-mbs_st_m64_core_v10.
