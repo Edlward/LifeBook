@@ -42,7 +42,135 @@ Plan, then no emergency.
     cubeMx,
 
     
+    12/6 - team building; idea;
+    Sweden colleague; PDS-CEO来访，
 
+
+//--------------------------------
+2019.11.29 Friday
+    [08:00-10:00] plan;      PID 1/s; cubeMx;  
+    [10:00-12:00] english;   merge request; 
+        
+    [13:00-15:00] schematic; code rationale;
+    [15:00-17:00] calc;      FOC code rationale;  
+    
+    00. SPS, 
+    01. FreeRTOS, oral, 
+    02. FOC, 
+    03. MBS, 
+    04. project,
+    
+    My turn. I am Updating before learn thing according to comments. 
+    //Today is a little strange. I should finish it.
+    Today I took some work on prapering unit test pictures for UL. 
+    And just finish my branch code. I still need more tests, then push a new commit.
+    
+    How to set up python3, manual.
+        
+//--------------------------------
+2019.11.28 Thursday
+    [08:00-10:00] plan;      PID 1/s; cubeMx;  
+    [10:00-12:00] english;   merge request; 
+        
+    [13:00-15:00] schematic; code rationale;
+    [15:00-17:00] calc;      FOC code rationale;  
+    
+    00. SPS, 
+    01. FreeRTOS, oral, 
+    02. FOC, 
+    03. MBS, 
+    04. project,
+    //        vSubExpectUint8Message(messages::LEARN_COMMAND_COMPLETED, 1);
+    // 手动更改HEX文件，通过VI命令-b可以查看，更改文件，缺点是还要通过Utility进行下载，但打不开；
+    // 直接用Utility软件打开，更改HEX，然后下载。如果需要断点，然后用开发环境进入调试模式。
+        
+        
+//--------------------------------
+2019.11.27 Wednesday
+    [08:00-10:00] plan;      PID 1/s; cubeMx;  
+    [10:00-12:00] english;   merge request; 
+        
+    [13:00-15:00] schematic; code rationale;
+    [15:00-17:00] calc;      FOC code rationale;  
+    
+    00. SPS, 
+    01. FreeRTOS, oral, 
+    02. FOC, 
+    03. MBS, 
+    04. project,
+    
+        For now, the python version is 2.7. We need to install python3 to support Quasar project source code compiling.
+
+//--------------------------------
+2019.11.26 Tuesday
+    [08:00-10:00] plan;      PID 1/s; cubeMx;  
+    [10:00-12:00] english;   merge request; 
+        
+    [13:00-15:00] schematic; code rationale;
+    [15:00-17:00] calc;      FOC code rationale;  
+    
+    00. SPS, 
+    01. FreeRTOS, oral, 
+    02. FOC, 
+    03. MBS, 
+    04. project,
+    
+//--------------------------------
+2019.11.25 Monday
+    [08:00-10:00] plan;      PID 1/s; cubeMx;  
+    [10:00-12:00] english;   merge request; 
+        
+    [13:00-15:00] schematic; code rationale;
+    [15:00-17:00] calc;      FOC code rationale;  
+    
+    00. SPS, 
+    01. FreeRTOS, oral, 
+    02. FOC, 
+    03. MBS, 
+    04. project,
+    
+//--------------------------------
+2019.11.22 Friday
+    [08:00-10:00] plan;     PID 1/s; cubeMx;  
+    [10:00-12:00] english;  merge request; 
+        
+    [13:00-15:00] schematic;code rationale;
+    [15:00-17:00] calc;     FOC code rationale;  
+    
+    00. SPS,
+    01. FreeRTOS, oral, 
+    02. FOC, 
+    03. MBS,
+    04. project,
+    
+/*! When systemMonitorApp receive SYSTEM_MONITOR_STATUS, if the status id is
+ * SYSTEM_MONITOR_STATUS_MAIN_VOLTAGE_DROP  it shall dispatch to mainVoltageMonitorBackEnd and EncoderMonitorBackEnd
+ * */
+TEST ( SystemMonitorApp, dispatchSYSTEM_MONITOR_STATUS_MAIN_VOLTAGE_DROP)
+{
+    SystemMonitorAppImp* pSystemMonitor = initSystemMonitorApp();
+    uint8_t ui8StatusId = messages::SYSTEM_MONITOR_STATUS_MAIN_VOLTAGE_DROP;
+    mock().expectOneCall( "vSystemEvent" )
+          .withParameterOfType("uint8_t", "cui8Event", &ui8StatusId)
+          .onObject( pErrorHandler );
+    dispatchUint8Message(pSystemMonitor, messages::SYSTEM_MONITOR_STATUS, ui8StatusId);
+    delete pSystemMonitor;
+}
+
+//--------------------------------
+2019.11.21 Wednesday
+    [08:00-10:00] plan;     PID 1/s; cubeMx;  
+    [10:00-12:00] english;  merge request; 
+        
+    [13:00-15:00] schematic;code rationale;
+    [15:00-17:00] calc;     FOC code rationale;  
+    
+    00. SPS,
+    01. FreeRTOS,
+    02. FOC, 
+    03. MBS,
+    04. project,
+   
     
 //--------------------------------
 2019.11.18 Monday

@@ -1,0 +1,6 @@
+1. Unzip "npp.7.6.2.bin.7z" to C:\mbs\programs\
+2. Input git command:
+git config --global core.editor "C:/mbs/programs/npp.7.6.2.bin/notepad++.exe -multiInst -notabbar -nosession -noPlugin"  //faster.
+//git config --global core.editor '''C:/mbs/programs/npp.7.6.2.bin/notepad++.exe -multiInst -notabbar -nosession -noPlugin $* ''' //with param
+3. Git commit, will open notepad++.exe, input your comments in notepad++, save, close.
+4. If input nothing, then close notepad++, It will abort commit.

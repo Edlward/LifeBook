@@ -1,0 +1,11 @@
+1. Unzip "BCompare3.7z" to C:\mbs\programs\
+
+2. Input git command:
+git config --global diff.tool bc3 
+git config --global difftool.bc3.path '''C:/mbs/programs/BCompare3/BCompare.exe'''
+git config --global difftool.bc3.cmd '''C:/mbs/programs/BCompare3/BCompare.exe $REMOTE $LOCAL'''
+//git config --global difftool.bc3.cmd '''C:/mbs/programs/BCompare3/BCompare.exe $REMOTE $MERGED $LOCAL --output $MERGED'''
+
+3. Use Git difftool command, to check change, the LEFT side window is current branch.
+
+4. Diff files opens one by one(Close current compare window, then it will open another compare window.)

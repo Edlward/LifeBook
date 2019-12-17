@@ -11,6 +11,7 @@ extern "C" {
 extern "C" {
     #include <mbsAssert.h>
     #include <mbsLog.h>
+    static int16_t si16TimeCounter = 0; //out of while.
 }
 #define PRINT_IMPULSE                   1
 #define PRINT_MAIN_VOLTAGE              1
@@ -26,10 +27,10 @@ extern "C" {
         mbsLogInfo(":diffV=%d.\r", static_cast<int>( diffVoltageStatus ) );
 #endif
 
-            xTickTimeCounter++;
-            if ( xTickTimeCounter >= 200 )
+            si16TimeCounter++;
+            if ( si16TimeCounter >= 200 )
             {
-                xTickTimeCounter = 0;
+                si16TimeCounter = 0;
                 int32_t brakeChopVolt = input::brakeChopVoltAdc->si32GetRealValue();
                 int32_t mainVolt = input::mainVoltAdc->si32GetRealValue();
                 if ( ((mainVolt - brakeChopVolt) > 2000)
@@ -55,12 +56,12 @@ on jer-error-print.
             mbsLogInfo("closeState=%d\r", static_cast<int>( eState ));
         }
 
-            uint16_t xTickTimeCounter = 0; //out of while.
+            int16_t si16TimeCounter = 0; //out of while.
 
-            xTickTimeCounter++;
-            if ( xTickTimeCounter >= 1000 )
+            si16TimeCounter++;
+            if ( si16TimeCounter >= 1000 )
             {
-                xTickTimeCounter = 0;
+                si16TimeCounter = 0;
 
                 mbsLogInfo("ADC1=%d\r", static_cast<int>( motorVolt1AdcImp.si32GetRealValue() ));
                 mbsLogInfo("ADC2=%d\r", static_cast<int>( motorVolt2AdcImp.si32GetRealValue() ));
@@ -80,22 +81,22 @@ on jer-error-print.
             
             
 
-        xTickTimeCounter++;
-        if ( xTickTimeCounter >= 100 )
+        si16TimeCounter++;
+        if ( si16TimeCounter >= 100 )
         {
-            xTickTimeCounter = 0;
+            si16TimeCounter = 0;
             mbsLogInfo("si16OpnBrakeSpeed=%d\r", static_cast<int>( csi16OpeningBrakeSetSpeed ));
             mbsLogInfo("si16SetSpeed=%d\r", static_cast<int>( si16RequestedSpeed ));
             mbsLogInfo("si16SmpSpeed=%d\n\r", static_cast<int>( csi16ShaftSpeedInMilliRadPerSecond ));
         }
         
         //print generator power
-        uint16_t xTickTimeCounter = 0; //out of while.
+        uint16_t si16TimeCounter = 0; //out of while.
         
-        xTickTimeCounter++;
-        if ( xTickTimeCounter >= 200 )
+        si16TimeCounter++;
+        if ( si16TimeCounter >= 200 )
         {
-            xTickTimeCounter = 0;
+            si16TimeCounter = 0;
 
             int32_t  mainVoltage = mainVoltAdcImp.si32GetRealValue();
             if ( mainVoltage > 30000) //30v
