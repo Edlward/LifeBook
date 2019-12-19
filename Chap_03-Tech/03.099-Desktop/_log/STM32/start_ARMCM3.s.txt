@@ -1,0 +1,1 @@
+/SwingDoorPlatform/mbsSdk/components/halMcu/init/stm32f10x/src/start_ARMCM3.s

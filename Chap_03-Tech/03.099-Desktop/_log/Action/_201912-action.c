@@ -46,15 +46,123 @@ Plan, then no emergency.
     Sweden colleague; PDS-CEO来访，
 
 
-        
+
+//--------------------------------
+2019.12.19 Thursday
+    01. Swing Door Platform Code,
+    02. English,
+    03. Test,
+    04. FOC, 
+    05. Git use bc3,  
+    
+    Today I am still working on SPS-4-19 parameter value class.
+    The design of parameter value class has been merged.
+    Next step is implement.
+    
+转发：
+我们部门要招一个测试工程师，偏向于软件，系统测试的。
+有没有什么资源，看看周围朋友谁愿意来的
+
+Common Duties and Responsibilities 岗位职责:
+	Design the system test specification and system test plan
+制定系统测试说明书，系统测试计划
+	Executing test cases, detect bug issues, reporting and verifying.
+执行测试用例，进行Bug 报告和验证。
+	Developing and making automated testing systems and  test equipment based on specifications.
+基于测试要求开发制作自动化测试系统和测试设备。
+	Follow established procedures and guidelines to perform routine laboratory procedures to test the quality or function of raw materials, in- process products, and finished products. 
+按照实验室既定程序和测试要求进行原材料，半成品和成品进行质量或功能测试。
+	Perform daily administration and routine maintenance and safety checks on laboratory equipment to ensure it is in good working order. 
+执行实验室设备的日常管理，例行维护和安全检查，确保设备工作正常。
+	Provide technical support to production 。
+为生产供技术支持。
+Competency 任职要求:
+	5 years of experience in Software Testing or similar role.
+5年以上软件测试或相关的工作经验
+	Excellent knowledge in testing skills (design test plan and test strategy, writing test cases, executing test cases, opening bugs, verifying bugs)
+丰富的测试知识和技能，包括制定测试计划，测试策略，编写测试用例，执行测试用例，Bug 确认和报告。
+	Be able to use English fluently as working language
+能流利地使用英语作为工作语言
+	Be able to operate lab instruments
+熟练操作实验室仪器
+	Knowledge of industry safety standards
+具备工业安全标准知识
+	Knowledge of programming systems like LabView or similar；Be able to write test program.
+有编程的知识，如LabView或类似的；能编写测试程序
+	Knowledge of communication interfaces with National boards or similar
+具有和主板通信接口的知识
+	Normally Reports To: Lab leader
+汇报对象：实验室组长
+	Minimum Qualifications: Bachelor (Degree)
+本科或以上学历
+	Graduation in computer science or  electronic engineering
+计算机或电子工程专业
+
+    
         
 //--------------------------------
-2019.12.17 Wednesday
+2019.12.18 Wednesday
     01. Swing Door Platform Code,
     02. English,
     03. Test,
     04. FOC, 
     05. Git use bc3,
+    
+    Today I am still working on parameter va`lid立得体ity(SPS-4-19). 
+    Updated some interfaces according Daniel/s comments. 
+    And I wrote my questions down in merge request comments to Daniel.
+    I hope the questions are good for parameter va'lidity design.
+    
+    //softhouse,
+    //mbs,
+    //Do you know the length of the door panel you test. Rebca. Willis is caring about the real ine呢rtia.
+       
+    //+++
+    It should hold the parameter value also. Add interface for that.
+    Then all "int32_t"'s used in Apps in the system can be replaced with this class.
+    "Two more questions: 1-Does this mean that each parameter has one "ParameterVaule" object?  In that case, the code will create lots of "ParameterVaule" objects.
+    2-When the parameter value should be hold by this class? If it is in PARAMETER_UPDATED call, the code may call si32GetParameterValue immediately after vSetParameterValue."
+
+    //class ParameterProxy
+    Actually, I'm not sure about the name anymore. I named it "Proxy" when it was supposed to be a complete proxy for the actual parameter. I'm thinking that a better name is "ParameterValue", maybe?
+        
+    "Changed the name in new commit. I suggest to use "ParameterValueValidity" to avoid confusion."
+    
+    //virtual bool boGetParameterValidStatus () volatile = 0;    
+    This name is ambiguous. Call it "boIsParameterValid" instead.
+        
+    //virtual void vSetParameterValidStatus () volatile = 0;
+    I don't think this is necessary. The validity of the value should be set when the "vSetParameterValue" function is called. So the value is invalid until it is actively set, from a "PARAMETER_UPDATED" call.
+        
+//--------------------------------
+2019.12.17 Tuesday
+    01. Swing Door Platform Code,
+    02. English,
+    03. Test,
+    04. FOC, 
+    05. Git use bc3,
+
+    Today I started to work on parameterProxy(SPS-419). 
+    I created a class with two interfaces. They are get & set parameter valid status methods.
+    Pushed a new branch.
+    And now, I want to make sure the design is correct. (What value is a proper value?)
+    (Next sps-420.)
+    
+    firmware update... time
+    BLE byte...
+
+Today, there is no handling of startup order or race-conditions in parameter handling between the boards.
+The motor board is where the parameters are stored and right now it boots up much faster than the Basic I/O board does, so there is no problem in accessing parameters from there. However, if that dynamic should change for whatever reason, there is no internal logic handling that error case.
+
+One solution:
+The configuration manager could wait for the other board to start broadcasting its presence. Once that connection is confirmed, it could send out a "Parameters Available" message, prompting each application to request the parameters that they need.
+
+Downside to this solution is that all applications are requesting their parameters at the exact same time (possibly) overloading the bus and timing out the responses. Also, applications are running without being fully configured until the parameters values are returned, leavning them unconfigured for longer.
+
+Another solution:
+Each application must keep track of whether they have received a response from the configuration manager. If they have not done that within a certain timeout, they resend their request and keep doing so until the system has booted up completely.
+
+This has the advantage of requiring no changes to ConfigurationManager and also being agnostic to knowing where in the system you are (whether or not your app is on the same board as the parameter storage).
 
         
 //--------------------------------
